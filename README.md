@@ -20,25 +20,24 @@ PanEffect is engineered using a JavaScript framework, ensuring that most of its 
 ### SNPversity website directory structure
 
 ```bash
-website/
+SNPversity/
 ├── css
     └── main.css
-├── csv
-├── dssp
-├── heatmap
-├── img
+├── gff
+    └── genes_data.serialized
+├── gif
     └── loading.gif
-├── index.html
+├── hdf5
 ├── js
-    ├── dom.js
-    ├── genome.js
-    ├── main.js
-    ├── pan.js
-    └── support.js
-├── pfam
-├── query
-├── synonym  
-├── target
+    ├──header_data.js
+    ├──main.js
+    └── VCF2PopTree.js
+├── vcf
+├── h5_to_vcf.py
+├── index.html
+├── lookupGeneModel.php
+├── maize_accessions.txt
+├── maize_accessions.tsv
 └── uniprot
 ```
 
