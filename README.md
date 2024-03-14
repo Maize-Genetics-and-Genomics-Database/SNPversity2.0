@@ -108,6 +108,7 @@ Filter criteria
 * CVP >= 50  
 * Remove multiallelic variants.  
 
+|Usage | Description | 
 |---------------|--------------|--------------|
 |script| step1_filter_and_clean.py | 
 |input| A unfiltered VCF file.  |
