@@ -64,6 +64,19 @@ SNPversity/
 # Hapmap 5
 
 
+|Accessions | Project |Project name|	
+|---------------|--------------|--------------|
+|539 |PRJCA009749 |WGS resequencing of 1,604 maize inbred lines	 |
+|521 |PRJNA531553 |Deep DNA resequencing of the association mapping panel |	
+|340 |PRJNA783885 |Maize landrace whole genome resequencing	 |
+|35 |PRJEB56320 |Maize Wisconsin Diversity Panel Resequencing |	
+|32 |PRJNA609577 |Zea mays Genome sequencing |	
+|11 |PRJNA389800 |Whole genome sequencing of maize 282 panel |	
+|8 |PRJEB14212 |European maize diversity |	
+|7 |PRJNA399729 |Maize Haplotype Map version 3 |	
+|6 |PRJNA260788 |Zea mays Genome sequencing (European maize genomes) |	
+|1 |PRJEB56265 |Resequencing of three Polish maize inbred lines |	
+
 |Effect | High Coverage | High Quality |
 |---------------|--------------|--------------|
 |intergenic |216,128,332 |69,236,257|
