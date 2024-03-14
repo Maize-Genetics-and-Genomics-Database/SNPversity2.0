@@ -109,7 +109,7 @@ Filter criteria
 * Remove multiallelic variants.  
 
 |Usage | Description | 
-|---------------|--------------|--------------|
+|---------------|--------------|
 |script| step1_filter_and_clean.py | 
 |input| A unfiltered VCF file.  |
 |output| A filtered VCF file with MQ and COV in the INFO field and 'GT' formated alleles.  |
