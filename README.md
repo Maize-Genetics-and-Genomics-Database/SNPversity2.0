@@ -116,19 +116,79 @@ sample usage: pyhon step1_filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.
 ## Step 2: Annotation
 The second step requires the installation of SNPEff.  SNPEff will annotate the variant effects for each locus against a reference genome. 
 
+Terms:  
+GENEMODEL (Gene model name): The name of the gene model affected by the variant. Uses the closest gene models when the variant is "intergenic”.  
+EFFECT (Putative impact): A simple estimation of putative impact/deleteriousness: {HIGH, MODERATE, LOW, MODIFIER}.   
+TYPE (Annotation type):  The type of effect using Sequence Ontology terms.  
+
 script: step1_filter_and_clean.py  
 input: The filterd VCF file from step 1.  
 output: A SNPEff annotated VCF file.  
 sample usage: java -Xmx100g -jar ${SNPEFFPATH}  maize chr1_filtered.vcf > chr1_snpeff.vcf
 
 
-## Step 1: Linkage Disequilibrium
+## Step 3: Filter on Linkage Disequilibrium
 
-## Step 1: Clean VCFs
+Filter criteria:
 
-## Step 1: Summary and Statistics
+Only linkage between 400bp to 5000bp  
+R2 >= 0.5  
+MAXR2.  The maximum R2 for a given loci.  R2: the square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci.  
 
-## Step 1: Filtering
+
+## Step 4: Clean VCFs
+
+Data that is kept and included in the final VCF:  
+
+Chromosome  
+Position  
+Reference allele  
+Alternate allele  
+Quality score  
+Information  
+GENEMODEL (e.g. Zm00001eb430510)  
+EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
+TYPE (e.g.  intergenic, synonymous_variant, missense_variant, frameshift_variant, 3_prime_UTR_variant, etc.)  
+MQ (e.g. 47.19)  
+CVC (e.g.1109)   
+CVP (e.g. 74.03)  
+MAXR2 (0.68417)  
+
+Alleles at each of the ~1500 accessions in Genotype (GT) format:  
+0/0 indicates a homozygous reference genotype.  
+0/1 or 1/0 indicates a heterozygous genotype with one reference and one alternate allele.
+1/1 indicates a homozygous alternate genotype.  
+./. missing or unknown genotypes.  
+
+
+## Step 5: Summary and Statistics
+
+Get a summary and statistics on the data   
+Gene model summary includes counts of the following types of annotations: total, intergenic, upstream, 5' UTR, synonymous, missense, stop, frameshift, intron, non_coding, 3' UTR, downstream, other   
+Statistics include:  
+total SNPs/INDELS  
+Count of homozygous alleles  
+Count of heterozygous alleles  
+Count of missing alleles  
+Number of SNPs with at least one heterozygous allele  
+Count of Deletions  
+Count of Insertions  
+Count of loci with Mapping Quality with (30 <= MQ < 40)	 
+Count of loci with Mapping Quality with (40 <= MQ < 50)	 
+Count of loci with Mapping Quality with (50 <= MQ < 60)	  
+Count of loci with Coverage Percentage with (50 <= CVP < 60)  
+Count of loci with Coverage Percentage with (60 <= CVP < 70)  
+Count of loci with Coverage Percentage with (70 <= CVP < 80)  
+Count of loci with Coverage Percentage with (80 <= CVP < 90)  
+Count of loci with Coverage Percentage with (90 <= CVP <= 100)  
+Count of loci with max R2 with (50 <= MAXR2 < 60)	
+Count of loci with max R2 with (60 <= MAXR2 < 70)		
+Count of loci with max R2 with (70 <= MAXR2 < 80)		
+Count of loci with max R2 with (80 <= MAXR2 < 90)	  	
+Count of loci with max R2 with (90 <= MAXR2 <= 100)  
+
+
+## Step 6: Filtering
 
 ## Optional: Prepare data for PanEffect
 
