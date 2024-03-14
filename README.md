@@ -64,8 +64,8 @@ SNPversity/
 # Hapmap 5
 
 
-| | High Coverage | High Quality |
-|---------------|--------------|
+|Effect | High Coverage | High Quality |
+|---------------|--------------|--------------|
 |intergenic |216,128,332 |69,236,257|
 |5' UTR | 544,839 | 287,968|
 |synonymous |1,042,272 |523,102|
