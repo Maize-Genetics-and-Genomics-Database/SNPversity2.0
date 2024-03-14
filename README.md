@@ -63,6 +63,23 @@ SNPversity/
 
 # Hapmap 5
 
+
+| High Coverage | High Quality |
+|---------------|--------------|
+|intergenic |216,128,332 |69,236,257|
+5' UTR	544,839	287,968
+synonymous	1,042,272	523,102
+missense	1,311,927	572,404
+stop	61,129	20,049
+frameshift	138,463	40,550
+intron	8,601,103	4,349,068
+non-coding	3,708	1,978
+3'UTR	801,323	468,603
+other	46,355	18,411
+TOTAL	228,679,451	75,518,390![image](https://github.com/andorfc/SNPversity2.0/assets/9011827/43cd3b14-6145-4cda-b4e2-105d28f1d03d)
+
+
+
 # Data Processing
 
 ## Step 1: Filtering
