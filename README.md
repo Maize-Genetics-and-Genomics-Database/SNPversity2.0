@@ -99,11 +99,8 @@ SNPversity/
 The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ > 30), coverage (COV > 0.5), and removing multi-allelic loci.
 
 script: step1_filter_and_clean.py
-
 input: A unfiltered VCF file.
-
 output: A filtered VCF file with MQ and COV in the INFO field and 'GT' formated alleles.
-
 sample usage: pyhon step1_filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf
 
 ## Step 2: Annotation
