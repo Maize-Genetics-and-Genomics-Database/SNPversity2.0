@@ -3,7 +3,7 @@ SNPversity2.0 is a web-based tool to display maize variant data.
 
 ## MaizeGDB instance of SNPversity 2.0
 
-https://www.maizegdb.org/effect/maize/
+https://wgs.maizegdb.org/
 
 ## Citation
 
@@ -96,7 +96,7 @@ SNPversity/
 # Data Processing
 
 ## Step 1: Filtering
-The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ > 30), coverage (COV > 0.5), and removing multi-allelic loci.
+The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ >= 30), coverage (COV >= 50%), and removing multi-allelic loci.
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
@@ -111,13 +111,13 @@ Filter criteria
 
 |Usage | Description | 
 |---------------|--------------|
-|script| step1_filter_and_clean.py | 
+|script| filter_and_clean.py | 
 |input| A unfiltered VCF file.  |
 |output| A filtered VCF file with MQ and COV in the INFO field and 'GT' formated alleles.  |
-|sample usage| pyhon step1_filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf|  
+|sample usage| pyhon filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf|  
 
 ## Step 2: Annotation
-The second step requires the installation of SNPEff.  SNPEff will annotate the variant effects for each locus against a reference genome. 
+The second step requires the installation of SNPEff.  SNPEff is used to annotate the variant effects for each locus against a reference genome. 
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
@@ -135,11 +135,26 @@ The second step requires the installation of SNPEff.  SNPEff will annotate the v
 
 ## Step 3: Filter on Linkage Disequilibrium
 
-Filter criteria:
+The third step requires the installation of PLINK.  PLINK is used to identify linkage disequilbrium between the variant loci.
 
-Only linkage between 400bp to 5000bp  
-R2 >= 0.5  
-MAXR2.  The maximum R2 for a given loci.  R2: the square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci.  
+Filter criteria
+
+** Linkage distance between 400bp to 5000bp  
+** max R2 >= 0.5  
+
+|Terms | Abbreviation | Definition | 
+|---------------|--------------|--------------|
+|Squared correlation | R2 | The square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci. |
+|Maximum Squared correlation | MAXR2 | The maximum R2 for a given loci | 
+
+|Usage | Description | 
+|---------------|--------------|
+|script | snpEff.jar  |
+|input | The filterd VCF file from step 1. | 
+|output: | A SNPEff annotated VCF file. | 
+|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+
+
 
 
 ## Step 4: Clean VCFs
