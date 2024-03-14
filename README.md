@@ -98,10 +98,11 @@ SNPversity/
 ## Step 1: Filtering
 The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ > 30), coverage (COV > 0.5), and removing multi-allelic loci.
 
-Terms
-MQ (Mapping Quality): The average mapping quality of reads supporting the variant.  
-CVC (Coverage Count): The number of genotypes with at least one read at the given variant.  
-CVP (Coverage Percent): The percent of genotypes with at least one read at the given variant.  
+|Terms | Abbreviation | Definition | 
+|---------------|--------------|--------------|
+|Mapping Quality | MQ | The average mapping quality of reads supporting the variant. | 
+|Coverage Count | CVC |The number of genotypes with at least one read at the given variant. | 
+|Coverage Percent | CVP |The percent of genotypes with at least one read at the given variant. | 
 
 Filter criteria  
 * MQ >= 30  
@@ -118,15 +119,18 @@ Filter criteria
 ## Step 2: Annotation
 The second step requires the installation of SNPEff.  SNPEff will annotate the variant effects for each locus against a reference genome. 
 
-Terms:  
-GENEMODEL (Gene model name): The name of the gene model affected by the variant. Uses the closest gene models when the variant is "intergenic”.  
-EFFECT (Putative impact): A simple estimation of putative impact/deleteriousness: {HIGH, MODERATE, LOW, MODIFIER}.   
-TYPE (Annotation type):  The type of effect using Sequence Ontology terms.  
+|Terms | Abbreviation | Definition | 
+|---------------|--------------|--------------|
+|Gene model name | GENEMODEL | The name of the gene model affected by the variant. Uses the closest gene models when the variant is "intergenic”.  |
+|Putative impact | EFFECT | A simple estimation of putative impact/deleteriousness: {HIGH, MODERATE, LOW, MODIFIER}.   |
+|Annotation type | TYPE |  The type of effect using Sequence Ontology terms.  |
 
-script: step1_filter_and_clean.py  
-input: The filterd VCF file from step 1.  
-output: A SNPEff annotated VCF file.  
-sample usage: java -Xmx100g -jar ${SNPEFFPATH}  maize chr1_filtered.vcf > chr1_snpeff.vcf
+|Usage | Description | 
+|---------------|--------------|
+|script | snpEff.jar  |
+|input | The filterd VCF file from step 1. | 
+|output: | A SNPEff annotated VCF file. | 
+|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
 
 
 ## Step 3: Filter on Linkage Disequilibrium
