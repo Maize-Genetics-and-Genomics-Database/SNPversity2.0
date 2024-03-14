@@ -139,8 +139,8 @@ The third step requires the installation of PLINK.  PLINK is used to identify li
 
 Filter criteria
 
-** Linkage distance between 400bp to 5000bp  
-** max R2 >= 0.5  
+* Linkage distance between 400bp to 5000bp  
+ max R2 >= 0.5  
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
@@ -159,27 +159,33 @@ Filter criteria
 
 ## Step 4: Clean VCFs
 
-Data that is kept and included in the final VCF:  
+|Column name | Definition | Abbreviation |  Example data|
+|---------------|--------------|--------------|--------------| 
+|Chromosome |CHROM | The chromosome where the locus is located | chr1 |   
+|Position |POS| The genomic coordinate on the chromosome | 104985| 
+|Identifier |ID| The value of the IDs are '.'.|
+|Reference allele  | REF | The allele value for the locus in the reference genome B73. | A |
+|Alternate allele  | ALT | The alternative allele value found in other maize accessions | T | 
+|Quality score  | QUAL | The average mapping quality of reads supporting the variant.
+|Filter | FILTER | The value of the FILTERs are '.'.|
+|Information | INFO | TEST|
+|Allele format | FORMAT | MQ=58.01;CVC=1486;CVP=99.20 |
 
-Chromosome  
-Position  
-Reference allele  
-Alternate allele  
-Quality score  
-Information  
-GENEMODEL (e.g. Zm00001eb430510)  
-EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
-TYPE (e.g.  intergenic, synonymous_variant, missense_variant, frameshift_variant, 3_prime_UTR_variant, etc.)  
-MQ (e.g. 47.19)  
-CVC (e.g.1109)   
-CVP (e.g. 74.03)  
-MAXR2 (0.68417)  
+|GENEMODEL (e.g. Zm00001eb430510)  
+|EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
+|TYPE (e.g.  intergenic, synonymous_variant, missense_variant, frameshift_variant, 3_prime_UTR_variant, etc.)  
+|MQ (e.g. 47.19)  
+|CVC (e.g.1109)   
+|CVP (e.g. 74.03)  
+|MAXR2 (0.68417)  
 
-Alleles at each of the ~1500 accessions in Genotype (GT) format:  
-0/0 indicates a homozygous reference genotype.  
-0/1 or 1/0 indicates a heterozygous genotype with one reference and one alternate allele.
-1/1 indicates a homozygous alternate genotype.  
-./. missing or unknown genotypes.  
+CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT
+
+There are also columns (named based on the accession name, an undercore, and the SRR ID) for each of the ~1500 accessions in Genotype (GT) format:  
+* 0/0 indicates a homozygous reference genotype.  
+* 0/1 or 1/0 indicates a heterozygous genotype with one reference and one alternate allele.
+*  1/1 indicates a homozygous alternate genotype.  
+* ./. missing or unknown genotypes.  
 
 
 ## Step 5: Summary and Statistics
