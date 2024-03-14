@@ -98,12 +98,29 @@ SNPversity/
 ## Step 1: Filtering
 The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ > 30), coverage (COV > 0.5), and removing multi-allelic loci.
 
+Terms
+MQ (Mapping Quality): The average mapping quality of reads supporting the variant.  
+CVC (Coverage Count): The number of genotypes with at least one read at the given variant.  
+CVP (Coverage Percent): The percent of genotypes with at least one read at the given variant.  
+
+Filter criteria  
+MQ >= 30  
+CVP >= 50  
+Remove multiallelic variants.  
+
 script: step1_filter_and_clean.py  
 input: A unfiltered VCF file.  
 output: A filtered VCF file with MQ and COV in the INFO field and 'GT' formated alleles.  
 sample usage: pyhon step1_filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf  
 
 ## Step 2: Annotation
+The second step requires the installation of SNPEff.  SNPEff will annotate the variant effects for each locus against a reference genome. 
+
+script: step1_filter_and_clean.py  
+input: The filterd VCF file from step 1.  
+output: A SNPEff annotated VCF file.  
+sample usage: java -Xmx100g -jar ${SNPEFFPATH}  maize chr1_filtered.vcf > chr1_snpeff.vcf
+
 
 ## Step 1: Linkage Disequilibrium
 
