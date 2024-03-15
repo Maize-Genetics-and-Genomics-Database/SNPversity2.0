@@ -247,7 +247,18 @@ Statistics include:
 
 The table shows how to use this script.
 
-## Step 6: Filtering
+## Step 6: Convert datasets to HDF5 databases
+
+The final step is to convert the VCF files for each chromosome into HDF5 databases.  There is a custom python program that will read in the VCF and generate the HDF5 databases.  For the general use cases used in SNPVersity, searching small genomic regions, we chunk the data in XXMB chunks to improve querying performance.  This value can be adjusted. The HDF5 databases allows the data to be quickly searched by genmoic region and filtered by a subset of maize accessions.  
+
+|Usage | Description | 
+|---------------|--------------|
+|script | snpEff.jar  |
+|input | The filterd VCF file from step 1. | 
+|output: | A SNPEff annotated VCF file. | 
+|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+
+The table shows how to use this script.
 
 ## Optional: Prepare data for PanEffect
 
