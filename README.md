@@ -185,11 +185,11 @@ The table shows how to use the python script to filter the plink data.
 |---------------|--------------|--------------|--------------| 
 |Chromosome |CHROM | The chromosome where the locus is located | chr1 |   
 |Position |POS| The genomic coordinate on the chromosome | 104985| 
-|Identifier |ID| The value of the IDs are '.'|
+|Identifier |ID| The value of the IDs are '.'| . |
 |Reference allele  | REF | The allele value for the locus in the reference genome B73. | A |
 |Alternate allele  | ALT | The alternative allele value found in other maize accessions | T | 
-|Quality score  | QUAL | The average mapping quality of reads supporting the variant.
-|Filter | FILTER | The value of the FILTERs are '.'|
+|Quality score  | QUAL | The average mapping quality of reads supporting the variant. | 738.32 |
+|Filter | FILTER | The value of the FILTERs are '.'| . |
 |Information | INFO | The metadata from the filtering, annotation, and LD steps are stored here.| MQ=58.01;CVC=1486;CVP=99.20 |
 |Allele format | FORMAT | The value of the FORMART are in Genotype format and saved as 'GT'  |
 
