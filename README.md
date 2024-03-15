@@ -139,7 +139,7 @@ The table shows the metadata saved for each vairant locus.
 |script | snpEff.jar  |
 |input | The filterd VCF file from step 1. | 
 |output: | A SNPEff annotated VCF file. | 
-|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+|sample usage | java -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
 
 The table shows how to use this script.
 
@@ -162,12 +162,21 @@ The table shows the metadata saved for each vairant locus.
 
 |Usage | Description | 
 |---------------|--------------|
-|script | snpEff.jar  |
-|input | The filterd VCF file from step 1. | 
-|output: | A SNPEff annotated VCF file. | 
-|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+|script | plink  |
+|input | The annotated VCF file from step 2. | 
+|output: | A PLINK formatted dataset with the LD information (ld file) and an output file. | 
+|sample usage | plink --vcf chr1_snpeff.vcf --const-fid 0 --r2 --ld-window-kb 5 --ld-window 99999 --ld-window-r2 0 --out chr1_snpeff_plink.txt |
 
-The table shows how to use this script.
+The table shows how to use the plink script.
+
+|Usage | Description | 
+|---------------|--------------|
+|script | filter_LD_fast.py  |
+|input | A PLINK formatted dataset with the LD information  (ld file). | 
+|output: | A filtered PLINK formatted dataset based on linkage distance and max R2 score. | 
+|sample usage | python filter_LD_fast.py chr1_snpeff_plink.txt.ld chr1_snpeff_plink_filter.txt.ld |
+
+The table shows how to use the python script to filter the plink data.
 
 ## Step 4: Clean VCFs
 
@@ -202,12 +211,21 @@ There are also columns (named based on the accession name, an undercore, and the
 
 |Usage | Description | 
 |---------------|--------------|
-|script | snpEff.jar  |
-|input | The filterd VCF file from step 1. | 
-|output: | A SNPEff annotated VCF file. | 
-|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+|script | final_filter_clean_plink.py  |
+|input | The annotated VCF file from step 2 and the filtered PLINK formatted dataset from step 3.   | 
+|output: | The final annotated VCF file with LD information. | 
+|sample usage | python final_filter_clean_plink.py chr1_snpeff_plink_filter.txt.ld chr1_snpeff.vcf chr1_LD_final.vcf  |
 
-The table shows how to use this script.
+The table shows how to use the script to filter the high-quality dataset (includes output from PLINK).
+
+|Usage | Description | 
+|---------------|--------------|
+|script | final_filter_clean_plink.py  |
+|input | The annotated VCF file from step 2. | 
+|output: | The final annotated VCF file without LD information.  | 
+|sample usage | python final_filter_clean.py chr1_snpeff.vcf chr1_final.vcf |
+
+The table shows how to use the script to filter the high-coverage dataset (no LD information).
 
 
 ## Step 5: Summary and Statistics
@@ -240,10 +258,10 @@ Statistics include:
 
 |Usage | Description | 
 |---------------|--------------|
-|script | snpEff.jar  |
-|input | The filterd VCF file from step 1. | 
-|output: | A SNPEff annotated VCF file. | 
-|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+|script | sget_stats.py  |
+|input | The final filterd and cleaned cersion of the VCF file from step 4. | 
+|output: | A tsv final with the final summary and statistics. | 
+|sample usage | python get_stats.py chr1_LD_final.vcf > chr1_stats.txt |
 
 The table shows how to use this script.
 
@@ -253,10 +271,10 @@ The final step is to convert the VCF files for each chromosome into HDF5 databas
 
 |Usage | Description | 
 |---------------|--------------|
-|script | snpEff.jar  |
+|script | convert_HDF5.py  |
 |input | The filterd VCF file from step 1. | 
 |output: | A SNPEff annotated VCF file. | 
-|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+|sample usage | python convert_HDF5.py  chr1_LD_final.vcf chr1_high_quality.h5 OR python convert_HDF5.py  chr1_final.vcf chr1_high_coverage.h5|
 
 The table shows how to use this script.
 
