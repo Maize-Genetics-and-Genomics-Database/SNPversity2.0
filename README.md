@@ -59,7 +59,7 @@ SNPversity/
 |hdf5 [directory] | The directory stores the HDF5 databases for each database type (high coverage and high quality). There is a separate database for each chromosome.|
 
 
-# History
+# Website usage
 
 # Hapmap 5
 A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
@@ -125,7 +125,7 @@ Filter criteria
 The table shows how to use this script.
 
 ## Step 2: Annotation
-The second step requires the installation of SNPEff.  SNPEff is used to annotate the variant effects for each locus against a reference genome. 
+The second step requires the installation of SNPEff (https://pcingola.github.io/SnpEff/).  SNPEff is used to annotate the variant effects for each locus against a reference genome. 
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
@@ -147,7 +147,7 @@ The table shows how to use this script.
 
 ## Step 3: Filter on Linkage Disequilibrium
 
-The third step requires the installation of PLINK.  PLINK is used to identify linkage disequilbrium between the variant loci.
+The third step requires the installation of PLINK (https://www.cog-genomics.org/plink/).  PLINK is used to identify linkage disequilbrium between the variant loci.
 
 Filter criteria
 
