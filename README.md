@@ -281,4 +281,24 @@ The table shows how to use this script.
 
 ## Optional: Prepare data for PanEffect
 
+This optional step will create linkage files between SNPversity and the PanEffect tool (https://github.com/Maize-Genetics-and-Genomics-Database/PanEffect). PanEffect is a JavaScript framework to explore variant effects across a reference genome or pangenome. The step requires the CSV files from PanEffect that scores all possible missense mutations on how likely it will have a functional effect.  The CSV file is modified to flag any missense mutation that occurs in the given VCF file.  The updated file can be used in PanEffect to toggle between all possbile missense mutations and the naturally occurring variation found in a VCF file.  The two scripts are below.
+
+|Usage | Description | 
+|---------------|--------------|
+|script | get_missense_mutations.py  |
+|input | The annotated VCF file from step 2. | 
+|output: | A TSV file listing all the missense mutations in the VCF file. | 
+|sample usage | python get_missense_mutations.py chr1_snpeff.vcf chr1_missense.txt|
+
+The table shows how to use the first script that exacts all the missense mutations from the VCF file.
+
+|Usage | Description | 
+|---------------|--------------|
+|script | convert_HDF5.py  |
+|input | A TSV file listing all the missense mutations in the VCF file and a directory with a CSV file for each gene model from PanEffect. | 
+|output: | A directory where the updated CSV files for each gene model will be stored.  | 
+|sample usage | python WGS_to_paneffect.py chr1_missense.txt ./csv/ ./csv_wgs/ |
+
+The table shows how to use the second script that updates the CSV files for each gene model generate in PanEffect.
+
 
