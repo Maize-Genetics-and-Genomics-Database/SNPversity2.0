@@ -294,7 +294,7 @@ The table shows how to use the first script that exacts all the missense mutatio
 
 |Usage | Description | 
 |---------------|--------------|
-|script | convert_HDF5.py  |
+|script | WGS_to_paneffect.py  |
 |input | A TSV file listing all the missense mutations in the VCF file and a directory with a CSV file for each gene model from PanEffect. | 
 |output: | A directory where the updated CSV files for each gene model will be stored.  | 
 |sample usage | python WGS_to_paneffect.py chr1_missense.txt ./csv/ ./csv_wgs/ |
