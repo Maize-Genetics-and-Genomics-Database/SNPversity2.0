@@ -260,21 +260,21 @@ Statistics include:
 |---------------|--------------|
 |script | get_stats.py OR get_stats_LD.py |
 |input | The final filterd and cleaned cersion of the VCF file from step 4. | 
-|output: | A tsv final with the final summary and statistics. | 
+|output: | A final text file with the final summary and statistics. | 
 |sample usage | python get_stats.py chr1_LD_final.vcf > chr1_stats.txt |
 
 The table shows how to use this script.
 
 ## Step 6: Convert datasets to HDF5 databases
 
-The final step is to convert the VCF files for each chromosome into HDF5 databases.  There is a custom python program that will read in the VCF and generate the HDF5 databases.  For the general use cases used in SNPVersity, searching small genomic regions, we chunk the data in XXMB chunks to improve querying performance.  This value can be adjusted. The HDF5 databases allows the data to be quickly searched by genmoic region and filtered by a subset of maize accessions.  
+The final step is to convert the VCF files for each chromosome into HDF5 databases.  There is a custom python program that will read in the VCF and generate the HDF5 databases.  For the general use cases used in SNPVersity, searching small genomic regions, we chunk the data in 100kb chunks to improve querying performance.  This value can be adjusted. The HDF5 databases allows the data to be quickly searched by genmoic region and filtered by a subset of maize accessions.  
 
 |Usage | Description | 
 |---------------|--------------|
 |script | convert_HDF5.py  |
-|input | The filterd VCF file from step 1. | 
+|input | The filterd VCF file from step 1 and the chunk size. | 
 |output: | A SNPEff annotated VCF file. | 
-|sample usage | python convert_HDF5.py  chr1_LD_final.vcf chr1_high_quality.h5 OR python convert_HDF5.py  chr1_final.vcf chr1_high_coverage.h5|
+|sample usage | python convert_HDF5.py  chr1_LD_final.vcf chr1_high_quality.h5 100000 OR python convert_HDF5.py  chr1_final.vcf chr1_high_coverage.h5 100000|
 
 The table shows how to use this script.
 
