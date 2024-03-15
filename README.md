@@ -62,7 +62,7 @@ SNPversity/
 # History
 
 # Hapmap 5
-
+A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
 
 |Accessions | Project |Project name|	
 |---------------|--------------|--------------|
@@ -76,6 +76,7 @@ SNPversity/
 |7 |PRJNA399729 |Maize Haplotype Map version 3 |	
 |6 |PRJNA260788 |Zea mays Genome sequencing (European maize genomes) |	
 |1 |PRJEB56265 |Resequencing of three Polish maize inbred lines |	
+The table shows the composition of public resequencing data used to build the dataset.  The table lists the number of accessions from each NCBI bioproject.
 
 |Effect | High Coverage | High Quality |
 |---------------|--------------|--------------|
@@ -90,7 +91,7 @@ SNPversity/
 |3'UTR |801,323 |468,603|
 |other |46,355 |18,411|
 |TOTAL |228,679,451 |75,518,390|
-
+The table shows the variant effect dataset.  The table the type of variant effect for the high-coverage and high-quality datasets.
 
 
 # Data Processing
@@ -171,15 +172,14 @@ Filter criteria
 |Information | INFO | TEST|
 |Allele format | FORMAT | MQ=58.01;CVC=1486;CVP=99.20 |
 
-|GENEMODEL (e.g. Zm00001eb430510)  
-|EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
-|TYPE (e.g.  intergenic, synonymous_variant, missense_variant, frameshift_variant, 3_prime_UTR_variant, etc.)  
-|MQ (e.g. 47.19)  
-|CVC (e.g.1109)   
-|CVP (e.g. 74.03)  
-|MAXR2 (0.68417)  
-
-CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT
+The following values are found in the Information field: 
+* GENEMODEL (e.g. Zm00001eb430510)  
+* EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
+* TYPE (e.g.  intergenic, synonymous_variant, missense_variant, frameshift_variant, 3_prime_UTR_variant, etc.)  
+* MQ (e.g. 47.19)  
+* CVC (e.g.1109)   
+* CVP (e.g. 74.03)  
+* MAXR2 (0.68417)  // MAXR2 is available in the high-quality dataset
 
 There are also columns (named based on the accession name, an undercore, and the SRR ID) for each of the ~1500 accessions in Genotype (GT) format:  
 * 0/0 indicates a homozygous reference genotype.  
