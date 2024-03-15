@@ -97,6 +97,7 @@ The table shows the variant effect dataset.  The table the type of variant effec
 
 
 # Data Processing
+This section describes the data process steps to format VCF files into a format to be used by the SNPVersity2.0 website.  Each of the scripts can be found in the /scripts/ directory.
 
 ## Step 1: Filtering
 The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ >= 30), coverage (COV >= 50%), and removing multi-allelic loci.
