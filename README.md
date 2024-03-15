@@ -107,6 +107,8 @@ The first step strips the raw VCF of any unneeded metadata and filters each locu
 |Coverage Count | CVC |The number of genotypes with at least one read at the given variant. | 
 |Coverage Percent | CVP |The percent of genotypes with at least one read at the given variant. | 
 
+The table shows the metadata saved for each vairant locus.
+
 Filter criteria  
 * MQ >= 30  
 * CVP >= 50  
@@ -117,7 +119,9 @@ Filter criteria
 |script| filter_and_clean.py | 
 |input| A unfiltered VCF file.  |
 |output| A filtered VCF file with MQ and COV in the INFO field and 'GT' formated alleles.  |
-|sample usage| pyhon filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf|  
+|sample usage| python filter_and_clean.py chr1_unfiltered.vcf chr1_filtered.vcf|  
+
+The table shows how to use this script.
 
 ## Step 2: Annotation
 The second step requires the installation of SNPEff.  SNPEff is used to annotate the variant effects for each locus against a reference genome. 
@@ -128,12 +132,16 @@ The second step requires the installation of SNPEff.  SNPEff is used to annotate
 |Putative impact | EFFECT | A simple estimation of putative impact/deleteriousness: {HIGH, MODERATE, LOW, MODIFIER}.   |
 |Annotation type | TYPE |  The type of effect using Sequence Ontology terms.  |
 
+The table shows the metadata saved for each vairant locus.
+
 |Usage | Description | 
 |---------------|--------------|
 |script | snpEff.jar  |
 |input | The filterd VCF file from step 1. | 
 |output: | A SNPEff annotated VCF file. | 
 |sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+
+The table shows how to use this script.
 
 
 ## Step 3: Filter on Linkage Disequilibrium
@@ -150,6 +158,8 @@ Filter criteria
 |Squared correlation | R2 | The square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci. |
 |Maximum Squared correlation | MAXR2 | The maximum R2 for a given loci | 
 
+The table shows the metadata saved for each vairant locus.
+
 |Usage | Description | 
 |---------------|--------------|
 |script | snpEff.jar  |
@@ -157,6 +167,7 @@ Filter criteria
 |output: | A SNPEff annotated VCF file. | 
 |sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
 
+The table shows how to use this script.
 
 ## Step 4: Clean VCFs
 
@@ -172,6 +183,8 @@ Filter criteria
 |Information | INFO | TEST|
 |Allele format | FORMAT | MQ=58.01;CVC=1486;CVP=99.20 |
 
+The table shows the metadata saved for each vairant locus after the cleaning step.
+
 The following values are found in the Information field: 
 * GENEMODEL (e.g. Zm00001eb430510)  
 * EFFECT (e.g. HIGH, MODERATE, LOW, MODIFIER)  
@@ -185,12 +198,7 @@ There are also columns (named based on the accession name, an undercore, and the
 * 0/0 indicates a homozygous reference genotype.  
 * 0/1 or 1/0 indicates a heterozygous genotype with one reference and one alternate allele.
 *  1/1 indicates a homozygous alternate genotype.  
-* ./. missing or unknown genotypes.  
-
-
-## Step 5: Summary and Statistics
-
-Get a summary and statistics on the data   
+* ./. missing or unknown genotypes.
 
 |Usage | Description | 
 |---------------|--------------|
@@ -199,7 +207,12 @@ Get a summary and statistics on the data
 |output: | A SNPEff annotated VCF file. | 
 |sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
 
+The table shows how to use this script.
 
+
+## Step 5: Summary and Statistics
+
+Get a summary and statistics on the the final VCF datasets.   
 
 Gene model summary includes counts of the following types of annotations: total, intergenic, upstream, 5' UTR, synonymous, missense, stop, frameshift, intron, non_coding, 3' UTR, downstream, other.
 
@@ -223,7 +236,16 @@ Statistics include:
 * Count of loci with max R2 with (60 <= MAXR2 < 70)		
 * Count of loci with max R2 with (70 <= MAXR2 < 80)		
 * Count of loci with max R2 with (80 <= MAXR2 < 90)	  	
-* Count of loci with max R2 with (90 <= MAXR2 <= 100)  
+* Count of loci with max R2 with (90 <= MAXR2 <= 100)
+
+|Usage | Description | 
+|---------------|--------------|
+|script | snpEff.jar  |
+|input | The filterd VCF file from step 1. | 
+|output: | A SNPEff annotated VCF file. | 
+|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+
+The table shows how to use this script.
 
 ## Step 6: Filtering
 
