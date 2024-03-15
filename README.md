@@ -76,6 +76,7 @@ A new haplotype map (HapMap) for maize was generated using a diverse set of inbr
 |7 |PRJNA399729 |Maize Haplotype Map version 3 |	
 |6 |PRJNA260788 |Zea mays Genome sequencing (European maize genomes) |	
 |1 |PRJEB56265 |Resequencing of three Polish maize inbred lines |	
+
 The table shows the composition of public resequencing data used to build the dataset.  The table lists the number of accessions from each NCBI bioproject.
 
 |Effect | High Coverage | High Quality |
@@ -91,6 +92,7 @@ The table shows the composition of public resequencing data used to build the da
 |3'UTR |801,323 |468,603|
 |other |46,355 |18,411|
 |TOTAL |228,679,451 |75,518,390|
+
 The table shows the variant effect dataset.  The table the type of variant effect for the high-coverage and high-quality datasets.
 
 
@@ -141,7 +143,7 @@ The third step requires the installation of PLINK.  PLINK is used to identify li
 Filter criteria
 
 * Linkage distance between 400bp to 5000bp  
- max R2 >= 0.5  
+* max R2 >= 0.5  
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
@@ -154,8 +156,6 @@ Filter criteria
 |input | The filterd VCF file from step 1. | 
 |output: | A SNPEff annotated VCF file. | 
 |sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
-
-
 
 
 ## Step 4: Clean VCFs
@@ -191,29 +191,39 @@ There are also columns (named based on the accession name, an undercore, and the
 ## Step 5: Summary and Statistics
 
 Get a summary and statistics on the data   
-Gene model summary includes counts of the following types of annotations: total, intergenic, upstream, 5' UTR, synonymous, missense, stop, frameshift, intron, non_coding, 3' UTR, downstream, other   
-Statistics include:  
-total SNPs/INDELS  
-Count of homozygous alleles  
-Count of heterozygous alleles  
-Count of missing alleles  
-Number of SNPs with at least one heterozygous allele  
-Count of Deletions  
-Count of Insertions  
-Count of loci with Mapping Quality with (30 <= MQ < 40)	 
-Count of loci with Mapping Quality with (40 <= MQ < 50)	 
-Count of loci with Mapping Quality with (50 <= MQ < 60)	  
-Count of loci with Coverage Percentage with (50 <= CVP < 60)  
-Count of loci with Coverage Percentage with (60 <= CVP < 70)  
-Count of loci with Coverage Percentage with (70 <= CVP < 80)  
-Count of loci with Coverage Percentage with (80 <= CVP < 90)  
-Count of loci with Coverage Percentage with (90 <= CVP <= 100)  
-Count of loci with max R2 with (50 <= MAXR2 < 60)	
-Count of loci with max R2 with (60 <= MAXR2 < 70)		
-Count of loci with max R2 with (70 <= MAXR2 < 80)		
-Count of loci with max R2 with (80 <= MAXR2 < 90)	  	
-Count of loci with max R2 with (90 <= MAXR2 <= 100)  
 
+|Usage | Description | 
+|---------------|--------------|
+|script | snpEff.jar  |
+|input | The filterd VCF file from step 1. | 
+|output: | A SNPEff annotated VCF file. | 
+|sample usage | java -Xmx100g -jar snpEff.jar maize chr1_filtered.vcf > chr1_snpeff.vcf |
+
+
+
+Gene model summary includes counts of the following types of annotations: total, intergenic, upstream, 5' UTR, synonymous, missense, stop, frameshift, intron, non_coding, 3' UTR, downstream, other.
+
+Statistics include:  
+* Total number of SNPs/INDELS  
+* Count of homozygous alleles  
+* Count of heterozygous alleles  
+* Count of missing alleles  
+* Number of SNPs with at least one heterozygous allele  
+* Count of Deletions  
+* Count of Insertions  
+* Count of loci with Mapping Quality with (30 <= MQ < 40)	 
+* Count of loci with Mapping Quality with (40 <= MQ < 50)	 
+* Count of loci with Mapping Quality with (50 <= MQ < 60)	  
+* Count of loci with Coverage Percentage with (50 <= CVP < 60)  
+* Count of loci with Coverage Percentage with (60 <= CVP < 70)  
+* * Count of loci with Coverage Percentage with (70 <= CVP < 80)  
+* Count of loci with Coverage Percentage with (80 <= CVP < 90)  
+* Count of loci with Coverage Percentage with (90 <= CVP <= 100)  
+* Count of loci with max R2 with (50 <= MAXR2 < 60)	
+* Count of loci with max R2 with (60 <= MAXR2 < 70)		
+* Count of loci with max R2 with (70 <= MAXR2 < 80)		
+* Count of loci with max R2 with (80 <= MAXR2 < 90)	  	
+* Count of loci with max R2 with (90 <= MAXR2 <= 100)  
 
 ## Step 6: Filtering
 
