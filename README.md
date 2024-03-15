@@ -132,6 +132,7 @@ The second step requires the installation of SNPEff (https://pcingola.github.io/
 |Gene model name | GENEMODEL | The name of the gene model affected by the variant. Uses the closest gene models when the variant is "intergenic”.  |
 |Putative impact | EFFECT | A simple estimation of putative impact/deleteriousness: {HIGH, MODERATE, LOW, MODIFIER}.   |
 |Annotation type | TYPE |  The type of effect using Sequence Ontology terms.  |
+|Substitution | SUB | For synonymous and missense variant effect types, this lists the wild type amino acid, the postion, and the amino acid substiution (e.g. G477S). |
 
 The table shows the metadata saved for each vairant locus.
 
@@ -191,7 +192,7 @@ The table shows how to use the python script to filter the plink data.
 |Quality score  | QUAL | The average mapping quality of reads supporting the variant. | 738.32 |
 |Filter | FILTER | The value of the FILTERs are '.'| . |
 |Information | INFO | The metadata from the filtering, annotation, and LD steps are stored here.| MQ=58.01;CVC=1486;CVP=99.20 |
-|Allele format | FORMAT | The value of the FORMART are in Genotype format and saved as 'GT'  |
+|Allele format | FORMAT | The value of the FORMART are in Genotype format and saved as 'GT'  | GT |
 
 The table shows the metadata saved for each vairant locus after the cleaning step.
 
@@ -203,6 +204,7 @@ The following values are found in the Information field:
 * CVC (e.g.1109)   
 * CVP (e.g. 74.03)  
 * MAXR2 (0.68417)  // MAXR2 is available in the high-quality dataset
+* SUB (G477S) 
 
 There are also columns (named based on the accession name, an undercore, and the SRR ID) for each of the ~1500 accessions in Genotype (GT) format:  
 * 0/0 indicates a homozygous reference genotype.  
