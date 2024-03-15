@@ -171,7 +171,7 @@ The table shows how to use the plink script.
 
 |Usage | Description | 
 |---------------|--------------|
-|script | filter_LD_fast.py  |
+|script | filter_LD.py  |
 |input | A PLINK formatted dataset with the LD information  (ld file). | 
 |output: | A filtered PLINK formatted dataset based on linkage distance and max R2 score. | 
 |sample usage | python filter_LD_fast.py chr1_snpeff_plink.txt.ld chr1_snpeff_plink_filter.txt.ld |
@@ -211,7 +211,7 @@ There are also columns (named based on the accession name, an undercore, and the
 
 |Usage | Description | 
 |---------------|--------------|
-|script | final_filter_clean_plink.py  |
+|script | final_filter_clean_LD.py  |
 |input | The annotated VCF file from step 2 and the filtered PLINK formatted dataset from step 3.   | 
 |output: | The final annotated VCF file with LD information. | 
 |sample usage | python final_filter_clean_plink.py chr1_snpeff_plink_filter.txt.ld chr1_snpeff.vcf chr1_LD_final.vcf  |
@@ -220,7 +220,7 @@ The table shows how to use the script to filter the high-quality dataset (includ
 
 |Usage | Description | 
 |---------------|--------------|
-|script | final_filter_clean_plink.py  |
+|script | final_filter_clean.py  |
 |input | The annotated VCF file from step 2. | 
 |output: | The final annotated VCF file without LD information.  | 
 |sample usage | python final_filter_clean.py chr1_snpeff.vcf chr1_final.vcf |
@@ -258,7 +258,7 @@ Statistics include:
 
 |Usage | Description | 
 |---------------|--------------|
-|script | sget_stats.py  |
+|script | get_stats.py OR get_stats_LD.py |
 |input | The final filterd and cleaned cersion of the VCF file from step 4. | 
 |output: | A tsv final with the final summary and statistics. | 
 |sample usage | python get_stats.py chr1_LD_final.vcf > chr1_stats.txt |
