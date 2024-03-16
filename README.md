@@ -65,7 +65,7 @@ SNPversity/
 
 ![Select](./figures/figure1.png)
 
-** A snapshot of the 'Select options' tab. **  
+**A screenshot of the 'Select options' tab.**  
 
 The two main inputs for the this tool are selecting the genomic interval of interest and selecting which subset of maize accessions to include.
 
