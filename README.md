@@ -61,6 +61,30 @@ SNPversity/
 
 # Website usage
 
+## Select options
+
+![Select](./figures/figure1.png)
+
+** A snapshot of the 'Select options' tab. **  
+
+The two main inputs for the this tool are selecting the genomic interval of interest and selecting which subset of maize accessions to include.
+
+###Select genomic interval:
+This section allows the user to select the genomic interval of interest. The two main options are to enter the genomic coordinates or enter a gene model identifier.
+
+* Genome Version: Select the reference genome version. The only option currently available is B73 version 5.
+* Dataset: Select the variation dataset to query. The 'MaizeGDB High Quality' dataset was built on 1,498 diverse maize accessions and was filtered on mapping quality (>= 30), mapping coverage (>= 50%), and linkage disequilibrium with max R2 > 0.5. There was approximately 75 million annotated loci in this dataset. The 'MaizeGDB High Coverage' dataset was built on 1,498 diverse maize accessions and was filtered only on mapping quality (>= 30) and mapping coverage (>= 50%). There are approximately 230 million annotated loci in this dataset.
+* Chromosome: Select the chromosome.
+* Genome Start Position (bp): Select the start position on the chromosome.
+* Genome End Position (bp): Select the end position on the chromosome.
+* Loci per page: Select the number of loci to view per page in the HTML table view. This number corresponds to the number of rows in the table.
+* Gene Model ID: Optionally, select the gene model identifier and the number of base pairs to add as padding to the start and end of the gene model coordinates. Pressing the 'Load coordinates' button will load the chromosome, start, and end positions if the gene model is found. This option currently only accepts B73 RefGen_v5 gene models.
+
+(NOTE: Genomic regions larger than 1 MB will only be avaialble as VCF downloads. The table and tree views will not be available.)
+
+###Select which accessions to include:
+This section allows the user to select a subset of the maize accessions to view. The two main options are to upload a file with the accession IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the maize accessions. A list of all maize accessions can be found in both XLSX and TSV formats. 
+
 # Hapmap 5
 A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
 
