@@ -94,6 +94,27 @@ This section allows the user to select a subset of the maize accessions to view.
 ![Select](./figures/figure4.png)
 **A screenshot of the 'Tree view' tab.**  
 
+The tree view option allows the user to download the VCF generated from the select options tab and displays a table of the data (for regions <= 1Mb).  
+
+Each row of the data corresponds to a locus position in the dataset. The description of the columns are in the following table.
+
+|Column name | Definition | Abbreviation |  Example data|
+|---------------|--------------|--------------|--------------| 
+|Chromosome |CHR | The chromosome where the locus is located | chr1 |   
+|Position |POS| The genomic coordinate on the chromosome | 104985| 
+|Reference allele  | REF | The allele value for the locus in the reference genome B73. | A |
+|Alternate allele  | ALT | The alternative allele value found in other maize accessions | T | 
+|Gene models  | Gene model(s) | The name of the B73 RefGen_v5 gene model affected by the variant. Displays the closest gene models when the variant is "intergenic”. | Zm00001eb404830 | 
+|Effect type  | Effect type | The type of effect using Sequence Ontology terms. | stop gained |
+|Effect impact | Effect impact | A estimation of putative impact/deleteriousness.| HIGH MODIFIER |
+|Mapping quality score | MQ | The average mapping quality of reads supporting the variant.| 58 |
+|Coverage Percent | COV | The percent of genotypes with at least one read at the given variant.  | GT |
+|Maximum squared correlation | max R2 | The maximum R2 for a given loci.  | 0.64 |
+
+The gene models in the Gene model(s) column are linked to the MaizeGDB B73 genome browser.  The position of the locus is shown as a vertical line on the browser.
+
+For synonymous and missense variant effect types, the information in the Effect type column shows the following information in parentheses: the amino acid for the reference genome, the postion, and the amino acid substiution in the alternative genome (e.g. G477S). 
+
 
 # Hapmap 5
 A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
@@ -139,8 +160,8 @@ The first step strips the raw VCF of any unneeded metadata and filters each locu
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
 |Mapping Quality | MQ | The average mapping quality of reads supporting the variant. | 
-|Coverage Count | CVC |The number of genotypes with at least one read at the given variant. | 
-|Coverage Percent | CVP |The percent of genotypes with at least one read at the given variant. | 
+|Coverage Count | CVC | The number of genotypes with at least one read at the given variant. | 
+|Coverage Percent | CVP | The percent of genotypes with at least one read at the given variant. | 
 
 The table shows the metadata saved for each vairant locus.
 
@@ -192,7 +213,7 @@ Filter criteria
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
 |Squared correlation | R2 | The square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci. |
-|Maximum Squared correlation | MAXR2 | The maximum R2 for a given loci | 
+|Maximum squared correlation | MAXR2 | The maximum R2 for a given loci. | 
 
 The table shows the metadata saved for each vairant locus.
 
