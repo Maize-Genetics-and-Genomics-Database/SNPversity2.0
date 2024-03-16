@@ -312,7 +312,7 @@ Statistics include:
 * Count of loci with Mapping Quality with (50 <= MQ < 60)	  
 * Count of loci with Coverage Percentage with (50 <= CVP < 60)  
 * Count of loci with Coverage Percentage with (60 <= CVP < 70)  
-* * Count of loci with Coverage Percentage with (70 <= CVP < 80)  
+* Count of loci with Coverage Percentage with (70 <= CVP < 80)  
 * Count of loci with Coverage Percentage with (80 <= CVP < 90)  
 * Count of loci with Coverage Percentage with (90 <= CVP <= 100)  
 * Count of loci with max R2 with (50 <= MAXR2 < 60)	
