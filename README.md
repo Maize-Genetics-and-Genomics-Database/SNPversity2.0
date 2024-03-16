@@ -89,14 +89,7 @@ This section allows the user to select a subset of the maize accessions to view.
 ![Select](./figures/figure3.png)
 **A screenshot of the 'Table view' tab.**  
 
-## Tree view
-
-![Select](./figures/figure4.png)
-**A screenshot of the 'Tree view' tab.**  
-
-The tree view option allows the user to download the VCF generated from the select options tab and displays a table of the data (for regions <= 1Mb).  
-
-Each row of the data corresponds to a locus position in the dataset. The description of the columns are in the following table.
+The table view option allows the user to download the VCF generated from the select options tab and displays a table of the data (for regions <= 1Mb). Each row of the data corresponds to a locus position in the dataset. The description of the columns are in the following table.
 
 |Column name | Definition | Abbreviation |  Example data|
 |---------------|--------------|--------------|--------------| 
@@ -115,6 +108,14 @@ The gene models in the Gene model(s) column are linked to the MaizeGDB B73 genom
 
 For synonymous and missense variant effect types, the information in the Effect type column shows the following information in parentheses: the amino acid for the reference genome, the postion, and the amino acid substiution in the alternative genome (e.g. G477S). 
 
+## Tree view
+
+![Select](./figures/figure4.png)
+**A screenshot of the 'Tree view' tab.**  
+
+The tree view option allows the user to generate phylogenetic tree views based on the VCF2PopTree tool (https://github.com/sansubs/vcf2pop).  The input to build the tree is based on the VCF file generated from the select options tab.
+
+The tree tree can be constructed as in the either an UPGMA tree of Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
 
 # Hapmap 5
 A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
