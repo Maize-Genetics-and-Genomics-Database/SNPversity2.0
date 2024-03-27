@@ -39,7 +39,8 @@ SNPversity/
 ├── index.html
 ├── lookupGeneModel.php
 ├── maize_accessions.txt
-└── maize_accessions.tsv
+├── maize_accessions.tsv
+└── nam_founders.tsv
 
 ```
 ### Description of code
