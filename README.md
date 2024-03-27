@@ -161,6 +161,8 @@ The table shows the composition of public resequencing data used to build the da
 
 The table shows the variant effect dataset.  The table the type of variant effect for the high-coverage and high-quality datasets.
 
+The VCF and HDF5 files can be downloaded from the MaizeGDB Box account: https://ars-usda.app.box.com/v/maizegdb-public/folder/255392948851 
+
 
 # Data Processing
 This section describes the data process steps to format VCF files into a format to be used by the SNPVersity2.0 website.  Each of the scripts can be found in the /scripts/ directory.
