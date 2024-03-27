@@ -123,8 +123,8 @@ The tree view option allows the user to generate phylogenetic tree views based o
 
 The tree tree can be constructed as in the either an UPGMA tree of Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
 
-# Hapmap 5
-A new haplotype map (HapMap) for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
+# MaizeGDB 2024 Dataset
+A new haplotype map  for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
 
 |Accessions | Project |Project name|	
 |---------------|--------------|--------------|
