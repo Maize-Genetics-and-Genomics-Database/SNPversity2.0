@@ -119,7 +119,7 @@ The remainder of the columns are based on the subset of selected maize accession
 ![Select](./figures/figure4.png)
 **A screenshot of the 'Tree view' tab.**  
 
-The tree view option allows the user to generate phylogenetic tree views based on the VCF2PopTree tool (https://github.com/sansubs/vcf2pop).  The input to build the tree is based on the VCF file generated from the select options tab.
+The tree view option allows the user to generate phylogenetic tree views based on the VCF2PopTree tool (https://github.com/sansubs/vcf2pop).  The input to build the tree is based on the VCF file generated from the select options tab. The accession names are color-coded based on the BioProject.
 
 The tree tree can be constructed as in the either an UPGMA tree of Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
 
