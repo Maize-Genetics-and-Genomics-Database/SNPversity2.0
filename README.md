@@ -108,7 +108,7 @@ The gene models in the Gene model(s) column are linked to the MaizeGDB B73 genom
  
 For synonymous and missense variant effect types, the information in the Effect type column shows the following information in parentheses: the amino acid for the reference genome, the position, and the amino acid substitution in the alternative genome (e.g., G477S).
 
-The remainder of the columns are based on the subset of selected maize accessions. There are columns (named based on the accession name, an underscore, and the SRR ID) for each of the ~1500 accessions in Genotype (GT) format:
+The remainder of the columns are based on the subset of selected maize accessions. There are columns (named based on the accession name, an underscore, and the SRR ID) for each of the ~1500 accessions. The accession names are color-coded based on the BioProject. The data for each column are in Genotype (GT) format:
 * 0 (green) indicates a homozygous reference genotype.  
 * 1 (orange)  indicates a homozygous alternate genotype.
 * H (yellow) indicates a heterozygous genotype with one reference and one alternate allele.
