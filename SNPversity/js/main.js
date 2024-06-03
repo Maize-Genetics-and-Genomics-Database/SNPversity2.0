@@ -7,27 +7,44 @@
 
         if(id == "input")
         {
+            $('#loadingContainer').css('display', 'none');
             $('#mainContainer').css('display', 'inline');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
+
         } else if(id == "output")
         {
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'block');
             $('#treeContainer').css('display', 'none');
+
+            $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
         } else if(id == "outputTree")
         {
+            $('#loadingContainer').css('display', 'none');
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'block');
+            $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
-        } else if(id == "help")
+        } else if(id == "download")
         {
+            $('#loadingContainer').css('display', 'none');
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#downloadContainer').css('display', 'block');
+            $('#helpContainer').css('display', 'none');
+        } else if(id == "help")
+        {
+            $('#loadingContainer').css('display', 'none');
+            $('#mainContainer').css('display', 'none');
+            $('#outputContainer').css('display', 'none');
+            $('#treeContainer').css('display', 'none');
+            $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'block');
         }
     }
@@ -157,8 +174,6 @@
     }
 
 // Generate and print the unique filename
-//const uniqueFilename = createUniqueFilename();
-//console.log("Unique filename:", uniqueFilename);
 
 $(document).ready(function() {
     $('form').on('submit', function(e) {
@@ -209,7 +224,6 @@ $(document).ready(function() {
                 success: function(response) {
                     // 'response' is already a JavaScript object
                     if (response.status === "success") {
-                        console.log("Success " + genomic_length);
                         if (genomic_length < 1000000)
                         {
                             parseVCF(filename_global,chromosome);
@@ -219,7 +233,14 @@ $(document).ready(function() {
 
                         handleFileSelect2();
                         document.getElementById("tree_block").style.display = "none";
-                        //outputs(document.getElementById("black").checked,document.getElementById("brown").checked,document.getElementById("red").checked,document.getElementById("blue").checked,document.getElementById("green").checked,document.getElementById("yellow").checked,document.getElementById("orange").checked,document.getElementById("All").checked,document.getElementById("Select").checked,document.getElementById("PopList").value,document.getElementById("myText").value,document.getElementById("evol1").checked,document.getElementById("evol2").checked,document.getElementById("evol3").checked,document.getElementById("CS").checked,document.getElementById("PW").checked);
+
+                    } else {
+                        console.log("Fail");
+                        $('#loadingContainer').html('');
+                        $('#loadingContainer').css('display', 'none');
+                        $('#outHeader').css('display', 'block');
+                        const infoDiv = document.getElementById('outHeader');
+                        infoDiv.innerHTML = 'The query failed or returned no results.  Change the options and try again.';
                     }
                 },
                 complete: function() {
@@ -241,7 +262,7 @@ function downloadVCF(outFile, curChr) {
               const infoDiv = document.getElementById('outHeader');
               $('#loadingContainer').html('');
               $('#loadingContainer').css('display', 'none');
-              infoDiv.innerHTML = 'The table view is only available for genomic regions of 1MB of smaller.<br><br><a download="' + downloadname + '" href="' + outFile + '">Download the VCF file</a><br><br>';
+              infoDiv.innerHTML = 'The table view is only available for genomic regions of 1MB of smaller.<br><br><button id="thedownloadbuttons" onclick="downloadFile(\'' + outFile + '\')">Download the VCF file</button><br><br>';
 
           } else {
               const infoDiv = document.getElementById('outHeader');
@@ -258,6 +279,65 @@ function downloadVCF(outFile, curChr) {
         });
 
 }
+
+function downloadFile(outFile) {
+    // Create an anchor element (`<a>`)
+    var downloadLink = document.createElement('a');
+
+    // Get the current date and time
+    var now = new Date();
+    // Format the date and time as a string in 'YYYY-MM-DD_HH-MM-SS' format
+    var timestamp = now.getFullYear() + "-" +
+                    ("0" + (now.getMonth() + 1)).slice(-2) + "-" +
+                    ("0" + now.getDate()).slice(-2) + "_" +
+                    ("0" + now.getHours()).slice(-2) + "-" +
+                    ("0" + now.getMinutes()).slice(-2) + "-" +
+                    ("0" + now.getSeconds()).slice(-2);
+
+    // Specify the filename for the download, appending the timestamp
+    var downloadname = "snpversity_" + timestamp + ".vcf";
+
+
+    // Set properties of the anchor element to initiate download
+    downloadLink.setAttribute('href', outFile);
+    downloadLink.setAttribute('download', downloadname);
+
+    // Append the anchor to the document
+    document.body.appendChild(downloadLink);
+
+    // Simulate a click on the anchor element
+    downloadLink.click();
+
+    // Remove the anchor from the document
+    document.body.removeChild(downloadLink);
+}
+
+function openPopup() {
+           var myWindow = window.open("", "MsgWindow", "width=820,height=500");
+           myWindow.document.open();
+           myWindow.document.write('<html><head><title>Maize Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 20px;}</style></head><body>');
+           myWindow.document.write(document.getElementById("tableToPopup").innerHTML);
+           myWindow.document.write('</body></html>');
+           myWindow.document.close();
+       }
+
+function allelePopup() {
+          var myWindow = window.open("", "MsgWindow", "width=650,height=250");
+          myWindow.document.open();
+          myWindow.document.write('<html><head><title>Allele Table</title><style>table {width: 200px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 20px;}</style></head><body>');
+          myWindow.document.write(document.getElementById("alleleToPopup").innerHTML);
+          myWindow.document.write('</body></html>');
+          myWindow.document.close();
+      }
+
+function varPopup() {
+          var myWindow = window.open("", "MsgWindow", "width=920,height=800");
+          myWindow.document.open();
+          myWindow.document.write('<html><head><title>Variant Effects Table</title><style>table {width: 900px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 20px;}</style></head><body>');
+          myWindow.document.write(document.getElementById("varToPopup").innerHTML);
+          myWindow.document.write('</body></html>');
+          myWindow.document.close();
+      }
 
 function parseVCF(outFile, curChr) {
 
@@ -291,7 +371,15 @@ function parseVCF(outFile, curChr) {
             }
         })
         .then(content => {
-                $('#outHeader').html('<a download="' + downloadname + '" href="' + outFile + '">Download the VCF file</a><br><br>');
+                $('#outHeader').html(`
+                    <div>
+                        <button class="popup-button" onclick="downloadFile('${outFile}')">Download the VCF file</button>
+                        <button class="popup-button" onclick="openPopup()">View the maize accession key</button>
+                        <button class="popup-button" onclick="allelePopup()">View the allele key</button>
+                        <button class="popup-button" onclick="varPopup()">View common variant effect types</button>
+                    </div><br><br>
+                `);
+
                 const lines = content.split('\n');
                 const chunks = [];
                 for (let i = 0; i < lines.length; i += rowsPerPage) {
@@ -451,7 +539,6 @@ function parseVCF(outFile, curChr) {
                     //th.innerHTML = header.replace(/_/g, '<span class="vertical-text"> </span>').replace(/#/g, '');
 
                     let header_split = header.split('_');
-                    console.log(header_array[header_split[0]]);
                     th.innerHTML = '<span class="vertical-text"> ' + header_split[0] + '</span>';
 
                     if(header_array[header])
@@ -534,8 +621,8 @@ function parseVCF(outFile, curChr) {
 
                 if (geneModelMatch && geneModelMatch.length > 1) {
                     // Extract the gene model part and split by semicolon
-                    GM = geneModelMatch[1].split(';').join('<br>');
-                    GM2 = geneModelMatch[1].split(';').join('\n');
+                    GM = geneModelMatch[1].split(/[;,]+/).join('<br>');
+                    GM2 = geneModelMatch[1].split(/[;,]+/).join('\n');
                 }
 
                 let FTMatch = cell.match(/TYPE=([^\t]*?)(?:EFFECT=|\t|$)/);
@@ -543,8 +630,8 @@ function parseVCF(outFile, curChr) {
 
                 if (FTMatch && FTMatch.length > 1) {
                     // Extract the gene model part and split by semicolon
-                    FT = FTMatch[1].split(';').join('<br>');
-                    FT2 = FTMatch[1].split(';').join('\n');
+                    FT = FTMatch[1].split(/[;,]+/).join('<br>');
+                    FT2 = FTMatch[1].split(/[;,]+/).join('\n');
                 }
                 FT = FT.replace(/_/g, ' ');
                 FT2 = FT2.replace(/_/g, ' ');
@@ -554,7 +641,7 @@ function parseVCF(outFile, curChr) {
 
                 if (EFMatch && EFMatch.length > 1) {
                     // Extract the gene model part and split by semicolon
-                    EF = EFMatch[1].split(';').join('<br>');
+                    EF = EFMatch[1].split(/[;,]+/).join('<br>');
                 }
                 EF = EF.replace(/_/g, ' ');
 
@@ -579,8 +666,8 @@ function parseVCF(outFile, curChr) {
 
                 if (SUBMatch && SUBMatch.length > 1) {
                     // Extract the gene model part and split by semicolon
-                    SUB = SUBMatch[1].split(';').join('<br>');
-                    SUB2 = SUBMatch[1].split(';').join('\n');
+                    SUB = SUBMatch[1].split(/[;,]+/).join('<br>');
+                    SUB2 = SUBMatch[1].split(/[;,]+/).join('\n');
                 }
                 SUB = SUB.replace(/_/g, ' ');
                 SUB2 = SUB2.replace(/_/g, ' ');
@@ -704,13 +791,13 @@ function parseVCF(outFile, curChr) {
                         cell_mod = '0'
                         break;
                       case '0/1':
-                        cell_mod = 'H';
+                        cell_mod = '1';
                         break;
                       case '1/0':
-                        cell_mod = '1/0';
+                        cell_mod = '1';
                         break;
                       case '1/1':
-                        cell_mod = '0';
+                        cell_mod = '2';
                         break;
                       case './.':
                         cell_mod = 'N';
@@ -718,15 +805,6 @@ function parseVCF(outFile, curChr) {
                       default:
                         cell_mod = cell;
                         break;
-                    }
-
-                    let converted = genotype.split('/')
-
-                    // Check if both alleles are the same, and if so, just use one.
-                    cell_mod = converted[0] === converted[1] ? converted[0] : converted.join('/');
-
-                    if (cell_mod == '.') {
-                        cell_mod = 'N'
                     }
 
                   td.textContent = cell_mod;
@@ -775,7 +853,6 @@ function parseVCF(outFile, curChr) {
       const pageButton2 = document.createElement('button');
       pageButton2.innerText = "<<";
       pageButton2.addEventListener('click', function() {
-         console.log("Page: " + current_page)
         renderPage(chunks, current_page, "back");
       });
 
@@ -811,7 +888,6 @@ function parseVCF(outFile, curChr) {
       const pageButton3 = document.createElement('button');
       pageButton3.innerText = ">>";
       pageButton3.addEventListener('click', function() {
-         console.log("Page: " + current_page)
         renderPage(chunks, current_page, "forward");
       });
 
@@ -858,9 +934,30 @@ function parseVCF(outFile, curChr) {
   }
 }());
 
-function toggleCheckboxesAll(source, perc) {
+
+function toggleNAM() {
+  // Get all checkboxes within this table with the class 'genotypes'
+  var checkboxes = document.querySelectorAll('.genotypes');
+
+  // First, uncheck all checkboxes
+  checkboxes.forEach(function(checkbox) {
+    //checkbox.checked = false;
+
+    // List of checkbox values to be checked
+    const valuesToCheck = ["B97_CRX445264","CML52_SRR5725841","CML69_SRR8906963","CML103_SRR5976229","CML228_SRR8906784","CML322_CRX445267","CML333_CRX445268","M37W_SRR5976317"];
+
+    // Check the checkbox if its value is in the 'valuesToCheck' array
+    if (valuesToCheck.includes(checkbox.value)) {
+      checkbox.checked = true;
+    }
+
+  });
+}
+
+
+function toggleCheckboxesAll(perc) {
   // Find the parent table of the "Select All" checkbox
-  var table = source.closest('table');
+  //var table = source.closest('table');
   // Get all checkboxes within this table with the class 'genotypes'
   var checkboxes = document.querySelectorAll('.genotypes');
 
@@ -938,7 +1035,6 @@ function loadExample() {
 function loadGeneModelData() {
   var geneModelId = document.getElementById('geneModelId').value;
 
-  console.log("T1");
   if(geneModelId) {
       // Create an AJAX request
       var xhr = new XMLHttpRequest();
@@ -946,7 +1042,6 @@ function loadGeneModelData() {
       xhr.onload = function() {
           if (this.status == 200) {
               var data = JSON.parse(this.responseText);
-              console.log(data);
               if (data.id == 'empty')
               {
                   document.getElementById('error').innerHTML = "<font color='red'>Gene Model ID not found.</font>";

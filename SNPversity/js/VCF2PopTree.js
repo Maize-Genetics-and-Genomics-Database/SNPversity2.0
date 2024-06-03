@@ -163,22 +163,13 @@ var out = [];
 var reader = new FileReader();
 reader.onload = function(e){
 
-    console.log("1 my check 1");
-
-    //var data = e.target.result;
-
     var arrayBuffer = e.target.result;
     var decoder = new TextDecoder('utf-8'); // Assuming the file is UTF-8 encoded
     var data = decoder.decode(arrayBuffer);
 
-    //console.log("see data");
-    //console.log(data);
-
     str="<I><font face=times color=red size = 5>Reading VCF file.....</font></I>";
 
     var cal=Temp(str,"5");
-
-            console.log("1 my check 2");
 
  if(document.getElementById("pink").checked){
 
@@ -188,9 +179,7 @@ reader.onload = function(e){
 
             unziped = pako.inflate(data,{to: 'string'});
             arr=unziped.split('\n');
-
             var cals=calculatePwm(arr,document.getElementById("Qtext").value,document.getElementById("Ctext").value);
-
         }
 
         else{
@@ -198,20 +187,12 @@ reader.onload = function(e){
             alert("Error - This is not a compressed (.vcf.gz) VCF file.  Please check options and file name");
 
             var rep=goBack();
-
         }
-
-
  }
 
  else if(document.getElementById("cyan").checked){
 
-    console.log("1 my check 3");
-
     var tst=fileName.split('.');
-
-    console.log("1 see tst");
-    console.log(tst);
 
     if(tst[2] === "gz"){
 
@@ -222,25 +203,17 @@ reader.onload = function(e){
     }
 
     else{
-
         arr=data.split('\n');
-
-        console.log("PWM 1");
         var cals=calculatePwm(arr,document.getElementById("Qtext").value,document.getElementById("Ctext").value);
-        console.log("PWM 2");
     }
 
 }
 
 }
 
-console.log("CC check 1");
-
  if(document.getElementById("pink").checked){
      //reader.readAsArrayBuffer(fileName);
 
-    console.log("my check 4");
-     console.log("check 1" + fileName);
      fetch(fileName)
         .then(response => response.blob())
         .then(blob => {
@@ -250,8 +223,7 @@ console.log("CC check 1");
 
  }
  else if(document.getElementById("cyan").checked){
-     //reader.readAsText(fileName);
-     console.log("check 2" + fileName);
+
      fetch(fileName)
         .then(response => response.blob())
         .then(blob => {
@@ -261,67 +233,37 @@ console.log("CC check 1");
 
  }
 
-console.log("CC check 5");
 str="<I><font face=times color=red size = 5>Calculating PW distances..</font></I>";
 
 var cal=Temp(str,"25");
-
 
 }
 
 $(document).ready(function(){
 
     function handleFileSelect(evt) {
-    //var files = evt.target.files; // FileList object
-
-    //alert(filename_global);
 
     var files = filename_global
-
-    //var fileName = files[0].name;
     var fileName = files;
-
     var div = document.getElementById("phylogram");
-
-    //div.parentNode.removeChild(div);
-
-    //var divs = document.getElementById("para");
-
-    //divs.parentNode.removeChild(divs);
-
     var xr = document.createElement("DIV");
-
-    //xr.id ="para";
 
     xr.innerHTML = "<div id='phylogram'></div>";
 
     document.body.appendChild(xr);
-
-    //document.getElementById("thetreebuttons").disabled = true;
-
-    //document.getElementById("thetreebuttons").style.color = "red";
 
 // files is a FileList of File objects. List some properties.
     var out = [];
     var reader = new FileReader();
     reader.onload = function(e){
 
-        console.log("my check 1");
-
-        //var data = e.target.result;
-
         var arrayBuffer = e.target.result;
         var decoder = new TextDecoder('utf-8'); // Assuming the file is UTF-8 encoded
         var data = decoder.decode(arrayBuffer);
 
-        //console.log("see data");
-        //console.log(data);
-
         str="<I><font face=times color=red size = 5>Reading VCF file.....</font></I>";
 
         var cal=Temp(str,"5");
-
-                console.log("my check 2");
 
      if(document.getElementById("pink").checked){
 
@@ -333,56 +275,35 @@ $(document).ready(function(){
                 arr=unziped.split('\n');
 
                 var cals=calculatePwm(arr,document.getElementById("Qtext").value,document.getElementById("Ctext").value);
-
             }
-
             else{
 
                 alert("Error - This is not a compressed (.vcf.gz) VCF file.  Please check options and file name");
-
                 var rep=goBack();
-
             }
-
-
      }
 
      else if(document.getElementById("cyan").checked){
 
-        console.log("my check 3");
-
         var tst=fileName.split('.');
-
-        console.log("see tst");
-        console.log(tst);
 
         if(tst[2] === "gz"){
 
             alert("Error - This is a compressed (.vcf.gz) VCF file.  Please check options and file name");
-
             var rep=goBack();
-
         }
 
         else{
 
             arr=data.split('\n');
-
             var cals=calculatePwm(arr,document.getElementById("Qtext").value,document.getElementById("Ctext").value);
-
         }
-
     }
-
-
 
     }
 
      if(document.getElementById("pink").checked){
-         //reader.readAsArrayBuffer(fileName);
 
-        console.log("my check 4");
-         console.log("check 1" + fileName);
          fetch(fileName)
             .then(response => response.blob())
             .then(blob => {
@@ -392,28 +313,65 @@ $(document).ready(function(){
 
      }
      else if(document.getElementById("cyan").checked){
-         //reader.readAsText(fileName);
-         console.log("check 2" + fileName);
+
          fetch(fileName)
             .then(response => response.blob())
             .then(blob => {
                 reader.readAsArrayBuffer(blob);
             })
             .catch(error => console.error('Error fetching the file:', error));
-
      }
 
     str="<I><font face=times color=red size = 5>Calculating PW distances..</font></I>";
 
     var cal=Temp(str,"25");
 
-
 }
 
-console.log("my check 5");
-//document.getElementById('files').addEventListener('change', handleFileSelect, false);
-//document.getElementById('thetreebuttons').addEventListener('click', handleFileSelect, false);
 });
+
+
+function nodeColor(header) {
+
+        let cell_mod = "#999999";
+
+        switch (header_array[header]) {
+          case 'PRJNA783885':
+            cell_mod = '#87CEEB'
+            break;
+          case 'PRJCA009749':
+            cell_mod = '#FF7F50';
+            break;
+          case 'PRJEB56265':
+            cell_mod = '#3CB371';
+            break;
+          case 'PRJEB56320':
+            cell_mod = '#708090';
+            break;
+          case 'PRJEB14212':
+            cell_mod = '#DAA520';
+            break;
+          case 'PRJNA609577':
+            cell_mod = '#FF6347';
+            break;
+          case 'PRJNA260788':
+            cell_mod = '#6495ED';
+            break;
+          case 'PRJNA389800':
+            cell_mod = '#BDB76B';
+            break;
+          case 'PRJNA399729':
+            cell_mod = '#5F9EA0';
+            break;
+          case 'PRJNA531553':
+            cell_mod = '#F08080';
+            break;
+          default:
+            cell_mod = "#999999";
+            break;
+        }
+    return cell_mod;
+}
 
 function ListPop(allPop,selectPop,plist,gsz,em,cspw){
 
@@ -426,11 +384,8 @@ for(var r = 0;r < plarray.length; r++){
     if(plarray[r] !== ""){
 
         pla[lent]=plarray[r];
-
         lent++;
-
     }
-
 }
 
 var cnt=0;
@@ -442,11 +397,8 @@ for(var p = 0; p < nnm; p++){
         if(names[p] === pla[r]){
 
             cnt++;
-
         }
-
     }
-
 }
 
 if(allPop){
@@ -470,8 +422,6 @@ if(allPop){
                 var mdst =evolDist(gmut[p][q],gzt,em);
 
                 gmuts[p][q]=mdst;
-
-                //document.write(gmuts[p][q]+"<br>");
 
                 var mdst =evolDist(dmut[p][q],gzt,em);
 
@@ -646,8 +596,6 @@ return edst;
 
 
 function calculatePwm(ots,qsf,dpf){
-
-    console.log("CP1");
 
 for(var i=0; i<1500;i++){
     for(var j=0; j<1500;j++){
@@ -970,8 +918,6 @@ str="<I><font face=times color=red size = 5>Distance estimated.<br>Proceed for p
 
 var cal=Temp(str,"100");
 
-console.log("CP 2");
-
 nnm=nnm-9;
 
 for(p = 0; p < nnm; p++){
@@ -1022,28 +968,21 @@ for(p = 0; p < nnm; p++){
 
 lent=nnm;
 
-//document.getElementById("thetreebuttons").disabled = false;
 document.getElementById("tree_button").style.display = "block";
 document.getElementById("tree_message").style.display = "none";
 document.getElementById("tree_output").style.display = "block";
-
-//document.getElementById("thetreebuttons").style.color = "yellow";
-
-console.log("CP 3");
 
 }
 
 function outputs(upgma, nj, rec, rad, tf, pwm, pwp, allpp, selpp, listval, genome, emodel1, emodel2, emodel3,csdl,pwdl){
 
-console.log("You are in outputs 1");
-//if(namest[0]){
+
 if(true){
 
     if((emodel2 || emodel3) && genome < 1){
 
         alert("Error - Enter the genome size to calculate P-distance or JC-distance");
 
-        //document.getElementById("tree_block").style.display = "block";
         var div = document.getElementById("phylogram");
 
         div.parentNode.removeChild(div);
@@ -1087,24 +1026,16 @@ if(true){
 
         }
 
-        console.log("Check vars");
-        console.log(allpp);
-        console.log(lt);
 
         if(allpp || (lt > 3 && cnt == lt)){
 
-            console.log("Tree Block 1");
             document.getElementById("tree_block").style.display = "block";
             var div = document.getElementById("phylogram");
             div.innerHTML = "";
 
-            //div.parentNode.removeChild(div);
-
             var xr = document.createElement("DIV");
 
             xr.innerHTML = "<div id='phylogram'></div>";
-
-            //document.body.appendChild(xr);
 
             var typ="";
 
@@ -1314,17 +1245,12 @@ if(true){
 
             }
 
-            console.log("phylogram check 2");
-            //document.getElementById("tree_block").style.display = "block";
             var div = document.getElementById("phylogram");
             div.innerHTML = "";
-            //div.parentNode.removeChild(div);
 
             var xr = document.createElement("DIV");
 
             xr.innerHTML = "<div id='phylogram'></div>";
-
-            //document.body.appendChild(xr);
 
         }
 
@@ -1462,11 +1388,9 @@ document.getElementById('phylogram').appendChild(ta);
 **********************************************************************/
 
 function treeFile(topology) {
-console.log("Tree Block 2");
+
 document.getElementById("tree_block").style.display = "block";
 var rtarea = document.getElementById("phylogram");
-
-//rtarea.parentNode.removeChild(rtarea);
 
 var x = document.createElement("TEXTAREA");
 
@@ -2526,6 +2450,7 @@ var node = vis.selectAll("g.node")
 
 d3.phylogram.styleTreeNodes(vis)
 
+
 if (!options.skipLabels) {
 
     vis.selectAll('g.inner.node')
@@ -2554,11 +2479,15 @@ if (!options.skipLabels) {
 
     .attr('font-family', 'Times, Times New Roman')
 
-    .attr('font-size', '20px')
+    .attr('font-size', '18px')
 
     .attr('font-style', 'italic')
 
-    .attr('fill', 'red')
+    //add lookup function here to change color
+
+    .attr('fill', function(d) { return nodeColor(d.name); })
+    //.attr('fill', 'red')
+    //.attr('fill', 'blue')
 
     .text(function(d) { return d.name; });
 }
@@ -2634,7 +2563,9 @@ if (!options.skipLabels) {
 
     .attr('font-size', '10px')
 
-    .attr('fill', 'black')
+    //Fill edit
+    //.attr('fill', 'black')
+    .attr('fill', function(d) { return nodeColor(d.name); })
 
     .text(function(d) { return d.data.name; });
 
