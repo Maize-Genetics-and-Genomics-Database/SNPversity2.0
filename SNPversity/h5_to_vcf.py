@@ -1,6 +1,7 @@
 import h5py
 import sys
 import json
+import datetime
 import numpy as np
 
 # Command line arguments
@@ -18,6 +19,8 @@ var_list = ['#CHROM', 'POS', 'REF', 'ALT', 'QUAL', 'INFO']
 genome_list = json.loads(json_string)
 # Reverse mapping from integers to genotype strings
 reverse_genotype_mapping = {0: "0/0", 1: "1/0", 2: "1/1", 3: "./."}
+
+current_date = datetime.date.today().strftime('%Y%m%d')
 
 ID = "."
 FILTER = "."
@@ -61,7 +64,17 @@ if len(variant_data['POS']) == 0:
 else:
     with open(output_vcf_path, 'w') as vcf_file:
         vcf_file.write("##fileformat=VCFv4.2\n")
-        vcf_file.write("##source=HDF5toVCF\n")
+        vcf_file.write("##fileDate=" + current_date + "\n")
+        vcf_file.write("##source=MaizeGDB2024\n")
+        vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality\">\n")
+        vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant\">\n")
+        vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
+        vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms\">\n")
+        vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness\">\n")
+        vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant\">\n")
+        vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants\">\n")
+        vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci\">\n")
+        vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
         vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
 
         for i in range(len(variant_data['POS'])):

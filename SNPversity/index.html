@@ -5,6 +5,7 @@
     <script src="./js/header_data.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
     <script src="./js/VCF2PopTree.js"></script>
+    <script src="./js/google_analytics.js"></script>
 
     <link rel="stylesheet" href="./css/main.css">
     <title>SNPVersity 2.0</title>
@@ -23,6 +24,7 @@
                <button class="tab" id="Toutput" onclick="showContent('outputTree');highlightTab('Toutput')">Tree view</button>
            </div>
 
+           <button class="tab" id="download" onclick="showContent('download');highlightTab('download')">Downloads</button> <!-- Help tab on far right -->
            <button class="tab" id="help" onclick="showContent('help');highlightTab('help')">Help</button> <!-- Help tab on far right -->
        </div>
 
@@ -85,7 +87,7 @@
                           <tr>
                             <td><b><font color="green">Genome End Position (bp):</font></b></td>
                             <td>
-                            <input type="number" style="width: 100px;" min="0" name="stop" id="endInput" value="126000"/>
+                            <input type="number" style="width: 100px;" min="0" name="stop" id="endInput" value="824000"/>
                             </td>
                             <td> </td>
                           </tr>
@@ -122,26 +124,41 @@
                         <div id="subheaderContainer">
                             <p><h3><font color="white">Select which accessions to include</font></h3></p>
                         </div>
-                        <br>
 
-                        <b><font color="green" style="font-size: 10pt;">Upload a file where each accession is separated by a tab or newline):</font></b>
+                        <p class="upload-instructions">
+                          Upload a file of maize accessions:
+                        </p>
 
-                        <input type="file" id="fileUpload" name="fileUpload">
+                        <div class="input_container">
+                          <input type="file" id="fileUpload" name="fileUpload">
+                          <button class="button_up" type="button" onclick="document.getElementById('fileUpload').value = '';">Clear</button>
+                        </div>
 
-                        <br>A list of all maize accessions can be found here: <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> or <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a>
-                        <br><br>
+                          <div style="margin-top: 20px;">
+                            <p style="margin-bottom: 10px;">
+                              The accession should listed in a single-column seperated by a tab or newline. Use the "SNPversity ID" from either of these lists of all maize accessions:
+                              <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> or
+                              <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a>.
+                            </p>
+                            <p>
+                              Download an example file of the eight Nested Association Mapping founders:
+                              <a href="nam_founders.tsv" download="nam_founders.tsv">TSV</a>.
+                            </p>
+                          </div>
+
                         --OR--
                         <br><br>
                         <b><font color="green" style="font-size: 10pt;">Select the acccessions from the following BioProjects:</font></b>
 
                         <br><br>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0)">Unselect all</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0.05)">Select Random 5%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0.10)">Select Random 10%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0.25)">Select Random 25%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0.5)">Select Random 50%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 0.75)">Select Random 75%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(this, 1.0)">Select All</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0)">Unselect all</button>
+                        <button type="button" id="selectRandom" onclick="toggleNAM()">Select the 8 NAM accessions</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.05)">Select Random 5%</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.10)">Select Random 10%</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.25)">Select Random 25%</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.5)">Select Random 50%</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.75)">Select Random 75%</button>
+                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(1.0)">Select All</button>
                         <br><br>
 
                         <div class="border1">
@@ -2268,12 +2285,14 @@
             </div>
         </form>
 
+
             <div id="loadingContainer" class="load_content" style="display: none">
             </div>
-
             <div id="outputContainer" class="content" style="display: none">
                 Use the 'Select options' tab to query the WGS database.
             </div>
+
+
 
             <div id="treeContainer" class="content" style="display: none">
 
@@ -2373,68 +2392,1153 @@
 
             </div>
 
-            <div id="helpContainer" class="content">
-                <h1>SNPversity 2.0</h1>
+            <div id="downloadContainer" class="content" style="display: none">
+                <h1>SNPversity 2.0 Data Downloads</h1>
 
                 <h2>Overview</h2>
+                Below you will find detailed information about the datasets available for download, along with guidelines and best practices. For more information on how the datasets were generated see the 'Help' section.
 
-                Welcome to SNPversity 2.0, the second generation of the SNPversity platform. Designed as an open-source visualization tool, SNPversity 2.0 enables users to explore extensive variant datasets with ease. Here's how it works:
-                <ul>
-                <li><b>Input & Output</b>: Users can input specific genomic intervals and select maize accessions of interest. SNPversity 2.0 processes this input to deliver a Variant Call Format (VCF) file and a detailed table. These outputs showcase the alleles matching the user's query, providing a clear and concise visualization of genetic variations.</li>
-                <li><b>Technical Architecture</b>: At its core, SNPversity 2.0 is powered by a robust HDF5 database back-end that manages variant annotations efficiently. A data exchange layer, developed in Python, facilitates seamless data handling, while a JavaScript-based interface layer presents Single Nucleotide Polymorphisms (SNPs) and Insertions/Deletions (INDELs) in an interactive format.</li>
-                <li><b>Real-Time Visualization</b>: SNPversity 2.0 elevates data presentation by displaying information in real-time directly in your web browser. Tables are intuitively color-coded, reflecting each SNP's allelic status and mutational state for easy interpretation.</li>
-                <li><b>Enhanced Data Insights</b>: Beyond basic variant data, SNPversity 2.0 enriches your research with valuable metadata. This includes variant effect annotations, mapping quality scores, variant coverage, and maximum R2 scores to indicate linkage disequilibrium, offering a comprehensive view of genetic variations.</li>
-                <li><b>Genomic Dataset</b>: This version leverages a whole-genome sequencing (WGS) dataset encompassing 1,498 publicly available maize accessions. These accessions are aligned to the B73 RefGen_v5 (Zm-B73-REFERENCE-NAM-5.0), ensuring a broad and relevant genetic foundation for analysis.</li>
+                <h2>How to Download</h2>
+                <ul class="info-list">
+                    <li><b>Filtered datasets (Direct download)</b>: For the filtered datasets, click the link to the <a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/folder/255390517505">Federal Box account</a> and identify the files to download. Check the boxes next to the files and click the download icon near the top of the page. Alternatively, click on the filename listed in one of the tables below, which is linked to the Box download page for that file. </li>
+                    <li><b>Unfiltered datasets (Request Access)</b>: Send an email to <a href=mailto:john.portwood@usda.gov>John Portwood</a> with the subject "WGS file access request". Once your request is received, you will receive a link and temporary password via email. This link will be active for 48 hours.</li>
                 </ul>
 
-                <h2>Dataset</h2>
+                <h2>Download Instructions</h2>
+                <ul class="info-list">
+                    <li><b>Prepare Adequate Storage</b>: Ensure you have sufficient storage space on your system for the download.</li>
+                    <li><b>Use a Reliable Internet Connection</b>: A wired connection is recommended for faster and more stable downloads.</li>
+                    <li><b>Consider Using a Download Manager</b>: For large files, a download manager can help manage the download process, allowing for pause, resume, and recovery of the download.</li>
+                    <li><b>Verify Data Integrity</b>: After download, use checksums (provided in the tables below) to verify the integrity of the downloaded files.</li>
+                </ul>
 
-                <h2>How to use the website</h2>
+                <h2>High Coverage Datasets (VCFs)</h2>
 
-                There are four tabs in the SNPversity 2.0 website 'Select options', 'Table view', 'Tree view', and 'Help'.
+                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485043427664">chr1_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
+                        <td style="padding: 10px;">8.7 GB</td>
+                        <td style="padding: 10px;">11 minutes at 100 Mbps; 2 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">6239a80a8ad3f5304314042e56d1772d</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485046187075">chr2_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
+                        <td style="padding: 10px;">6.8 GB</td>
+                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hour 30 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">acdeb8df390d9be6f9c7f855ae517753</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485037633537">chr3_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">6.7 GB</td>
+                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hour 30 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">4d5d363ee510646d41283abdb0f3b55f</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485045594541">chr4_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
+                        <td style="padding: 10px;">6.9 GB</td>
+                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hours 32 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">6478f0b42a3fbb60c7223a598f5c1530</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485017118248">chr5_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 5.</td>
+                        <td style="padding: 10px;">6.0 GB</td>
+                        <td style="padding: 10px;">8 minutes at 100 Mbps; 1 hour 20 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">d8ad6dc5f845594ed0c7533770908664</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485023759434">chr6_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 6.</td>
+                        <td style="padding: 10px;">4.9 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 5 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">2a3772175364a757d6a1c173b1724aff</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484989726843">chr7_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 7.</td>
+                        <td style="padding: 10px;">4.9 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 5 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">d07d0f0704fc70d1864fe986ecd4621a</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485004077225">chr8_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 8.</td>
+                        <td style="padding: 10px;">5.2 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours 9 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">1c845ac5ba91686b50297c62a0643a31</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485001343670">chr9_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 9.</td>
+                        <td style="padding: 10px;">4.5 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 1 hour at 10 Mbps </td>
+                        <td style="padding: 10px;">1769fd7f9c2ad460aa0ca99d964e4532</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484994846365">chr10_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 10.</td>
+                        <td style="padding: 10px;">4.2 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 56 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">589917ccde3e3c8e6bcdc0f8ac0b102a</td>
+                    </tr>
+                </table>
+                *Download times are estimated and may vary.
 
+                <h2>High Coverage Datasets (H5)</h2>
 
-                <h3>Select options</h3>
-                <div style="padding-left: 20px">
-                    The two main inputs for the this tool are selecting the genomic interval of interest and selecting which subset of maize accessions to include.
+                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489597962544">chr1_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
+                        <td style="padding: 10px;">5.2 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours and 10 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">f9acb102fb1998caf28ab17536cc7684</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489617544663">chr2_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
+                        <td style="padding: 10px;">4.1 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 55 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">ed6196b09a8c13f47a7653a24660ca62</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489615170765">chr3_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">4.1 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 55 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">13a7520bbc036b5101a45f3df32142f7</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489616399324">chr4_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
+                        <td style="padding: 10px;">4.3 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 58 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">23610c076227e77619ab54da2683cf02</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489623438590">chr5_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 5.</td>
+                        <td style="padding: 10px;">3.7 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 50 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">c31cf123141fde6631eb93d9f25743b5</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489633894986">chr6_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 6.</td>
+                        <td style="padding: 10px;">2.9 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 39 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">ae3d1d77bf20135d33f4c711c6768ee9</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489627484930">chr7_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 7.</td>
+                        <td style="padding: 10px;">3.1 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 42 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">ae3d1d77bf20135d33f4c711c6768ee9</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489646949181">chr8_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 8.</td>
+                        <td style="padding: 10px;">3.1 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 42 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">8c0971f61fda102355492c38a1a578b6</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489650866266">chr9_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 9.</td>
+                        <td style="padding: 10px;">2.7 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 36 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">2d0a1c1f4c9995a3398544325c0362c9</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489644891814">chr10_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 10.</td>
+                        <td style="padding: 10px;">2.6 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 35 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">5e00012d751a5f313613e6ae6dbff590</td>
+                    </tr>
+                </table>
+                *Download times are estimated and may vary.
 
+                <h2>High Quality Datasets (VCFs)</h2>
+
+                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485011619986">chr1_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
+                        <td style="padding: 10px;">3.3 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 44 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">cecf90ec03a6d8cf6c49c27dc8bea90a</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485002769198">chr2_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
+                        <td style="padding: 10px;">2.5 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 34 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">08aeb5631aa8680704997daed089b4d1</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484980165852">chr3_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">2.5 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 34 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">427afd33576a71e31686d6fe1e9bcf40</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484993013088">chr4_high_Quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
+                        <td style="padding: 10px;">2.6 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 35 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">479d3e8ec571bc65ee7491bc7825fe05</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484988218263">chr5_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 5.</td>
+                        <td style="padding: 10px;">2.2 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 30 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">25e5d5f163c0a3eb3ae70e47f16a4b14</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484987296311">chr6_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 6.</td>
+                        <td style="padding: 10px;">1.8 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">06e6101a7d290cee737e02fc70d139e4</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484986254823">chr7_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 7.</td>
+                        <td style="padding: 10px;">1.8 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">5b2e67a5ef540c20df5d82bc6617e2d3</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484985314179">chr8_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 8.</td>
+                        <td style="padding: 10px;">1.9 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 26 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">b086358c426c2348eca700e88b4460d6</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484987826314">chr9_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 9.</td>
+                        <td style="padding: 10px;">1.7 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">64f13d963fd5538c6853eab59256ad63</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484980271031">chr10_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 10.</td>
+                        <td style="padding: 10px;">1.6 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 22 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">5d7d85d2c201c1640dbfd6824e228b87</td>
+                    </tr>
+                </table>
+                *Download times are estimated and may vary.
+
+                <h2>High Quality Datasets (H5)</h2>
+
+                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489544437427">chr1_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
+                        <td style="padding: 10px;">2.2 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 30 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">c9cbf9f9736182078d2873f8f98fc9b4</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489550085109">chr2_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
+                        <td style="padding: 10px;">1.8 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">0e5fd50705a42785a928de0cf1284291</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489613785415">chr3_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">1.7 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">ad7c0be2316b2aed5fb06d34dd3b2272</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489558346241">chr4_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
+                        <td style="padding: 10px;">1.8 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">dab78f3a4ec7f7ab67ac879f2a2fbb82</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489596789234">chr5_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 5.</td>
+                        <td style="padding: 10px;">1.5 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 20 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">340ee0af09b8dd917ecf72ffd1c0329e</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489579142034">chr6_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 6.</td>
+                        <td style="padding: 10px;">1.2 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 16 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">6eae0210cdcae131616956ffa49936b4</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489569004330">chr7_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 7.</td>
+                        <td style="padding: 10px;">1.3 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 17 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">a7ce7d36af6fe3abf6db7a55efee5f68</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489522316503">chr8_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 8.</td>
+                        <td style="padding: 10px;">1.2 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 16 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">935c8cecded780d66ea8e27543373734</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489570120019">chr9_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 9.</td>
+                        <td style="padding: 10px;">1.1 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 15 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">22af0d309c9349cb19eff70015eefd6c</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489592851125">chr10_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 10.</td>
+                        <td style="padding: 10px;">1.1 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 15 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">583639cc8e078019fe2b34daeba3a1d3</td>
+                    </tr>
+                </table>
+                *Download times are estimated and may vary.
+
+                <h2>Raw Unfiltered Datasets (VCFs)</h2>
+
+                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">maizegdb2024_chr1.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 1.</td>
+                        <td style="padding: 10px;">281 GB</td>
+                        <td style="padding: 10px;">6 hours at 100 Mbps; 63 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">02171d83481e0e38939c99b2e1957392</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_chr2.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 2.</td>
+                        <td style="padding: 10px;">219 GB</td>
+                        <td style="padding: 10px;">5 hours at 100 Mbps; 49 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">1b4fdfa8b81ca7718493cc4b33817544</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">maizegdb2024_chr3.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 3.</td>
+                        <td style="padding: 10px;">216 GB</td>
+                        <td style="padding: 10px;">5 hours at 100 Mbps; 48 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">126f877418454de65a087bdc20575068</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_chr4.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 4.</td>
+                        <td style="padding: 10px;">232 GB</td>
+                        <td style="padding: 10px;">5 hours at 100 Mbps; 52 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">e2467ff391fadc6b7a53d345f87c8d15</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">maizegdb2024_chr5.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 5.</td>
+                        <td style="padding: 10px;">201 GB</td>
+                        <td style="padding: 10px;">4 hours and 30 minutes at 100 Mbps; 44 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">6b0c659fcd75e1f0fd22088fd465b089</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_chr6.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 6.</td>
+                        <td style="padding: 10px;">157 GB</td>
+                        <td style="padding: 10px;">3 hours and 30 minutes at 100 Mbps; 35 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">e34bd8922b912ad21f384246b1b75bb9</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">maizegdb2024_chr7.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 7.</td>
+                        <td style="padding: 10px;">165 GB</td>
+                        <td style="padding: 10px;">3 hours and 40 minutes at 100 Mbps; 63 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">2c240f1a032e3a5961d07ad93edf8241</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_chr8.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 8.</td>
+                        <td style="padding: 10px;">165 GB</td>
+                        <td style="padding: 10px;">3 hours and 40 minutes at 100 Mbps; 63 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">faf51dab341a5fdcdfa4e97a919b19cb</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">maizegdb2024_chr9.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 9.</td>
+                        <td style="padding: 10px;">146 GB</td>
+                        <td style="padding: 10px;">3 hours and 15 minutes at 100 Mbps; 33 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">ab8ec5e32cebe2cee3c699fc7f89975b</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_chr10.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 10.</td>
+                        <td style="padding: 10px;">139 GB</td>
+                        <td style="padding: 10px;">3 hours at 100 Mbps; 31 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">ec8e502c71f10052d095b7edeb3bddc9</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;">maizegdb2024_scaf.vcf.gz</td>
+                        <td style="padding: 10px;">Full unfiltered variants and read data in unplaced Scaffolds.</td>
+                        <td style="padding: 10px;">3.3 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 44 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">bf0ea3d022cbd6f1bc74f585d70e5018</td>
+                    </tr>
+                </table>
+                *Download times are estimated and may vary.
+
+                <h2>Need Help?</h2>
+                If you encounter any issues during the download or have any questions, please contact <a href=mailto:john.portwood@usda.gov>John Portwood</a>.
+
+                <h2>Disclaimer</h2>
+                <ul>
+                    <li>The estimated download times are provided for convenience and can vary based on your network speed and connectivity.</li>
+                    <li>We reserve the right to modify the access procedures to ensure data security, integrity, and convenience. This includes using another platform to host the datasets. This page will be updated with the most up-to-date datasets and methods of accessing the data.</li>
+                </ul>
+            </div>
+
+            <div id="helpContainer" class="content" style="display: none">
+                    <h1>SNPversity 2.0</h1>
+
+                    <h2>Overview</h2>
+
+                    Welcome to SNPversity 2.0, the second generation of the SNPversity platform. Designed as an open-source visualization tool, SNPversity 2.0 enables users to explore extensive variant datasets with ease. Here's how it works:
+                    <ul class="info-list">
+                    <li><b>Input & Output</b>: Users can input specific genomic intervals and select maize accessions of interest. SNPversity 2.0 processes this input to deliver a Variant Call Format (VCF) file and a detailed table. These outputs showcase the alleles matching the user's query, providing a clear and concise visualization of genetic variations.</li>
+                    <li><b>Technical Architecture</b>: At its core, SNPversity 2.0 is powered by a robust HDF5 database back-end that manages variant annotations efficiently. A data exchange layer, developed in Python, facilitates seamless data handling, while a JavaScript-based interface layer presents Single Nucleotide Polymorphisms (SNPs) and Insertions/Deletions (INDELs) in an interactive format.</li>
+                    <li><b>Real-Time Visualization</b>: SNPversity 2.0 elevates data presentation by displaying information in real-time directly in your web browser. Tables are intuitively color-coded, reflecting each SNP's allelic status and mutational state for straightforward interpretation.</li>
+                    <li><b>Enhanced Data Insights</b>: Beyond basic variant data, SNPversity 2.0 enriches your research with valuable metadata. This includes variant effect annotations, mapping quality scores, genotypic coverage, and maximum R2 scores to indicate linkage disequilibrium, offering a comprehensive view of genetic variations.</li>
+                    <li><b>Genomic Dataset</b>: This version leverages a whole-genome sequencing (WGS) dataset encompassing 1,498 publicly available maize accessions. These accessions are aligned to the B73 RefGen_v5 (Zm-B73-REFERENCE-NAM-5.0), ensuring a broad and relevant genetic foundation for analysis.</li>
+                    </ul>
+
+                    <h2>Code</h2>
+                    For information about the code used in SNPVersity 2.0 please refer to the GitHub page. This page provides detailed information about web compatibility, the directory structure, system requirements, and a comprehensive description of the code. It also offers guidance on how to use the websites, information about the pipelines used, and instructions on preparing data for PanEffect.
+                    <br><br>For more details, please visit our GitHub page: <a target="_blank" href="https://github.com/Maize-Genetics-and-Genomics-Database/SNPversity2.0">GitHub - SNPVersity 2.0</a>.
+
+                    <h2>Dataset</h2>
+
+                    A variant dataset for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, genotypic coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and genotypic coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high-confidence linkage disequilibrium.  See the tables below for the projects used to build the dataset and a summary of the variant effect annotations.
                     <br><br>
-                    <b>Select genomic interval:</b><br>
-                    This section allows the user to select the genomic interval of interest.  The two main options are to enter the genomic coordinates or enter a gene model identifier.
 
-                    <ul>
-                        <li><b>Genome Version</b>:  Select the reference genome version.  The only option currently available is B73 version 5. </li>
-                        <li><b>Dataset</b>: Select the variation dataset to query.  The 'MaizeGDB High Quality' dataset was built on 1,498 diverse maize accessions and was filtered on mapping quality (>= 30), mapping coverage (>= 50%), and linkage disequilibrium with max R2 > 0.5.  There was approximately  75 million annotated loci in this dataset.  The 'MaizeGDB High Coverage' dataset was built on 1,498 diverse maize accessions and was filtered only on mapping quality (>= 30) and mapping coverage (>= 50%).  There are approximately 230 million annotated loci in this dataset. </li>
-                        <li><b>Chromosome</b>: Select the chromosome.  </li>
-                        <li><b>Genome Start Position (bp)</b>: Select the start position on the chromosome.</li>
-                        <li><b>Genome End Position (bp)</b>: Select the end position on the chromosome.</li>
-                        <li><b>Loci per page</b>:  Select the number of loci to view per page in the HTML table view.  This number corresponds to the number of rows in the table. </li>
-                        <li><b>Gene Model ID</b>: Optionally, select the gene model identifier and the number of base pairs to add as padding to the start and end of the gene model coordinates.  Pressing the 'Load coordinates' button will load the chromosome, start, and end positions if the gene model is found. This option currently only accepts B73 RefGen_v5 gene models. </li>
-                        </ul>
-                (<b>NOTE: Genomic regions larger than 1 MB will only be avaialble as VCF downloads.  The table and tree views will not be available.</b>)
+                <table width="800px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                    <tr>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">539 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJCA009749">PRJCA009749</a> </td>
+                        <td style="padding: 10px;">WGS resequencing of 1,604 maize inbred lines</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF7F50;"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">521 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA531553">PRJNA531553</a> </td>
+                        <td style="padding: 10px;">Deep DNA resequencing of the association mapping panel</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #F08080;"></div></td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">340 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA783885">PRJNA783885</a> </td>
+                        <td style="padding: 10px;">Maize landrace whole genome resequencing</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #87CEEB;"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">35 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56320">PRJEB56320</a> </td>
+                        <td style="padding: 10px;">Maize Wisconsin Diversity Panel Resequencing</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #708090;"></div></td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">32 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA609577">PRJNA609577</a> </td>
+                        <td style="padding: 10px;">Zea mays Genome sequencing</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF6347;"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">11 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA389800">PRJNA389800</a> </td>
+                        <td style="padding: 10px;">Whole genome sequencing of maize 282 panel</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #BDB76B;"></div></td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">8 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB14212">PRJEB14212</a> </td>
+                        <td style="padding: 10px;">European maize diversity</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #DAA520;"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">7 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA399729">PRJNA399729</a> </td>
+                        <td style="padding: 10px;">Maize Haplotype Map version 3</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #5F9EA0;"></div></td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">6 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA260788">PRJNA260788</a> </td>
+                        <td style="padding: 10px;">Zea mays Genome sequencing (European maize genomes)</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #6495ED;"></div></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">1 </td>
+                        <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56265">PRJEB56265</a> </td>
+                        <td style="padding: 10px;">Resequencing of three Polish maize inbred lines</td>
+                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #3CB371;"></div></td>
+                    </tr>
+                    </table>
+
+
+                <br>
+                The table shows the composition of public resequencing data used to build the dataset.  The table lists the number of accessions from each NCBI bioproject. The last column shows the color code used in the table headers in the table view.<br><br>
+                The VCF and HDF5 files can be downloaded from the <a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/folder/255392948851">MaizeGDB Box account</a>.
                 <br><br>
 
-                    <b>Select which accessions to include:</b><br>
-                    This section allows the user to select a subset of the maize accessions to view. The two main options are to upload a file with the accession IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the maize accessions.  A list of all maize accessions can be found in both <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> and <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a> formats.
+                    <table width="800px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                    <tr>
+                        <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Effect</th>
+                        <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">High Coverage</th>
+                        <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">High Quality</th>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">intergenic</td>
+                        <td style="padding: 10px;">216,128,332</td>
+                        <td style="padding: 10px;">69,236,257</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">5' UTR</td>
+                        <td style="padding: 10px;">544,839</td>
+                        <td style="padding: 10px;">287,968</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">synonymous</td>
+                        <td style="padding: 10px;">1,042,272</td>
+                        <td style="padding: 10px;">523,102</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">missense</td>
+                        <td style="padding: 10px;">1,311,927</td>
+                        <td style="padding: 10px;">572,404</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">stop</td>
+                        <td style="padding: 10px;">61,129</td>
+                        <td style="padding: 10px;">20,049</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">frameshift</td>
+                        <td style="padding: 10px;">138,463</td>
+                        <td style="padding: 10px;">40,550</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">intron</td>
+                        <td style="padding: 10px;">8,601,103</td>
+                        <td style="padding: 10px;">4,349,068</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">non-coding</td>
+                        <td style="padding: 10px;">3,708</td>
+                        <td style="padding: 10px;">1,978</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;">3'UTR</td>
+                        <td style="padding: 10px;">801,323</td>
+                        <td style="padding: 10px;">468,603</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;">other</td>
+                        <td style="padding: 10px;">46,355</td>
+                        <td style="padding: 10px;">18,411</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px; font-weight: bold;">TOTAL</td>
+                        <td style="padding: 10px; font-weight: bold;">228,679,451</td>
+                        <td style="padding: 10px; font-weight: bold;">75,518,390</td>
+                    </tr>
+                </table>
+
+                <br>
+                The table shows the counts for each of the variant effect types for the high-coverage and high-quality datasets.
+
+                    <h2>How to use the website</h2>
+
+                    There are four tabs in the SNPversity 2.0 website 'Select options', 'Table view', 'Tree view', and 'Help'.
+
+
+                    <h3>Select options</h3>
+                    <div style="padding-left: 20px">
+                        The two main inputs for this tool are selecting the genomic interval of interest and which subset of maize accessions to include.
+
+                        <br><br>
+                        <b>Select genomic interval:</b><br>
+                        This section allows the user to select the genomic interval of interest.  The two main options are entering the genomic coordinates or entering a gene model identifier.
+
+                        <ul>
+                            <li><b>Genome Version</b>:  Select the reference genome version.  The only option currently available is B73 version 5. </li>
+                            <li><b>Dataset</b>: Select the variation dataset to query.  The 'MaizeGDB High Quality' dataset was built on 1,498 diverse maize accessions and was filtered on mapping quality (>= 30), genotypic coverage (>= 50%), and linkage disequilibrium with max R2 > 0.5.  There were approximately  75 million annotated loci in this dataset.  The 'MaizeGDB High Coverage' dataset was built on 1,498 diverse maize accessions and was filtered only on mapping quality (>= 30) and genotypic coverage (>= 50%).  There are approximately 230 million annotated loci in this dataset. </li>
+                            <li><b>Chromosome</b>: Select the chromosome.  </li>
+                            <li><b>Genome Start Position (bp)</b>: Select the start position on the chromosome.</li>
+                            <li><b>Genome End Position (bp)</b>: Select the end position on the chromosome.</li>
+                            <li><b>Loci per page</b>:  Select the number of loci to view per page in the HTML table view.  This number corresponds to the number of rows in the table. </li>
+                            <li><b>Gene Model ID</b>: Optionally, select the gene model identifier and the number of base pairs to add as padding to the start and end of the gene model coordinates.  Pressing the 'Load coordinates' button will load the chromosome, start, and end positions if the gene model is found. This option currently only accepts B73 RefGen_v5 gene models. </li>
+                            </ul>
+                    (<b>NOTE: Genomic regions larger than 1 MB will only be avaialble as VCF downloads.  The table and tree views will not be available.</b>)
+                    <br><br>
+
+                        <b>Select which accessions to include:</b><br>
+                        This section allows the user to select a subset of the maize accessions to view. The two main options are to upload a file with the accession IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the maize accessions.  A list of all maize accessions can be found in both <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> and <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a> formats.
+                    </div>
+
+                    <h3>Table view</h3>
+                    <div style="padding-left: 20px">
+
+                        The table view option allows the user to download the VCF generated from the select options tab and displays a table of the data (for regions <= 1Mb). Each row of the data corresponds to a locus position in the dataset. The descriptions of the columns are in the following table.
+                        <br><br>
+
+                        <table width="100%" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                            <tr>
+                                <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Column name</th>
+                                <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Definition</th>
+                                <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Abbreviation</th>
+                                <th style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Example data</th>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Chromosome</td>
+                                <td style="padding: 10px;">CHR</td>
+                                <td style="padding: 10px;">The chromosome where the locus is located</td>
+                                <td style="padding: 10px;">chr1</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Position</td>
+                                <td style="padding: 10px;">POS</td>
+                                <td style="padding: 10px;">The genomic coordinate on the chromosome</td>
+                                <td style="padding: 10px;">104985</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Reference allele</td>
+                                <td style="padding: 10px;">REF</td>
+                                <td style="padding: 10px;">The allele value for the locus in the reference genome B73.</td>
+                                <td style="padding: 10px;">A</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Alternate allele</td>
+                                <td style="padding: 10px;">ALT</td>
+                                <td style="padding: 10px;">The alternative allele value found in other maize accessions</td>
+                                <td style="padding: 10px;">T</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Gene models</td>
+                                <td style="padding: 10px;">Gene model(s)</td>
+                                <td style="padding: 10px;">The name of the B73 RefGen_v5 gene model affected by the variant. Displays the closest gene models when the variant is intergenic.</td>
+                                <td style="padding: 10px;">Zm00001eb404830</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Effect type</td>
+                                <td style="padding: 10px;">Effect type</td>
+                                <td style="padding: 10px;">The type of effect using Sequence Ontology terms.</td>
+                                <td style="padding: 10px;">stop gained</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Effect impact</td>
+                                <td style="padding: 10px;">Effect impact</td>
+                                <td style="padding: 10px;">A estimation of putative impact/deleteriousness.</td>
+                                <td style="padding: 10px;">HIGH MODIFIER</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Mapping quality score</td>
+                                <td style="padding: 10px;">MQ</td>
+                                <td style="padding: 10px;">The average mapping quality of reads supporting the variant.</td>
+                                <td style="padding: 10px;">58</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Genotype Coverage Percent</td>
+                                <td style="padding: 10px;">COV</td>
+                                <td style="padding: 10px;">The percent of accessions that provide genotype data for a particular variant (i.e., there is at least one read for that accession at the given variant). Note, this is different than read coverage</td>
+                                <td style="padding: 10px;">GT</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Maximum squared correlation</td>
+                                <td style="padding: 10px;">max R2</td>
+                                <td style="padding: 10px;">The linkage disequilibrium measured by the maximum R2 for a given loci.</td>
+                                <td style="padding: 10px;">0.64</td>
+                            </tr>
+                        </table>
+
+                        <br>
+                        The gene models in the Gene model(s) column are linked to the MaizeGDB B73 genome browser.  The position of the locus is shown as a vertical line on the browser.
+                        <br><br>
+                        Variant effects were calculated using <a target="_blank" href="https://pcingola.github.io/SnpEff/">SNPeff</a>.
+                        <br><br>
+                        Linkage disequilibrium values were calculated using <a target="_blank" href="https://www.cog-genomics.org/plink/">Plink</a>.
+                        <br><br>
+                        For synonymous and missense variant effect types, the information in the Effect type column shows the following information in parentheses: the amino acid for the reference genome, the position, and the amino acid substitution in the alternative genome (e.g. G477S). Missense variant effect types are linked to the <a target="_blank" href="https://www.maizegdb.org/effect/maize/">Maize PanEffect tool</a>.
+                        <br><br>
+                        The remainder of the columns are based on the subset of selected maize accessions.  There is one column for each maize accession and the column header is color-coded based on the project.  The columns are named based on the accession name, an underscore, and the SRR ID.  The values and colors of the data in these columns are based on the allele value for the given locus for that accession.
+
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="margin-bottom: 5px; font-size: 14px; line-height: 20px;">
+                                <span class="color-box" style="display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: middle; background-color: #8CC28D; text-align: center; line-height: 20px;">0</span>
+                                Homozygous reference genotype.
+                            </li>
+
+                            <li style="margin-bottom: 5px; font-size: 14px; line-height: 20px;">
+                                <span class="color-box" style="display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: middle; background-color: yellow; text-align: center; line-height: 20px;">1</span>
+                                Heterozygous genotype with one reference and one alternate allele
+                            </li>
+
+                            <li style="margin-bottom: 5px; font-size: 14px; line-height: 20px;">
+                                <span class="color-box" style="display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: middle; background-color: #FD950A; text-align: center; line-height: 20px;">2</span>
+                                Homozygous alternate genotype.
+                            </li>
+
+                            <li style="margin-bottom: 5px; font-size: 14px; line-height: 20px;">
+                                <span class="color-box" style="display: inline-block; width: 20px; height: 20px; margin-right: 10px; vertical-align: middle; background-color: #AAAAAA; text-align: center; line-height: 20px;">N</span>
+                                Missing or unknown genotypes
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <h3>Variant effect types</h3>
+                    <div style="padding-left: 20px">
+
+                            <table width="1200px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                                <tr>
+                                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Seq. Ontology</td>
+                                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Effect</td>
+                                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+                                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Impact</td>
+                                </tr>
+                                <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">intergenic_region</td>
+                                <td style="padding: 10px;">INTERGENIC</td>
+                                <td style="padding: 10px;">The variant is in an intergenic region</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">upstream_gene_variant</td>
+                                <td style="padding: 10px;">UPSTREAM</td>
+                                <td style="padding: 10px;">Upstream of a gene (default length: 5K bases)</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">5_prime_UTR_variant</td>
+                                <td style="padding: 10px;">UTR_5_PRIME</td>
+                                <td style="padding: 10px;">Variant hits 5'UTR region</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">coding_sequence_variant</td>
+                                <td style="padding: 10px;">CDS</td>
+                                <td style="padding: 10px;">The variant hits a CDS.</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">exon_variant</td>
+                                <td style="padding: 10px;">EXON</td>
+                                <td style="padding: 10px;">The variant hits an exon (from a non-coding transcript) or a retained intron.</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">intron_variant</td>
+                                <td style="padding: 10px;">INTRON</td>
+                                <td style="padding: 10px;">Variant hits an intron. Technically, hits no exon in the transcript.</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">frameshift_variant</td>
+                                <td style="padding: 10px;">FRAME_SHIFT</td>
+                                <td style="padding: 10px;">Insertion or deletion causes a frame shift e.g.: An indel size is not multiple of 3</td>
+                                <td style="padding: 10px;">HIGH</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">missense_variant</td>
+                                <td style="padding: 10px;">NON_SYNONYMOUS_CODING</td>
+                                <td style="padding: 10px;">Variant causes a codon that produces a different amino acid e.g.: Tgg/Cgg, W/R</td>
+                                <td style="padding: 10px;">MODERATE</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">synonymous_variant</td>
+                                <td style="padding: 10px;">SYNONYMOUS_CODING</td>
+                                <td style="padding: 10px;">Variant causes a codon that produces the same amino acid e.g.: Ttg/Ctg, L/L</td>
+                                <td style="padding: 10px;">LOW</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">stop_lost</td>
+                                <td style="padding: 10px;">STOP_LOST</td>
+                                <td style="padding: 10px;">Variant causes stop codon to be mutated into a non-stop codon e.g.: Tga/Cga, */R</td>
+                                <td style="padding: 10px;">HIGH</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">stop_gained</td>
+                                <td style="padding: 10px;">STOP_GAINED</td>
+                                <td style="padding: 10px;">Variant causes a STOP codon e.g.: Cag/Tag, Q/*</td>
+                                <td style="padding: 10px;">HIGH</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">3_prime_UTR_variant</td>
+                                <td style="padding: 10px;">UTR_3_PRIME</td>
+                                <td style="padding: 10px;">Variant hits 3'UTR region</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">downstream_gene_variant</td>
+                                <td style="padding: 10px;">DOWNSTREAM</td>
+                                <td style="padding: 10px;">Downstream of a gene (default length: 5K bases)</td>
+                                <td style="padding: 10px;">MODIFIER</td>
+                            </tr>
+                        </table>
+                        <br><br>
+
+                        <table width="1200px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                            <tr>
+                                <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Impact</td>
+                                <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Meaning</td>
+                                <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Example</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">HIGH</td>
+                                <td style="padding: 10px;">The variant is assumed to have high (disruptive) impact in the protein, probably causing protein truncation, loss of function or triggering nonsense mediated decay.</td>
+                                <td style="padding: 10px;">stop_gained, frameshift_variant</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">MODERATE</td>
+                                <td style="padding: 10px;">A non-disruptive variant that might change protein effectiveness.</td>
+                                <td style="padding: 10px;">missense_variant, inframe_deletion</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">LOW</td>
+                                <td style="padding: 10px;">Assumed to be mostly harmless or unlikely to change protein behavior.</td>
+                                <td style="padding: 10px;">synonymous_variant</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">MODIFIER</td>
+                                <td style="padding: 10px;">Usually non-coding variants or variants affecting non-coding genes, where predictions are difficult or there is no evidence of impact.</td>
+                                <td style="padding: 10px;">exon_variant, downstream_gene_variant</td>
+                            </tr>
+                        </table>
+
+
+                        <br>
+
+                        To see a full list of the variant effect types click <a target="_blank" href="https://pcingola.github.io/SnpEff/snpeff/inputoutput/">here</a>.
+                    </div>
+
+                    <h3>VCF Download from Search</h3>
+                    <div style="padding-left: 20px">
+                        After completing a search based on a genomic region and a subset of accessions, a "Download the VCF file" button will be available in the "Table view" tab. When the user clicks this link, a subset of the variants meeting the search criteria will be downloaded as a VCF file. The VCF will only include the specified set of maize accessions and each variant within the selected genomic region. The VCF will contain rows with no variant relative to the reference. The genotype coverage fields (CVC and CVP) will refer to the number of accessions with genotype data for a particular variant based on all 1,498 accessions, not the local genotype coverage of the selected accessions.
+                        <br><br>
+                        Below is a sample of an output VCF file generated from SNPVersity 2.0:
+
+<pre>
+##fileformat=VCFv4.2
+##fileDate=20240531
+##source=MaizeGDB2024
+##INFO=&lt;ID=MQ,Number=1,Type=Float,Description="RMS mapping quality"&gt;
+##INFO=&lt;ID=CVC,Number=1,Type=Integer,Description="The number of accessions that have genotype data for a particular variant"&gt;
+##INFO=&lt;ID=CVP,Number=1,Type=Float,Description="The percent of accessions that have genotype data for a particular variant."&gt;
+##INFO=&lt;ID=TYPE,Number=.,Type=String,Description="The type of effect using Sequence Ontology terms"&gt;
+##INFO=&lt;ID=EFFECT,Number=.,Type=String,Description="An estimation of putative impact/deleteriousness"&gt;
+##INFO=&lt;ID=GENEMODEL,Number=.,Type=String,Description="The name of the gene model affected by the variant"&gt;
+##INFO=&lt;ID=SUB,Number=.,Type=String,Description="The amino acid substitution for missense and non-synonymous variants"&gt;
+##INFO=&lt;ID=MAXR2,Number=1,Type=Float,Description="The maximum R2 for a given loci"&gt;
+##FORMAT=&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	CML228_SRR8906784	CML69_SRR8906963	B97_CRX445264	CML322_CRX445267	CML333_CRX445268	CML52_SRR5725841	CML103_SRR5976229	M37W_SRR5976317
+chr10	218441	.	T	C	5127.59	.	MQ=59.89;CVC=1481;CVP=98.87;TYPE=3_prime_UTR_variant;EFFECT=MODIFIER;GENEMODEL=Zm00001eb404760;SUB=NA;MAXR2=0.910833	GT	0/0	1/1	0/0	0/0	0/0	0/0	0/0	0/0
+chr10	218443	.	G	A	5127.84	.	MQ=60;CVC=1484;CVP=99.07;TYPE=3_prime_UTR_variant;EFFECT=MODIFIER;GENEMODEL=Zm00001eb404760;SUB=NA;MAXR2=0.910835	GT	0/0	1/1	0/0	0/0	0/0	0/0	0/0	0/0
+chr10	218458	.	T	C	1656.67	.	MQ=53.05;CVC=1484;CVP=99.07;TYPE=3_prime_UTR_variant;EFFECT=MODIFIER;GENEMODEL=Zm00001eb404760;SUB=NA;MAXR2=0.666034	GT	0/0	0/0	0/0	0/0	0/0	0/0	0/0	0/0
+chr10	218498	.	T	A	1715.17	.	MQ=52.05;CVC=1465;CVP=97.80;TYPE=3_prime_UTR_variant;EFFECT=MODIFIER;GENEMODEL=Zm00001eb404760;SUB=NA;MAXR2=0.916933	GT	0/0	1/1	0/0	0/0	0/0	0/0	0/0	0/0
+chr10	218502	.	C	CTCTGTCTG	1676.75	.	MQ=47.9;CVC=1444;CVP=96.40;TYPE=3_prime_UTR_variant;EFFECT=MODIFIER;GENEMODEL=Zm00001eb404760;SUB=NA;MAXR2=0.916923	GT	0/0	1/1	0/0	0/0	0/0	0/0	0/0	0/0
+</pre>
+
+                    </div>
+
+                    <h3>Tree view</h3>
+                    <div style="padding-left: 20px">
+                        The tree view option allows the user to generate phylogenetic tree views based on the <a target="_blank" href="https://github.com/sansubs/vcf2pop">VCF2PopTree tool</a>.  The input to build the tree is based on the VCF file generated from the select options tab.
+                        <br><br>
+                        The tree tree can be constructed as either an UPGMA tree or Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion, the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
+
+                    </div>
+
+                    <h3>Downloads</h3>
+                    <div style="padding-left: 20px">
+                        The Downloads tab provides detailed information about the datasets available for download, along with guidelines and best practices.
+                    </div>
+
+                    <h3>Help</h3>
+                    <div style="padding-left: 20px">
+                    The help page gives an overview of the webpage, descriptions of the datasets and methods, and how to use the website.
+                    </hgroup>
+                    </div>
+
+                </div>
                 </div>
 
-                <h3>Table view</h3>
-                <div style="padding-left: 20px">
+            <div id="tableToPopup" style="display:none;">
+            <table width="800px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                <tr>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</td>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
+                </tr>
+                <tr style="background-color: #F9FBE7;">
+                    <td style="padding: 10px;">539 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJCA009749">PRJCA009749</a> </td>
+                    <td style="padding: 10px;">WGS resequencing of 1,604 maize inbred lines</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF7F50;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">521 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA531553">PRJNA531553</a> </td>
+                    <td style="padding: 10px;">Deep DNA resequencing of the association mapping panel</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #F08080;"></div></td>
+                </tr>
+                <tr style="background-color: #F9FBE7;">
+                    <td style="padding: 10px;">340 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA783885">PRJNA783885</a> </td>
+                    <td style="padding: 10px;">Maize landrace whole genome resequencing</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #87CEEB;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">35 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56320">PRJEB56320</a> </td>
+                    <td style="padding: 10px;">Maize Wisconsin Diversity Panel Resequencing</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #708090;"></div></td>
+                </tr>
+                <tr style="background-color: #F9FBE7;">
+                    <td style="padding: 10px;">32 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA609577">PRJNA609577</a> </td>
+                    <td style="padding: 10px;">Zea mays Genome sequencing</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF6347;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">11 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA389800">PRJNA389800</a> </td>
+                    <td style="padding: 10px;">Whole genome sequencing of maize 282 panel</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #BDB76B;"></div></td>
+                </tr>
+                <tr style="background-color: #F9FBE7;">
+                    <td style="padding: 10px;">8 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB14212">PRJEB14212</a> </td>
+                    <td style="padding: 10px;">European maize diversity</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #DAA520;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">7 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA399729">PRJNA399729</a> </td>
+                    <td style="padding: 10px;">Maize Haplotype Map version 3</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #5F9EA0;"></div></td>
+                </tr>
+                <tr style="background-color: #F9FBE7;">
+                    <td style="padding: 10px;">6 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA260788">PRJNA260788</a> </td>
+                    <td style="padding: 10px;">Zea mays Genome sequencing (European maize genomes)</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #6495ED;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">1 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56265">PRJEB56265</a> </td>
+                    <td style="padding: 10px;">Resequencing of three Polish maize inbred lines</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #3CB371;"></div></td>
+                </tr>
+                </table>
+    </div>
 
-                </div>
+    <div id="alleleToPopup" style="display:none;">
+        <ul style="list-style-type: none; padding: 0;">
+            <li style="margin-bottom: 5px; font-size: 20px; line-height: 40px;">
+                <span class="color-box" style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; vertical-align: middle; background-color: #8CC28D; text-align: center; line-height: 40px;">0</span>
+                Homozygous reference genotype.
+            </li>
 
-                <h3>Tree view</h3>
-                <div style="padding-left: 20px">
-                </div>
+            <li style="margin-bottom: 5px; font-size: 20px; line-height: 40px;">
+                <span class="color-box" style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; vertical-align: middle; background-color: yellow; text-align: center; line-height: 40px;">1</span>
+                Heterozygous genotype with one reference and one alternate allele
+            </li>
 
-                <h3>Help</h3>
-                <div style="padding-left: 20px">
-                The help page gives an overview of the webpage, descriptions of the datasets and methods, and how to use the website.
-                </hgroup>
-                </div>
+            <li style="margin-bottom: 5px; font-size: 20px; line-height: 40px;">
+                <span class="color-box" style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; vertical-align: middle; background-color: #FD950A; text-align: center; line-height: 40px;">2</span>
+                Homozygous alternate genotype.
+            </li>
 
-            </div>
-            </div>
+            <li style="margin-bottom: 5px; font-size: 20px; line-height: 40px;">
+                <span class="color-box" style="display: inline-block; width: 40px; height: 40px; margin-right: 10px; vertical-align: middle; background-color: #AAAAAA; text-align: center; line-height: 40px;">N</span>
+                Missing or unknown genotypes
+            </li>
+        </ul>
+    </div>
+
+    <div id="varToPopup" style="display:none;">
+    <table width="800px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+        <tr>
+            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Seq. Ontology</td>
+            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Effect</td>
+            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
+            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Impact</td>
+        </tr>
+        <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">intergenic_region</td>
+        <td style="padding: 10px;">INTERGENIC</td>
+        <td style="padding: 10px;">The variant is in an intergenic region</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">upstream_gene_variant</td>
+        <td style="padding: 10px;">UPSTREAM</td>
+        <td style="padding: 10px;">Upstream of a gene (default length: 5K bases)</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">5_prime_UTR_variant</td>
+        <td style="padding: 10px;">UTR_5_PRIME</td>
+        <td style="padding: 10px;">Variant hits 5'UTR region</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">coding_sequence_variant</td>
+        <td style="padding: 10px;">CDS</td>
+        <td style="padding: 10px;">The variant hits a CDS.</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">exon_variant</td>
+        <td style="padding: 10px;">EXON</td>
+        <td style="padding: 10px;">The variant hits an exon (from a non-coding transcript) or a retained intron.</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">intron_variant</td>
+        <td style="padding: 10px;">INTRON</td>
+        <td style="padding: 10px;">Variant hits an intron. Technically, hits no exon in the transcript.</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">frameshift_variant</td>
+        <td style="padding: 10px;">FRAME_SHIFT</td>
+        <td style="padding: 10px;">Insertion or deletion causes a frame shift e.g.: An indel size is not multiple of 3</td>
+        <td style="padding: 10px;">HIGH</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">missense_variant</td>
+        <td style="padding: 10px;">NON_SYNONYMOUS_CODING</td>
+        <td style="padding: 10px;">Variant causes a codon that produces a different amino acid e.g.: Tgg/Cgg, W/R</td>
+        <td style="padding: 10px;">MODERATE</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">synonymous_variant</td>
+        <td style="padding: 10px;">SYNONYMOUS_CODING</td>
+        <td style="padding: 10px;">Variant causes a codon that produces the same amino acid e.g.: Ttg/Ctg, L/L</td>
+        <td style="padding: 10px;">LOW</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">stop_lost</td>
+        <td style="padding: 10px;">STOP_LOST</td>
+        <td style="padding: 10px;">Variant causes stop codon to be mutated into a non-stop codon e.g.: Tga/Cga, */R</td>
+        <td style="padding: 10px;">HIGH</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">stop_gained</td>
+        <td style="padding: 10px;">STOP_GAINED</td>
+        <td style="padding: 10px;">Variant causes a STOP codon e.g.: Cag/Tag, Q/*</td>
+        <td style="padding: 10px;">HIGH</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">3_prime_UTR_variant</td>
+        <td style="padding: 10px;">UTR_3_PRIME</td>
+        <td style="padding: 10px;">Variant hits 3'UTR region</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+    <tr style="background-color: #F9FBE7;">
+        <td style="padding: 10px;">downstream_gene_variant</td>
+        <td style="padding: 10px;">DOWNSTREAM</td>
+        <td style="padding: 10px;">Downstream of a gene (default length: 5K bases)</td>
+        <td style="padding: 10px;">MODIFIER</td>
+    </tr>
+</table>
+<br><br>
+<table>
+    <tr>
+        <th>Impact</th>
+        <th>Meaning</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">HIGH</td>
+        <td style="padding: 10px;">The variant is assumed to have high (disruptive) impact in the protein, probably causing protein truncation, loss of function or triggering nonsense mediated decay.</td>
+        <td style="padding: 10px;">stop_gained, frameshift_variant</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">MODERATE</td>
+        <td style="padding: 10px;">A non-disruptive variant that might change protein effectiveness.</td>
+        <td style="padding: 10px;">missense_variant, inframe_deletion</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">LOW</td>
+        <td style="padding: 10px;">Assumed to be mostly harmless or unlikely to change protein behavior.</td>
+        <td style="padding: 10px;">synonymous_variant</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">MODIFIER</td>
+        <td style="padding: 10px;">Usually non-coding variants or variants affecting non-coding genes, where predictions are difficult or there is no evidence of impact.</td>
+        <td style="padding: 10px;">exon_variant, downstream_gene_variant</td>
+    </tr>
+</table>
+<br><br>
+
+To see a full list of the variant effect types click <a target="_blank" href="https://pcingola.github.io/SnpEff/snpeff/inputoutput/">here</a>.
+
+    </div>
+
         <div class="footer">
             Site designed and hosted by <a target="_blank" href="https://www.maizegdb.org/">MaizeGDB</a> with support from the USDA<br>
         </div>
