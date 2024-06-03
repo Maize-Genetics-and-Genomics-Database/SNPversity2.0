@@ -24,7 +24,7 @@
   .load_content {
       width: 500px;
       height:  100px;
-      margin-left: `100px;
+      margin-left:  100px;
       margin-right: 100px;
   }
 
@@ -896,6 +896,87 @@
   transform: translateY(2px); /* Pushes the button down */
 }
 
+#thedownloadbuttons {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-weight: bold;
+  width: 250px;
+  height: 40px;
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px #999;
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#thepopup:hover {
+  background-color: #45a049; /* Darker green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+#thepopup:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
+#thepopup {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-weight: bold;
+  width: 250px;
+  height: 40px;
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px #999;
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#varpopup:hover {
+  background-color: #45a049; /* Darker green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+#varpopup:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
+#varpopup {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-weight: bold;
+  width: 300px;
+  height: 40px;
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px #999;
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#thedownloadbuttons:hover {
+  background-color: #45a049; /* Darker green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+#thedownloadbuttons:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
 #thevcfbuttons {
   background-color: #4CAF50; /* Green */
   color: white;
@@ -922,3 +1003,130 @@
   box-shadow: 0 1px #666; /* Less shadow */
   transform: translateY(2px); /* Pushes the button down */
 }
+
+#thevcfbuttonsD {
+  background-color: #4CAF50; /* Light Green */
+  color: white;
+  font-weight: bold;
+  width: 250px;
+  height: 30px;
+  font-family: 'Comic Sans MS', cursive; /* Changed to match your original request */
+  border: none;
+  border-radius: 15px; /* More pronounced curved edges */
+  cursor: pointer;
+   /*box-shadow: 0 2px #999; */
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#thevcfbuttonsD:hover {
+  background-color: #8FBC8F; /* Slightly darker light green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+#thevcfbuttonsD:active {
+  background-color: #7FBC7F; /* Even darker light green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
+.upload-instructions {
+  margin-bottom: 20px;
+  color: #33691e;
+  font-weight: bold;
+}
+
+.input_container {
+  border: 1px solid #e5e5e5;
+  width: 500px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"] {
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.button_up {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button_up:hover {
+  background-color: #45a049;
+}
+
+.info-list {
+    width: 1000px;
+    padding: 10px;
+    margin: 10px; /* Center the list horizontally */
+    list-style-type: none; /* Removes default bullet points */
+}
+
+.info-list li {
+    margin-bottom: 10px; /* Adds space between list items */
+    background-color: #f9f9f9; /* Light background for readability */
+    border-left: 3px solid #4CAF50; /* Highlighting border on the left */
+    border-right: 3px solid #4CAF50; /* Highlighting border on the left */
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners for a modern look */
+}
+
+.info-list li b {
+    color: #4CAF50; /* Color for the bold titles to match the border */
+}
+
+#outHeader div {
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap onto the next line on smaller screens */
+    gap: 10px; /* Creates space between buttons */
+}
+.download-button, .popup-button {
+    min-height: 40px;
+    min-width: 250px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-weight: bold;
+    width: 250px;
+    height: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px #999;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.download-button, .popup-button:hover {
+  background-color: #45a049; /* Darker green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+.download-button, .popup-button:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
+pre {
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    white-space: pre; /* Maintain line breaks and prevent wrapping */
+    background-color: #f5f5f5; /* Light grey background for better readability */
+    border: 1px solid #ccc; /* Add a border around the code block */
+    padding: 10px; /* Add some padding for better readability */
+    }
