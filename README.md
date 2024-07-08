@@ -76,7 +76,7 @@ The two primary inputs for this tool are selecting the genomic interval of inter
 This section allows the user to select the genomic interval of interest. The two main options are entering the genomic coordinates or a gene model identifier.
 
 * Genome Version: Select the reference genome version. The only option currently available is B73 version 5.
-* Dataset: Select the variation dataset to query. The 'MaizeGDB High Quality' dataset was built on 1,498 diverse maize accessions and was filtered on mapping quality (>= 30), mapping coverage (>= 50%), and linkage disequilibrium with max R2 > 0.5. There were approximately 75 million annotated loci in this dataset. The 'MaizeGDB High Coverage' dataset was built on 1,498 diverse maize accessions and was filtered only on mapping quality (>= 30) and mapping coverage (>= 50%). There are approximately 230 million annotated loci in this dataset.
+* Dataset: Select the variation dataset to query. The 'MaizeGDB High Quality' dataset was built on 1,498 diverse maize accessions and was filtered on mapping quality (>= 30), completeness (>= 50%), and linkage disequilibrium with max R2 > 0.5. There were approximately 75 million annotated loci in this dataset. The 'MaizeGDB High Coverage' dataset was built on 1,498 diverse maize accessions and was filtered only on mapping quality (>= 30) and completeness (>= 50%). There are approximately 230 million annotated loci in this dataset.
 * Chromosome: Select the chromosome.
 * Genome Start Position (bp): Select the start position on the chromosome.
 * Genome End Position (bp): Select the end position on the chromosome.
@@ -105,7 +105,7 @@ The table view option allows the user to download the VCF generated from the sel
 |Effect type  | Effect type | The type of effect using Sequence Ontology terms. | stop gained |
 |Effect impact | Effect impact | A estimation of putative impact/deleteriousness.| HIGH MODIFIER |
 |Mapping quality score | MQ | The average mapping quality of reads supporting the variant.| 58 |
-|Coverage Percent | COV | The percent of genotypes with at least one read at the given variant.  | GT |
+|Completenesst | COMP | The percent of genotypes with at least one read at the given variant.  | GT |
 |Maximum squared correlation | max R2 | The maximum R2 for a given loci.  | 0.64 |
 
 The gene models in the Gene model(s) column are linked to the MaizeGDB B73 genome browser.  The position of the locus is shown as a vertical line on the browser.
@@ -128,7 +128,7 @@ The tree view option allows the user to generate phylogenetic tree views based o
 The tree tree can be constructed as in the either an UPGMA tree of Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
 
 # MaizeGDB 2024 Dataset
-A new haplotype map  for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, coverage, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and coverage. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
+A new haplotype map  for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, completeness, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and completeness. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
 
 |Accessions | Project |Project name|	
 |---------------|--------------|--------------|
@@ -168,13 +168,13 @@ The VCF and HDF5 files can be downloaded from the MaizeGDB Box account: https://
 This section describes the data process steps to format VCF files into a format to be used by the SNPVersity2.0 website.  Each of the scripts can be found in the /scripts/ directory.
 
 ## Step 1: Filtering
-The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ >= 30), coverage (COV >= 50%), and removing multi-allelic loci.
+The first step strips the raw VCF of any unneeded metadata and filters each locus by mapping quality (MQ >= 30), completeness (COMP >= 50%), and removing multi-allelic loci.
 
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
 |Mapping Quality | MQ | The average mapping quality of reads supporting the variant. | 
 |Coverage Count | CVC | The number of genotypes with at least one read at the given variant. | 
-|Coverage Percent | CVP | The percent of genotypes with at least one read at the given variant. | 
+|Coverage Percent (aka Completeness) | CVP | The percent of genotypes with at least one read at the given variant. | 
 
 The table shows the metadata saved for each vairant locus.
 
@@ -316,11 +316,11 @@ Statistics include:
 * Count of loci with Mapping Quality with (30 <= MQ < 40)	 
 * Count of loci with Mapping Quality with (40 <= MQ < 50)	 
 * Count of loci with Mapping Quality with (50 <= MQ < 60)	  
-* Count of loci with Coverage Percentage with (50 <= CVP < 60)  
-* Count of loci with Coverage Percentage with (60 <= CVP < 70)  
-* Count of loci with Coverage Percentage with (70 <= CVP < 80)  
-* Count of loci with Coverage Percentage with (80 <= CVP < 90)  
-* Count of loci with Coverage Percentage with (90 <= CVP <= 100)  
+* Count of loci with Coverage Percentage (Completeness) with (50 <= CVP < 60)  
+* Count of loci with Coverage Percentage (Completeness) with (60 <= CVP < 70)  
+* Count of loci with Coverage Percentage (Completeness) with (70 <= CVP < 80)  
+* Count of loci with Coverage Percentage (Completeness) with (80 <= CVP < 90)  
+* Count of loci with Coverage Percentage (Completeness) with (90 <= CVP <= 100)  
 * Count of loci with max R2 with (50 <= MAXR2 < 60)	
 * Count of loci with max R2 with (60 <= MAXR2 < 70)		
 * Count of loci with max R2 with (70 <= MAXR2 < 80)		
