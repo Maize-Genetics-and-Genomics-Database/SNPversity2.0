@@ -46,7 +46,7 @@ $jsonArray = escapeshellarg(json_encode($genotypesArray));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute Python script
     #$command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped;
-    $command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
+    $command = 'python3 h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
     $output = shell_exec($command);
 
     if ($output === null) {
