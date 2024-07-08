@@ -526,7 +526,7 @@ function parseVCF(outFile, curChr) {
                   headerRow.appendChild(th4);
 
                   const th5 = document.createElement('th');
-                  th5.innerHTML = "COV";
+                  th5.innerHTML = "COMP";
                   th5.className = 'th3'; // Assign the class
                   headerRow.appendChild(th5);
 
