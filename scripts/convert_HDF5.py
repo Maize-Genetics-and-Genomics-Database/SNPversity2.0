@@ -3,72 +3,57 @@ import h5py
 import sys
 import numpy as np
 
-# Check command-line arguments
-if len(sys.argv) != 3:
-    print("Usage: python script.py <input_vcf> <output_hdf5>")
-    sys.exit(1)
+
+print("Start",flush=True)
+
+# Define the dtype for variable-length strings
+str_dtype = h5py.special_dtype(vlen=str)
+
+# Genotype encoding mapping
+genotype_mapping = {"0/0": 0, "0/1": 1, "1/0": 1, "1/1": 2, "./.": 3}
 
 vcf_file = sys.argv[1]
-hdf5_file = sys.argv[2]
-chunk_size =  sys.argv[3]  # Adjust chunk size based on memory
+output_hdf5 = sys.argv[2]
 
-str_dtype = h5py.special_dtype(vlen=str)
-#chunk_size = 100000  # Adjust chunk size based on memory
+chunk_size = 300000  # Adjust based on your memory constraints
+#chunk_size = 2000  # Adjust based on your memory constraints
+hdf5_chunk_size = (10000,)  # Example chunk size, adjust as needed
+#hdf5_chunk_size = (1000,)  # Example chunk size, adjust as needed
 
-# Standard VCF columns
-standard_columns = ['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT']
-
-# Function to handle dynamic genotype columns
-def get_genotype_columns(df_chunk):
-    return [col for col in df_chunk.columns if col not in standard_columns]
-
-# Open HDF5 file for writing
-with h5py.File(hdf5_file, 'w') as hdf5_out:
+with h5py.File(output_hdf5, 'w') as hdf5_out:
     datasets = {}
     num_rows_written = 0
 
-    for df_chunk in pd.read_csv(vcf_file, sep='\t', chunksize=chunk_size):
-        # Sort chunk by POS
-        df_chunk.sort_values(by='POS', inplace=True)
+    for df_chunk in pd.read_csv(vcf_file, sep='\t', chunksize=chunk_size, comment='#'):
+        num_rows = df_chunk.shape[0]
+        print(f"Number of rows in the chunk pre-filter: {num_rows}")
 
-        # Identify genotype columns dynamically
-        genotype_columns = get_genotype_columns(df_chunk)
+        if not datasets:
+            # Initialize datasets for each column during the first chunk iteration
+            for i, column in enumerate(df_chunk.columns):
+                if i < 9:  # For the first 9 columns
+                    dtype = str_dtype  # or appropriate data type
+                else:  # For genotype columns
+                    dtype = 'i1'  # 8-bit integer
+                datasets[column] = hdf5_out.create_dataset(
+                    column,
+                    (0,),  # Start with zero rows, will be resized
+                    maxshape=(None,),
+                    dtype=dtype,
+                    chunks=hdf5_chunk_size
+                )
 
-        # Define datasets for new columns
-        for col in standard_columns + genotype_columns:
-            if col not in datasets:
-                if col == 'POS':
-                    data_type = 'i8'  # Integer type for positions
-                elif col in standard_columns:
-                    data_type = str_dtype  # String type for other standard columns
-                else:
-                    data_type = 'i8'  # Assuming genotypes are integers
-                datasets[col] = hdf5_out.create_dataset(col, (0,), maxshape=(None,), dtype=data_type)
+        # Resize datasets and write data
+        for i, column in enumerate(df_chunk.columns):
+            # Resize datasets to accommodate new rows
+            datasets[column].resize(num_rows_written + num_rows, axis=0)
+            if i >= 9:  # Genotype columns
+                encoded_data = df_chunk[column].map(genotype_mapping).fillna(3).astype('i1').values
+            else:  # First 9 columns
+                encoded_data = df_chunk[column].astype(str).values
+            datasets[column][num_rows_written:num_rows_written + num_rows] = encoded_data
 
-    # Resize and write data to datasets
-    for col in datasets.keys():
-        datasets[col].resize(num_rows_written + len(df_chunk), axis=0)
+        num_rows_written += num_rows
+        print("Chunk: " + str(num_rows_written), flush=True)
 
-        # Handle genotype columns as variable-length strings
-        if col in genotype_columns:
-            data_to_write = df_chunk[col].astype(str).values
-        elif hdf5_out[col].dtype == str_dtype:
-            # Convert to string, handling NaN and None
-            data_to_write = df_chunk[col].fillna('').astype(str).values
-        elif hdf5_out[col].dtype == np.dtype('i8'):
-            # Convert to integer
-            data_to_write = df_chunk[col].astype('i8').values
-        else:
-            # Handle other data types as needed
-            data_to_write = df_chunk[col].values
-
-        # Write data to HDF5 dataset
-        try:
-            datasets[col][num_rows_written:num_rows_written + len(df_chunk)] = data_to_write
-
-        except Exception as e:
-            print(f"Error writing column '{col}': {e}")
-
-    num_rows_written += len(df_chunk)
-
-print("Data saved to HDF5 file:", hdf5_file)
+print(f"Data saved to HDF5 file: {output_hdf5}")
