@@ -27,7 +27,7 @@ if($dataset == "mgdb2024_hq")
         $ds_part2 = "HC";
 }
 
-$db_filename = "./hdf5/" . $ds_part1 . "_" . $ds_part2 . ".h5";
+$db_filename = "./hdf5/maizegdb2024_" . $ds_part1 . "_" . $ds_part2 . ".h5";
 //$db_filename = "./hdf5/" . $ds_part1 . "_" . $ds_part2 . ".h5";
 
 //$db = escapeshellarg("./hdf5/chr10_HQ_small.h5");
@@ -46,7 +46,7 @@ $jsonArray = escapeshellarg(json_encode($genotypesArray));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute Python script
     #$command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped;
-    $command = 'python3 h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
+    $command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
     $output = shell_exec($command);
 
     if ($output === null) {

@@ -152,7 +152,6 @@
 
                         <br><br>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0)">Unselect all</button>
-                        <button type="button" id="selectRandom" onclick="toggleNAM()">Select the 8 NAM accessions</button>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.05)">Select Random 5%</button>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.10)">Select Random 10%</button>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.25)">Select Random 25%</button>
@@ -160,6 +159,60 @@
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.75)">Select Random 75%</button>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(1.0)">Select All</button>
                         <br><br>
+
+                        <div class="border1">
+                            <button type="button" class="accordion"><b>Genome sequence and assembly of the twenty-five founder lines of the the Nested Association Mapping (NAM) population <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB31061">(PRJEB31061)</a></b></button>
+                            <div class="panel">
+                                (NAM) genome sequencing and assembly project (<a target="_blank" href="https://doi.org/10.1126/science.abg5289">Reference</a>): 27 total accessions, B73, B73 Ab10, and the 25 NAM founder genomes
+
+                            <table>
+                                <tr>
+                                    <td colspan="5">
+                                        <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
+                                        <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
+                                        <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
+                                        <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input class="genotypes" type="checkbox" value="B73_ERS3371164" />ERS3371164 (B73)</td>
+                                    <td><input class="genotypes" type="checkbox" value="B73Ab10_ERS4036196" />ERS4036196 (B73 Ab10)</td>
+                                    <td><input class="genotypes" type="checkbox" value="B97_ERS3120542" />ERS3120542 (B97)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML103_ERS3120545" />ERS3120545 (CML103)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML228_ERS3120546" />ERS3120546 (CML228)</td>
+                                </tr><tr>
+                                    <td><input class="genotypes" type="checkbox" value="CML247_ERS3120547" />ERS3120547 (CML247)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML277_ERS3120548" />ERS3120548 (CML277)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML322_ERS3120549" />ERS3120549 (CML322)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML333_ERS3120550" />ERS31205503 (CML333)</td>
+                                    <td><input class="genotypes" type="checkbox" value="CML52_ERS3120543" />ERS3120543 (CML52)</td>
+                                </tr><tr>
+                                    <td><input class="genotypes" type="checkbox" value="CML69_ERS3120544" />ERS3120544 (CML69)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Hp301_ERS3120551" />ERS3120551 (Hp301)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Il14H_ERS3120552" />ERS3120552 (Il14H)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Ki11_ERS3120554" />ERS3120554 (Ki11)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Ki3_ERS3120553" />ERS3120553 (Ki3)</td>
+                                </tr><tr>
+                                    <td><input class="genotypes" type="checkbox" value="Ky21_ERS3120555" />ERS3120555(Ky21)</td>
+                                    <td><input class="genotypes" type="checkbox" value="M162W_ERS3120556" />ERS3120556 (M162W)</td>
+                                    <td><input class="genotypes" type="checkbox" value="M37W_ERS3120557" />ERS3120557 (M37W)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Mo18W_ERS3120558" />ERS3120558 (Mo18W)</td>
+                                    <td><input class="genotypes" type="checkbox" value="MS71_ERS3120559" />ERS3120559 (MS71)</td>
+                                </tr><tr>
+                                    <td><input class="genotypes" type="checkbox" value="NC350_ERS3120560" />ERS3120560 (NC350)</td>
+                                    <td><input class="genotypes" type="checkbox" value="NC358_ERS3120561" />ERS3120561 (NC358)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Oh43_ERS3120562" />ERS3120562 (Oh43)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Oh7B_ERS3120563" />ERS3120563 (Oh7B)</td>
+                                    <td><input class="genotypes" type="checkbox" value="P39_ERS3120564" />ERS3120564 (P39)</td>
+                                </tr><tr>
+                                    <td><input class="genotypes" type="checkbox" value="Tx303_ERS3120565" />ERS3120565 (Tx303)</td>
+                                    <td><input class="genotypes" type="checkbox" value="Tzi8_ERS3120566" />ERS3120566 (Tzi8)</td>
+                                </tr>
+                            </table>
+
+                            <br>
+                        </div>
+                    </div>
 
                         <div class="border1">
                             <button type="button" class="accordion"><b>Maize landrace whole genome resequencing <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA783885">(PRJNA783885)</a> - Location: China</b></button>
@@ -2394,6 +2447,7 @@
 
             <div id="downloadContainer" class="content" style="display: none">
                 <h1>SNPversity 2.0 Data Downloads</h1>
+                Release 2.0.56 (12 August 2024)
 
                 <h2>Overview</h2>
                 Below you will find detailed information about the datasets available for download, along with guidelines and best practices. For more information on how the datasets were generated see the 'Help' section.
@@ -2423,74 +2477,74 @@
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485043427664">chr1_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619097558798">chr1_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">8.7 GB</td>
-                        <td style="padding: 10px;">11 minutes at 100 Mbps; 2 hours at 10 Mbps </td>
-                        <td style="padding: 10px;">6239a80a8ad3f5304314042e56d1772d</td>
+                        <td style="padding: 10px;">9.5 GB</td>
+                        <td style="padding: 10px;">13 minutes at 100 Mbps; 2 hours 6 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">2050a5dcb062104e7cf54585243b0ec7</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485046187075">chr2_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619092780672">chr2_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">6.8 GB</td>
-                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hour 30 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">acdeb8df390d9be6f9c7f855ae517753</td>
+                        <td style="padding: 10px;">7.4 GB</td>
+                        <td style="padding: 10px;">10 minutes at 100 Mbps; 1 hour 38 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">1a8112a4f9690bff958e42b60efa1267</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485037633537">chr3_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619099701448">chr3_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">6.7 GB</td>
-                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hour 30 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">4d5d363ee510646d41283abdb0f3b55f</td>
+                        <td style="padding: 10px;">7.3 GB</td>
+                        <td style="padding: 10px;">10 minutes at 100 Mbps; 1 hour 37 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">317d313e3ff42242f40d80de28915d83</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485045594541">chr4_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/619104400648">chr4_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">6.9 GB</td>
-                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hours 32 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">6478f0b42a3fbb60c7223a598f5c1530</td>
+                        <td style="padding: 10px;">7.5 GB</td>
+                        <td style="padding: 10px;">10 minutes at 100 Mbps; 1 hours 40 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">723cbf27f36e10f1c5ed2c017cb0fb95</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485017118248">chr5_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619100491754">chr5_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 5.</td>
-                        <td style="padding: 10px;">6.0 GB</td>
-                        <td style="padding: 10px;">8 minutes at 100 Mbps; 1 hour 20 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">d8ad6dc5f845594ed0c7533770908664</td>
+                        <td style="padding: 10px;">6.6 GB</td>
+                        <td style="padding: 10px;">9 minutes at 100 Mbps; 1 hour 28 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">b81f9d0484b7c0ea80face56430c80f0</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485023759434">chr6_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619092374901">chr6_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 6.</td>
-                        <td style="padding: 10px;">4.9 GB</td>
-                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 5 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">2a3772175364a757d6a1c173b1724aff</td>
+                        <td style="padding: 10px;">5.4 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 12 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">ff8fc637cd0412d9ff80ff351cc9ca7d</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484989726843">chr7_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619078877332">chr7_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 7.</td>
-                        <td style="padding: 10px;">4.9 GB</td>
-                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 5 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">d07d0f0704fc70d1864fe986ecd4621a</td>
+                        <td style="padding: 10px;">5.3 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hour 10 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">5f5824a6981d17605d2e8b4d632716c5</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485004077225">chr8_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619093055751">chr8_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 8.</td>
-                        <td style="padding: 10px;">5.2 GB</td>
-                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours 9 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">1c845ac5ba91686b50297c62a0643a31</td>
+                        <td style="padding: 10px;">5.6 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours 14 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">4d164514984258108cf844ece3c132b9</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485001343670">chr9_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619079619022">chr9_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 9.</td>
-                        <td style="padding: 10px;">4.5 GB</td>
-                        <td style="padding: 10px;">6 minutes at 100 Mbps; 1 hour at 10 Mbps </td>
-                        <td style="padding: 10px;">1769fd7f9c2ad460aa0ca99d964e4532</td>
+                        <td style="padding: 10px;">4.9 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 1 hour 5 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">6257e00c0880a5f7dfc00fa2fd57f169</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484994846365">chr10_high_coverage.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619112799042">chr10_high_coverage.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 10.</td>
-                        <td style="padding: 10px;">4.2 GB</td>
-                        <td style="padding: 10px;">6 minutes at 100 Mbps; 56 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">589917ccde3e3c8e6bcdc0f8ac0b102a</td>
+                        <td style="padding: 10px;">4.6 GB</td>
+                        <td style="padding: 10px;">6 minutes at 100 Mbps; 1 hour 1 minute at 10 Mbps</td>
+                        <td style="padding: 10px;">c4bcd7762fee227f8d3bef62cc7d1e6e</td>
                     </tr>
                 </table>
                 *Download times are estimated and may vary.
@@ -2506,74 +2560,74 @@
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489597962544">chr1_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620697150975">maizegdb2024_chr1_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">5.2 GB</td>
-                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours and 10 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">f9acb102fb1998caf28ab17536cc7684</td>
+                        <td style="padding: 10px;">4.9 GB</td>
+                        <td style="padding: 10px;">7 minutes at 100 Mbps; 1 hours and 5 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">17a09d30eca61133e81e517c88a6164e</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489617544663">chr2_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620692627534">maizegdb2024_chr2_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">4.1 GB</td>
-                        <td style="padding: 10px;">6 minutes at 100 Mbps; 55 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">ed6196b09a8c13f47a7653a24660ca62</td>
+                        <td style="padding: 10px;">3.9 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 52 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">9df25de711ecc80bbe125bb39743b3c8</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489615170765">chr3_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620692404159">maizegdb2024_chr3_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">3.8 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 51 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">9df25de711ecc80bbe125bb39743b3c8</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620687688545">maizegdb2024_chr4_HC.h5.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
                         <td style="padding: 10px;">4.1 GB</td>
                         <td style="padding: 10px;">6 minutes at 100 Mbps; 55 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">13a7520bbc036b5101a45f3df32142f7</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489616399324">chr4_HC.h5.zip</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">4.3 GB</td>
-                        <td style="padding: 10px;">6 minutes at 100 Mbps; 58 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">23610c076227e77619ab54da2683cf02</td>
+                        <td style="padding: 10px;">251f91131ecd1ae57cd5dd3bb0eb94db</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489623438590">chr5_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620691814171">maizegdb2024_chr5_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 5.</td>
-                        <td style="padding: 10px;">3.7 GB</td>
-                        <td style="padding: 10px;">5 minutes at 100 Mbps; 50 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">c31cf123141fde6631eb93d9f25743b5</td>
+                        <td style="padding: 10px;">3.5 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 47 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">db76c0871f563822df6283bd4df7ce46</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489633894986">chr6_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620683378321">maizegdb2024_chr6_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 6.</td>
+                        <td style="padding: 10px;">2.7 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 36 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">915e1600e552a1b40d752c85ca8145de</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620690308956">maizegdb2024_chr7_HC.h5.gz</a> </td>
+                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 7.</td>
                         <td style="padding: 10px;">2.9 GB</td>
                         <td style="padding: 10px;">4 minutes at 100 Mbps; 39 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">ae3d1d77bf20135d33f4c711c6768ee9</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489627484930">chr7_HC.h5.zip</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 7.</td>
-                        <td style="padding: 10px;">3.1 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 42 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">ae3d1d77bf20135d33f4c711c6768ee9</td>
+                        <td style="padding: 10px;">ca865867df958b497c1f3885347d3662</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489646949181">chr8_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620691770425">maizegdb2024_chr8_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 8.</td>
-                        <td style="padding: 10px;">3.1 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 42 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">8c0971f61fda102355492c38a1a578b6</td>
+                        <td style="padding: 10px;">2.9 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 39 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">c7acc3bffc576835f0d9817e03d9f850</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489650866266">chr9_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620685714947">maizegdb2024_chr9_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 9.</td>
-                        <td style="padding: 10px;">2.7 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 36 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">2d0a1c1f4c9995a3398544325c0362c9</td>
+                        <td style="padding: 10px;">2.6 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 35 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">c7acc3bffc576835f0d9817e03d9f850</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489644891814">chr10_HC.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620683003245">maizegdb2024_chr10_HC.h5.gz</a> </td>
                         <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 10.</td>
-                        <td style="padding: 10px;">2.6 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 35 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">5e00012d751a5f313613e6ae6dbff590</td>
+                        <td style="padding: 10px;">2.4 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 32 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">02fb712cebb6f53300d9bf13a96a6f95</td>
                     </tr>
                 </table>
                 *Download times are estimated and may vary.
@@ -2589,74 +2643,74 @@
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485011619986">chr1_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619071674180">chr1_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">3.3 GB</td>
-                        <td style="padding: 10px;">5 minutes at 100 Mbps; 44 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">cecf90ec03a6d8cf6c49c27dc8bea90a</td>
+                        <td style="padding: 10px;">3.5 GB</td>
+                        <td style="padding: 10px;">5 minutes at 100 Mbps; 45 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">6dbd30b820fcefcc60df19af2e44c1cb</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1485002769198">chr2_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619067417560">chr2_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">2.5 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 34 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">08aeb5631aa8680704997daed089b4d1</td>
+                        <td style="padding: 10px;">2.7 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 36 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">550d7be4d2f3cc38970d94f95927f434</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484980165852">chr3_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619071134225">chr3_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">2.5 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 34 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">427afd33576a71e31686d6fe1e9bcf40</td>
+                        <td style="padding: 10px;">2.7 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 36 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">b2ec0d79aa7fa111d8860caf5606ee58</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484993013088">chr4_high_Quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619077890739">chr4_high_Quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">2.6 GB</td>
-                        <td style="padding: 10px;">5 minutes at 100 Mbps; 35 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">479d3e8ec571bc65ee7491bc7825fe05</td>
+                        <td style="padding: 10px;">2.8 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 37 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">84e2c764787bd195eb67d912b2f4003b</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484988218263">chr5_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619066771534">chr5_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 5.</td>
-                        <td style="padding: 10px;">2.2 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 30 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">25e5d5f163c0a3eb3ae70e47f16a4b14</td>
+                        <td style="padding: 10px;">2.3 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 31 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">37a57ecd220e71949821a73493828483</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484987296311">chr6_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619063701993">chr6_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 6.</td>
-                        <td style="padding: 10px;">1.8 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">06e6101a7d290cee737e02fc70d139e4</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484986254823">chr7_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 7.</td>
-                        <td style="padding: 10px;">1.8 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">5b2e67a5ef540c20df5d82bc6617e2d3</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484985314179">chr8_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 8.</td>
-                        <td style="padding: 10px;">1.9 GB</td>
+                        <td style="padding: 10px;">2.0 GB</td>
                         <td style="padding: 10px;">3 minutes at 100 Mbps; 26 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">b086358c426c2348eca700e88b4460d6</td>
+                        <td style="padding: 10px;">394799fb8bcadf2062bcbd1d49c98986</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484987826314">chr9_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 9.</td>
-                        <td style="padding: 10px;">1.7 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">64f13d963fd5538c6853eab59256ad63</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619064021008">chr7_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 7.</td>
+                        <td style="padding: 10px;">2.0 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 26 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">8286c949048235c82ee57f69ecf87038</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1484980271031">chr10_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619063049365">chr8_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 8.</td>
+                        <td style="padding: 10px;">2.0 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 26 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">7ef89f33431c1697ee1fbc86a00c420e</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619065938803">chr9_high_quality.vcf.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 9.</td>
+                        <td style="padding: 10px;">1.8 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">bda86d1af6856ed0b0116e6081fd3ad5</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1619064383024">chr10_high_quality.vcf.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 10.</td>
-                        <td style="padding: 10px;">1.6 GB</td>
-                        <td style="padding: 10px;">2 minutes at 100 Mbps; 22 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">5d7d85d2c201c1640dbfd6824e228b87</td>
+                        <td style="padding: 10px;">1.7 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">09fd903bcadc5d55b0bfd2ae40aee110</td>
                     </tr>
                 </table>
                 *Download times are estimated and may vary.
@@ -2672,74 +2726,74 @@
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489544437427">chr1_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620752924983">maizegdb2024_chr1_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">2.2 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 30 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">c9cbf9f9736182078d2873f8f98fc9b4</td>
+                        <td style="padding: 10px;">2.1 GB</td>
+                        <td style="padding: 10px;">3 minutes at 100 Mbps; 28 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">a1e6c3c86db3c0cc488da0ddcd13cd58</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489550085109">chr2_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620751902100">maizegdb2024_chr2_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">1.8 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">0e5fd50705a42785a928de0cf1284291</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489613785415">chr3_HQ.h5.zip</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
                         <td style="padding: 10px;">1.7 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">ad7c0be2316b2aed5fb06d34dd3b2272</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489558346241">chr4_HQ.h5.zip</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">1.8 GB</td>
-                        <td style="padding: 10px;">3 minutes at 100 Mbps; 24 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">dab78f3a4ec7f7ab67ac879f2a2fbb82</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">db87a515ef5e388fa558f7883faa71d8</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489596789234">chr5_HQ.h5.zip</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 5.</td>
-                        <td style="padding: 10px;">1.5 GB</td>
-                        <td style="padding: 10px;">2 minutes at 100 Mbps; 20 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">340ee0af09b8dd917ecf72ffd1c0329e</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620752303742">maizegdb2024_chr3_HQ.h5.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
+                        <td style="padding: 10px;">1.6 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 21 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">0dd84435c0d25a595f94eab30222bac9</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489579142034">chr6_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620753570236">maizegdb2024_chr4_HQ.h5.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
+                        <td style="padding: 10px;">1.7 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 23 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">6edd7ee2dae69fb5ddb1ec56f914cd81</td>
+                    </tr>
+                    <tr style="background-color: #F9FBE7;">
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620756333244">maizegdb2024_chr5_HQ.h5.gz</a> </td>
+                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 5.</td>
+                        <td style="padding: 10px;">1.4 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 19 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">a0450a9213ece3104ff10811bd62d968</td>
+                    </tr>
+                    <tr >
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620753491008">maizegdb2024_chr6_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 6.</td>
                         <td style="padding: 10px;">1.2 GB</td>
                         <td style="padding: 10px;">2 minutes at 100 Mbps; 16 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">6eae0210cdcae131616956ffa49936b4</td>
+                        <td style="padding: 10px;">f1ac3bba8fdc01fa2224e422c573d136</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489569004330">chr7_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620751755971">maizegdb2024_chr7_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 7.</td>
-                        <td style="padding: 10px;">1.3 GB</td>
-                        <td style="padding: 10px;">2 minutes at 100 Mbps; 17 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">a7ce7d36af6fe3abf6db7a55efee5f68</td>
+                        <td style="padding: 10px;">1.2 GB</td>
+                        <td style="padding: 10px;">2 minutes at 100 Mbps; 16 minutes at 10 Mbps</td>
+                        <td style="padding: 10px;">496d55c48b47e1bb84bf79c6421f9f1c</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489522316503">chr8_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620755555261">maizegdb2024_chr8_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 8.</td>
                         <td style="padding: 10px;">1.2 GB</td>
                         <td style="padding: 10px;">2 minutes at 100 Mbps; 16 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">935c8cecded780d66ea8e27543373734</td>
+                        <td style="padding: 10px;">705985055eb7eb48f02699f48afc720e</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489570120019">chr9_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620747686287">maizegdb2024_chr9_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 9.</td>
                         <td style="padding: 10px;">1.1 GB</td>
                         <td style="padding: 10px;">2 minutes at 100 Mbps; 15 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">22af0d309c9349cb19eff70015eefd6c</td>
+                        <td style="padding: 10px;">f1b4cec167b47e6dbf5fb09f7d25d344</td>
                     </tr>
                     <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1489592851125">chr10_HQ.h5.zip</a> </td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://ars-usda.app.box.com/v/maizegdb-public/file/1620745518904">maizegdb2024_chr10_HQ.h5.gz</a> </td>
                         <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 10.</td>
                         <td style="padding: 10px;">1.1 GB</td>
                         <td style="padding: 10px;">2 minutes at 100 Mbps; 15 minutes at 10 Mbps</td>
-                        <td style="padding: 10px;">583639cc8e078019fe2b34daeba3a1d3</td>
+                        <td style="padding: 10px;">3e760fafea138c6123e88909100440e4</td>
                     </tr>
                 </table>
                 *Download times are estimated and may vary.
@@ -2757,79 +2811,79 @@
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">maizegdb2024_chr1.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 1.</td>
-                        <td style="padding: 10px;">281 GB</td>
-                        <td style="padding: 10px;">6 hours at 100 Mbps; 63 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">02171d83481e0e38939c99b2e1957392</td>
+                        <td style="padding: 10px;">314 GB</td>
+                        <td style="padding: 10px;">7 hours at 100 Mbps; 70 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">3d1c431ae016ccdaff844c44818bf419</td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_chr2.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 2.</td>
-                        <td style="padding: 10px;">219 GB</td>
-                        <td style="padding: 10px;">5 hours at 100 Mbps; 49 hours at 10 Mbps </td>
-                        <td style="padding: 10px;">1b4fdfa8b81ca7718493cc4b33817544</td>
+                        <td style="padding: 10px;">245 GB</td>
+                        <td style="padding: 10px;">6 hours at 100 Mbps; 55 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">81ddb6d949aefef5fe332d481fa0c962</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">maizegdb2024_chr3.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 3.</td>
-                        <td style="padding: 10px;">216 GB</td>
-                        <td style="padding: 10px;">5 hours at 100 Mbps; 48 hours at 10 Mbps </td>
-                        <td style="padding: 10px;">126f877418454de65a087bdc20575068</td>
+                        <td style="padding: 10px;">241 GB</td>
+                        <td style="padding: 10px;">5 hours at 100 Mbps; 54 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">031fcd97bcaf236d7f970803cdd73f0b </td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_chr4.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 4.</td>
-                        <td style="padding: 10px;">232 GB</td>
-                        <td style="padding: 10px;">5 hours at 100 Mbps; 52 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">e2467ff391fadc6b7a53d345f87c8d15</td>
+                        <td style="padding: 10px;">259 GB</td>
+                        <td style="padding: 10px;">6 hours at 100 Mbps; 58 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">512b896ea1145b9798dd7177ce5f755c</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">maizegdb2024_chr5.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 5.</td>
-                        <td style="padding: 10px;">201 GB</td>
-                        <td style="padding: 10px;">4 hours and 30 minutes at 100 Mbps; 44 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">6b0c659fcd75e1f0fd22088fd465b089</td>
+                        <td style="padding: 10px;">224 GB</td>
+                        <td style="padding: 10px;">5 hours at 100 Mbps; 50 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">03d78f4cb4f8f13aea67ec52d9f4971b</td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_chr6.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 6.</td>
-                        <td style="padding: 10px;">157 GB</td>
-                        <td style="padding: 10px;">3 hours and 30 minutes at 100 Mbps; 35 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">e34bd8922b912ad21f384246b1b75bb9</td>
+                        <td style="padding: 10px;">175 GB</td>
+                        <td style="padding: 10px;">4 hours at 100 Mbps; 39 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">55834e34330db14d8c1e2998f4a9a45b</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">maizegdb2024_chr7.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 7.</td>
-                        <td style="padding: 10px;">165 GB</td>
-                        <td style="padding: 10px;">3 hours and 40 minutes at 100 Mbps; 63 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">2c240f1a032e3a5961d07ad93edf8241</td>
+                        <td style="padding: 10px;">184 GB</td>
+                        <td style="padding: 10px;">4 hours at 100 Mbps; 41 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">133a6611ebd9ba80b638bf3f5d14fc77</td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_chr8.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 8.</td>
-                        <td style="padding: 10px;">165 GB</td>
-                        <td style="padding: 10px;">3 hours and 40 minutes at 100 Mbps; 63 hours at 10 Mbps</td>
-                        <td style="padding: 10px;">faf51dab341a5fdcdfa4e97a919b19cb</td>
+                        <td style="padding: 10px;">185 GB</td>
+                        <td style="padding: 10px;">4 hours at 100 Mbps; 41 hours at 10 Mbps</td>
+                        <td style="padding: 10px;">1728205b913ecde564f34b6315b4f807</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">maizegdb2024_chr9.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 9.</td>
-                        <td style="padding: 10px;">146 GB</td>
-                        <td style="padding: 10px;">3 hours and 15 minutes at 100 Mbps; 33 hours at 10 Mbps </td>
-                        <td style="padding: 10px;">ab8ec5e32cebe2cee3c699fc7f89975b</td>
+                        <td style="padding: 10px;">163 GB</td>
+                        <td style="padding: 10px;">4 hours at 100 Mbps; 36 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">59b8e5d6a0cccce85b0ad0e8dc7fa728</td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_chr10.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 10.</td>
-                        <td style="padding: 10px;">139 GB</td>
-                        <td style="padding: 10px;">3 hours at 100 Mbps; 31 hours at 10 Mbps </td>
-                        <td style="padding: 10px;">ec8e502c71f10052d095b7edeb3bddc9</td>
+                        <td style="padding: 10px;">155 GB</td>
+                        <td style="padding: 10px;">4 hours at 100 Mbps; 34 hours at 10 Mbps </td>
+                        <td style="padding: 10px;">7d384e34dcd343463b2e4555dc520797</td>
                     </tr>
                     <tr >
                         <td style="padding: 10px;">maizegdb2024_scaf.vcf.gz</td>
                         <td style="padding: 10px;">Full unfiltered variants and read data in unplaced Scaffolds.</td>
-                        <td style="padding: 10px;">3.3 GB</td>
-                        <td style="padding: 10px;">4 minutes at 100 Mbps; 44 minutes at 10 Mbps </td>
-                        <td style="padding: 10px;">bf0ea3d022cbd6f1bc74f585d70e5018</td>
+                        <td style="padding: 10px;">3.1 GB</td>
+                        <td style="padding: 10px;">4 minutes at 100 Mbps; 41 minutes at 10 Mbps </td>
+                        <td style="padding: 10px;">cdf61f383f664b22eba6a380e20abb78</td>
                     </tr>
                 </table>
                 *Download times are estimated and may vary.
@@ -2846,7 +2900,7 @@
 
             <div id="helpContainer" class="content" style="display: none">
                     <h1>SNPversity 2.0</h1>
-
+                    Release 2.0.56 (12 August 2024)
                     <h2>Overview</h2>
 
                     Welcome to SNPversity 2.0, the second generation of the SNPversity platform. Designed as an open-source visualization tool, SNPversity 2.0 enables users to explore extensive variant datasets with ease. Here's how it works:
@@ -3102,7 +3156,7 @@
                                 <td style="padding: 10px;">Completeness</td>
                                 <td style="padding: 10px;">COMP</td>
                                 <td style="padding: 10px;">The percent of accessions that provide genotype data for a particular variant (i.e., there is at least one read for that accession at the given variant). Note, this is different than read coverage</td>
-                                <td style="padding: 10px;">GT</td>
+                                <td style="padding: 10px;">99</td>
                             </tr>
                             <tr>
                                 <td style="padding: 10px;">Maximum squared correlation</td>
@@ -3330,6 +3384,12 @@ chr10	218502	.	C	CTCTGTCTG	1676.75	.	MQ=47.9;CVC=1444;CVP=96.40;TYPE=3_prime_UTR
                     <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
                     <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
                     <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">27 </td>
+                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB31061">PRJEB31061</a> </td>
+                    <td style="padding: 10px;">Genome sequence and assembly of the 25 founder lines of the the NAM population.</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #9A5446;"></div></td>
                 </tr>
                 <tr style="background-color: #F9FBE7;">
                     <td style="padding: 10px;">539 </td>

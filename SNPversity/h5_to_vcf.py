@@ -12,7 +12,7 @@ upper_bound = int(sys.argv[4])
 json_string = sys.argv[5]
 
 # Variable list
-var_list = ['#CHROM', 'POS', 'REF', 'ALT', 'QUAL', 'INFO']
+var_list = ['CHROM', 'POS', 'REF', 'ALT', 'QUAL', 'INFO']
 
 #genome_list = ['1_SRR17046119', '10_SRR17045932', '1003_SRR17045852', '1004_SRR17045851', '1005_SRR17045850','GEMS55_SRR8906658','Liao6082_CRX446062','MC9274_CRX444643','B97_CRX445264','CML229_SRR8906636','CIMBL135_SRR8906674','GEMS40_SRR8906699','GEMS45_SRR8906700','GEMS12_SRR8906701','SHEN5003_SRR8906702','Ye488_CRX445442', '32_CRX445446', 'Ye8112_CRX445447', 'FR218_CRX445451', 'Zheng58_CRX445453','75_322_CRX445460', 'L069_CRX445464', 'L005_CRX445466', 'Shen135_CRX445467', 'Zun90110_CRX445471','ShuangM9B_1_CRX445474']
 
@@ -79,7 +79,7 @@ else:
 
         for i in range(len(variant_data['POS'])):
             row = [
-                variant_data['#CHROM'][i].decode('utf-8') if isinstance(variant_data['#CHROM'][i], bytes) else str(variant_data['#CHROM'][i]),
+                variant_data['CHROM'][i].decode('utf-8') if isinstance(variant_data['CHROM'][i], bytes) else str(variant_data['CHROM'][i]),
                 variant_data['POS'][i].decode('utf-8') if isinstance(variant_data['POS'][i], bytes) else variant_data['POS'][i],
                 ID,
                 variant_data['REF'][i].decode('utf-8') if isinstance(variant_data['REF'][i], bytes) else variant_data['REF'][i],
