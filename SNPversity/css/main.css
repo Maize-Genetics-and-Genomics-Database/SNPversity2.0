@@ -139,6 +139,20 @@
       top: 0;
   }
 
+  .th0_PRJEB31061 {
+      width: 6px;
+      max-width: 6px; /* Ensures the width doesn't exceed this value */
+      padding-bottom: 4px;
+      padding-right: 1px;
+      padding-left: 1px;
+      vertical-align: bottom;
+      text-align: center;
+      background-color: #9A5446;
+      color: white;
+      position: sticky;
+      top: 0;
+  }
+
   .th0_PRJNA783885 {
       width: 6px;
       max-width: 6px; /* Ensures the width doesn't exceed this value */
@@ -486,6 +500,18 @@
     }
 
     #helpContainer {
+            width: auto; /* or max-width: 100%; */
+            padding-left:1%;
+            padding-right:1%;
+            padding-top: 0.2%;
+            padding-bottom: 2%;
+            margin-top: 10px;
+            margin-left: 0px;
+            margin-right: 10px;
+            background: #FFFFFF;
+    }
+
+    #downloadContainer {
             width: auto; /* or max-width: 100%; */
             padding-left:1%;
             padding-right:1%;
