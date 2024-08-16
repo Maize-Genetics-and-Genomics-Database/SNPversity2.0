@@ -9,6 +9,8 @@ $dataset = $_POST['dataSet'];
 $genotypesJson = $_POST['genotypes'];
 $filename = $_POST['outName'];
 
+$PYTHON_PATH = getenv('PYTHON_PATH');
+
 // Validate input
 if (!is_numeric($start) || !is_numeric($end)) {
     echo json_encode(array("status" => "error", "message" => "Invalid input"));
@@ -46,7 +48,7 @@ $jsonArray = escapeshellarg(json_encode($genotypesArray));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute Python script
     #$command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped;
-    $command = '/Users/carsonandorf/opt/miniconda3/bin/python h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
+    $command = $PYTHON_PATH . ' h5_to_vcf.py ' . $db . " " . $vcf . " " . $startEscaped . " " . $endEscaped . " " . $jsonArray;
     $output = shell_exec($command);
 
     if ($output === null) {
