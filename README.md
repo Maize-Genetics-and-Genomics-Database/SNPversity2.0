@@ -128,7 +128,7 @@ The tree view option allows the user to generate phylogenetic tree views based o
 The tree tree can be constructed as in the either an UPGMA tree of Neighbour-Joining tree (Unrooted).  The drawing options are inlcudes Rectangular tree or Radial tree.  In addtion the trees can be saved in the following text formats: Newick tree, Pair-wise diversity (MEGA), or PHYLIP.
 
 # MaizeGDB 2024 Dataset
-A new haplotype map  for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,498 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, completeness, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and completeness. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
+A new haplotype map  for maize was generated using a diverse set of inbred lines, landraces, and teosintes from 1,525 public resequenced lines through a standardized variant-calling pipeline against version 5 of the B73 reference genome. The output was filtered for mapping quality, completeness, and linkage disequilibrium, and annotated based on variant effects relative to the B73 RefGen_v5 gene annotations.  Two versions of the dataset are available.  A high-coverage dataset consisting of ~230 million loci was filtered on mapping quality and completeness. A high-quality dataset of ~75 million loci had an additional filtering step based on high confident linkage disequilibrium.  See tables below to see the projects used to build the dataset and a summary of the variant effect annotations.
 
 |Accessions | Project |Project name|	
 |---------------|--------------|--------------|
@@ -137,6 +137,7 @@ A new haplotype map  for maize was generated using a diverse set of inbred lines
 |340 |PRJNA783885 |Maize landrace whole genome resequencing	 |
 |35 |PRJEB56320 |Maize Wisconsin Diversity Panel Resequencing |	
 |32 |PRJNA609577 |Zea mays Genome sequencing |	
+|27	|PRJEB31061	|Genome sequence and assembly of the twenty-five founder lines of the the Nested Association Mapping (NAM) population |
 |11 |PRJNA389800 |Whole genome sequencing of maize 282 panel |	
 |8 |PRJEB14212 |European maize diversity |	
 |7 |PRJNA399729 |Maize Haplotype Map version 3 |	
@@ -147,17 +148,17 @@ The table shows the composition of public resequencing data used to build the da
 
 |Effect | High Coverage | High Quality |
 |---------------|--------------|--------------|
-|intergenic |216,128,332 |69,236,257|
-|5' UTR | 544,839 | 287,968|
-|synonymous |1,042,272 |523,102|
-|missense |1,311,927 |572,404|
-|stop |61,129  |20,049|
-|frameshift |138,463 |40,550|
-|intron |8,601,103 |4,349,068|
-|non-coding	|3,708 |1,978|
-|3'UTR |801,323 |468,603|
-|other |46,355 |18,411|
-|TOTAL |228,679,451 |75,518,390|
+|intergenic |215,080,035 |68,906,837|
+|5' UTR | 544,019 | 287,968|
+|synonymous |1,041,139 |522,746|
+|missense |1,309,956 |571,757|
+|stop |61,005  |20,004|
+|frameshift |138,321 |40,452|
+|intron |8,580,886 |4,342,508|
+|non-coding	|3,701 |1,978|
+|3'UTR |800,486 |68,334|
+|other |46,332 |18,387|
+|TOTAL |227,605,880 |75,180,971|
 
 The table shows the variant effect dataset.  The table the type of variant effect for the high-coverage and high-quality datasets.
 
