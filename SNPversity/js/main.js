@@ -539,7 +539,128 @@ function parseVCF(outFile, curChr) {
                     //th.innerHTML = header.replace(/_/g, '<span class="vertical-text"> </span>').replace(/#/g, '');
 
                     let header_split = header.split('_');
-                    th.innerHTML = '<span class="vertical-text"> ' + header_split[0] + '</span>';
+                    //Add code to fix the Wisonsin Diversity Panel Names
+
+                    header_print = header_split[0];
+
+                    switch(header_print) {
+                        case "SAMEA111391303":
+                            header_print = "S68911";
+                            break;
+                        case "SAMEA111405059":
+                            header_print = "YU796NS";
+                            break;
+                        case "SAMEA111405048":
+                            header_print = "VA52";
+                            break;
+                        case "SAMEA111405058":
+                            header_print = "YONG28";
+                            break;
+                        case "SAMEA111405051":
+                            header_print = "W802G";
+                            break;
+                        case "SAMEA111405055":
+                            header_print = "YE4";
+                            break;
+                        case "SAMEA111405029":
+                            header_print = "PHWRZ";
+                            break;
+                        case "SAMEA111405008":
+                            header_print = "PHAW6";
+                            break;
+                        case "SAMEA111404999":
+                            header_print = "OQ101";
+                            break;
+                        case "SAMEA111405002":
+                            header_print = "PA392";
+                            break;
+                        case "SAMEA111404998":
+                            header_print = "OH3167B";
+                            break;
+                        case "SAMEA111404994":
+                            header_print = "NP87";
+                            break;
+                        case "SAMEA111404979":
+                            header_print = "ND167";
+                            break;
+                        case "SAMEA111404980":
+                            header_print = "ND230";
+                            break;
+                        case "SAMEA111404973":
+                            header_print = "N534";
+                            break;
+                        case "SAMEA111404959":
+                            header_print = "MO23W";
+                            break;
+                        case "SAMEA111404956":
+                            header_print = "MO13";
+                            break;
+                        case "SAMEA111404955":
+                            header_print = "LP1NRHT";
+                            break;
+                        case "SAMEA111404945":
+                            header_print = "LH212HT";
+                            break;
+                        case "SAMEA111404946":
+                            header_print = "LH217";
+                            break;
+                        case "SAMEA111404939":
+                            header_print = "LH175";
+                            break;
+                        case "SAMEA111404942":
+                            header_print = "LH188";
+                            break;
+                        case "SAMEA111404933":
+                            header_print = "L289";
+                            break;
+                        case "SAMEA111404920":
+                            header_print = "IL778D";
+                            break;
+                        case "SAMEA111404922":
+                            header_print = "INBRED_109";
+                            break;
+                        case "SAMEA111404910":
+                            header_print = "HI28";
+                            break;
+                        case "SAMEA111404887":
+                            header_print = "DK6F545";
+                            break;
+                        case "SAMEA111404879":
+                            header_print = "CO236";
+                            break;
+                        case "SAMEA111404912":
+                            header_print = "IA453";
+                            break;
+                        case "SAMEA111404883":
+                            header_print = "CQ806";
+                            break;
+                        case "SAMEA111404884":
+                            header_print = "CS608";
+                            break;
+                        case "SAMEA111404871":
+                            header_print = "CL27";
+                            break;
+                        case "SAMEA111404857":
+                            header_print = "B91";
+                            break;
+                        case "SAMEA111404851":
+                            header_print = "B101";
+                            break;
+                        case "SAMEA111404850":
+                            header_print = "AR228";
+                            break;
+                        case "SAMEA111404829":
+                            header_print = "4554_INBRED";
+                            break;
+                        default:
+                            // If none of the cases match, this block will be executed
+                            // header_print remains unchanged or you can handle it differently
+                            break;
+                    }
+
+
+
+                    th.innerHTML = '<span class="vertical-text"> ' + header_print + '</span>';
 
                     if(header_array[header])
                     {
