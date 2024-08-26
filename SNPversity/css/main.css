@@ -293,63 +293,6 @@
         top: 0;
     }
 
-    .th0_PRJNA641489 {
-    width: 6px;
-    max-width: 6px; /* Ensures the width doesn't exceed this value */
-    padding-bottom: 4px;
-    padding-right: 1px;
-    padding-left: 1px;
-    vertical-align: bottom;
-    text-align: center;
-    background-color: #483D8B; /* Dark Slate Blue */
-    color: white;
-    position: sticky;
-    top: 0;
-}
-
-.th0_PRJNA479960 {
-    width: 6px;
-    max-width: 6px; /* Ensures the width doesn't exceed this value */
-    padding-bottom: 4px;
-    padding-right: 1px;
-    padding-left: 1px;
-    vertical-align: bottom;
-    text-align: center;
-    background-color: #228B22; /* Forest Green */
-    color: white;
-    position: sticky;
-    top: 0;
-}
-
-.th0_PRJNA661271 {
-    width: 6px;
-    max-width: 6px; /* Ensures the width doesn't exceed this value */
-    padding-bottom: 4px;
-    padding-right: 1px;
-    padding-left: 1px;
-    vertical-align: bottom;
-    text-align: center;
-    background-color: #2F4F4F; /* Dark Slate Gray */
-    color: white;
-    position: sticky;
-    top: 0;
-}
-
-.th0_PRJNA300309 {
-    width: 6px;
-    max-width: 6px; /* Ensures the width doesn't exceed this value */
-    padding-bottom: 4px;
-    padding-right: 1px;
-    padding-left: 1px;
-    vertical-align: bottom;
-    text-align: center;
-    background-color: #8B0000; /* Dark Red  */
-    color: white;
-    position: sticky;
-    top: 0;
-}
-
-
   .th1 {
       width: 60px;
       max-width: 60px; /* Ensures the width doesn't exceed this value */
@@ -1011,7 +954,7 @@
   color: white;
   font-weight: bold;
   width: 250px;
-  height: 60px;
+  height: 40px;
   font-family: 'Times New Roman', Times, serif;
   border: none;
   border-radius: 5px;
@@ -1038,7 +981,7 @@
   color: white;
   font-weight: bold;
   width: 300px;
-  height: 60px;
+  height: 40px;
   font-family: 'Times New Roman', Times, serif;
   border: none;
   border-radius: 5px;
