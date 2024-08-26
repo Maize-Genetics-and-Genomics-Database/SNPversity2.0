@@ -366,6 +366,18 @@ function nodeColor(header) {
           case 'PRJNA531553':
             cell_mod = '#F08080';
             break;
+          case 'PRJNA641489':
+            cell_mod = '#483D8B';
+            break;
+          case 'PRJNA479960':
+            cell_mod = '#228B22';
+            break;
+          case 'PRJNA661271':
+            cell_mod = '#2F4F4F';
+            break;
+          case 'PRJNA300309':
+            cell_mod = '#8B0000';
+            break;    
           default:
             cell_mod = "#999999";
             break;
