@@ -3,47 +3,86 @@
     max_page = 9999;
     dataset = "maizegdb"
 
-
     window.onload = function() {
-        // Add the event listener to the <select> element when the page loads
+        // Select all radio buttons with name 'ds' within the dataset-table
+        const radioButtons = document.querySelectorAll('.dataset-table input[name="ds"]');
 
+        // Iterate over each radio button and attach a change event listener
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Get the selected value
+                var selectedValue = this.value;
 
-        document.getElementById('dataset').addEventListener('change', function() {
-            // Get the selected value
-            var selectedValue = this.value;
+                // Log the selected dataset
+                console.log("Selected dataset:", selectedValue);
 
-            // Execute your function or logic based on the selected value
-            console.log("Selected dataset:", selectedValue);
+                // Remove 'selected' class from all rows
+                document.querySelectorAll('.dataset-table tr').forEach(row => {
+                    row.classList.remove('selected');
+                });
 
-            // You can call another function or handle the change as needed
-            handleDatasetChange(selectedValue);
+                // Add 'selected' class to the closest row of the selected radio button
+                this.closest('tr').classList.add('selected');
+
+                // Call the function to handle the dataset change
+                handleDatasetChange(selectedValue);
+            });
         });
 
-        // Additional onPageLoad actions can be added here if needed
+        // Initialize the selected row when the page loads
+        const selectedRadio = document.querySelector('.dataset-table input[name="ds"]:checked');
+        if (selectedRadio) {
+            selectedRadio.closest('tr').classList.add('selected');
+        }
     };
+
+
+
+
+
 
     function handleDatasetChange(value) {
 
-        toggleCheckboxesAll(0,'.genotypes');
-        toggleCheckboxesAll(0,'.genotypes_S');
+        //toggleCheckboxesAll(0,'.genotypes');
+        //toggleCheckboxesAll(0,'.genotypes_S');
+        //toggleCheckboxesAll(0,'.genotypes_NAM');
 
         var divM = document.querySelector('.maize2024_container');
         var divS = document.querySelector('.schnable2023_container');
+        var divN = document.querySelector('div[name="NAM_container"]');
+
         // Example function to handle the change
         if (value === 'mgdb2024_hq') {
             divM.style.display = "block";
             divS.style.display = "none";
+            divN.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Quality selected.");
             // Add your logic here
         } else if (value === 'mgdb2024_hc') {
             divM.style.display = "block";
+            divN.style.display = "none";
+            divS.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Coverage selected.");
+            // Add your logic here
+        } else if (value === 'nam2021_hq') {
+            divM.style.display = "block";
+            divN.style.display = "block";
+            divS.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Quality selected.");
+            // Add your logic here
+        } else if (value === 'nam2021_hc') {
+            divM.style.display = "block";
+            divN.style.display = "block";
             divS.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Coverage selected.");
             // Add your logic here
         } else if (value === 'schnable2023') {
             divM.style.display = "none";
+            divN.style.display = "none";
             divS.style.display = "block";
             dataset = "schnable"
             console.log("Schnable 2023 Imputation selected.");
@@ -197,25 +236,57 @@
 
             reader.readAsText(file);
         } else {
-            // Handle the case where no file is uploaded
-            var checkboxes = document.querySelectorAll('.genotypes');
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    if(checkbox.value != "skip") {
-                        accessionValues.push(checkbox.value);
-                        //accessionValues.push(checkbox.value.replace(/@/g, '_'));
-                    }
-               }
-            });
 
-            var checkboxesS = document.querySelectorAll('.genotypes_S');
-            checkboxesS.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    if(checkbox.value != "skip") {
-                        accessionValues.push(checkbox.value);
-                    }
-               }
-            });
+            var selectedValue = document.querySelector('input[name="ds"]:checked').value;
+
+            if (selectedValue === 'mgdb2024_hq' || selectedValue === 'mgdb2024_hc') {
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypes');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
+            } else if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
+
+                var checkboxesS = document.querySelectorAll('.genotypesNAM');
+                checkboxesS.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                        }
+                   }
+                });
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypes');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
+            } else if (selectedValue === 'schnable2023') {
+
+                var checkboxesS = document.querySelectorAll('.genotypes_S');
+                checkboxesS.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                        }
+                   }
+                });
+
+            }
+
             // Call the callback function with values from checkboxes
             callback(JSON.stringify(accessionValues));
         }
@@ -251,7 +322,8 @@ $(document).ready(function() {
         var startValue = $('#startInput').val();
         var endValue = $('#endInput').val();
         var chromosome = $('#chrInput').val();
-        var dataS = $('#dataset').val();
+        //var dataS = $('#dataset').val();
+        var dataS = document.querySelector('input[name="ds"]:checked').value;
         var pageValue = $('#pageInput').val(); // This retrieves the value as a string
         var genotypesJson = "";
         var genomic_length = endValue - startValue;
@@ -1183,6 +1255,7 @@ function toggleCheckboxesAll(perc, genotype_val) {
       checkbox.checked = false
   });
 
+
   // Calculate 25% of the total number of checkboxes
   var countToCheck = Math.ceil(checkboxes.length * perc);
 
@@ -1194,30 +1267,58 @@ function toggleCheckboxesAll(perc, genotype_val) {
   for (var i = 0; i < countToCheck; i++) {
       checkboxes[indexes[i]].checked = true;
   }
+
+  var selectedValue = document.querySelector('input[name="ds"]:checked').value;
+
+  console.log("Selected dataset hit:", selectedValue);
+
+  if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
+
+      var checkboxes2 = document.querySelectorAll(".genotypesNAM");
+
+      // First, uncheck all checkboxes
+      checkboxes2.forEach(function(checkbox2) {
+          checkbox2.checked = false
+      });
+
+      // Calculate 25% of the total number of checkboxes
+      var countToCheck2 = Math.ceil(checkboxes2.length * perc);
+
+      // Create an array of indexes and shuffle it
+      var indexes2 = Array.from(Array(checkboxes2.length).keys());
+      shuffleArray(indexes2);
+
+      // Check the first 25% of the shuffled indexes
+      for (var i = 0; i < countToCheck2; i++) {
+          checkboxes2[indexes2[i]].checked = true;
+      }
+  }
+
 }
 
 function toggleCheckboxes(source, perc, genotype_val) {
-  // Find the parent table of the "Select All" checkbox
-  var table = source.closest('table');
-  // Get all checkboxes within this table with the class 'genotypes'
-  var checkboxes = table.querySelectorAll(genotype_val);
+      // Find the parent table of the "Select All" checkbox
+      var table = source.closest('table');
 
-  // First, uncheck all checkboxes
-  checkboxes.forEach(function(checkbox) {
-      checkbox.checked = false;
-  });
+      // Get all checkboxes within this table with the class 'genotypes'
+      var checkboxes = table.querySelectorAll(genotype_val);
 
-  // Calculate 25% of the total number of checkboxes
-  var countToCheck = Math.ceil(checkboxes.length * perc);
+      // First, uncheck all checkboxes
+      checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+      });
 
-  // Create an array of indexes and shuffle it
-  var indexes = Array.from(Array(checkboxes.length).keys());
-  shuffleArray(indexes);
+      // Calculate 25% of the total number of checkboxes
+      var countToCheck = Math.ceil(checkboxes.length * perc);
 
-  // Check the first 25% of the shuffled indexes
-  for (var i = 0; i < countToCheck; i++) {
-      checkboxes[indexes[i]].checked = true;
-  }
+      // Create an array of indexes and shuffle it
+      var indexes = Array.from(Array(checkboxes.length).keys());
+      shuffleArray(indexes);
+
+      // Check the first 25% of the shuffled indexes
+      for (var i = 0; i < countToCheck; i++) {
+          checkboxes[indexes[i]].checked = true;
+      }
 }
 
 // Utility function to shuffle an array
@@ -1232,11 +1333,20 @@ function shuffleArray(array) {
 
 function loadExample() {
   // Define an array of strings
+  //var geneModels = [
+//      "Zm00001eb404760",
+//      "Zm00001eb404740",
+//     "Zm00001eb404780",
+///      "Zm00001eb404830"
+//  ];
+
   var geneModels = [
-      "Zm00001eb404760",
-      "Zm00001eb404740",
-      "Zm00001eb404780",
-      "Zm00001eb404830"
+      "Zm00001eb374090",
+      "Zm00001eb067740",
+      "Zm00001eb374230",
+      "Zm00001eb056510",
+      "Zm00001eb233650",
+      "Zm00001eb313510"
   ];
 
   // Get a random index from the array (from 0 to array length - 1)
