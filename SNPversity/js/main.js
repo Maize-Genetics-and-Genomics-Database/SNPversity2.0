@@ -1331,14 +1331,28 @@ function shuffleArray(array) {
   }
 }
 
+function loadExampleChr10() {
+   // Define an array of gene models
+  var geneModels = [
+      "Zm00001eb404760",
+      "Zm00001eb404740",
+     "Zm00001eb404780",
+      "Zm00001eb404830"
+  ];
+
+  // Get a random index from the array (from 0 to array length - 1)
+  var randomIndex = Math.floor(Math.random() * geneModels.length);
+
+  // Select a random gene model from the array
+  var selectedGeneModel = geneModels[randomIndex];
+
+  // Set the value of the element with ID 'geneModelId'
+  document.getElementById('geneModelId').value = selectedGeneModel;
+}
+
 function loadExample() {
-  // Define an array of strings
-  //var geneModels = [
-//      "Zm00001eb404760",
-//      "Zm00001eb404740",
-//     "Zm00001eb404780",
-///      "Zm00001eb404830"
-//  ];
+
+  // Define an array of gene models
 
   var geneModels = [
       "Zm00001eb374090",
