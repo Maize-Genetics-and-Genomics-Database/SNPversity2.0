@@ -1,5 +1,6 @@
 <html>
 <head>
+     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/header_data.js"></script>
@@ -32,7 +33,7 @@
            <div id="pageContentsXX">
                <div id="contentContainer" class="content">
                     <h2><font color="green">B73 v5 VCF builder and viewer</font></h2>
-                    <p>Create a VCF file based on a given region of the B73 genome and a subset from 1,500 diverse maize accessions.</p>
+                    <p>Create a VCF file based on a given region of the B73 genome and a subset of the diverse maize accessions.</p>
 
                     <div id="subheaderContainer">
                         <p><h3><font color="white">Select genomic interval</font></h3></p>
@@ -41,29 +42,10 @@
                     <p>To retrieve the SNPs and INDELS within a genomic interval, select a chromosome, then enter the genome start and stop positions of your interval.</p>
                     <form action="#" method="post">
                         <table width="2800px" class="input_table">
+
                           <tr>
-                            <td width="25%"><b><font color="green">Genome Version:</font></b></td>
-                            <td width="50%">
-                              <select name='version'>
-                                <option value='2F'>Zm-B73-REFERENCE-NAM-5.0</option>
-                              </select>
-                            </td>
-                            <td width="25%"> </td>
-                          </tr>
-                          <tr>
-                            <td><b><font color="green">Dataset:</font></b></td>
-                            <td>
-                              <select name='ds' id='dataset'>
-                                <option value='mgdb2024_hq' selected>MaizeGDB 2024 High Quality</option>
-                                <option value='mgdb2024_hc'>MaizeGDB 2024 High Coverage</option>
-                                <option value='schnable2023'>Schnable 2023 Imputation</option>
-                              </select>
-                            </td>
-                            <td> </td>
-                          </tr>
-                          <tr>
-                            <td><b><font color="green">Chromosome:</font></b></td>
-                            <td>
+                            <td width="20%"><b><font color="green">Chromosome:</font></b></td>
+                            <td width="55%">
                               <select name='chr' id='chrInput'>
                                   <option value="chr1" selected>Chromosome 1</option>
                                   <option value="chr2">Chromosome 2</option>
@@ -77,7 +59,7 @@
                                   <option value="chr10">Chromosome 10</option>
                               </select>
                             </td>
-                            <td> </td>
+                            <td width="25%"> </td>
                           </tr>
                           <tr>
                             <td><b><font color="green">Genome Start Position (bp):</font></b>
@@ -111,19 +93,144 @@
 
                         <table width="1500px" class="input_table">
                             <tr>
-                                <td style="vertical-align: top; padding-top: 5px" width="25%"><b><font color="green">Gene Model ID:</font></b><br></td>
-                                <td> <input type="text" name="geneModelId" id="geneModelId"> (+/- bp) <input type="number"  style="width: 100px;" min="0" name="start" id="flankInput" value="0"/>
+                                <td style="vertical-align: top; padding-top: 5px" width="20%"><b><font color="green">Gene Model ID:</font></b><br></td>
+                                <td width="55%"> <input type="text" name="geneModelId" id="geneModelId"> (+/- bp) <input type="number"  style="width: 100px;" min="0" name="start" id="flankInput" value="0"/>
                                     <input type="button" value="Load coordinates" onclick="loadGeneModelData()"> (<a href="javascript:loadExample()">See Example</a>)
                                     <br>
                                     <span id="error"></span>
                                 </td>
-                                <td> </td>
+                                <td width="25%"> </td>
                              </tr>
+                        </table>
+                        <br>
+                        <div id="subheaderContainer">
+                            <p><h3><font color="white">Choose a dataset</font></h3></p>
+                        </div>
+                        <br>
+
+                        Use the "Select" column to choose a dataset. Once you've made your selection, a list of available accessions will appear in the "Select the accessions to include" section.
+
+                        <br>
+
+                        <table class="dataset-table"> <!-- Added class "dataset-table" -->
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Dataset</th>
+                                    <th>Reference Genome</th>
+                                    <th>Accessions</th>
+                                    <th>Variant Sites</th>
+                                    <th>Key Filters</th>
+                                    <th>Heterozygous Sites</th>
+                                    <th>INDELS</th>
+                                    <th>Imputation</th>
+                                    <th>Paper</th>
+                                    <th>Notes/th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dataset 1 -->
+                                <tr>
+                                    <td class="radio-cell">
+                                        <input type="radio" name="ds" id='dataset' value="mgdb2024_hq" checked>
+                                    </td>
+                                    <td>MaizeGDB 2024 (High Quality)</td>
+                                    <td>B73 v5</td>
+                                    <td>1,498</td>
+                                    <td>75 million</td>
+                                    <td>Mapping quality (≥ 30), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="crossmark">&#10008;</span></td>
+                                    <td>
+                                        <a href="https://doi.org/10.1101/2024.04.30.591904" target="_blank">Andorf et al. 2024</a>
+                                    </td>
+                                    <td>See the Help and Download tabs for more information about the dataset.</td>
+                                </tr>
+
+                                <!-- Dataset 2 -->
+                                <tr>
+                                    <td class="radio-cell">
+                                        <input type="radio" name="ds" id='dataset' value="mgdb2024_hc">
+                                    </td>
+                                    <td>MaizeGDB 2024 (High Coverage)</td>
+                                    <td>B73 v5</td>
+                                    <td>1,498</td>
+                                    <td>228 million</td>
+                                    <td>Mapping quality (≥ 30), Genotypic coverage (≥ 50%)</td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="crossmark">&#10008;</span></td>
+                                    <td>
+                                        <a href="https://doi.org/10.1101/2024.04.30.591904" target="_blank">Andorf et al. 2024</a>
+                                    </td>
+                                    <td>See the Help and Download tabs for more information about the dataset.</td>
+                                </tr>
+
+                                <!-- Dataset 3 -->
+                                <tr>
+                                    <td class="radio-cell">
+                                        <input type="radio" name="ds" id='dataset' value="nam2021_hq">
+                                    </td>
+                                    <td>MaizeGDB 2024 (High Quality) + NAM</td>
+                                    <td>B73 v5</td>
+                                    <td>1,525</td>
+                                    <td>23 million</td>
+                                    <td>Mapping quality (≥ 30), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="crossmark">&#10008;</span></td>
+                                    <td>
+                                        <a href="https://doi.org/10.1101/2024.04.30.591904" target="_blank">Andorf et al. 2024</a> <br>
+                                        <a href="https://doi.org/10.1126/science.abg5289" target="_blank">Hufford et al. 2021</a>
+                                    </td>
+                                    <td>This dataset represents the intersection of the MaizeGDB 2024 dataset and the variant sites identified in the NAM 2021 project. <b>Note: The two datasets were generated using different variant calling methods</b>.</td>
+                                </tr>
+
+                                <!-- Dataset 4 -->
+                                <tr>
+                                    <td class="radio-cell">
+                                        <input type="radio" name="ds" id='dataset' value="nam2021_hc">
+                                    </td>
+                                    <td>MaizeGDB 2024 (High Coverage) + NAM</td>
+                                    <td>B73 v5</td>
+                                    <td>1,525</td>
+                                    <td>36 million</td>
+                                    <td>Mapping quality (≥ 30), Genotypic coverage (≥ 50%)</td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="crossmark">&#10008;</span></td>
+                                    <td>
+                                        <a href="https://doi.org/10.1101/2024.04.30.591904" target="_blank">Andorf et al. 2024</a> <br>
+                                        <a href="https://doi.org/10.1126/science.abg5289" target="_blank">Hufford et al. 2021</a>
+                                    </td>
+                                    <td>This dataset represents the intersection of the MaizeGDB 2024 dataset and the variant sites identified in the NAM 2021 project.  <b>Note: The two datasets were generated using different variant calling methods</b>.</td>
+                                </tr>
+
+                                <!-- Dataset 5 -->
+                                <tr>
+                                    <td class="radio-cell">
+                                        <input type="radio" name="ds" id='dataset' value="schnable2023">
+                                    </td>
+                                    <td>Schnable 2023 (Imputation)</td>
+                                    <td>B73 v5</td>
+                                    <td>1,515</td>
+                                    <td>46 million</td>
+                                    <td>QualByDepth (≥ 2.0), FisherStrand (≤ 60.0), RMSMappingQuality (≥ 40.0)</td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td><span class="checkmark">&#10004;</span></td>
+                                    <td>
+                                        <a href="https://doi.org/10.1111/tpj.16123" target="_blank">Grzybowski et al. 2023</a>
+                                    </td>
+                                    <td>See the paper for the full description of the methods used to generate the data.</td>
+                                </tr>
+                            </tbody>
                         </table>
 
                         <br>
                         <div id="subheaderContainer">
-                            <p><h3><font color="white">Select which accessions to include</font></h3></p>
+                            <p><h3><font color="white">Select the accessions to include</font></h3></p>
                         </div>
 
                         <p class="upload-instructions">
@@ -137,13 +244,8 @@
 
                           <div style="margin-top: 20px;">
                             <p style="margin-bottom: 10px;">
-                              The accession should listed in a single-column seperated by a tab or newline. Use the "SNPversity ID" from either of these lists of all maize accessions:
-                              <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> or
-                              <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a>.
-                            </p>
-                            <p>
-                              Download an example file of the eight Nested Association Mapping founders:
-                              <a href="nam_founders.tsv" download="nam_founders.tsv">TSV</a>.
+                              The accession should listed in a single-column seperated by a tab or newline. Use the "SNPversity ID" from these lists of all maize accessions:
+                              <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a>.
                             </p>
                           </div>
 
@@ -162,7 +264,7 @@
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.75,'.genotypes')">Select Random 75%</button>
                         <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(1.0,'.genotypes')">Select All</button>
                         <br><br>
-                                <div class="border1">
+                                <div class="border1" name="NAM_container" style="display: none;">
                                     <button type="button" class="accordion"><b>Genome sequence and assembly of the twenty-five founder lines of the the Nested Association Mapping (NAM) population <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB31061">(PRJEB31061)</a></b></button>
                                     <div class="panel">
                                         (NAM) genome sequencing and assembly project (<a target="_blank" href="https://doi.org/10.1126/science.abg5289">Reference</a>): 27 total accessions, B73, B73 Ab10, and the 25 NAM founder genomes
@@ -170,45 +272,45 @@
                                     <table>
                                         <tr>
                                             <td colspan="5">
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypesNAM')">Unselect all</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypesNAM')">Select Random 25%</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypesNAM')">Select Random 50%</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypesNAM')">Select All</button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="B73_ERS3371164" />ERS3371164 (B73)</td>
-                                            <td><input class="genotypes" type="checkbox" value="B73Ab10_ERS4036196" />ERS4036196 (B73 Ab10)</td>
-                                            <td><input class="genotypes" type="checkbox" value="B97_ERS3120542" />ERS3120542 (B97)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML103_ERS3120545" />ERS3120545 (CML103)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML228_ERS3120546" />ERS3120546 (CML228)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="B73_ERS3371164" />ERS3371164 (B73)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="B73Ab10_ERS4036196" />ERS4036196 (B73 Ab10)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="B97_ERS3120542" />ERS3120542 (B97)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML103_ERS3120545" />ERS3120545 (CML103)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML228_ERS3120546" />ERS3120546 (CML228)</td>
                                         </tr><tr>
-                                            <td><input class="genotypes" type="checkbox" value="CML247_ERS3120547" />ERS3120547 (CML247)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML277_ERS3120548" />ERS3120548 (CML277)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML322_ERS3120549" />ERS3120549 (CML322)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML333_ERS3120550" />ERS31205503 (CML333)</td>
-                                            <td><input class="genotypes" type="checkbox" value="CML52_ERS3120543" />ERS3120543 (CML52)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML247_ERS3120547" />ERS3120547 (CML247)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML277_ERS3120548" />ERS3120548 (CML277)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML322_ERS3120549" />ERS3120549 (CML322)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML333_ERS3120550" />ERS31205503 (CML333)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML52_ERS3120543" />ERS3120543 (CML52)</td>
                                         </tr><tr>
-                                            <td><input class="genotypes" type="checkbox" value="CML69_ERS3120544" />ERS3120544 (CML69)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Hp301_ERS3120551" />ERS3120551 (Hp301)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Il14H_ERS3120552" />ERS3120552 (Il14H)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Ki11_ERS3120554" />ERS3120554 (Ki11)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Ki3_ERS3120553" />ERS3120553 (Ki3)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="CML69_ERS3120544" />ERS3120544 (CML69)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Hp301_ERS3120551" />ERS3120551 (Hp301)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Il14H_ERS3120552" />ERS3120552 (Il14H)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Ki11_ERS3120554" />ERS3120554 (Ki11)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Ki3_ERS3120553" />ERS3120553 (Ki3)</td>
                                         </tr><tr>
-                                            <td><input class="genotypes" type="checkbox" value="Ky21_ERS3120555" />ERS3120555(Ky21)</td>
-                                            <td><input class="genotypes" type="checkbox" value="M162W_ERS3120556" />ERS3120556 (M162W)</td>
-                                            <td><input class="genotypes" type="checkbox" value="M37W_ERS3120557" />ERS3120557 (M37W)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Mo18W_ERS3120558" />ERS3120558 (Mo18W)</td>
-                                            <td><input class="genotypes" type="checkbox" value="MS71_ERS3120559" />ERS3120559 (MS71)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Ky21_ERS3120555" />ERS3120555(Ky21)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="M162W_ERS3120556" />ERS3120556 (M162W)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="M37W_ERS3120557" />ERS3120557 (M37W)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Mo18W_ERS3120558" />ERS3120558 (Mo18W)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="MS71_ERS3120559" />ERS3120559 (MS71)</td>
                                         </tr><tr>
-                                            <td><input class="genotypes" type="checkbox" value="NC350_ERS3120560" />ERS3120560 (NC350)</td>
-                                            <td><input class="genotypes" type="checkbox" value="NC358_ERS3120561" />ERS3120561 (NC358)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Oh43_ERS3120562" />ERS3120562 (Oh43)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Oh7B_ERS3120563" />ERS3120563 (Oh7B)</td>
-                                            <td><input class="genotypes" type="checkbox" value="P39_ERS3120564" />ERS3120564 (P39)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="NC350_ERS3120560" />ERS3120560 (NC350)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="NC358_ERS3120561" />ERS3120561 (NC358)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Oh43_ERS3120562" />ERS3120562 (Oh43)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Oh7B_ERS3120563" />ERS3120563 (Oh7B)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="P39_ERS3120564" />ERS3120564 (P39)</td>
                                         </tr><tr>
-                                            <td><input class="genotypes" type="checkbox" value="Tx303_ERS3120565" />ERS3120565 (Tx303)</td>
-                                            <td><input class="genotypes" type="checkbox" value="Tzi8_ERS3120566" />ERS3120566 (Tzi8)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Tx303_ERS3120565" />ERS3120565 (Tx303)</td>
+                                            <td><input class="genotypesNAM" type="checkbox" value="Tzi8_ERS3120566" />ERS3120566 (Tzi8)</td>
                                         </tr>
                                     </table>
 
@@ -224,10 +326,10 @@
                                     <table>
                                         <tr>
                                             <td colspan="5">
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -331,10 +433,10 @@
                                 <table>
                                     <tr>
                                         <td colspan="5">
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -663,10 +765,10 @@
                                 <table>
                                     <tr>
                                         <td colspan="5">
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -867,10 +969,10 @@
                                 <table>
                                     <tr>
                                         <td colspan="5">
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -960,10 +1062,10 @@
                                 <table>
                                     <tr>
                                         <td colspan="5">
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1076,10 +1178,10 @@
                                 <table>
                                     <tr>
                                         <td colspan="5">
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1373,10 +1475,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -1876,10 +1978,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2097,10 +2199,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2112,7 +2214,7 @@
                                                 <td><input class="genotypes" type="checkbox" value="SAMEA111405055_ERR10288636" />ERR10288636 (YE4)</td>
                                                 <td><input class="genotypes" type="checkbox" value="SAMEA111405029_ERR10289252" />ERR10289252 (PHWRZ)</td>
                                                 <td><input class="genotypes" type="checkbox" value="SAMEA111405008_ERR10289299" />ERR10289299 (PHAW6)</td>
-                                                <td><input class="genotypes" type="checkbox" value="SAMEA111404999_ERR10289303" />ERR10289303 (PHAW6)</td>
+                                                <td><input class="genotypes" type="checkbox" value="SAMEA111404999_ERR10289303" />ERR10289303 (OQ101)</td>
                                             </tr><tr>
                                                 <td><input class="genotypes" type="checkbox" value="SAMEA111405002_ERR10289306" />ERR10289306 (PA392)</td>
                                                 <td><input class="genotypes" type="checkbox" value="SAMEA111404998_ERR10289309" />ERR10289309 (OH3167B)</td>
@@ -2162,10 +2264,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2192,10 +2294,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2251,10 +2353,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2278,10 +2380,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2312,10 +2414,10 @@
                                         <table>
                                             <tr>
                                                 <td colspan="5">
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0)">Unselect all</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25)">Select Random 25%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5)">Select Random 50%</button>
-                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0)">Select All</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
+                                                    <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -5566,6 +5668,14 @@
             <div id="helpContainer" class="content" style="display: none">
                     <h1>SNPversity 2.0</h1>
                     Release 2.0.67 (26 August 2024 -Development)
+
+                    <h2>Citation</h2>
+                    If you use SNPversity for your research, please cite one or more of the following
+                    <ul class="info-list">
+                    <li><b>SNPVerstiy and the MaizeGDB 2024 dataset</b>: <br>Andorf CM, Ross-Ibarra J, Seetharam AS, Hufford MB, Woodhouse MR. (2024) A unified VCF data set from nearly 1,500 diverse maize accessions and resources to explore the genomic landscape of maize. bioRxiv 2024.04.30.591904; <a target="_blank" href="https://doi.org/10.1111/tpj.16123">doi:10.1101/2024.04.30.591904</a>.</li>
+                    <li><b>Schanble 2023 dataset</b>: <br>Grzybowski MW, Mural RV, Xu G, Turkus J, Yang J, Schnable JC. A common resequencing-based genetic marker data set for global maize diversity. Plant J. 2023;113(6):1109-1121. <a target="_null" href="https://doi.org/10.1111/tpj.16123">doi:10.1111/tpj.16123</a></li>
+                    </ul>
+
                     <h2>Overview</h2>
 
                     Welcome to SNPversity 2.0, the second generation of the SNPversity platform. Designed as an open-source visualization tool, SNPversity 2.0 enables users to explore extensive variant datasets with ease. Here's how it works:
@@ -5591,66 +5701,88 @@
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</td>
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">PubMed ID</td>
+                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">DOI</td>
                         <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">539 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJCA009749">PRJCA009749</a> </td>
                         <td style="padding: 10px;">WGS resequencing of 1,604 maize inbred lines</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/35851624/">35851624</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1038/s41477-022-01190-2">10.1038/s41477-022-01190-2</a> </td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF7F50;"></div></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px;">519 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA531553">PRJNA531553</a> </td>
                         <td style="padding: 10px;">Deep DNA resequencing of the association mapping panel</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/31152161">31152161</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1038/s41588-019-0427-6">10.1038/s41588-019-0427-6</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #F08080;"></div></td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">340 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA783885">PRJNA783885</a> </td>
                         <td style="padding: 10px;">Maize landrace whole genome resequencing</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/35922428">35922428</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1038/s41467-022-32180-9">10.1038/s41467-022-32180-9</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #87CEEB;"></div></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px;">35 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56320">PRJEB56320</a> </td>
                         <td style="padding: 10px;">Maize Wisconsin Diversity Panel Resequencing</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/36705476">36705476</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1111/tpj.16123">10.1111/tpj.16123</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #708090;"></div></td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">32 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA609577">PRJNA609577</a> </td>
                         <td style="padding: 10px;">Zea mays Genome sequencing</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/33839267">33839267</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1016/j.ygeno.2021.04.009">10.1016/j.ygeno.2021.04.009</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #FF6347;"></div></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px;">11 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA389800">PRJNA389800</a> </td>
                         <td style="padding: 10px;">Whole genome sequencing of maize 282 panel</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/29300887">29300887</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1093/gigascience/gix134">10.1093/gigascience/gix134</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #BDB76B;"></div></td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">8 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB14212">PRJEB14212</a> </td>
                         <td style="padding: 10px;">European maize diversity</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/28301472">28301472</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1371/journal.pgen.1006666">10.1371/journal.pgen.1006666</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #DAA520;"></div></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px;">7 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA399729">PRJNA399729</a> </td>
                         <td style="padding: 10px;">Maize Haplotype Map version 3</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/29300887">29300887</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1093/gigascience/gix134">10.1093/gigascience/gix134</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #5F9EA0;"></div></td>
                     </tr>
                     <tr style="background-color: #F9FBE7;">
                         <td style="padding: 10px;">6 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA260788">PRJNA260788</a> </td>
                         <td style="padding: 10px;">Zea mays Genome sequencing (European maize genomes)</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/32719517">32719517</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1038/s41588-020-0671-9">0.1038/s41588-020-0671-9</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #6495ED;"></div></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px;">1 </td>
                         <td style="padding: 10px;"><a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB56265">PRJEB56265</a> </td>
                         <td style="padding: 10px;">Resequencing of three Polish maize inbred lines</td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://pubmed.ncbi.nlm.nih.gov/36705476">36705476</a></td>
+                        <td style="padding: 10px;"><a target="_blank" href="https://doi.org/10.1111/tpj.16123">10.1111/tpj.16123</a></td>
                         <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #3CB371;"></div></td>
                     </tr>
                     </table>
@@ -5753,7 +5885,7 @@
                     <br><br>
 
                         <b>Select which accessions to include:</b><br>
-                        This section allows the user to select a subset of the maize accessions to view. The two main options are to upload a file with the accession IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the maize accessions.  A list of all maize accessions can be found in both <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a> and <a href="maize_accessions.txt" download="maize_accessions_list.txt">TSV</a> formats.
+                        This section allows the user to select a subset of the maize accessions to view. The two main options are to upload a file with the accession IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the maize accessions.  A list of all maize accessions can be found in <a href="maize_accessions.xlsx" download="maize_accessions_list.xlsx">XLSX</a>.
                     </div>
 
                     <h3>Table view</h3>

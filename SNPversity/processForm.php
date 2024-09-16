@@ -23,18 +23,21 @@ $ds_part0 = "maizegdb2024";
 $ds_part1 = $chr;
 $ds_part2 = "HQ";
 
-if($dataset == "mgdb2024_hq")
-{
+if ($dataset == "mgdb2024_hq") {
     $ds_part0 = "maizegdb2024";
     $ds_part2 = "HQ";
-} else if ($dataset == "mgdb2024_hq")
-{
+} else if ($dataset == "mgdb2024_hc") {  // Fix the condition here
     $ds_part0 = "maizegdb2024";
     $ds_part2 = "HC";
-
 } else if ($dataset == "schnable2023") {
     $ds_part0 = "schnable2023";
     $ds_part2 = "impute";
+} else if ($dataset == "nam2021_hq") {
+    $ds_part0 = "nam2021";
+    $ds_part2 = "HQ";
+} else if ($dataset == "nam2021_hc") {
+    $ds_part0 = "nam2021";
+    $ds_part2 = "HC";
 }
 
 //$db_filename = "./hdf5/maizegdb2024_" . $ds_part1 . "_" . $ds_part2 . ".h5";
