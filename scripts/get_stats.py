@@ -52,6 +52,7 @@ with open(filename, 'r') as file:
             elif col == "1/0":
                 count_10 += 1
 
+
         # Check the length of the fourth and fifth columns
         if len(columns) > 3 and len(columns[3]) > 1:
             count_fourth_col_length += 1

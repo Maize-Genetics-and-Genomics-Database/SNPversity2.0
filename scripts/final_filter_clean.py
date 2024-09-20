@@ -1,8 +1,13 @@
 import sys
 import re
 
-vcf_file = sys.argv[1]
-out_file = sys.argv[2]
+plink_file = sys.argv[1]
+vcf_file = sys.argv[2]
+out_file = sys.argv[3]
+
+# Open the VCF header file to get the new header
+with open('VCF_header.txt', 'r') as header_file:
+    new_header_lines = header_file.readlines()
 
 def convert_amino_acid_notation(start_notation):
     # Mapping of three-letter amino acid codes to one-letter codes
@@ -50,23 +55,55 @@ def parse_info_string(info_str):
                 try:
                     types.append(split_values[i])
                     effects.append(split_values[i + 1])
-                    gene_models.append(split_values[i + 2])
-                    subs.append(convert_amino_acid_notation(split_values[i + 9]))
+
+                    #gene_models.append(split_values[i + 2])
+                    gene_model = split_values[i + 2].replace('-', '_')
+                    gene_models.append(gene_model)
+
+                    #subs.append(convert_amino_acid_notation(split_values[i + 9]))
+                    sub = convert_amino_acid_notation(split_values[i + 9])
+                    # Replace "NA" with "."
+                    subs.append(sub if sub != "NA" else ".")
 
                 except IndexError:
                     print("Index out of range. Breaking the loop.")
                     break
 
-    final_str = mq+";"+cvc+";"+cvp+";TYPE="+";".join(types)+";EFFECT="+";".join(effects)+";GENEMODEL="+";".join(gene_models)+";SUB="+";".join(subs)
-    return final_str
+    final_str = mq+";"+cvc+";"+cvp+";TYPE="+",".join(types)+";EFFECT="+",".join(effects)+";GENEMODEL="+",".join(gene_models)+";SUB="+",".join(subs)
+    return final_str  # Return None if key not found
 
+
+# Step 1: Read the first TSV file and build the dictionary
+bp_values = {}
+ccount = 0
+with open(plink_file, 'r') as file:
+    next(file)  # Skip the header
+
+    for line in file:
+        parts = re.split(r'\s+', line.strip())
+        if len(parts) > 1:  # Check if the line has the required columns
+            ccount += 1
+            bp_a = int(parts[1])  # Assuming 'BP_A' is the second column
+            bp_b = int(parts[4])  # Assuming 'BP_B' is the fifth column
+            r2 = float(parts[6])  # Assuming 'BP_B' is the fifth column
+            bp_values[bp_a] = r2
+            bp_values[bp_b] = r2
+            if ccount == 100000:
+                print(bp_a, flush=True)
+                ccount = 0
+
+# Step 2 and 3: Read the second TSV file and write matching rows to the output file as they are found
 with open(vcf_file, 'r') as file, open(out_file, 'w') as outfile:
     for line in file:
         if line.startswith('##'):
             continue
-        elif line.startswith('#'):
-            outfile.write(line)
+            #outfile.write(line)
+        elif line.startswith('#CHROM'):
+            #outfile.write(line)
+            outfile.writelines(new_header_lines)
         else :
             parts = line.strip().split('\t')
-            parts[7] = parse_info_string(parts[7])
-            outfile.write("\t".join(parts)+"\n")
+            if int(parts[1]) in bp_values:
+                #parts[7] = parts[7].apply(lambda x: parse_info_value(x))
+                parts[7] = parse_info_string(parts[7])+";MAXR2="+str(bp_values[int(parts[1])])
+                outfile.write("\t".join(parts)+"\n")

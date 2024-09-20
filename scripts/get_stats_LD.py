@@ -1,5 +1,6 @@
 import sys
 
+print("Start 1 ",flush=True)
 # Check if the file name is provided as a command-line argument
 if len(sys.argv) != 2:
     print("Usage: script.py <file.tsv>")
@@ -7,6 +8,7 @@ if len(sys.argv) != 2:
 
 filename = sys.argv[1]
 
+print("Start 2 ",flush=True)
 # Initialize counters
 count_01_10 = 0
 count_fourth_col_length = 0
@@ -33,8 +35,10 @@ count_dot = 0
 count_01 = 0
 count_10 = 0
 
+print("Start 3 ",flush=True)
 # Open the TSV file for reading
 with open(filename, 'r') as file:
+    print("Start 4 ",flush=True)
     for line in file:
         row_count += 1
         columns = line.strip().split('\t')
@@ -55,6 +59,7 @@ with open(filename, 'r') as file:
                 count_01 += 1
             elif col == "1/0":
                 count_10 += 1
+
 
         # Check the length of the fourth and fifth columns
         if len(columns) > 3 and len(columns[3]) > 1:
@@ -101,7 +106,7 @@ with open(filename, 'r') as file:
                     elif 0.9 <= cvp_value <= 1.0:
                         r2_90_100 += 1
         # Output the counts every 500,000 records
-        if row_count % 500000 == 0:
+        if row_count % 5000 == 0:
             print(f"Processed {row_count} records...", flush=True)
             # Output the intermediate counts here
 
