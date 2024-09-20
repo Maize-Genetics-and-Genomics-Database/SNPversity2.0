@@ -148,17 +148,17 @@ The table shows the composition of public resequencing data used to build the da
 
 |Effect | High Coverage | High Quality |
 |---------------|--------------|--------------|
-|intergenic |215,080,035 |68,906,837|
-|5' UTR | 544,019 | 287,968|
-|synonymous |1,041,139 |522,746|
-|missense |1,309,956 |571,757|
-|stop |61,005  |20,004|
-|frameshift |138,321 |40,452|
-|intron |8,580,886 |4,342,508|
-|non-coding	|3,701 |1,978|
-|3'UTR |800,486 |68,334|
-|other |46,332 |18,387|
-|TOTAL |227,605,880 |75,180,971|
+|intergenic |216,128,332 | 69,236,257|
+|5' UTR |544,839 | 287,968|
+|synonymous |1,042,272 | 523,102|
+|missense |1,311,927 | 572,404|
+|stop |61,129 | 20,049|
+|frameshift |138,463 | 40,550|
+|intron |8,601,103 | 4,349,068|
+|non-coding	|3,708 | 1,978|
+|3'UTR |801,323 | 468,603|
+|other |46,355 | 18,411|
+|TOTAL |228,679,451 | 75,518,390|
 
 The table shows the variant effect dataset.  The table the type of variant effect for the high-coverage and high-quality datasets.
 
