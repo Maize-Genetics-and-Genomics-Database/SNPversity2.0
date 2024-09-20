@@ -1,6 +1,96 @@
     filename_global = "";
     current_page = 1;
     max_page = 9999;
+    dataset = "maizegdb"
+
+    window.onload = function() {
+        // Select all radio buttons with name 'ds' within the dataset-table
+        const radioButtons = document.querySelectorAll('.dataset-table input[name="ds"]');
+
+        // Iterate over each radio button and attach a change event listener
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Get the selected value
+                var selectedValue = this.value;
+
+                // Log the selected dataset
+                console.log("Selected dataset:", selectedValue);
+
+                // Remove 'selected' class from all rows
+                document.querySelectorAll('.dataset-table tr').forEach(row => {
+                    row.classList.remove('selected');
+                });
+
+                // Add 'selected' class to the closest row of the selected radio button
+                this.closest('tr').classList.add('selected');
+
+                // Call the function to handle the dataset change
+                handleDatasetChange(selectedValue);
+            });
+        });
+
+        // Initialize the selected row when the page loads
+        const selectedRadio = document.querySelector('.dataset-table input[name="ds"]:checked');
+        if (selectedRadio) {
+            selectedRadio.closest('tr').classList.add('selected');
+        }
+    };
+
+
+
+
+
+
+    function handleDatasetChange(value) {
+
+        //toggleCheckboxesAll(0,'.genotypes');
+        //toggleCheckboxesAll(0,'.genotypes_S');
+        //toggleCheckboxesAll(0,'.genotypes_NAM');
+
+        var divM = document.querySelector('.maize2024_container');
+        var divS = document.querySelector('.schnable2023_container');
+        var divN = document.querySelector('div[name="NAM_container"]');
+
+        // Example function to handle the change
+        if (value === 'mgdb2024_hq') {
+            divM.style.display = "block";
+            divS.style.display = "none";
+            divN.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Quality selected.");
+            // Add your logic here
+        } else if (value === 'mgdb2024_hc') {
+            divM.style.display = "block";
+            divN.style.display = "none";
+            divS.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Coverage selected.");
+            // Add your logic here
+        } else if (value === 'nam2021_hq') {
+            divM.style.display = "block";
+            divN.style.display = "block";
+            divS.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Quality selected.");
+            // Add your logic here
+        } else if (value === 'nam2021_hc') {
+            divM.style.display = "block";
+            divN.style.display = "block";
+            divS.style.display = "none";
+            dataset = "maizegdb"
+            console.log("MaizeGDB 2024 High Coverage selected.");
+            // Add your logic here
+        } else if (value === 'schnable2023') {
+            divM.style.display = "none";
+            divN.style.display = "none";
+            divS.style.display = "block";
+            dataset = "schnable"
+            console.log("Schnable 2023 Imputation selected.");
+            // Add your logic here
+        }
+        // Add more logic as needed
+    }
+
 
     //Activates a DOM element given an ID
     function showContent(id) {
@@ -146,15 +236,57 @@
 
             reader.readAsText(file);
         } else {
-            // Handle the case where no file is uploaded
-            var checkboxes = document.querySelectorAll('.genotypes');
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    if(checkbox.value != "skip") {
-                        accessionValues.push(checkbox.value);
-                    }
-               }
-            });
+
+            var selectedValue = document.querySelector('input[name="ds"]:checked').value;
+
+            if (selectedValue === 'mgdb2024_hq' || selectedValue === 'mgdb2024_hc') {
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypes');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
+            } else if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
+
+                var checkboxesS = document.querySelectorAll('.genotypesNAM');
+                checkboxesS.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                        }
+                   }
+                });
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypes');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
+            } else if (selectedValue === 'schnable2023') {
+
+                var checkboxesS = document.querySelectorAll('.genotypes_S');
+                checkboxesS.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                        }
+                   }
+                });
+
+            }
+
             // Call the callback function with values from checkboxes
             callback(JSON.stringify(accessionValues));
         }
@@ -190,7 +322,8 @@ $(document).ready(function() {
         var startValue = $('#startInput').val();
         var endValue = $('#endInput').val();
         var chromosome = $('#chrInput').val();
-        var dataS = $('#dataset').val();
+        //var dataS = $('#dataset').val();
+        var dataS = document.querySelector('input[name="ds"]:checked').value;
         var pageValue = $('#pageInput').val(); // This retrieves the value as a string
         var genotypesJson = "";
         var genomic_length = endValue - startValue;
@@ -203,7 +336,12 @@ $(document).ready(function() {
                 console.log("The input value is not a valid number.");
                 rowsPerPage = 100;
             }
-
+            //console.log(startValue);
+            //console.log(endValue);
+            //console.log(chromosome);
+            //console.log(genotypesJson);
+            //console.log(dataS);
+            //console.log(filename_global);
             //$('#outputContainer').html('<img src="./gif/loading.gif" alt="Loading...">');
             //$('#loadingContainer').html('<br><br><center><img width="100px" src="./gif/loading.gif" alt="Loading..."><br>Loading table from VCF file</center>');
 
@@ -223,19 +361,21 @@ $(document).ready(function() {
                 dataType: 'json', // Expecting JSON response
                 success: function(response) {
                     // 'response' is already a JavaScript object
+                    console.log(response.message);
+
                     if (response.status === "success") {
+                        console.log("VCF created - Success");
                         if (genomic_length < 1000000)
                         {
                             parseVCF(filename_global,chromosome);
                         } else {
                             downloadVCF(filename_global,chromosome);
                         }
-
                         handleFileSelect2();
                         document.getElementById("tree_block").style.display = "none";
 
                     } else {
-                        console.log("Fail");
+                        console.log("VCF created - Fail");
                         $('#loadingContainer').html('');
                         $('#loadingContainer').css('display', 'none');
                         $('#outHeader').css('display', 'block');
@@ -244,7 +384,7 @@ $(document).ready(function() {
                     }
                 },
                 complete: function() {
-                    console.log("Complete");
+                    console.log("VCF created - done");
                     // Hide loading GIF or other actions
                 }
             });
@@ -312,14 +452,23 @@ function downloadFile(outFile) {
     document.body.removeChild(downloadLink);
 }
 
-function openPopup() {
+function openPopupM() {
            var myWindow = window.open("", "MsgWindow", "width=820,height=500");
            myWindow.document.open();
-           myWindow.document.write('<html><head><title>Maize Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 20px;}</style></head><body>');
-           myWindow.document.write(document.getElementById("tableToPopup").innerHTML);
+           myWindow.document.write('<html><head><title>MaizeGDB 2024 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
+           myWindow.document.write(document.getElementById("tableToPopupM").innerHTML);
            myWindow.document.write('</body></html>');
            myWindow.document.close();
        }
+
+function openPopupS() {
+          var myWindow = window.open("", "MsgWindow", "width=820,height=500");
+          myWindow.document.open();
+          myWindow.document.write('<html><head><title>Schnable 2023 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
+          myWindow.document.write(document.getElementById("tableToPopupS").innerHTML);
+          myWindow.document.write('</body></html>');
+          myWindow.document.close();
+      }
 
 function allelePopup() {
           var myWindow = window.open("", "MsgWindow", "width=650,height=250");
@@ -374,9 +523,10 @@ function parseVCF(outFile, curChr) {
                 $('#outHeader').html(`
                     <div>
                         <button class="popup-button" onclick="downloadFile('${outFile}')">Download the VCF file</button>
-                        <button class="popup-button" onclick="openPopup()">View the maize accession key</button>
-                        <button class="popup-button" onclick="allelePopup()">View the allele key</button>
-                        <button class="popup-button" onclick="varPopup()">View common variant effect types</button>
+                        <button class="popup-button" onclick="openPopupM()">MaizeGDB2024 accession key</button>
+                        <button class="popup-button" onclick="openPopupS()">Schnable2023 accession key</button>
+                        <button class="popup-button" onclick="allelePopup()">Allele key</button>
+                        <button class="popup-button" onclick="varPopup()">Common variant effect types</button>
                     </div><br><br>
                 `);
 
@@ -538,10 +688,15 @@ function parseVCF(outFile, curChr) {
                   const th = document.createElement('th');
                     //th.innerHTML = header.replace(/_/g, '<span class="vertical-text"> </span>').replace(/#/g, '');
 
+                    //let underscoreCount = (header.split('_').length - 1);
                     let header_split = header.split('_');
-                    //Add code to fix the Wisonsin Diversity Panel Names
-
-                    header_print = header_split[0];
+                    if (dataset == "maizegdb")
+                    {
+                        header_print = header_split.slice(0, -1).join('_');
+                    } else {
+                        header_print = header;
+                    }
+                    //header_print = header_split[0];
 
                     switch(header_print) {
                         case "SAMEA111391303":
@@ -658,14 +813,16 @@ function parseVCF(outFile, curChr) {
                             break;
                     }
 
-
-
+                    //NEED TO FIX names with _
                     th.innerHTML = '<span class="vertical-text"> ' + header_print + '</span>';
+
+                    //header = header.replace(/@/g, '_');
 
                     if(header_array[header])
                     {
                         th.className = 'th0_' + header_array[header];
                     } else {
+                        //th.innerHTML = '<span class="vertical-text"> ' + header_print + '</span>';
                         th.className = 'th0';
                     }
 
@@ -877,12 +1034,22 @@ function parseVCF(outFile, curChr) {
                 row.appendChild(td3);
 
                 const td4 = document.createElement('td');
-                td4.innerHTML = Math.round(parseFloat(MQ));
+                //td4.innerHTML = Math.round(parseFloat(MQ));
+                if (!MQ || isNaN(parseFloat(MQ))) {
+                    td4.innerHTML = "NA";
+                } else {
+                    td4.innerHTML = Math.round(parseFloat(MQ));
+                }
                 td4.className = 'td3'; // Assign the class
                 row.appendChild(td4);
 
                 const td6 = document.createElement('td');
-                td6.innerHTML = Math.round(parseFloat(CVP));
+                //td6.innerHTML = Math.round(parseFloat(CVP));
+                if (!CVP || isNaN(parseFloat(CVP))) {
+                    td6.innerHTML = "NA";
+                } else {
+                    td6.innerHTML = Math.round(parseFloat(CVP));
+                }
                 td6.className = 'td3'; // Assign the class
                 row.appendChild(td6);
 
@@ -1077,16 +1244,17 @@ function toggleNAM() {
 }
 
 
-function toggleCheckboxesAll(perc) {
+function toggleCheckboxesAll(perc, genotype_val) {
   // Find the parent table of the "Select All" checkbox
   //var table = source.closest('table');
   // Get all checkboxes within this table with the class 'genotypes'
-  var checkboxes = document.querySelectorAll('.genotypes');
+  var checkboxes = document.querySelectorAll(genotype_val);
 
   // First, uncheck all checkboxes
   checkboxes.forEach(function(checkbox) {
-      checkbox.checked = false;
+      checkbox.checked = false
   });
+
 
   // Calculate 25% of the total number of checkboxes
   var countToCheck = Math.ceil(checkboxes.length * perc);
@@ -1099,30 +1267,58 @@ function toggleCheckboxesAll(perc) {
   for (var i = 0; i < countToCheck; i++) {
       checkboxes[indexes[i]].checked = true;
   }
+
+  var selectedValue = document.querySelector('input[name="ds"]:checked').value;
+
+  console.log("Selected dataset hit:", selectedValue);
+
+  if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
+
+      var checkboxes2 = document.querySelectorAll(".genotypesNAM");
+
+      // First, uncheck all checkboxes
+      checkboxes2.forEach(function(checkbox2) {
+          checkbox2.checked = false
+      });
+
+      // Calculate 25% of the total number of checkboxes
+      var countToCheck2 = Math.ceil(checkboxes2.length * perc);
+
+      // Create an array of indexes and shuffle it
+      var indexes2 = Array.from(Array(checkboxes2.length).keys());
+      shuffleArray(indexes2);
+
+      // Check the first 25% of the shuffled indexes
+      for (var i = 0; i < countToCheck2; i++) {
+          checkboxes2[indexes2[i]].checked = true;
+      }
+  }
+
 }
 
-function toggleCheckboxes(source, perc) {
-  // Find the parent table of the "Select All" checkbox
-  var table = source.closest('table');
-  // Get all checkboxes within this table with the class 'genotypes'
-  var checkboxes = table.querySelectorAll('.genotypes');
+function toggleCheckboxes(source, perc, genotype_val) {
+      // Find the parent table of the "Select All" checkbox
+      var table = source.closest('table');
 
-  // First, uncheck all checkboxes
-  checkboxes.forEach(function(checkbox) {
-      checkbox.checked = false;
-  });
+      // Get all checkboxes within this table with the class 'genotypes'
+      var checkboxes = table.querySelectorAll(genotype_val);
 
-  // Calculate 25% of the total number of checkboxes
-  var countToCheck = Math.ceil(checkboxes.length * perc);
+      // First, uncheck all checkboxes
+      checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+      });
 
-  // Create an array of indexes and shuffle it
-  var indexes = Array.from(Array(checkboxes.length).keys());
-  shuffleArray(indexes);
+      // Calculate 25% of the total number of checkboxes
+      var countToCheck = Math.ceil(checkboxes.length * perc);
 
-  // Check the first 25% of the shuffled indexes
-  for (var i = 0; i < countToCheck; i++) {
-      checkboxes[indexes[i]].checked = true;
-  }
+      // Create an array of indexes and shuffle it
+      var indexes = Array.from(Array(checkboxes.length).keys());
+      shuffleArray(indexes);
+
+      // Check the first 25% of the shuffled indexes
+      for (var i = 0; i < countToCheck; i++) {
+          checkboxes[indexes[i]].checked = true;
+      }
 }
 
 // Utility function to shuffle an array
@@ -1135,13 +1331,36 @@ function shuffleArray(array) {
   }
 }
 
-function loadExample() {
-  // Define an array of strings
+function loadExampleChr10() {
+   // Define an array of gene models
   var geneModels = [
       "Zm00001eb404760",
       "Zm00001eb404740",
-      "Zm00001eb404780",
+     "Zm00001eb404780",
       "Zm00001eb404830"
+  ];
+
+  // Get a random index from the array (from 0 to array length - 1)
+  var randomIndex = Math.floor(Math.random() * geneModels.length);
+
+  // Select a random gene model from the array
+  var selectedGeneModel = geneModels[randomIndex];
+
+  // Set the value of the element with ID 'geneModelId'
+  document.getElementById('geneModelId').value = selectedGeneModel;
+}
+
+function loadExample() {
+
+  // Define an array of gene models
+
+  var geneModels = [
+      "Zm00001eb374090",
+      "Zm00001eb067740",
+      "Zm00001eb374230",
+      "Zm00001eb056510",
+      "Zm00001eb233650",
+      "Zm00001eb313510"
   ];
 
   // Get a random index from the array (from 0 to array length - 1)
