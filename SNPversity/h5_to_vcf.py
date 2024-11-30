@@ -18,7 +18,9 @@ var_list = ['CHROM', 'POS', 'REF', 'ALT', 'QUAL', 'INFO']
 
 genome_list = json.loads(json_string)
 # Reverse mapping from integers to genotype strings
-reverse_genotype_mapping = {0: "0/0", 1: "1/0", 2: "1/1", 3: "./."}
+#reverse_genotype_mapping = {0: "0/0", 1: "1/1", 2: "1/1", 3: "./."}
+reverse_genotype_mapping = {0: "0", 1: "1", 2: "2", 3: "."}
+
 
 current_date = datetime.date.today().strftime('%Y%m%d')
 
@@ -67,57 +69,18 @@ else:
         if "maizegdb" in hdf5_file_path:
             vcf_file.write("##fileformat=VCFv4.2\n")
             vcf_file.write("##fileDate=" + current_date + "\n")
-            vcf_file.write("##source=MaizeGDB2024\n")
-            vcf_file.write("##reference=Andorf CM, Ross-Ibarra J, Seetharam AS, Hufford MB, Woodhouse MR. (2024) A unified VCF data set from nearly 1,500 diverse maize accessions and resources to explore the genomic landscape of maize. G3 Genes|Genomes|Genetics.\n")
-            vcf_file.write("##doi=https://doi.org/10.1101/2024.04.30.591904\n")
-            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality\">\n")
-            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant\">\n")
+            vcf_file.write("##source=Fusarium2024\n")
+            vcf_file.write("##reference=TBD\n")
+            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality.\">\n")
+            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant.\">\n")
             vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
-            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms\">\n")
-            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness\">\n")
-            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant\">\n")
-            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants\">\n")
-            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci\">\n")
+            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms.\">\n")
+            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness.\">\n")
+            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant.\">\n")
+            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants.\">\n")
+            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci.\">\n")
             vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
             vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
-        if "nam" in hdf5_file_path:
-            vcf_file.write("##fileformat=VCFv4.2\n")
-            vcf_file.write("##fileDate=" + current_date + "\n")
-            vcf_file.write("##source=MaizeGDB2024+NAM\n")
-            vcf_file.write("##reference=Andorf CM, Ross-Ibarra J, Seetharam AS, Hufford MB, Woodhouse MR. (2024) A unified VCF data set from nearly 1,500 diverse maize accessions and resources to explore the genomic landscape of maize. G3 Genes|Genomes|Genetics.\n")
-            vcf_file.write("##doi=https://doi.org/10.1101/2024.04.30.591904\n")
-            vcf_file.write("##reference=Hufford MB, Seetharam AS, Woodhouse MR, et al. De novo assembly, annotation, and comparative analysis of 26 diverse maize genomes. Science. 2021;373(6555):655-662.\n")
-            vcf_file.write("##doi=https://doi.org/10.1126/science.abg5289\n")
-            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality\">\n")
-            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant\">\n")
-            vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
-            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms\">\n")
-            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness\">\n")
-            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant\">\n")
-            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants\">\n")
-            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci\">\n")
-            vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
-            vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
-        if "schnable" in hdf5_file_path:
-            vcf_file.write("##fileformat=VCFv4.2\n")
-            vcf_file.write("##fileDate=" + current_date + "\n")
-            vcf_file.write("##source=Schnable2023\n")
-            vcf_file.write("##reference=Andorf CM, Ross-Ibarra J, Seetharam AS, Hufford MB, Woodhouse MR. (2024) A unified VCF data set from nearly 1,500 diverse maize accessions and resources to explore the genomic landscape of maize. G3 Genes|Genomes|Genetics.\n")
-            vcf_file.write("##doi=https://doi.org/10.1101/2024.04.30.591904\n")
-            vcf_file.write("##reference=Grzybowski MW, Mural RV, Xu G, Turkus J, Yang J, Schnable JC. A common resequencing-based genetic marker data set for global maize diversity. Plant J. 2023;113(6):1109-1121.\n")
-            vcf_file.write("##doi=https://doi.org/10.1111/tpj.16123\n")
-            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality\">\n")
-            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant\">\n")
-            vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
-            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms\">\n")
-            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness\">\n")
-            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant\">\n")
-            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants\">\n")
-            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci\">\n")
-            vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
-            vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
-
-
 
 
         for i in range(len(variant_data['POS'])):
@@ -133,6 +96,7 @@ else:
                 FORMAT
             ]
             genotypes = [reverse_genotype_mapping[genome_data[genome][i]] for genome in genome_list]
+            #genotypes = [genome_data[genome][i] for genome in genome_list]
 
             vcf_file.write("\t".join(row + genotypes) + "\n")
 

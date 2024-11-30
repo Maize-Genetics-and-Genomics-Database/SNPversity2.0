@@ -41,7 +41,7 @@ if ($dataset == "mgdb2024_hq") {
 }
 
 //$db_filename = "./hdf5/maizegdb2024_" . $ds_part1 . "_" . $ds_part2 . ".h5";
-$db_filename = "./hdf5/" . $ds_part0 . "_" . $ds_part1 . "_" . $ds_part2 . ".h5";
+$db_filename = "./hdf5/fusarium/" . $ds_part0 . "_" . $ds_part1 . "_" . $ds_part2 . ".h5";
 //$db_filename = "./hdf5/" . $ds_part1 . "_" . $ds_part2 . ".h5";
 
 //$db = escapeshellarg("./hdf5/chr10_HQ_small.h5");
