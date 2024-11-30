@@ -455,7 +455,7 @@ function downloadFile(outFile) {
 function openPopupM() {
            var myWindow = window.open("", "MsgWindow", "width=820,height=500");
            myWindow.document.open();
-           myWindow.document.write('<html><head><title>MaizeGDB 2024 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
+           myWindow.document.write('<html><head><title>F. graminearum 2024 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
            myWindow.document.write(document.getElementById("tableToPopupM").innerHTML);
            myWindow.document.write('</body></html>');
            myWindow.document.close();
@@ -523,8 +523,7 @@ function parseVCF(outFile, curChr) {
                 $('#outHeader').html(`
                     <div>
                         <button class="popup-button" onclick="downloadFile('${outFile}')">Download the VCF file</button>
-                        <button class="popup-button" onclick="openPopupM()">MaizeGDB2024 accession key</button>
-                        <button class="popup-button" onclick="openPopupS()">Schnable2023 accession key</button>
+                        <button class="popup-button" onclick="openPopupM()">F. graminearum 2024 accession key</button>
                         <button class="popup-button" onclick="allelePopup()">Allele key</button>
                         <button class="popup-button" onclick="varPopup()">Common variant effect types</button>
                     </div><br><br>
@@ -579,6 +578,16 @@ function parseVCF(outFile, curChr) {
 
     // CSS class application based on genotype
     function getGenotypeClass(genotype) {
+      switch (genotype.trim()) {
+        case '0': return 'gt-0-0';
+        //case '0/1': case '1/0': return 'gt-0-1';
+        case '1': return 'gt-1-1';
+        case '.': return 'gt-dot-dot';
+        default: return 'gt-other';
+      }
+    }
+
+    function getGenotypeClassOld(genotype) {
       switch (genotype.trim()) {
         case '0/0': return 'gt-0-0';
         case '0/1': case '1/0': return 'gt-0-1';
@@ -689,13 +698,15 @@ function parseVCF(outFile, curChr) {
                     //th.innerHTML = header.replace(/_/g, '<span class="vertical-text"> </span>').replace(/#/g, '');
 
                     //let underscoreCount = (header.split('_').length - 1);
-                    let header_split = header.split('_');
-                    if (dataset == "maizegdb")
-                    {
-                        header_print = header_split.slice(0, -1).join('_');
-                    } else {
-                        header_print = header;
-                    }
+                    //let header_split = header.split('_');
+                    //if (dataset == "maizegdb")
+                    //{
+                    //    header_print = header_split.slice(0, -1).join('_');
+                    //} else {
+                    //    header_print = header;
+                    //}
+
+                    header_print = header;
                     //header_print = header_split[0];
 
                     switch(header_print) {
@@ -955,10 +966,11 @@ function parseVCF(outFile, curChr) {
                 let upper = parseInt(pos_val) + 10000;
                 let lower = parseInt(pos_val) - 10000;
 
-                let link = "https://jbrowse.maizegdb.org/index.html?data=B73&loc=" + chrom + ":" + lower + ".." + upper + "&highlight=" + chrom + ":" + pos_val + ".." + pos_val;
+                //let link = "https://jbrowse.maizegdb.org/index.html?data=B73&loc=" + chrom + ":" + lower + ".." + upper + "&highlight=" + chrom + ":" + pos_val + ".." + pos_val;
 
                 const td1 = document.createElement('td');
-                td1.innerHTML = "<a target='_blank' href='" + link + "'>" + GM + "</a>";
+                //td1.innerHTML = "<a target='_blank' href='" + link + "'>" + GM + "</a>";
+                td1.innerHTML = GM;
                 td1.className = 'td2'; // Assign the class
                 td1.dataset.tooltiptext = GM; // Store the EF value in a data attribute
                 row.appendChild(td1);
@@ -979,7 +991,7 @@ function parseVCF(outFile, curChr) {
                     // When "missense" is found, use the corresponding GM value to create a link
                     var gmValue = GMArray[index];
                     var subValue = SUBArray[index];
-                    var link = "http://www.maizegdb.org/effect/maize/index.html?id=" + gmValue;
+                    var link = "https://www.maizegdb.org/effect/fusarium/index.php?id=" + gmValue;
                     // Append the link HTML to the htmlResult string
                     if(first_hit)
                     {
@@ -1075,19 +1087,19 @@ function parseVCF(outFile, curChr) {
 
                   let cell_mod = 'N';
                     switch (genotype) {
-                      case '0/0':
+                      case '0':
                         cell_mod = '0'
                         break;
-                      case '0/1':
+                      case '1':
                         cell_mod = '1';
                         break;
-                      case '1/0':
+                      case '2':
                         cell_mod = '1';
                         break;
                       case '1/1':
                         cell_mod = '2';
                         break;
-                      case './.':
+                      case '.':
                         cell_mod = 'N';
                         break;
                       default:
@@ -1355,12 +1367,10 @@ function loadExample() {
   // Define an array of gene models
 
   var geneModels = [
-      "Zm00001eb374090",
-      "Zm00001eb067740",
-      "Zm00001eb374230",
-      "Zm00001eb056510",
-      "Zm00001eb233650",
-      "Zm00001eb313510"
+      "FGSG_06583",
+      "FGSG_06597",
+      "FGSG_06605",
+      "FGSG_06612"
   ];
 
   // Get a random index from the array (from 0 to array length - 1)
