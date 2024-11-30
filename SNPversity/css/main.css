@@ -397,6 +397,7 @@
   .td1 {
       width: 60px;
       max-width: 60px; /* Ensures the width doesn't exceed this value */
+      left: 0;
   }
 
   .td2 {
@@ -1304,7 +1305,7 @@ pre {
         .dataset-table .radio-cell {
             text-align: center;
         }
-        
+
         /* Highlight selected row with a fixed color */
         .dataset-table tr.selected {
             background-color: #d1e7dd; /* Choose your desired fixed color */
