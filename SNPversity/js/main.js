@@ -3,9 +3,38 @@
     max_page = 9999;
     dataset = "maizegdb"
 
+    const speciesToChromosomes = {
+        'mgdb2024_hq': 4,
+        'mgdb2024_hc': 4,
+        'vert2024_hq': 12,
+        'vert2024_hc': 12,
+        'vertV2024_hq': 11,
+        'vertV2024_hc': 11
+    };
+
+    const speciesToName = {
+        'mgdb2024_hq': 'Fusarium graminearum PH-1',
+        'mgdb2024_hc': 'Fusarium graminearum PH-1',
+        'vert2024_hq': 'Fusarium verticillioides MRC 826',
+        'vert2024_hc': 'Fusarium verticillioides MRC 826',
+        'vertV2024_hq': 'Fusarium verticillioides 7600',
+        'vertV2024_hc': 'Fusarium verticillioides 7600'
+    };
+
     window.onload = function() {
         // Select all radio buttons with name 'ds' within the dataset-table
         const radioButtons = document.querySelectorAll('.dataset-table input[name="ds"]');
+
+        const defaultRadio = document.querySelector('input[name="ds"]:checked');
+            if (defaultRadio) {
+                updateChromosomes(defaultRadio);
+            } else {
+                // If no radio is selected by default, set default state
+                const chrInput = document.getElementById('chrInput');
+                const speciesNameSpan = document.getElementById('speciesname');
+                chrInput.innerHTML = '<option value="">Please select a dataset</option>';
+                speciesNameSpan.textContent = 'Please select a dataset.';
+            }
 
         // Iterate over each radio button and attach a change event listener
         radioButtons.forEach(radio => {
@@ -26,6 +55,7 @@
 
                 // Call the function to handle the dataset change
                 handleDatasetChange(selectedValue);
+
             });
         });
 
@@ -36,10 +66,37 @@
         }
     };
 
+    function updateChromosomes(radio) {
+        let numChromosomes = speciesToChromosomes[radio.value];
+        let speciesName = speciesToName[radio.value];
+        if (!numChromosomes) {
+            // Handle the case where the species is not found
+            chrInput.innerHTML = '<option value="">No chromosomes available</option>';
+            speciesNameSpan.textContent = 'Unknown Species';
+            return;
+        }
 
+        // Get reference to the chrInput select element
+        const chrInput = document.getElementById('chrInput');
 
+        // Clear existing options
+        chrInput.innerHTML = '';
 
+        // Populate new options
+        for (let i = 1; i <= numChromosomes; i++) {
+            const option = document.createElement('option');
+            option.value = 'chr' + i;
+            option.text = 'Chromosome ' + i;
+            chrInput.appendChild(option);
+        }
 
+        // Get reference to the speciesname span element
+        const speciesNameSpan = document.getElementById('speciesname');
+
+        // Update the species name in the span
+        speciesNameSpan.textContent = speciesName;
+
+    }
 
     function handleDatasetChange(value) {
 
@@ -48,44 +105,51 @@
         //toggleCheckboxesAll(0,'.genotypes_NAM');
 
         var divM = document.querySelector('.maize2024_container');
-        var divS = document.querySelector('.schnable2023_container');
-        var divN = document.querySelector('div[name="NAM_container"]');
+        var divS = document.querySelector('.vert2024_container');
+        //var divN = document.querySelector('div[name="NAM_container"]');
 
         // Example function to handle the change
         if (value === 'mgdb2024_hq') {
             divM.style.display = "block";
             divS.style.display = "none";
-            divN.style.display = "none";
+            //divN.style.display = "none";
             dataset = "maizegdb"
-            console.log("MaizeGDB 2024 High Quality selected.");
+            console.log("Gram 2024 High Quality selected.");
             // Add your logic here
         } else if (value === 'mgdb2024_hc') {
             divM.style.display = "block";
-            divN.style.display = "none";
+            //divN.style.display = "none";
             divS.style.display = "none";
             dataset = "maizegdb"
-            console.log("MaizeGDB 2024 High Coverage selected.");
+            console.log("Gram 2024 High Coverage selected.");
             // Add your logic here
-        } else if (value === 'nam2021_hq') {
-            divM.style.display = "block";
-            divN.style.display = "block";
-            divS.style.display = "none";
-            dataset = "maizegdb"
-            console.log("MaizeGDB 2024 High Quality selected.");
-            // Add your logic here
-        } else if (value === 'nam2021_hc') {
-            divM.style.display = "block";
-            divN.style.display = "block";
-            divS.style.display = "none";
-            dataset = "maizegdb"
-            console.log("MaizeGDB 2024 High Coverage selected.");
-            // Add your logic here
-        } else if (value === 'schnable2023') {
+        } else if (value === 'vert2024_hq') {
             divM.style.display = "none";
-            divN.style.display = "none";
+            //divN.style.display = "none";
             divS.style.display = "block";
-            dataset = "schnable"
-            console.log("Schnable 2023 Imputation selected.");
+            dataset = "vert"
+            console.log("Vert 2024 High Quality selected.");
+            // Add your logic here
+        } else if (value === 'vert2024_hc') {
+            divM.style.display = "none";
+            //divN.style.display = "block";
+            divS.style.display = "block";
+            dataset = "vert"
+            console.log("Vert 2024 High Coverage selected.");
+            // Add your logic here
+        } else if (value === 'vertV2024_hq') {
+            divM.style.display = "none";
+            //divN.style.display = "none";
+            divS.style.display = "block";
+            dataset = "vertV"
+            console.log("Vert 7600 2024 High Quality selected.");
+            // Add your logic here
+        } else if (value === 'vertV2024_hc') {
+            divM.style.display = "none";
+            //divN.style.display = "block";
+            divS.style.display = "block";
+            dataset = "vertV"
+            console.log("Vert 7600 2024 High Coverage selected.");
             // Add your logic here
         }
         // Add more logic as needed
@@ -236,7 +300,7 @@
 
             reader.readAsText(file);
         } else {
-
+            //accessionValues = []
             var selectedValue = document.querySelector('input[name="ds"]:checked').value;
 
             if (selectedValue === 'mgdb2024_hq' || selectedValue === 'mgdb2024_hc') {
@@ -252,24 +316,13 @@
                    }
                 });
 
-            } else if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
+            } else if (selectedValue === 'vert2024_hq' || selectedValue === 'vert2024_hc' || selectedValue === 'vertV2024_hq' || selectedValue === 'vertV2024_hc') {
 
-                var checkboxesS = document.querySelectorAll('.genotypesNAM');
+                var checkboxesS = document.querySelectorAll('.genotypesVERT');
                 checkboxesS.forEach(function(checkbox) {
                     if (checkbox.checked) {
                         if(checkbox.value != "skip") {
                             accessionValues.push(checkbox.value);
-                        }
-                   }
-                });
-
-                // Handle the case where no file is uploaded
-                var checkboxes = document.querySelectorAll('.genotypes');
-                checkboxes.forEach(function(checkbox) {
-                    if (checkbox.checked) {
-                        if(checkbox.value != "skip") {
-                            accessionValues.push(checkbox.value);
-                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
                         }
                    }
                 });
@@ -336,16 +389,10 @@ $(document).ready(function() {
                 console.log("The input value is not a valid number.");
                 rowsPerPage = 100;
             }
-            //console.log(startValue);
-            //console.log(endValue);
-            //console.log(chromosome);
-            //console.log(genotypesJson);
-            //console.log(dataS);
-            //console.log(filename_global);
-            //$('#outputContainer').html('<img src="./gif/loading.gif" alt="Loading...">');
-            //$('#loadingContainer').html('<br><br><center><img width="100px" src="./gif/loading.gif" alt="Loading..."><br>Loading table from VCF file</center>');
 
             filename_global = createUniqueFilename(startValue, endValue);
+
+            console.log(genotypesJson);
 
             $.ajax({
                 type: 'POST',
@@ -451,6 +498,27 @@ function downloadFile(outFile) {
     // Remove the anchor from the document
     document.body.removeChild(downloadLink);
 }
+
+function getGradientColor(score) {
+    // Map score from -15 (red) to 10 (green)
+    const min = -15;
+    const max = 10;
+    // Ensure score is within the range
+    score = Math.min(Math.max(score, min), max);
+    const ratio = (score - min) / (max - min);  // ratio from 0 to 1
+
+    // Interpolate: at ratio=0 => red=255, green=0; at ratio=1 => red=0, green=255
+    const red = Math.round(255 * (1 - ratio));
+    const green = Math.round(255 * ratio);
+    if (score <= 1 && score >= -1)
+    {
+        return `rgb(211, 211, 211)`;
+    } else {
+        return `rgb(${red}, ${green}, 0)`;
+    }
+
+}
+
 
 function openPopupM() {
            var myWindow = window.open("", "MsgWindow", "width=820,height=500");
@@ -693,18 +761,24 @@ function parseVCF(outFile, curChr) {
                   th7.innerHTML = "max R2";
                   th7.className = 'th3'; // Assign the class
                   headerRow.appendChild(th7);
+
+                  const th8 = document.createElement('th');
+                  th8.innerHTML = "MAF";
+                  th8.className = 'th3'; // Assign the class
+                  headerRow.appendChild(th8);
+
+                  const th9 = document.createElement('th');
+                  th9.innerHTML = "DNA score";
+                  th9.className = 'th3'; // Assign the class
+                  headerRow.appendChild(th9);
+
+                  const th10 = document.createElement('th');
+                  th10.innerHTML = "AA score";
+                  th10.className = 'th3'; // Assign the class
+                  headerRow.appendChild(th10);
+
               } else if(headerIndex > 8) {
                   const th = document.createElement('th');
-                    //th.innerHTML = header.replace(/_/g, '<span class="vertical-text"> </span>').replace(/#/g, '');
-
-                    //let underscoreCount = (header.split('_').length - 1);
-                    //let header_split = header.split('_');
-                    //if (dataset == "maizegdb")
-                    //{
-                    //    header_print = header_split.slice(0, -1).join('_');
-                    //} else {
-                    //    header_print = header;
-                    //}
 
                     header_print = header;
                     //header_print = header_split[0];
@@ -836,7 +910,6 @@ function parseVCF(outFile, curChr) {
                         //th.innerHTML = '<span class="vertical-text"> ' + header_print + '</span>';
                         th.className = 'th0';
                     }
-
                     headerRow.appendChild(th);
               }
 
@@ -846,6 +919,7 @@ function parseVCF(outFile, curChr) {
 
           thead.appendChild(headerRow);
           table.appendChild(thead);
+
       } else if (!line.startsWith('#') && line.length > 1) {
           const rowData = line.split('\t');
           const row = document.createElement('tr');
@@ -950,6 +1024,21 @@ function parseVCF(outFile, curChr) {
                     R2_val = "NA";
                 }
 
+                let MAF = cell.match(/MAF=([^;]+)/)[1];
+                if (MAF== ".") {
+                    MAF = "N/A"
+                }
+
+                let DNA = cell.match(/DNA_SCORE=([^;]+)/)[1];
+                if (DNA == ".") {
+                    DNA = "N/A"
+                }
+
+                let AASCORE = cell.match(/AA_SCORE=([^;]+)/)[1];
+                if (AASCORE == ".") {
+                    AASCORE = "N/A"
+                }
+
                 let SUBMatch = cell.match(/SUB=([^\t]*?)(?:MAXR2=|\t|$)/);
                 let SUB = '';
 
@@ -991,14 +1080,23 @@ function parseVCF(outFile, curChr) {
                     // When "missense" is found, use the corresponding GM value to create a link
                     var gmValue = GMArray[index];
                     var subValue = SUBArray[index];
-                    var link = "https://www.maizegdb.org/effect/fusarium/index.php?id=" + gmValue;
-                    // Append the link HTML to the htmlResult string
-                    if(first_hit)
+                    var link = ""
+
+                    if(dataset == "maizegdb")
                     {
-                       htmlResult += `(${subValue}) <a href="${link}" target="_blank">${ftElement}</a>`;
-                       first_hit = false;
+                        "https://www.maizegdb.org/effect/fusarium/index.php?id=" + gmValue;
+
+                        // Append the link HTML to the htmlResult string
+                        if(first_hit)
+                        {
+                           htmlResult += `(${subValue}) <a href="${link}" target="_blank">${ftElement}</a>`;
+                           first_hit = false;
+                        } else {
+                            htmlResult += `<br>(${subValue}) <a href="${link}" target="_blank">${ftElement}</a>`;
+                        }
                     } else {
-                        htmlResult += `<br>(${subValue}) <a href="${link}" target="_blank">${ftElement}</a>`;
+                            htmlResult += `(${subValue}) ${ftElement}`;
+
                     }
 
                 } else if (ftElement.includes("synonymous")) {
@@ -1069,6 +1167,31 @@ function parseVCF(outFile, curChr) {
                 td7.innerHTML = R2_val;
                 td7.className = 'td3'; // Assign the class
                 row.appendChild(td7);
+
+                const td8 = document.createElement('td');
+                td8.innerHTML = MAF;
+                td8.className = 'td_maf'; // Assign the class
+                row.appendChild(td8);
+
+                // Apply inline CSS based on the MAF score
+
+                const td9 = document.createElement('td');
+                td9.innerHTML = DNA;
+                td9.className = 'td3'; // Assign the class
+                const mafValue = parseFloat(DNA);
+
+                // Set background color using the gradient function
+                td9.style.backgroundColor = getGradientColor(DNA);
+                td9.style.color = 'white';  // Adjust text color for readability
+
+                row.appendChild(td9);
+
+                const td10 = document.createElement('td');
+                td10.innerHTML = AASCORE;
+                td10.className = 'td3'; // Assign the class
+                td10.style.backgroundColor = getGradientColor(AASCORE);
+                td10.style.color = 'white';  // Adjust text color for readability
+                row.appendChild(td10);
             }
 
             if(cellIndex == 8)
@@ -1345,12 +1468,35 @@ function shuffleArray(array) {
 
 function loadExampleChr10() {
    // Define an array of gene models
-  var geneModels = [
-      "Zm00001eb404760",
-      "Zm00001eb404740",
-     "Zm00001eb404780",
-      "Zm00001eb404830"
-  ];
+
+   if(dataset == "maizegdb")
+   {
+      var geneModels = [
+          "Zm00001eb404760",
+          "Zm00001eb404740",
+         "Zm00001eb404780",
+          "Zm00001eb404830"
+      ];
+
+  } else if(dataset == "vert")
+  {
+     var geneModels = [
+         "FVERT4_000080",
+         "FVERT4_000240",
+        "Zm00001eb404780",
+         "Zm00001eb404830"
+     ];
+
+ } else if(dataset == "vertV")
+ {
+    var geneModels = [
+        "FVERT4_000080",
+        "FVERT4_000240",
+       "Zm00001eb404780",
+        "Zm00001eb404830"
+    ];
+
+}
 
   // Get a random index from the array (from 0 to array length - 1)
   var randomIndex = Math.floor(Math.random() * geneModels.length);
@@ -1366,12 +1512,34 @@ function loadExample() {
 
   // Define an array of gene models
 
-  var geneModels = [
-      "FGSG_06583",
-      "FGSG_06597",
-      "FGSG_06605",
-      "FGSG_06612"
-  ];
+  if(dataset == "maizegdb")
+  {
+      var geneModels = [
+          "FGSG_06583",
+          "FGSG_06597",
+          "FGSG_06605",
+          "FGSG_06612"
+      ];
+
+ } else if(dataset == "vert")
+ {
+    var geneModels = [
+        "FVERT4_000080",
+        "FVERT4_000240",
+        "FVERT4_000450",
+        "FVERT4_000820"
+    ];
+
+} else if(dataset == "vertV")
+{
+   var geneModels = [
+       "FVEG_000120",
+       "FVEG_000480",
+       "FVEG_000589",
+       "FVEG_000765"
+   ];
+
+}
 
   // Get a random index from the array (from 0 to array length - 1)
   var randomIndex = Math.floor(Math.random() * geneModels.length);
@@ -1389,13 +1557,13 @@ function loadGeneModelData() {
   if(geneModelId) {
       // Create an AJAX request
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', './lookupGeneModel.php?geneModelId=' + geneModelId, true);
+      xhr.open('GET', './lookupGeneModel.php?geneModelId=' + geneModelId +"&database=" + dataset, true);
       xhr.onload = function() {
           if (this.status == 200) {
               var data = JSON.parse(this.responseText);
               if (data.id == 'empty')
               {
-                  document.getElementById('error').innerHTML = "<font color='red'>Gene Model ID not found.</font>";
+                  document.getElementById('error').innerHTML = "<font color='red'>Gene Model ID not found. Check if the correct species is selected.</font>";
               } else {
                   document.getElementById('error').innerHTML = "<font color='green'>Gene Model ID found.</font>";
                   var currentValue = parseInt(document.getElementById("flankInput").value, 0);
