@@ -24,19 +24,22 @@ $ds_part1 = $chr;
 $ds_part2 = "HQ";
 
 if ($dataset == "mgdb2024_hq") {
-    $ds_part0 = "maizegdb2024";
+    $ds_part0 = "fusarium2025";
     $ds_part2 = "HQ";
 } else if ($dataset == "mgdb2024_hc") {  // Fix the condition here
-    $ds_part0 = "maizegdb2024";
+    $ds_part0 = "fusarium2025";
     $ds_part2 = "HC";
-} else if ($dataset == "schnable2023") {
-    $ds_part0 = "schnable2023";
-    $ds_part2 = "impute";
-} else if ($dataset == "nam2021_hq") {
-    $ds_part0 = "nam2021";
+} else if ($dataset == "vert2024_hq") {
+    $ds_part0 = "fusarium2025_vertMRC826";
     $ds_part2 = "HQ";
-} else if ($dataset == "nam2021_hc") {
-    $ds_part0 = "nam2021";
+} else if ($dataset == "vert2024_hc") {
+    $ds_part0 = "fusarium2025_vertMRC826";
+    $ds_part2 = "HC";
+} else if ($dataset == "vertV2024_hq") {
+    $ds_part0 = "fusarium2025_vert7600";
+    $ds_part2 = "HQ";
+} else if ($dataset == "vertV2024_hc") {
+    $ds_part0 = "fusarium2025_vert7600";
     $ds_part2 = "HC";
 }
 
@@ -64,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $output = shell_exec($command);
 
     if ($output === null) {
-        echo json_encode(array("status" => "error", "message" => "Python script execution failed "));
+        echo json_encode(array("status" => "error", "message" => "Python script execution failed $command"));
         //echo json_encode(array("status" => "success", "message" => "$command" ));
     } else {
-        echo json_encode(array("status" => "success", "message" => "Python script executed", "output" => $output));
+        echo json_encode(array("status" => "success", "message" => "Python script executed $command", "output" => $output));
     }
 }
 ?>

@@ -1,8 +1,21 @@
 <?php
 
 $geneId = $_GET['geneModelId'];
+$database = $_GET['database'];
 
-$genesData = unserialize(file_get_contents('./gff/genes_data.serialized'));
+if ($database == "maizegdb")
+{
+    $genesData = unserialize(file_get_contents('./gff/genes_data.serialized'));
+} else if ($database ==  "vert")
+{
+    $genesData = unserialize(file_get_contents('./gff/genes_data_vert.serialized'));
+}  else if ($database ==  "vertV")
+{
+    $genesData = unserialize(file_get_contents('./gff/genes_data_vert_7600.serialized'));
+} else {
+    $genesData = unserialize(file_get_contents('./gff/genes_data.serialized'));
+}
+
 
 if (isset($genesData[$geneId])) {
 

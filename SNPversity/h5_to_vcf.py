@@ -66,10 +66,10 @@ if len(variant_data['POS']) == 0:
 else:
     with open(output_vcf_path, 'w') as vcf_file:
 
-        if "maizegdb" in hdf5_file_path:
+        if "fusarium" in hdf5_file_path:
             vcf_file.write("##fileformat=VCFv4.2\n")
             vcf_file.write("##fileDate=" + current_date + "\n")
-            vcf_file.write("##source=Fusarium2024\n")
+            vcf_file.write("##source=FusariumGraminearum2025\n")
             vcf_file.write("##reference=TBD\n")
             vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality.\">\n")
             vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant.\">\n")
@@ -79,6 +79,47 @@ else:
             vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant.\">\n")
             vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants.\">\n")
             vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci.\">\n")
+            vcf_file.write("##INFO=<ID=DNA_SCORE,Number=1,Type=Float,Description=\"DNA Score is a zero-shot mutation effect score based on the DNABERT-2 DNA language model, calculated as the log-likelihood difference between the reference and alternate alleles, where more negative values indicate higher conservation and potential deleterious impact.\">\n")
+            vcf_file.write("##INFO=<ID=AA_SCORE,Number=1,Type=Float,Description=\"AA Score is a variant effect score derived from the ESM1b protein language model, representing the log-likelihood ratio difference between a missense variant and the reference amino acid sequence, where lower scores suggest a higher likelihood of functional impact.\">\n")
+            vcf_file.write("##INFO=<ID=MAF,Number=1,Type=Float,Description=\"Minor Allele Frequency (MAF) is the proportion of the less common allele at a genetic locus within a given population.\">\n")
+            vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
+            vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
+
+        if "vert2024" in hdf5_file_path:
+            vcf_file.write("##fileformat=VCFv4.2\n")
+            vcf_file.write("##fileDate=" + current_date + "\n")
+            vcf_file.write("##source=Fusarium_Verticillioides_MRC826_2025\n")
+            vcf_file.write("##reference=TBD\n")
+            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality.\">\n")
+            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant.\">\n")
+            vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
+            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms.\">\n")
+            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness.\">\n")
+            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant.\">\n")
+            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants.\">\n")
+            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci.\">\n")
+            vcf_file.write("##INFO=<ID=DNA_SCORE,Number=1,Type=Float,Description=\"DNA Score is a zero-shot mutation effect score based on the DNABERT-2 DNA language model, calculated as the log-likelihood difference between the reference and alternate alleles, where more negative values indicate higher conservation and potential deleterious impact.\">\n")
+            vcf_file.write("##INFO=<ID=AA_SCORE,Number=1,Type=Float,Description=\"AA Score is a variant effect score derived from the ESM1b protein language model, representing the log-likelihood ratio difference between a missense variant and the reference amino acid sequence, where lower scores suggest a higher likelihood of functional impact.\">\n")
+            vcf_file.write("##INFO=<ID=MAF,Number=1,Type=Float,Description=\"Minor Allele Frequency (MAF) is the proportion of the less common allele at a genetic locus within a given population.\">\n")
+            vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
+            vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
+
+        if "vertV2024" in hdf5_file_path:
+            vcf_file.write("##fileformat=VCFv4.2\n")
+            vcf_file.write("##fileDate=" + current_date + "\n")
+            vcf_file.write("##source=Fusarium_Verticillioides_7600_2025\n")
+            vcf_file.write("##reference=TBD\n")
+            vcf_file.write("##INFO=<ID=MQ,Number=1,Type=Float,Description=\"RMS mapping quality.\">\n")
+            vcf_file.write("##INFO=<ID=CVC,Number=1,Type=Integer,Description=\"The number of accessions that have genotype data for a particular variant.\">\n")
+            vcf_file.write("##INFO=<ID=CVP,Number=1,Type=Float,Description=\"The percent of accessions that have genotype data for a particular variant.\">\n")
+            vcf_file.write("##INFO=<ID=TYPE,Number=.,Type=String,Description=\"The type of effect using Sequence Ontology terms.\">\n")
+            vcf_file.write("##INFO=<ID=EFFECT,Number=.,Type=String,Description=\"An estimation of putative impact/deleteriousness.\">\n")
+            vcf_file.write("##INFO=<ID=GENEMODEL,Number=.,Type=String,Description=\"The name of the gene model affected by the variant.\">\n")
+            vcf_file.write("##INFO=<ID=SUB,Number=.,Type=String,Description=\"The amino acid substitution for missense and non-synonymous variants.\">\n")
+            vcf_file.write("##INFO=<ID=MAXR2,Number=1,Type=Float,Description=\"The maximum R2 for a given loci.\">\n")
+            vcf_file.write("##INFO=<ID=DNA_SCORE,Number=1,Type=Float,Description=\"DNA Score is a zero-shot mutation effect score based on the DNABERT-2 DNA language model, calculated as the log-likelihood difference between the reference and alternate alleles, where more negative values indicate higher conservation and potential deleterious impact.\">\n")
+            vcf_file.write("##INFO=<ID=AA_SCORE,Number=1,Type=Float,Description=\"AA Score is a variant effect score derived from the ESM1b protein language model, representing the log-likelihood ratio difference between a missense variant and the reference amino acid sequence, where lower scores suggest a higher likelihood of functional impact.\">\n")
+            vcf_file.write("##INFO=<ID=MAF,Number=1,Type=Float,Description=\"Minor Allele Frequency (MAF) is the proportion of the less common allele at a genetic locus within a given population.\">\n")
             vcf_file.write("##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n")
             vcf_file.write("#" + "\t".join(["CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT"] + genome_list) + "\n")
 

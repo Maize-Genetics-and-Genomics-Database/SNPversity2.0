@@ -35,24 +35,170 @@
                     <h2><font color="green">Fusarium VCF builder and viewer</font></h2>
                     <p>Create a VCF file based on a given region of the <i>Fusarium</i> genome and a subset of the diverse strains.</p>
 
+                    <form action="#" method="post">
+
+                    <div id="subheaderContainer">
+                        <p><h3><font color="white">Choose a dataset</font></h3></p>
+                    </div>
+                    <br>
+
+                    Use the "Select" column to choose a dataset. Once you've made your selection, a list of available accessions will appear in the "Select the accessions to include" section.
+
+                    <br>
+
+                    <table class="dataset-table"> <!-- Added class "dataset-table" -->
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Dataset</th>
+                                <th>Reference Genome</th>
+                                <th>Accessions</th>
+                                <th>Variant Sites</th>
+                                <th>Key Filters</th>
+                                <th>Heterozygous Sites</th>
+                                <th>INDELS</th>
+                                <th>Imputation</th>
+                                <th>Paper</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dataset 1 -->
+                            <tr>
+                                <td class="radio-cell" >
+                                    <input type="radio" name="ds" id='dataset' value="mgdb2024_hq" onchange='updateChromosomes(this)' checked>
+                                </td>
+                                <td><i>F. graminearum</i> 2024 (High Quality)</td>
+                                <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
+                                <td>513</td>
+                                <td>3.1 million</td>
+                                <td>Mapping quality (≥40), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                            <!-- Dataset 2 -->
+                            <tr>
+                                <td class="radio-cell">
+                                    <input type="radio" name="ds" id='dataset' value="mgdb2024_hc" onchange='updateChromosomes(this)'>
+                                </td>
+                                <td><i>F. graminearum</i> 2024 (High Coverage)</td>
+                                <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
+                                <td>513</td>
+                                <td>3.5 million</td>
+                                <td>Mapping quality (≥ 40), Genotypic coverage (≥ 50%)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                            <!-- Dataset 3 -->
+                            <tr>
+                                <td class="radio-cell">
+                                    <input type="radio" name="ds" id='dataset' value="vert2024_hc" onchange='updateChromosomes(this)'>
+                                </td>
+                                <td><i>F. verticillioides</i> 2024 (High Quality)</td>
+                                <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
+                                <td>113</td>
+                                <td>1.1 million</td>
+                                <td>Mapping quality (≥40), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                            <!-- Dataset 4 -->
+                            <tr>
+                                <td class="radio-cell">
+                                    <input type="radio" name="ds" id='dataset' value="vert2024_hc" onchange='updateChromosomes(this)'>
+                                </td>
+                                <td><i>F. verticillioides</i> 2024 (High Coverage)</td>
+                                <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
+                                <td>113</td>
+                                <td>1.4 million</td>
+                                <td>Mapping quality (≥ 40), Genotypic coverage (≥ 50%)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                            <!-- Dataset 5 -->
+                            <tr>
+                                <td class="radio-cell">
+                                    <input type="radio" name="ds" id='dataset' value="vertV2024_hc" onchange='updateChromosomes(this)'>
+                                </td>
+                                <td><i>F. verticillioides</i> 2024 (High Quality)</td>
+                                <td><i>Fusarium verticillioides</i> 7600</td>
+                                <td>113</td>
+                                <td>1.0 million</td>
+                                <td>Mapping quality (≥40), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                            <!-- Dataset 6 -->
+                            <tr>
+                                <td class="radio-cell">
+                                    <input type="radio" name="ds" id='dataset' value="vertV2024_hq" onchange='updateChromosomes(this)'>
+                                </td>
+                                <td><i>F. verticillioides</i> 2024 (High Coverage)</td>
+                                <td><i>Fusarium verticillioides</i> 7600</td>
+                                <td>113</td>
+                                <td>1.3 million</td>
+                                <td>Mapping quality (≥ 40), Genotypic coverage (≥ 50%)</td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td><span class="checkmark">&#10004;</span></td>
+                                <td><span class="crossmark">&#10008;</span></td>
+                                <td>
+                                    In preperation.
+                                </td>
+                                <td>See the Help and Download tabs for more information about the dataset.</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
                     <div id="subheaderContainer">
                         <p><h3><font color="white">Select genomic interval</font></h3></p>
                     </div>
 
                     <p>To retrieve the SNPs and INDELS within a genomic interval, select a chromosome, then enter the genome start and stop positions of your interval.</p>
-                    <form action="#" method="post">
-                        <table width="2800px" class="input_table">
 
-                          <tr>
-                            <td width="20%"><b><font color="green">Chromosome:</font></b></td>
-                            <td width="55%">
-                              <select name='chr' id='chrInput'>
-                                  <option value="chr1" selected>Chromosome 1</option>
-                                  <option value="chr2">Chromosome 2</option>
-                                  <option value="chr3">Chromosome 3</option>
-                                  <option value="chr4">Chromosome 4</option>
-                              </select>
-                            </td>
+                        <table width="2800px" class="input_table">
+                            <tr>
+                                <td width="20%"><b><font color="green">Species:</font></b></td>
+                                <td width="55%"> <i><span id="speciesname">Fusarium graminearum PH-1</span></i> </td>
+                                <td width="25%"> </td>
+                            </tr>
+                            <tr>
+                                <td width="20%"><b><font color="green">Chromosome:</font></b></td>
+                                <td width="55%">
+                                    <select name='chr' id='chrInput'>
+                                        <!-- Options will be populated by JavaScript -->
+                                    </select>
+                                </td>
                             <td width="25%"> </td>
                           </tr>
                           <tr>
@@ -97,72 +243,7 @@
                              </tr>
                         </table>
                         <br>
-                        <div id="subheaderContainer">
-                            <p><h3><font color="white">Choose a dataset</font></h3></p>
-                        </div>
-                        <br>
 
-                        Use the "Select" column to choose a dataset. Once you've made your selection, a list of available accessions will appear in the "Select the accessions to include" section.
-
-                        <br>
-
-                        <table class="dataset-table"> <!-- Added class "dataset-table" -->
-                            <thead>
-                                <tr>
-                                    <th>Select</th>
-                                    <th>Dataset</th>
-                                    <th>Reference Genome</th>
-                                    <th>Accessions</th>
-                                    <th>Variant Sites</th>
-                                    <th>Key Filters</th>
-                                    <th>Heterozygous Sites</th>
-                                    <th>INDELS</th>
-                                    <th>Imputation</th>
-                                    <th>Paper</th>
-                                    <th>Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Dataset 1 -->
-                                <tr>
-                                    <td class="radio-cell">
-                                        <input type="radio" name="ds" id='dataset' value="mgdb2024_hq" checked>
-                                    </td>
-                                    <td><i>F. graminearum</i> 2024 (High Quality)</td>
-                                    <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                                    <td>513</td>
-                                    <td>3.1 million</td>
-                                    <td>Mapping quality (≥40), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
-                                    <td><span class="crossmark">&#10008;</span></td>
-                                    <td><span class="checkmark">&#10004;</span></td>
-                                    <td><span class="crossmark">&#10008;</span></td>
-                                    <td>
-                                        In preperation.
-                                    </td>
-                                    <td>See the Help and Download tabs for more information about the dataset.</td>
-                                </tr>
-
-                                <!-- Dataset 2 -->
-                                <tr>
-                                    <td class="radio-cell">
-                                        <input type="radio" name="ds" id='dataset' value="mgdb2024_hc">
-                                    </td>
-                                    <td><i>F. graminearum</i> 2024 (High Coverage)</td>
-                                    <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                                    <td>513</td>
-                                    <td>3.5 million</td>
-                                    <td>Mapping quality (≥ 40), Genotypic coverage (≥ 50%)</td>
-                                    <td><span class="crossmark">&#10008;</span></td>
-                                    <td><span class="checkmark">&#10004;</span></td>
-                                    <td><span class="crossmark">&#10008;</span></td>
-                                    <td>
-                                        In preperation.
-                                    </td>
-                                    <td>See the Help and Download tabs for more information about the dataset.</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
 
                         <br>
                         <div id="subheaderContainer">
@@ -181,7 +262,7 @@
                           <div style="margin-top: 20px;">
                             <p style="margin-bottom: 10px;">
                               The accession should listed in a single-column seperated by a tab or newline. Use the "SNPversity ID" from these lists of all <i>Fusarium</i> species:
-                              <a href="fg_accessions.xlsx" download="fg_accessions.xlsx">XLSX</a>.
+                              <a href="fusarium_accessions.xlsx" download="fusarium_accessions.xlsx">XLSX</a>.
                             </p>
                           </div>
 
@@ -216,262 +297,262 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="06163mAP" />06163mAP</td><td><input class="genotypes" type="checkbox" value="31619mAP" />31619mAP</td><td><input class="genotypes" type="checkbox" value="31620mAP" />31620mAP</td><td><input class="genotypes" type="checkbox" value="34302mAP" />34302mAP</td><td><input class="genotypes" type="checkbox" value="34494mAP" />34494mAP</td><td><input class="genotypes" type="checkbox" value="34540mAP" />34540mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="06163" />06163</td><td><input class="genotypes" type="checkbox" value="31619" />31619</td><td><input class="genotypes" type="checkbox" value="31620" />31620</td><td><input class="genotypes" type="checkbox" value="34302" />34302</td><td><input class="genotypes" type="checkbox" value="34494" />34494</td><td><input class="genotypes" type="checkbox" value="34540" />34540</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="34583mAP" />34583mAP</td><td><input class="genotypes" type="checkbox" value="34584mAP" />34584mAP</td><td><input class="genotypes" type="checkbox" value="34585mAP" />34585mAP</td><td><input class="genotypes" type="checkbox" value="34586mAP" />34586mAP</td><td><input class="genotypes" type="checkbox" value="36905mAP" />36905mAP</td><td><input class="genotypes" type="checkbox" value="36970trimmAP" />36970trimmAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="34583" />34583</td><td><input class="genotypes" type="checkbox" value="34584" />34584</td><td><input class="genotypes" type="checkbox" value="34585" />34585</td><td><input class="genotypes" type="checkbox" value="34586" />34586</td><td><input class="genotypes" type="checkbox" value="36905" />36905</td><td><input class="genotypes" type="checkbox" value="36970" />36970</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="37401mAP" />37401mAP</td><td><input class="genotypes" type="checkbox" value="37408mAP" />37408mAP</td><td><input class="genotypes" type="checkbox" value="37425mAP" />37425mAP</td><td><input class="genotypes" type="checkbox" value="37450mAP" />37450mAP</td><td><input class="genotypes" type="checkbox" value="37509mAP" />37509mAP</td><td><input class="genotypes" type="checkbox" value="37525mAP" />37525mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="37401" />37401</td><td><input class="genotypes" type="checkbox" value="37408" />37408</td><td><input class="genotypes" type="checkbox" value="37425" />37425</td><td><input class="genotypes" type="checkbox" value="37450" />37450</td><td><input class="genotypes" type="checkbox" value="37509" />37509</td><td><input class="genotypes" type="checkbox" value="37525" />37525</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="38165mAP" />38165mAP</td><td><input class="genotypes" type="checkbox" value="38369mAP" />38369mAP</td><td><input class="genotypes" type="checkbox" value="38380mAP" />38380mAP</td><td><input class="genotypes" type="checkbox" value="38381mAP" />38381mAP</td><td><input class="genotypes" type="checkbox" value="38383mAP" />38383mAP</td><td><input class="genotypes" type="checkbox" value="38393mAP" />38393mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="38165" />38165</td><td><input class="genotypes" type="checkbox" value="38369" />38369</td><td><input class="genotypes" type="checkbox" value="38380" />38380</td><td><input class="genotypes" type="checkbox" value="38381" />38381</td><td><input class="genotypes" type="checkbox" value="38383" />38383</td><td><input class="genotypes" type="checkbox" value="38393" />38393</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="38395mAP" />38395mAP</td><td><input class="genotypes" type="checkbox" value="38405mAP" />38405mAP</td><td><input class="genotypes" type="checkbox" value="39238mAP" />39238mAP</td><td><input class="genotypes" type="checkbox" value="39247mAP" />39247mAP</td><td><input class="genotypes" type="checkbox" value="39263mAP" />39263mAP</td><td><input class="genotypes" type="checkbox" value="39270mAP" />39270mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="38395" />38395</td><td><input class="genotypes" type="checkbox" value="38405" />38405</td><td><input class="genotypes" type="checkbox" value="39238" />39238</td><td><input class="genotypes" type="checkbox" value="39247" />39247</td><td><input class="genotypes" type="checkbox" value="39263" />39263</td><td><input class="genotypes" type="checkbox" value="39270" />39270</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="39274mAP" />39274mAP</td><td><input class="genotypes" type="checkbox" value="39278mAP" />39278mAP</td><td><input class="genotypes" type="checkbox" value="39290mAP" />39290mAP</td><td><input class="genotypes" type="checkbox" value="39297mAP" />39297mAP</td><td><input class="genotypes" type="checkbox" value="39300mAP" />39300mAP</td><td><input class="genotypes" type="checkbox" value="39310mAP" />39310mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="39274" />39274</td><td><input class="genotypes" type="checkbox" value="39278" />39278</td><td><input class="genotypes" type="checkbox" value="39290" />39290</td><td><input class="genotypes" type="checkbox" value="39297" />39297</td><td><input class="genotypes" type="checkbox" value="39300" />39300</td><td><input class="genotypes" type="checkbox" value="39310" />39310</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="39339mAP" />39339mAP</td><td><input class="genotypes" type="checkbox" value="39340mAP" />39340mAP</td><td><input class="genotypes" type="checkbox" value="39341mAP" />39341mAP</td><td><input class="genotypes" type="checkbox" value="39343mAP" />39343mAP</td><td><input class="genotypes" type="checkbox" value="43161mAP" />43161mAP</td><td><input class="genotypes" type="checkbox" value="43884mAP" />43884mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="39339" />39339</td><td><input class="genotypes" type="checkbox" value="39340" />39340</td><td><input class="genotypes" type="checkbox" value="39341" />39341</td><td><input class="genotypes" type="checkbox" value="39343" />39343</td><td><input class="genotypes" type="checkbox" value="43161" />43161</td><td><input class="genotypes" type="checkbox" value="43884" />43884</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="44070mAP" />44070mAP</td><td><input class="genotypes" type="checkbox" value="44078mAP" />44078mAP</td><td><input class="genotypes" type="checkbox" value="44211mAP" />44211mAP</td><td><input class="genotypes" type="checkbox" value="45156mAP" />45156mAP</td><td><input class="genotypes" type="checkbox" value="45373mAP" />45373mAP</td><td><input class="genotypes" type="checkbox" value="45596mAP" />45596mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="44070" />44070</td><td><input class="genotypes" type="checkbox" value="44078" />44078</td><td><input class="genotypes" type="checkbox" value="44211" />44211</td><td><input class="genotypes" type="checkbox" value="45156" />45156</td><td><input class="genotypes" type="checkbox" value="45373" />45373</td><td><input class="genotypes" type="checkbox" value="45596" />45596</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45606mAP" />45606mAP</td><td><input class="genotypes" type="checkbox" value="45607mAP" />45607mAP</td><td><input class="genotypes" type="checkbox" value="45611mAP" />45611mAP</td><td><input class="genotypes" type="checkbox" value="45612mAP" />45612mAP</td><td><input class="genotypes" type="checkbox" value="45620mAP" />45620mAP</td><td><input class="genotypes" type="checkbox" value="45626mAP" />45626mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45606" />45606</td><td><input class="genotypes" type="checkbox" value="45607" />45607</td><td><input class="genotypes" type="checkbox" value="45611" />45611</td><td><input class="genotypes" type="checkbox" value="45612" />45612</td><td><input class="genotypes" type="checkbox" value="45620" />45620</td><td><input class="genotypes" type="checkbox" value="45626" />45626</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45628mAP" />45628mAP</td><td><input class="genotypes" type="checkbox" value="45632mAP" />45632mAP</td><td><input class="genotypes" type="checkbox" value="45633mAP" />45633mAP</td><td><input class="genotypes" type="checkbox" value="45634mAP" />45634mAP</td><td><input class="genotypes" type="checkbox" value="45635mAP" />45635mAP</td><td><input class="genotypes" type="checkbox" value="45636mAP" />45636mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45628" />45628</td><td><input class="genotypes" type="checkbox" value="45632" />45632</td><td><input class="genotypes" type="checkbox" value="45633" />45633</td><td><input class="genotypes" type="checkbox" value="45634" />45634</td><td><input class="genotypes" type="checkbox" value="45635" />45635</td><td><input class="genotypes" type="checkbox" value="45636" />45636</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45637mAP" />45637mAP</td><td><input class="genotypes" type="checkbox" value="45647mAP" />45647mAP</td><td><input class="genotypes" type="checkbox" value="45649mAP" />45649mAP</td><td><input class="genotypes" type="checkbox" value="45654mAP" />45654mAP</td><td><input class="genotypes" type="checkbox" value="45655mAP" />45655mAP</td><td><input class="genotypes" type="checkbox" value="45656mAP" />45656mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45637" />45637</td><td><input class="genotypes" type="checkbox" value="45647" />45647</td><td><input class="genotypes" type="checkbox" value="45649" />45649</td><td><input class="genotypes" type="checkbox" value="45654" />45654</td><td><input class="genotypes" type="checkbox" value="45655" />45655</td><td><input class="genotypes" type="checkbox" value="45656" />45656</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45657mAP" />45657mAP</td><td><input class="genotypes" type="checkbox" value="45658mAP" />45658mAP</td><td><input class="genotypes" type="checkbox" value="45664mAP" />45664mAP</td><td><input class="genotypes" type="checkbox" value="45666mAP" />45666mAP</td><td><input class="genotypes" type="checkbox" value="45668mAP" />45668mAP</td><td><input class="genotypes" type="checkbox" value="45669mAP" />45669mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45657" />45657</td><td><input class="genotypes" type="checkbox" value="45658" />45658</td><td><input class="genotypes" type="checkbox" value="45664" />45664</td><td><input class="genotypes" type="checkbox" value="45666" />45666</td><td><input class="genotypes" type="checkbox" value="45668" />45668</td><td><input class="genotypes" type="checkbox" value="45669" />45669</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45670mAP" />45670mAP</td><td><input class="genotypes" type="checkbox" value="45675mAP" />45675mAP</td><td><input class="genotypes" type="checkbox" value="45677mAP" />45677mAP</td><td><input class="genotypes" type="checkbox" value="45689mAP" />45689mAP</td><td><input class="genotypes" type="checkbox" value="45701mAP" />45701mAP</td><td><input class="genotypes" type="checkbox" value="45702mAP" />45702mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45670" />45670</td><td><input class="genotypes" type="checkbox" value="45675" />45675</td><td><input class="genotypes" type="checkbox" value="45677" />45677</td><td><input class="genotypes" type="checkbox" value="45689" />45689</td><td><input class="genotypes" type="checkbox" value="45701" />45701</td><td><input class="genotypes" type="checkbox" value="45702" />45702</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45703mAP" />45703mAP</td><td><input class="genotypes" type="checkbox" value="45705mAP" />45705mAP</td><td><input class="genotypes" type="checkbox" value="45708mAP" />45708mAP</td><td><input class="genotypes" type="checkbox" value="45712mAP" />45712mAP</td><td><input class="genotypes" type="checkbox" value="45716mAP" />45716mAP</td><td><input class="genotypes" type="checkbox" value="45735mAP" />45735mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45703" />45703</td><td><input class="genotypes" type="checkbox" value="45705" />45705</td><td><input class="genotypes" type="checkbox" value="45708" />45708</td><td><input class="genotypes" type="checkbox" value="45712" />45712</td><td><input class="genotypes" type="checkbox" value="45716" />45716</td><td><input class="genotypes" type="checkbox" value="45735" />45735</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45737mAP" />45737mAP</td><td><input class="genotypes" type="checkbox" value="45740mAP" />45740mAP</td><td><input class="genotypes" type="checkbox" value="45741mAP" />45741mAP</td><td><input class="genotypes" type="checkbox" value="45744mAP" />45744mAP</td><td><input class="genotypes" type="checkbox" value="45745mAP" />45745mAP</td><td><input class="genotypes" type="checkbox" value="45746mAP" />45746mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45737" />45737</td><td><input class="genotypes" type="checkbox" value="45740" />45740</td><td><input class="genotypes" type="checkbox" value="45741" />45741</td><td><input class="genotypes" type="checkbox" value="45744" />45744</td><td><input class="genotypes" type="checkbox" value="45745" />45745</td><td><input class="genotypes" type="checkbox" value="45746" />45746</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45747mAP" />45747mAP</td><td><input class="genotypes" type="checkbox" value="45780mAP" />45780mAP</td><td><input class="genotypes" type="checkbox" value="45787mAP" />45787mAP</td><td><input class="genotypes" type="checkbox" value="45815mAP" />45815mAP</td><td><input class="genotypes" type="checkbox" value="45827mAP" />45827mAP</td><td><input class="genotypes" type="checkbox" value="45834mAP" />45834mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45747" />45747</td><td><input class="genotypes" type="checkbox" value="45780" />45780</td><td><input class="genotypes" type="checkbox" value="45787" />45787</td><td><input class="genotypes" type="checkbox" value="45815" />45815</td><td><input class="genotypes" type="checkbox" value="45827" />45827</td><td><input class="genotypes" type="checkbox" value="45834" />45834</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45835mAP" />45835mAP</td><td><input class="genotypes" type="checkbox" value="45836mAP" />45836mAP</td><td><input class="genotypes" type="checkbox" value="45838mAP" />45838mAP</td><td><input class="genotypes" type="checkbox" value="45839mAP" />45839mAP</td><td><input class="genotypes" type="checkbox" value="46240mAP" />46240mAP</td><td><input class="genotypes" type="checkbox" value="46250mAP" />46250mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="45835" />45835</td><td><input class="genotypes" type="checkbox" value="45836" />45836</td><td><input class="genotypes" type="checkbox" value="45838" />45838</td><td><input class="genotypes" type="checkbox" value="45839" />45839</td><td><input class="genotypes" type="checkbox" value="46240" />46240</td><td><input class="genotypes" type="checkbox" value="46250" />46250</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46259mAP" />46259mAP</td><td><input class="genotypes" type="checkbox" value="46267mAP" />46267mAP</td><td><input class="genotypes" type="checkbox" value="46273mAP" />46273mAP</td><td><input class="genotypes" type="checkbox" value="46275mAP" />46275mAP</td><td><input class="genotypes" type="checkbox" value="46284mAP" />46284mAP</td><td><input class="genotypes" type="checkbox" value="46287mAP" />46287mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46259" />46259</td><td><input class="genotypes" type="checkbox" value="46267" />46267</td><td><input class="genotypes" type="checkbox" value="46273" />46273</td><td><input class="genotypes" type="checkbox" value="46275" />46275</td><td><input class="genotypes" type="checkbox" value="46284" />46284</td><td><input class="genotypes" type="checkbox" value="46287" />46287</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46289mAP" />46289mAP</td><td><input class="genotypes" type="checkbox" value="46290mAP" />46290mAP</td><td><input class="genotypes" type="checkbox" value="46294mAP" />46294mAP</td><td><input class="genotypes" type="checkbox" value="46297mAP" />46297mAP</td><td><input class="genotypes" type="checkbox" value="46305mAP" />46305mAP</td><td><input class="genotypes" type="checkbox" value="46317mAP" />46317mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46289" />46289</td><td><input class="genotypes" type="checkbox" value="46290" />46290</td><td><input class="genotypes" type="checkbox" value="46294" />46294</td><td><input class="genotypes" type="checkbox" value="46297" />46297</td><td><input class="genotypes" type="checkbox" value="46305" />46305</td><td><input class="genotypes" type="checkbox" value="46317" />46317</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46329mAP" />46329mAP</td><td><input class="genotypes" type="checkbox" value="46336mAP" />46336mAP</td><td><input class="genotypes" type="checkbox" value="46354mAP" />46354mAP</td><td><input class="genotypes" type="checkbox" value="46363mAP" />46363mAP</td><td><input class="genotypes" type="checkbox" value="46370mAP" />46370mAP</td><td><input class="genotypes" type="checkbox" value="46371mAP" />46371mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46329" />46329</td><td><input class="genotypes" type="checkbox" value="46336" />46336</td><td><input class="genotypes" type="checkbox" value="46354" />46354</td><td><input class="genotypes" type="checkbox" value="46363" />46363</td><td><input class="genotypes" type="checkbox" value="46370" />46370</td><td><input class="genotypes" type="checkbox" value="46371" />46371</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46380mAP" />46380mAP</td><td><input class="genotypes" type="checkbox" value="46386mAP" />46386mAP</td><td><input class="genotypes" type="checkbox" value="46422mAP" />46422mAP</td><td><input class="genotypes" type="checkbox" value="46434mAP" />46434mAP</td><td><input class="genotypes" type="checkbox" value="46522mAP" />46522mAP</td><td><input class="genotypes" type="checkbox" value="46525mAP" />46525mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46380" />46380</td><td><input class="genotypes" type="checkbox" value="46386" />46386</td><td><input class="genotypes" type="checkbox" value="46422" />46422</td><td><input class="genotypes" type="checkbox" value="46434" />46434</td><td><input class="genotypes" type="checkbox" value="46522" />46522</td><td><input class="genotypes" type="checkbox" value="46525" />46525</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46532mAP" />46532mAP</td><td><input class="genotypes" type="checkbox" value="46533mAP" />46533mAP</td><td><input class="genotypes" type="checkbox" value="46539mAP" />46539mAP</td><td><input class="genotypes" type="checkbox" value="46544mAP" />46544mAP</td><td><input class="genotypes" type="checkbox" value="46547mAP" />46547mAP</td><td><input class="genotypes" type="checkbox" value="46548mAP" />46548mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46532" />46532</td><td><input class="genotypes" type="checkbox" value="46533" />46533</td><td><input class="genotypes" type="checkbox" value="46539" />46539</td><td><input class="genotypes" type="checkbox" value="46544" />46544</td><td><input class="genotypes" type="checkbox" value="46547" />46547</td><td><input class="genotypes" type="checkbox" value="46548" />46548</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46549mAP" />46549mAP</td><td><input class="genotypes" type="checkbox" value="46558mAP" />46558mAP</td><td><input class="genotypes" type="checkbox" value="46559mAP" />46559mAP</td><td><input class="genotypes" type="checkbox" value="46560mAP" />46560mAP</td><td><input class="genotypes" type="checkbox" value="46564mAP" />46564mAP</td><td><input class="genotypes" type="checkbox" value="46566mAP" />46566mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46549" />46549</td><td><input class="genotypes" type="checkbox" value="46558" />46558</td><td><input class="genotypes" type="checkbox" value="46559" />46559</td><td><input class="genotypes" type="checkbox" value="46560" />46560</td><td><input class="genotypes" type="checkbox" value="46564" />46564</td><td><input class="genotypes" type="checkbox" value="46566" />46566</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46874mAP" />46874mAP</td><td><input class="genotypes" type="checkbox" value="46875mAP" />46875mAP</td><td><input class="genotypes" type="checkbox" value="46898mAP" />46898mAP</td><td><input class="genotypes" type="checkbox" value="46899mAP" />46899mAP</td><td><input class="genotypes" type="checkbox" value="46914mAP" />46914mAP</td><td><input class="genotypes" type="checkbox" value="46915mAP" />46915mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46874" />46874</td><td><input class="genotypes" type="checkbox" value="46875" />46875</td><td><input class="genotypes" type="checkbox" value="46898" />46898</td><td><input class="genotypes" type="checkbox" value="46899" />46899</td><td><input class="genotypes" type="checkbox" value="46914" />46914</td><td><input class="genotypes" type="checkbox" value="46915" />46915</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46934mAP" />46934mAP</td><td><input class="genotypes" type="checkbox" value="46935mAP" />46935mAP</td><td><input class="genotypes" type="checkbox" value="46959mAP" />46959mAP</td><td><input class="genotypes" type="checkbox" value="46960mAP" />46960mAP</td><td><input class="genotypes" type="checkbox" value="46986mAP" />46986mAP</td><td><input class="genotypes" type="checkbox" value="46987mAP" />46987mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="46934" />46934</td><td><input class="genotypes" type="checkbox" value="46935" />46935</td><td><input class="genotypes" type="checkbox" value="46959" />46959</td><td><input class="genotypes" type="checkbox" value="46960" />46960</td><td><input class="genotypes" type="checkbox" value="46986" />46986</td><td><input class="genotypes" type="checkbox" value="46987" />46987</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="47526mAP" />47526mAP</td><td><input class="genotypes" type="checkbox" value="47527mAP" />47527mAP</td><td><input class="genotypes" type="checkbox" value="47554mAP" />47554mAP</td><td><input class="genotypes" type="checkbox" value="47555mAP" />47555mAP</td><td><input class="genotypes" type="checkbox" value="47556mAP" />47556mAP</td><td><input class="genotypes" type="checkbox" value="47571mAP" />47571mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="47526" />47526</td><td><input class="genotypes" type="checkbox" value="47527" />47527</td><td><input class="genotypes" type="checkbox" value="47554" />47554</td><td><input class="genotypes" type="checkbox" value="47555" />47555</td><td><input class="genotypes" type="checkbox" value="47556" />47556</td><td><input class="genotypes" type="checkbox" value="47571" />47571</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="47588mAP" />47588mAP</td><td><input class="genotypes" type="checkbox" value="47605mAP" />47605mAP</td><td><input class="genotypes" type="checkbox" value="47659mAP" />47659mAP</td><td><input class="genotypes" type="checkbox" value="52005mAP" />52005mAP</td><td><input class="genotypes" type="checkbox" value="52008mAP" />52008mAP</td><td><input class="genotypes" type="checkbox" value="52129mAP" />52129mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="47588" />47588</td><td><input class="genotypes" type="checkbox" value="47605" />47605</td><td><input class="genotypes" type="checkbox" value="47659" />47659</td><td><input class="genotypes" type="checkbox" value="52005" />52005</td><td><input class="genotypes" type="checkbox" value="52008" />52008</td><td><input class="genotypes" type="checkbox" value="52129" />52129</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="52195mAP" />52195mAP</td><td><input class="genotypes" type="checkbox" value="52429mAP" />52429mAP</td><td><input class="genotypes" type="checkbox" value="52512mAP" />52512mAP</td><td><input class="genotypes" type="checkbox" value="52840mAP" />52840mAP</td><td><input class="genotypes" type="checkbox" value="52847mAP" />52847mAP</td><td><input class="genotypes" type="checkbox" value="52850mAP" />52850mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="52195" />52195</td><td><input class="genotypes" type="checkbox" value="52429" />52429</td><td><input class="genotypes" type="checkbox" value="52512" />52512</td><td><input class="genotypes" type="checkbox" value="52840" />52840</td><td><input class="genotypes" type="checkbox" value="52847" />52847</td><td><input class="genotypes" type="checkbox" value="52850" />52850</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="52955mAP" />52955mAP</td><td><input class="genotypes" type="checkbox" value="53046mAP" />53046mAP</td><td><input class="genotypes" type="checkbox" value="53173mAP" />53173mAP</td><td><input class="genotypes" type="checkbox" value="53184mAP" />53184mAP</td><td><input class="genotypes" type="checkbox" value="54196mAP" />54196mAP</td><td><input class="genotypes" type="checkbox" value="54197mAP" />54197mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="52955" />52955</td><td><input class="genotypes" type="checkbox" value="53046" />53046</td><td><input class="genotypes" type="checkbox" value="53173" />53173</td><td><input class="genotypes" type="checkbox" value="53184" />53184</td><td><input class="genotypes" type="checkbox" value="54196" />54196</td><td><input class="genotypes" type="checkbox" value="54197" />54197</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="62913mAP" />62913mAP</td><td><input class="genotypes" type="checkbox" value="62929mAP" />62929mAP</td><td><input class="genotypes" type="checkbox" value="66030mAP" />66030mAP</td><td><input class="genotypes" type="checkbox" value="66031mAP" />66031mAP</td><td><input class="genotypes" type="checkbox" value="66037mAP" />66037mAP</td><td><input class="genotypes" type="checkbox" value="66039mAP" />66039mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="62913" />62913</td><td><input class="genotypes" type="checkbox" value="62929" />62929</td><td><input class="genotypes" type="checkbox" value="66030" />66030</td><td><input class="genotypes" type="checkbox" value="66031" />66031</td><td><input class="genotypes" type="checkbox" value="66037" />66037</td><td><input class="genotypes" type="checkbox" value="66039" />66039</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="66040mAP" />66040mAP</td><td><input class="genotypes" type="checkbox" value="66041mAP" />66041mAP</td><td><input class="genotypes" type="checkbox" value="66042mAP" />66042mAP</td><td><input class="genotypes" type="checkbox" value="66043mAP" />66043mAP</td><td><input class="genotypes" type="checkbox" value="66045mAP" />66045mAP</td><td><input class="genotypes" type="checkbox" value="66047mAP" />66047mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="66040" />66040</td><td><input class="genotypes" type="checkbox" value="66041" />66041</td><td><input class="genotypes" type="checkbox" value="66042" />66042</td><td><input class="genotypes" type="checkbox" value="66043" />66043</td><td><input class="genotypes" type="checkbox" value="66045" />66045</td><td><input class="genotypes" type="checkbox" value="66047" />66047</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="66049mAP" />66049mAP</td><td><input class="genotypes" type="checkbox" value="ETH-001-barcode10mAP" />ETH-001-barcode10mAP</td><td><input class="genotypes" type="checkbox" value="ETH-001-barcode11mAP" />ETH-001-barcode11mAP</td><td><input class="genotypes" type="checkbox" value="ETH-001-barcode12mAP" />ETH-001-barcode12mAP</td><td><input class="genotypes" type="checkbox" value="ETH-001-barcode7mAP" />ETH-001-barcode7mAP</td><td><input class="genotypes" type="checkbox" value="ETH-001-barcode8mAP" />ETH-001-barcode8mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="66049" />66049</td><td><input class="genotypes" type="checkbox" value="ET-2022-15-1" />ET-2022-15-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-49-1" />ET-2022-49-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-52-1" />ET-2022-52-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-3-1" />ET-2022-3-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-17-1" />ET-2022-17-1</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="ETH-001-barcode9mAP" />ETH-001-barcode9mAP</td><td><input class="genotypes" type="checkbox" value="F100mAP" />F100mAP</td><td><input class="genotypes" type="checkbox" value="F10mAP" />F10mAP</td><td><input class="genotypes" type="checkbox" value="F116mAP" />F116mAP</td><td><input class="genotypes" type="checkbox" value="F124mAP" />F124mAP</td><td><input class="genotypes" type="checkbox" value="F130mAP" />F130mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="ET-2022-21-1" />ET-2022-21-1</td><td><input class="genotypes" type="checkbox" value="F100" />F100</td><td><input class="genotypes" type="checkbox" value="F10" />F10</td><td><input class="genotypes" type="checkbox" value="F116" />F116</td><td><input class="genotypes" type="checkbox" value="F124" />F124</td><td><input class="genotypes" type="checkbox" value="F130" />F130</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F131mAP" />F131mAP</td><td><input class="genotypes" type="checkbox" value="F132mAP" />F132mAP</td><td><input class="genotypes" type="checkbox" value="F13mAP" />F13mAP</td><td><input class="genotypes" type="checkbox" value="F16mAP" />F16mAP</td><td><input class="genotypes" type="checkbox" value="F272mAP" />F272mAP</td><td><input class="genotypes" type="checkbox" value="F27mAP" />F27mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F131" />F131</td><td><input class="genotypes" type="checkbox" value="F132" />F132</td><td><input class="genotypes" type="checkbox" value="F13" />F13</td><td><input class="genotypes" type="checkbox" value="F16" />F16</td><td><input class="genotypes" type="checkbox" value="F272" />F272</td><td><input class="genotypes" type="checkbox" value="F27" />F27</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F322mAP" />F322mAP</td><td><input class="genotypes" type="checkbox" value="F325mAP" />F325mAP</td><td><input class="genotypes" type="checkbox" value="F326mAP" />F326mAP</td><td><input class="genotypes" type="checkbox" value="F327mAP" />F327mAP</td><td><input class="genotypes" type="checkbox" value="F328mAP" />F328mAP</td><td><input class="genotypes" type="checkbox" value="F329mAP" />F329mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F322" />F322</td><td><input class="genotypes" type="checkbox" value="F325" />F325</td><td><input class="genotypes" type="checkbox" value="F326" />F326</td><td><input class="genotypes" type="checkbox" value="F327" />F327</td><td><input class="genotypes" type="checkbox" value="F328" />F328</td><td><input class="genotypes" type="checkbox" value="F329" />F329</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F330mAP" />F330mAP</td><td><input class="genotypes" type="checkbox" value="F331mAP" />F331mAP</td><td><input class="genotypes" type="checkbox" value="F332mAP" />F332mAP</td><td><input class="genotypes" type="checkbox" value="F333mAP" />F333mAP</td><td><input class="genotypes" type="checkbox" value="F334mAP" />F334mAP</td><td><input class="genotypes" type="checkbox" value="F335mAP" />F335mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F330" />F330</td><td><input class="genotypes" type="checkbox" value="F331" />F331</td><td><input class="genotypes" type="checkbox" value="F332" />F332</td><td><input class="genotypes" type="checkbox" value="F333" />F333</td><td><input class="genotypes" type="checkbox" value="F334" />F334</td><td><input class="genotypes" type="checkbox" value="F335" />F335</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F336mAP" />F336mAP</td><td><input class="genotypes" type="checkbox" value="F337mAP" />F337mAP</td><td><input class="genotypes" type="checkbox" value="F338mAP" />F338mAP</td><td><input class="genotypes" type="checkbox" value="F339mAP" />F339mAP</td><td><input class="genotypes" type="checkbox" value="F340mAP" />F340mAP</td><td><input class="genotypes" type="checkbox" value="F341mAP" />F341mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F336" />F336</td><td><input class="genotypes" type="checkbox" value="F337" />F337</td><td><input class="genotypes" type="checkbox" value="F338" />F338</td><td><input class="genotypes" type="checkbox" value="F339" />F339</td><td><input class="genotypes" type="checkbox" value="F340" />F340</td><td><input class="genotypes" type="checkbox" value="F341" />F341</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F342mAP" />F342mAP</td><td><input class="genotypes" type="checkbox" value="F343mAP" />F343mAP</td><td><input class="genotypes" type="checkbox" value="F344mAP" />F344mAP</td><td><input class="genotypes" type="checkbox" value="F347mAP" />F347mAP</td><td><input class="genotypes" type="checkbox" value="F348mAP" />F348mAP</td><td><input class="genotypes" type="checkbox" value="F351mAP" />F351mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F342" />F342</td><td><input class="genotypes" type="checkbox" value="F343" />F343</td><td><input class="genotypes" type="checkbox" value="F344" />F344</td><td><input class="genotypes" type="checkbox" value="F347" />F347</td><td><input class="genotypes" type="checkbox" value="F348" />F348</td><td><input class="genotypes" type="checkbox" value="F351" />F351</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F353mAP" />F353mAP</td><td><input class="genotypes" type="checkbox" value="F354mAP" />F354mAP</td><td><input class="genotypes" type="checkbox" value="F356mAP" />F356mAP</td><td><input class="genotypes" type="checkbox" value="F366mAP" />F366mAP</td><td><input class="genotypes" type="checkbox" value="F367mAP" />F367mAP</td><td><input class="genotypes" type="checkbox" value="F368mAP" />F368mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F353" />F353</td><td><input class="genotypes" type="checkbox" value="F354" />F354</td><td><input class="genotypes" type="checkbox" value="F356" />F356</td><td><input class="genotypes" type="checkbox" value="F366" />F366</td><td><input class="genotypes" type="checkbox" value="F367" />F367</td><td><input class="genotypes" type="checkbox" value="F368" />F368</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F387mAP" />F387mAP</td><td><input class="genotypes" type="checkbox" value="F398mAP" />F398mAP</td><td><input class="genotypes" type="checkbox" value="F399mAP" />F399mAP</td><td><input class="genotypes" type="checkbox" value="F501mAP" />F501mAP</td><td><input class="genotypes" type="checkbox" value="F522mAP" />F522mAP</td><td><input class="genotypes" type="checkbox" value="F535mAP" />F535mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F387" />F387</td><td><input class="genotypes" type="checkbox" value="F398" />F398</td><td><input class="genotypes" type="checkbox" value="F399" />F399</td><td><input class="genotypes" type="checkbox" value="F501" />F501</td><td><input class="genotypes" type="checkbox" value="F522" />F522</td><td><input class="genotypes" type="checkbox" value="F535" />F535</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F537mAP" />F537mAP</td><td><input class="genotypes" type="checkbox" value="F55mAP" />F55mAP</td><td><input class="genotypes" type="checkbox" value="F562mAP" />F562mAP</td><td><input class="genotypes" type="checkbox" value="F60mAP" />F60mAP</td><td><input class="genotypes" type="checkbox" value="F68mAP" />F68mAP</td><td><input class="genotypes" type="checkbox" value="F6mAP" />F6mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F537" />F537</td><td><input class="genotypes" type="checkbox" value="F55" />F55</td><td><input class="genotypes" type="checkbox" value="F562" />F562</td><td><input class="genotypes" type="checkbox" value="F60" />F60</td><td><input class="genotypes" type="checkbox" value="F68" />F68</td><td><input class="genotypes" type="checkbox" value="F6" />F6</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F96mAP" />F96mAP</td><td><input class="genotypes" type="checkbox" value="FG4mAP" />FG4mAP</td><td><input class="genotypes" type="checkbox" value="FHK10mAP" />FHK10mAP</td><td><input class="genotypes" type="checkbox" value="FHK11mAP" />FHK11mAP</td><td><input class="genotypes" type="checkbox" value="FHK12mAP" />FHK12mAP</td><td><input class="genotypes" type="checkbox" value="FHK13mAP" />FHK13mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="F96" />F96</td><td><input class="genotypes" type="checkbox" value="FHK91" />FHK91</td><td><input class="genotypes" type="checkbox" value="FHK10" />FHK10</td><td><input class="genotypes" type="checkbox" value="FHK11" />FHK11</td><td><input class="genotypes" type="checkbox" value="FHK12" />FHK12</td><td><input class="genotypes" type="checkbox" value="FHK13" />FHK13</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK14mAP" />FHK14mAP</td><td><input class="genotypes" type="checkbox" value="FHK15mAP" />FHK15mAP</td><td><input class="genotypes" type="checkbox" value="FHK16mAP" />FHK16mAP</td><td><input class="genotypes" type="checkbox" value="FHK17mAP" />FHK17mAP</td><td><input class="genotypes" type="checkbox" value="FHK18mAP" />FHK18mAP</td><td><input class="genotypes" type="checkbox" value="FHK19mAP" />FHK19mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK14" />FHK14</td><td><input class="genotypes" type="checkbox" value="FHK15" />FHK15</td><td><input class="genotypes" type="checkbox" value="FHK16" />FHK16</td><td><input class="genotypes" type="checkbox" value="FHK17" />FHK17</td><td><input class="genotypes" type="checkbox" value="FHK18" />FHK18</td><td><input class="genotypes" type="checkbox" value="FHK19" />FHK19</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK1mAP" />FHK1mAP</td><td><input class="genotypes" type="checkbox" value="FHK20mAP" />FHK20mAP</td><td><input class="genotypes" type="checkbox" value="FHK21mAP" />FHK21mAP</td><td><input class="genotypes" type="checkbox" value="FHK22mAP" />FHK22mAP</td><td><input class="genotypes" type="checkbox" value="FHK23mAP" />FHK23mAP</td><td><input class="genotypes" type="checkbox" value="FHK24mAP" />FHK24mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK1" />FHK1</td><td><input class="genotypes" type="checkbox" value="FHK20" />FHK20</td><td><input class="genotypes" type="checkbox" value="FHK21" />FHK21</td><td><input class="genotypes" type="checkbox" value="FHK22" />FHK22</td><td><input class="genotypes" type="checkbox" value="FHK23" />FHK23</td><td><input class="genotypes" type="checkbox" value="FHK24" />FHK24</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK25mAP" />FHK25mAP</td><td><input class="genotypes" type="checkbox" value="FHK26mAP" />FHK26mAP</td><td><input class="genotypes" type="checkbox" value="FHK27mAP" />FHK27mAP</td><td><input class="genotypes" type="checkbox" value="FHK28mAP" />FHK28mAP</td><td><input class="genotypes" type="checkbox" value="FHK29mAP" />FHK29mAP</td><td><input class="genotypes" type="checkbox" value="FHK2mAP" />FHK2mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK25" />FHK25</td><td><input class="genotypes" type="checkbox" value="FHK26" />FHK26</td><td><input class="genotypes" type="checkbox" value="FHK27" />FHK27</td><td><input class="genotypes" type="checkbox" value="FHK28" />FHK28</td><td><input class="genotypes" type="checkbox" value="FHK29" />FHK29</td><td><input class="genotypes" type="checkbox" value="FHK2" />FHK2</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK30mAP" />FHK30mAP</td><td><input class="genotypes" type="checkbox" value="FHK31mAP" />FHK31mAP</td><td><input class="genotypes" type="checkbox" value="FHK32mAP" />FHK32mAP</td><td><input class="genotypes" type="checkbox" value="FHK33mAP" />FHK33mAP</td><td><input class="genotypes" type="checkbox" value="FHK34mAP" />FHK34mAP</td><td><input class="genotypes" type="checkbox" value="FHK35mAP" />FHK35mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK30" />FHK30</td><td><input class="genotypes" type="checkbox" value="FHK31" />FHK31</td><td><input class="genotypes" type="checkbox" value="FHK32" />FHK32</td><td><input class="genotypes" type="checkbox" value="FHK33" />FHK33</td><td><input class="genotypes" type="checkbox" value="FHK34" />FHK34</td><td><input class="genotypes" type="checkbox" value="FHK35" />FHK35</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK36mAP" />FHK36mAP</td><td><input class="genotypes" type="checkbox" value="FHK37mAP" />FHK37mAP</td><td><input class="genotypes" type="checkbox" value="FHK38mAP" />FHK38mAP</td><td><input class="genotypes" type="checkbox" value="FHK39mAP" />FHK39mAP</td><td><input class="genotypes" type="checkbox" value="FHK3mAP" />FHK3mAP</td><td><input class="genotypes" type="checkbox" value="FHK40mAP" />FHK40mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK36" />FHK36</td><td><input class="genotypes" type="checkbox" value="FHK37" />FHK37</td><td><input class="genotypes" type="checkbox" value="FHK38" />FHK38</td><td><input class="genotypes" type="checkbox" value="FHK39" />FHK39</td><td><input class="genotypes" type="checkbox" value="FHK3" />FHK3</td><td><input class="genotypes" type="checkbox" value="FHK40" />FHK40</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK41mAP" />FHK41mAP</td><td><input class="genotypes" type="checkbox" value="FHK42mAP" />FHK42mAP</td><td><input class="genotypes" type="checkbox" value="FHK43mAP" />FHK43mAP</td><td><input class="genotypes" type="checkbox" value="FHK44mAP" />FHK44mAP</td><td><input class="genotypes" type="checkbox" value="FHK45mAP" />FHK45mAP</td><td><input class="genotypes" type="checkbox" value="FHK46mAP" />FHK46mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK41" />FHK41</td><td><input class="genotypes" type="checkbox" value="FHK42" />FHK42</td><td><input class="genotypes" type="checkbox" value="FHK43" />FHK43</td><td><input class="genotypes" type="checkbox" value="FHK44" />FHK44</td><td><input class="genotypes" type="checkbox" value="FHK45" />FHK45</td><td><input class="genotypes" type="checkbox" value="FHK46" />FHK46</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK47mAP" />FHK47mAP</td><td><input class="genotypes" type="checkbox" value="FHK48mAP" />FHK48mAP</td><td><input class="genotypes" type="checkbox" value="FHK49mAP" />FHK49mAP</td><td><input class="genotypes" type="checkbox" value="FHK4mAP" />FHK4mAP</td><td><input class="genotypes" type="checkbox" value="FHK50mAP" />FHK50mAP</td><td><input class="genotypes" type="checkbox" value="FHK51mAP" />FHK51mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK47" />FHK47</td><td><input class="genotypes" type="checkbox" value="FHK48" />FHK48</td><td><input class="genotypes" type="checkbox" value="FHK49" />FHK49</td><td><input class="genotypes" type="checkbox" value="FHK4" />FHK4</td><td><input class="genotypes" type="checkbox" value="FHK50" />FHK50</td><td><input class="genotypes" type="checkbox" value="FHK51" />FHK51</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK52mAP" />FHK52mAP</td><td><input class="genotypes" type="checkbox" value="FHK53mAP" />FHK53mAP</td><td><input class="genotypes" type="checkbox" value="FHK54mAP" />FHK54mAP</td><td><input class="genotypes" type="checkbox" value="FHK55mAP" />FHK55mAP</td><td><input class="genotypes" type="checkbox" value="FHK56mAP" />FHK56mAP</td><td><input class="genotypes" type="checkbox" value="FHK57mAP" />FHK57mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK52" />FHK52</td><td><input class="genotypes" type="checkbox" value="FHK53" />FHK53</td><td><input class="genotypes" type="checkbox" value="FHK54" />FHK54</td><td><input class="genotypes" type="checkbox" value="FHK55" />FHK55</td><td><input class="genotypes" type="checkbox" value="FHK56" />FHK56</td><td><input class="genotypes" type="checkbox" value="FHK57" />FHK57</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK58mAP" />FHK58mAP</td><td><input class="genotypes" type="checkbox" value="FHK59mAP" />FHK59mAP</td><td><input class="genotypes" type="checkbox" value="FHK5mAP" />FHK5mAP</td><td><input class="genotypes" type="checkbox" value="FHK60mAP" />FHK60mAP</td><td><input class="genotypes" type="checkbox" value="FHK61mAP" />FHK61mAP</td><td><input class="genotypes" type="checkbox" value="FHK62mAP" />FHK62mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK58" />FHK58</td><td><input class="genotypes" type="checkbox" value="FHK59" />FHK59</td><td><input class="genotypes" type="checkbox" value="FHK5" />FHK5</td><td><input class="genotypes" type="checkbox" value="FHK60" />FHK60</td><td><input class="genotypes" type="checkbox" value="FHK61" />FHK61</td><td><input class="genotypes" type="checkbox" value="FHK62" />FHK62</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK63mAP" />FHK63mAP</td><td><input class="genotypes" type="checkbox" value="FHK64mAP" />FHK64mAP</td><td><input class="genotypes" type="checkbox" value="FHK65mAP" />FHK65mAP</td><td><input class="genotypes" type="checkbox" value="FHK66mAP" />FHK66mAP</td><td><input class="genotypes" type="checkbox" value="FHK67mAP" />FHK67mAP</td><td><input class="genotypes" type="checkbox" value="FHK68mAP" />FHK68mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK63" />FHK63</td><td><input class="genotypes" type="checkbox" value="FHK64" />FHK64</td><td><input class="genotypes" type="checkbox" value="FHK65" />FHK65</td><td><input class="genotypes" type="checkbox" value="FHK66" />FHK66</td><td><input class="genotypes" type="checkbox" value="FHK67" />FHK67</td><td><input class="genotypes" type="checkbox" value="FHK68" />FHK68</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK69mAP" />FHK69mAP</td><td><input class="genotypes" type="checkbox" value="FHK6mAP" />FHK6mAP</td><td><input class="genotypes" type="checkbox" value="FHK70mAP" />FHK70mAP</td><td><input class="genotypes" type="checkbox" value="FHK71mAP" />FHK71mAP</td><td><input class="genotypes" type="checkbox" value="FHK72mAP" />FHK72mAP</td><td><input class="genotypes" type="checkbox" value="FHK73mAP" />FHK73mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK69" />FHK69</td><td><input class="genotypes" type="checkbox" value="FHK6" />FHK6</td><td><input class="genotypes" type="checkbox" value="FHK70" />FHK70</td><td><input class="genotypes" type="checkbox" value="FHK71" />FHK71</td><td><input class="genotypes" type="checkbox" value="FHK72" />FHK72</td><td><input class="genotypes" type="checkbox" value="FHK73" />FHK73</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK74mAP" />FHK74mAP</td><td><input class="genotypes" type="checkbox" value="FHK75mAP" />FHK75mAP</td><td><input class="genotypes" type="checkbox" value="FHK76mAP" />FHK76mAP</td><td><input class="genotypes" type="checkbox" value="FHK77mAP" />FHK77mAP</td><td><input class="genotypes" type="checkbox" value="FHK78mAP" />FHK78mAP</td><td><input class="genotypes" type="checkbox" value="FHK79mAP" />FHK79mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK74" />FHK74</td><td><input class="genotypes" type="checkbox" value="FHK75" />FHK75</td><td><input class="genotypes" type="checkbox" value="FHK76" />FHK76</td><td><input class="genotypes" type="checkbox" value="FHK77" />FHK77</td><td><input class="genotypes" type="checkbox" value="FHK78" />FHK78</td><td><input class="genotypes" type="checkbox" value="FHK79" />FHK79</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK7mAP" />FHK7mAP</td><td><input class="genotypes" type="checkbox" value="FHK80mAP" />FHK80mAP</td><td><input class="genotypes" type="checkbox" value="FHK81mAP" />FHK81mAP</td><td><input class="genotypes" type="checkbox" value="FHK82mAP" />FHK82mAP</td><td><input class="genotypes" type="checkbox" value="FHK83mAP" />FHK83mAP</td><td><input class="genotypes" type="checkbox" value="FHK84mAP" />FHK84mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK7" />FHK7</td><td><input class="genotypes" type="checkbox" value="FHK80" />FHK80</td><td><input class="genotypes" type="checkbox" value="FHK81" />FHK81</td><td><input class="genotypes" type="checkbox" value="FHK82" />FHK82</td><td><input class="genotypes" type="checkbox" value="FHK83" />FHK83</td><td><input class="genotypes" type="checkbox" value="FHK84" />FHK84</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK85mAP" />FHK85mAP</td><td><input class="genotypes" type="checkbox" value="FHK86mAP" />FHK86mAP</td><td><input class="genotypes" type="checkbox" value="FHK87mAP" />FHK87mAP</td><td><input class="genotypes" type="checkbox" value="FHK89mAP" />FHK89mAP</td><td><input class="genotypes" type="checkbox" value="FHK8mAP" />FHK8mAP</td><td><input class="genotypes" type="checkbox" value="FHK90mAP" />FHK90mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK85" />FHK85</td><td><input class="genotypes" type="checkbox" value="FHK86" />FHK86</td><td><input class="genotypes" type="checkbox" value="FHK87" />FHK87</td><td><input class="genotypes" type="checkbox" value="FHK89" />FHK89</td><td><input class="genotypes" type="checkbox" value="FHK8" />FHK8</td><td><input class="genotypes" type="checkbox" value="FHK90" />FHK90</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK92mAP" />FHK92mAP</td><td><input class="genotypes" type="checkbox" value="FHK93mAP" />FHK93mAP</td><td><input class="genotypes" type="checkbox" value="FHK94mAP" />FHK94mAP</td><td><input class="genotypes" type="checkbox" value="FHK95mAP" />FHK95mAP</td><td><input class="genotypes" type="checkbox" value="FHK96mAP" />FHK96mAP</td><td><input class="genotypes" type="checkbox" value="FHK97mAP" />FHK97mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK92" />FHK92</td><td><input class="genotypes" type="checkbox" value="FHK93" />FHK93</td><td><input class="genotypes" type="checkbox" value="FHK94" />FHK94</td><td><input class="genotypes" type="checkbox" value="FHK95" />FHK95</td><td><input class="genotypes" type="checkbox" value="FHK96" />FHK96</td><td><input class="genotypes" type="checkbox" value="FHK97" />FHK97</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK9mAP" />FHK9mAP</td><td><input class="genotypes" type="checkbox" value="FRA12mAP" />FRA12mAP</td><td><input class="genotypes" type="checkbox" value="FRA180mAP" />FRA180mAP</td><td><input class="genotypes" type="checkbox" value="FRA200mAP" />FRA200mAP</td><td><input class="genotypes" type="checkbox" value="FRA21mAP" />FRA21mAP</td><td><input class="genotypes" type="checkbox" value="FRA305mAP" />FRA305mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FHK9" />FHK9</td><td><input class="genotypes" type="checkbox" value="FRA12" />FRA12</td><td><input class="genotypes" type="checkbox" value="FRA180" />FRA180</td><td><input class="genotypes" type="checkbox" value="FRA200" />FRA200</td><td><input class="genotypes" type="checkbox" value="FRA21" />FRA21</td><td><input class="genotypes" type="checkbox" value="FRA305" />FRA305</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FRA31mAP" />FRA31mAP</td><td><input class="genotypes" type="checkbox" value="FRA65mAP" />FRA65mAP</td><td><input class="genotypes" type="checkbox" value="Fg1mAP" />Fg1mAP</td><td><input class="genotypes" type="checkbox" value="MTD41mAP" />MTD41mAP</td><td><input class="genotypes" type="checkbox" value="MTD66mAP" />MTD66mAP</td><td><input class="genotypes" type="checkbox" value="MTD69mAP" />MTD69mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="FRA31" />FRA31</td><td><input class="genotypes" type="checkbox" value="FRA65" />FRA65</td><td><input class="genotypes" type="checkbox" value="FHK88" />FHK88</td><td><input class="genotypes" type="checkbox" value="ET-2022-41" />ET-2022-41</td><td><input class="genotypes" type="checkbox" value="ET-2022-30-1" />ET-2022-30-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-33-1" />ET-2022-33-1</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="MTD71mAP" />MTD71mAP</td><td><input class="genotypes" type="checkbox" value="MTD72mAP" />MTD72mAP</td><td><input class="genotypes" type="checkbox" value="MTD80mAP" />MTD80mAP</td><td><input class="genotypes" type="checkbox" value="MTD83mAP" />MTD83mAP</td><td><input class="genotypes" type="checkbox" value="MTD84mAP" />MTD84mAP</td><td><input class="genotypes" type="checkbox" value="PH-1ERR11748137mAP" />PH-1ERR11748137mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="ET-2022-34-1" />ET-2022-34-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-35-1" />ET-2022-35-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-49-1" />ET-2022-49-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-52-1" />ET-2022-52-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-53-1" />ET-2022-53-1</td><td><input class="genotypes" type="checkbox" value="PH-1ERR11748137" />PH-1ERR11748137</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN02585717mAP" />SAMN02585717mAP</td><td><input class="genotypes" type="checkbox" value="SAMN02981337mAP" />SAMN02981337mAP</td><td><input class="genotypes" type="checkbox" value="SAMN14604992mAP" />SAMN14604992mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774461mAP" />SAMN16774461mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774462mAP" />SAMN16774462mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774464mAP" />SAMN16774464mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN02585717" />SAMN02585717</td><td><input class="genotypes" type="checkbox" value="SAMN02981337" />SAMN02981337</td><td><input class="genotypes" type="checkbox" value="SAMN14604992" />SAMN14604992</td><td><input class="genotypes" type="checkbox" value="SAMN16774461" />SAMN16774461</td><td><input class="genotypes" type="checkbox" value="SAMN16774462" />SAMN16774462</td><td><input class="genotypes" type="checkbox" value="SAMN16774464" />SAMN16774464</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774466mAP" />SAMN16774466mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774467mAP" />SAMN16774467mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774468mAP" />SAMN16774468mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774469mAP" />SAMN16774469mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774470mAP" />SAMN16774470mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774471mAP" />SAMN16774471mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774466" />SAMN16774466</td><td><input class="genotypes" type="checkbox" value="SAMN16774467" />SAMN16774467</td><td><input class="genotypes" type="checkbox" value="SAMN16774468" />SAMN16774468</td><td><input class="genotypes" type="checkbox" value="SAMN16774469" />SAMN16774469</td><td><input class="genotypes" type="checkbox" value="SAMN16774470" />SAMN16774470</td><td><input class="genotypes" type="checkbox" value="SAMN16774471" />SAMN16774471</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774472mAP" />SAMN16774472mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774473mAP" />SAMN16774473mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774474mAP" />SAMN16774474mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774475mAP" />SAMN16774475mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774476mAP" />SAMN16774476mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774477mAP" />SAMN16774477mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774472" />SAMN16774472</td><td><input class="genotypes" type="checkbox" value="SAMN16774473" />SAMN16774473</td><td><input class="genotypes" type="checkbox" value="SAMN16774474" />SAMN16774474</td><td><input class="genotypes" type="checkbox" value="SAMN16774475" />SAMN16774475</td><td><input class="genotypes" type="checkbox" value="SAMN16774476" />SAMN16774476</td><td><input class="genotypes" type="checkbox" value="SAMN16774477" />SAMN16774477</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774478mAP" />SAMN16774478mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774479mAP" />SAMN16774479mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774480mAP" />SAMN16774480mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774481mAP" />SAMN16774481mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774482mAP" />SAMN16774482mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774483mAP" />SAMN16774483mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774478" />SAMN16774478</td><td><input class="genotypes" type="checkbox" value="SAMN16774479" />SAMN16774479</td><td><input class="genotypes" type="checkbox" value="SAMN16774480" />SAMN16774480</td><td><input class="genotypes" type="checkbox" value="SAMN16774481" />SAMN16774481</td><td><input class="genotypes" type="checkbox" value="SAMN16774482" />SAMN16774482</td><td><input class="genotypes" type="checkbox" value="SAMN16774483" />SAMN16774483</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774484mAP" />SAMN16774484mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774485mAP" />SAMN16774485mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774486mAP" />SAMN16774486mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774487mAP" />SAMN16774487mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774488mAP" />SAMN16774488mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774489mAP" />SAMN16774489mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774484" />SAMN16774484</td><td><input class="genotypes" type="checkbox" value="SAMN16774485" />SAMN16774485</td><td><input class="genotypes" type="checkbox" value="SAMN16774486" />SAMN16774486</td><td><input class="genotypes" type="checkbox" value="SAMN16774487" />SAMN16774487</td><td><input class="genotypes" type="checkbox" value="SAMN16774488" />SAMN16774488</td><td><input class="genotypes" type="checkbox" value="SAMN16774489" />SAMN16774489</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774490mAP" />SAMN16774490mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774491mAP" />SAMN16774491mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774492mAP" />SAMN16774492mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774493mAP" />SAMN16774493mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774494mAP" />SAMN16774494mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774495mAP" />SAMN16774495mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774490" />SAMN16774490</td><td><input class="genotypes" type="checkbox" value="SAMN16774491" />SAMN16774491</td><td><input class="genotypes" type="checkbox" value="SAMN16774492" />SAMN16774492</td><td><input class="genotypes" type="checkbox" value="SAMN16774493" />SAMN16774493</td><td><input class="genotypes" type="checkbox" value="SAMN16774494" />SAMN16774494</td><td><input class="genotypes" type="checkbox" value="SAMN16774495" />SAMN16774495</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774496mAP" />SAMN16774496mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774497mAP" />SAMN16774497mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774498mAP" />SAMN16774498mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774499mAP" />SAMN16774499mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774500mAP" />SAMN16774500mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774501mAP" />SAMN16774501mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774496" />SAMN16774496</td><td><input class="genotypes" type="checkbox" value="SAMN16774497" />SAMN16774497</td><td><input class="genotypes" type="checkbox" value="SAMN16774498" />SAMN16774498</td><td><input class="genotypes" type="checkbox" value="SAMN16774499" />SAMN16774499</td><td><input class="genotypes" type="checkbox" value="SAMN16774500" />SAMN16774500</td><td><input class="genotypes" type="checkbox" value="SAMN16774501" />SAMN16774501</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774502mAP" />SAMN16774502mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774503mAP" />SAMN16774503mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774504mAP" />SAMN16774504mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774505mAP" />SAMN16774505mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774506mAP" />SAMN16774506mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774507mAP" />SAMN16774507mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774502" />SAMN16774502</td><td><input class="genotypes" type="checkbox" value="SAMN16774503" />SAMN16774503</td><td><input class="genotypes" type="checkbox" value="SAMN16774504" />SAMN16774504</td><td><input class="genotypes" type="checkbox" value="SAMN16774505" />SAMN16774505</td><td><input class="genotypes" type="checkbox" value="SAMN16774506" />SAMN16774506</td><td><input class="genotypes" type="checkbox" value="SAMN16774507" />SAMN16774507</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774508mAP" />SAMN16774508mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774509mAP" />SAMN16774509mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774510mAP" />SAMN16774510mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774511mAP" />SAMN16774511mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774512mAP" />SAMN16774512mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774513mAP" />SAMN16774513mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774508" />SAMN16774508</td><td><input class="genotypes" type="checkbox" value="SAMN16774509" />SAMN16774509</td><td><input class="genotypes" type="checkbox" value="SAMN16774510" />SAMN16774510</td><td><input class="genotypes" type="checkbox" value="SAMN16774511" />SAMN16774511</td><td><input class="genotypes" type="checkbox" value="SAMN16774512" />SAMN16774512</td><td><input class="genotypes" type="checkbox" value="SAMN16774513" />SAMN16774513</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774514mAP" />SAMN16774514mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774515mAP" />SAMN16774515mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774516mAP" />SAMN16774516mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774517mAP" />SAMN16774517mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774518mAP" />SAMN16774518mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774519mAP" />SAMN16774519mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774514" />SAMN16774514</td><td><input class="genotypes" type="checkbox" value="SAMN16774515" />SAMN16774515</td><td><input class="genotypes" type="checkbox" value="SAMN16774516" />SAMN16774516</td><td><input class="genotypes" type="checkbox" value="SAMN16774517" />SAMN16774517</td><td><input class="genotypes" type="checkbox" value="SAMN16774518" />SAMN16774518</td><td><input class="genotypes" type="checkbox" value="SAMN16774519" />SAMN16774519</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774520mAP" />SAMN16774520mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774521mAP" />SAMN16774521mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774523mAP" />SAMN16774523mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774524mAP" />SAMN16774524mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774525mAP" />SAMN16774525mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774526mAP" />SAMN16774526mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774520" />SAMN16774520</td><td><input class="genotypes" type="checkbox" value="SAMN16774521" />SAMN16774521</td><td><input class="genotypes" type="checkbox" value="SAMN16774523" />SAMN16774523</td><td><input class="genotypes" type="checkbox" value="SAMN16774524" />SAMN16774524</td><td><input class="genotypes" type="checkbox" value="SAMN16774525" />SAMN16774525</td><td><input class="genotypes" type="checkbox" value="SAMN16774526" />SAMN16774526</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774527mAP" />SAMN16774527mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774528mAP" />SAMN16774528mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774529mAP" />SAMN16774529mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774530mAP" />SAMN16774530mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774531mAP" />SAMN16774531mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774532mAP" />SAMN16774532mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774527" />SAMN16774527</td><td><input class="genotypes" type="checkbox" value="SAMN16774528" />SAMN16774528</td><td><input class="genotypes" type="checkbox" value="SAMN16774529" />SAMN16774529</td><td><input class="genotypes" type="checkbox" value="SAMN16774530" />SAMN16774530</td><td><input class="genotypes" type="checkbox" value="SAMN16774531" />SAMN16774531</td><td><input class="genotypes" type="checkbox" value="SAMN16774532" />SAMN16774532</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774533mAP" />SAMN16774533mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774534mAP" />SAMN16774534mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774535mAP" />SAMN16774535mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774536mAP" />SAMN16774536mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774537mAP" />SAMN16774537mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774538mAP" />SAMN16774538mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774533" />SAMN16774533</td><td><input class="genotypes" type="checkbox" value="SAMN16774534" />SAMN16774534</td><td><input class="genotypes" type="checkbox" value="SAMN16774535" />SAMN16774535</td><td><input class="genotypes" type="checkbox" value="SAMN16774536" />SAMN16774536</td><td><input class="genotypes" type="checkbox" value="SAMN16774537" />SAMN16774537</td><td><input class="genotypes" type="checkbox" value="SAMN16774538" />SAMN16774538</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774539mAP" />SAMN16774539mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774540mAP" />SAMN16774540mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774541mAP" />SAMN16774541mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774542mAP" />SAMN16774542mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774543mAP" />SAMN16774543mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774544mAP" />SAMN16774544mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774539" />SAMN16774539</td><td><input class="genotypes" type="checkbox" value="SAMN16774540" />SAMN16774540</td><td><input class="genotypes" type="checkbox" value="SAMN16774541" />SAMN16774541</td><td><input class="genotypes" type="checkbox" value="SAMN16774542" />SAMN16774542</td><td><input class="genotypes" type="checkbox" value="SAMN16774543" />SAMN16774543</td><td><input class="genotypes" type="checkbox" value="SAMN16774544" />SAMN16774544</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774545mAP" />SAMN16774545mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774546mAP" />SAMN16774546mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774547mAP" />SAMN16774547mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774548mAP" />SAMN16774548mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774549mAP" />SAMN16774549mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774550mAP" />SAMN16774550mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774545" />SAMN16774545</td><td><input class="genotypes" type="checkbox" value="SAMN16774546" />SAMN16774546</td><td><input class="genotypes" type="checkbox" value="SAMN16774547" />SAMN16774547</td><td><input class="genotypes" type="checkbox" value="SAMN16774548" />SAMN16774548</td><td><input class="genotypes" type="checkbox" value="SAMN16774549" />SAMN16774549</td><td><input class="genotypes" type="checkbox" value="SAMN16774550" />SAMN16774550</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774551mAP" />SAMN16774551mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774553mAP" />SAMN16774553mAP</td><td><input class="genotypes" type="checkbox" value="SAMN16774554mAP" />SAMN16774554mAP</td><td><input class="genotypes" type="checkbox" value="WG15AG37_S51mAP" />WG15AG37_S51mAP</td><td><input class="genotypes" type="checkbox" value="WG15BrC10_S49mAP" />WG15BrC10_S49mAP</td><td><input class="genotypes" type="checkbox" value="WG15BrK07_S48mAP" />WG15BrK07_S48mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="SAMN16774551" />SAMN16774551</td><td><input class="genotypes" type="checkbox" value="SAMN16774553" />SAMN16774553</td><td><input class="genotypes" type="checkbox" value="SAMN16774554" />SAMN16774554</td><td><input class="genotypes" type="checkbox" value="WG15AG37_S51" />WG15AG37_S51</td><td><input class="genotypes" type="checkbox" value="WG15BrC10_S49" />WG15BrC10_S49</td><td><input class="genotypes" type="checkbox" value="WG15BrK07_S48" />WG15BrK07_S48</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15BrK10_S47mAP" />WG15BrK10_S47mAP</td><td><input class="genotypes" type="checkbox" value="WG15CC02_S46mAP" />WG15CC02_S46mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC187_S45mAP" />WG15EC187_S45mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC232_S44mAP" />WG15EC232_S44mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC233_S43mAP" />WG15EC233_S43mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC234_S42mAP" />WG15EC234_S42mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15BrK10_S47" />WG15BrK10_S47</td><td><input class="genotypes" type="checkbox" value="WG15CC02_S46" />WG15CC02_S46</td><td><input class="genotypes" type="checkbox" value="WG15EC187_S45" />WG15EC187_S45</td><td><input class="genotypes" type="checkbox" value="WG15EC232_S44" />WG15EC232_S44</td><td><input class="genotypes" type="checkbox" value="WG15EC233_S43" />WG15EC233_S43</td><td><input class="genotypes" type="checkbox" value="WG15EC234_S42" />WG15EC234_S42</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15EC236_S41mAP" />WG15EC236_S41mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC239_S40mAP" />WG15EC239_S40mAP</td><td><input class="genotypes" type="checkbox" value="WG15EC256_S39mAP" />WG15EC256_S39mAP</td><td><input class="genotypes" type="checkbox" value="WG15EV127_S38mAP" />WG15EV127_S38mAP</td><td><input class="genotypes" type="checkbox" value="WG15EV156_S37mAP" />WG15EV156_S37mAP</td><td><input class="genotypes" type="checkbox" value="WG15EV202_S36mAP" />WG15EV202_S36mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15EC236_S41" />WG15EC236_S41</td><td><input class="genotypes" type="checkbox" value="WG15EC239_S40" />WG15EC239_S40</td><td><input class="genotypes" type="checkbox" value="WG15EC256_S39" />WG15EC256_S39</td><td><input class="genotypes" type="checkbox" value="WG15EV127_S38" />WG15EV127_S38</td><td><input class="genotypes" type="checkbox" value="WG15EV156_S37" />WG15EV156_S37</td><td><input class="genotypes" type="checkbox" value="WG15EV202_S36" />WG15EV202_S36</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15EV224_S35mAP" />WG15EV224_S35mAP</td><td><input class="genotypes" type="checkbox" value="WG15EV246_S1mAP" />WG15EV246_S1mAP</td><td><input class="genotypes" type="checkbox" value="WG15EV247_S34mAP" />WG15EV247_S34mAP</td><td><input class="genotypes" type="checkbox" value="WG15Evill16_S33mAP" />WG15Evill16_S33mAP</td><td><input class="genotypes" type="checkbox" value="WG15Evill18_S32mAP" />WG15Evill18_S32mAP</td><td><input class="genotypes" type="checkbox" value="WG15Evill25_S31mAP" />WG15Evill25_S31mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15EV224_S35" />WG15EV224_S35</td><td><input class="genotypes" type="checkbox" value="WG15EV246_S1" />WG15EV246_S1</td><td><input class="genotypes" type="checkbox" value="WG15EV247_S34" />WG15EV247_S34</td><td><input class="genotypes" type="checkbox" value="WG15Evill16_S33" />WG15Evill16_S33</td><td><input class="genotypes" type="checkbox" value="WG15Evill18_S32" />WG15Evill18_S32</td><td><input class="genotypes" type="checkbox" value="WG15Evill25_S31" />WG15Evill25_S31</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15Evill29_S30mAP" />WG15Evill29_S30mAP</td><td><input class="genotypes" type="checkbox" value="WG15Evill34_S29mAP" />WG15Evill34_S29mAP</td><td><input class="genotypes" type="checkbox" value="WG15Evill44_S28mAP" />WG15Evill44_S28mAP</td><td><input class="genotypes" type="checkbox" value="WG15GG06_S27mAP" />WG15GG06_S27mAP</td><td><input class="genotypes" type="checkbox" value="WG15GG11_S2mAP" />WG15GG11_S2mAP</td><td><input class="genotypes" type="checkbox" value="WG15GG17_S3mAP" />WG15GG17_S3mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15Evill29_S30" />WG15Evill29_S30</td><td><input class="genotypes" type="checkbox" value="WG15Evill34_S29" />WG15Evill34_S29</td><td><input class="genotypes" type="checkbox" value="WG15Evill44_S28" />WG15Evill44_S28</td><td><input class="genotypes" type="checkbox" value="WG15GG06_S27" />WG15GG06_S27</td><td><input class="genotypes" type="checkbox" value="WG15GG11_S2" />WG15GG11_S2</td><td><input class="genotypes" type="checkbox" value="WG15GG17_S3" />WG15GG17_S3</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15GG23_S4mAP" />WG15GG23_S4mAP</td><td><input class="genotypes" type="checkbox" value="WG15GG39_S5mAP" />WG15GG39_S5mAP</td><td><input class="genotypes" type="checkbox" value="WG15GG42_S6mAP" />WG15GG42_S6mAP</td><td><input class="genotypes" type="checkbox" value="WG15HJ11_S7mAP" />WG15HJ11_S7mAP</td><td><input class="genotypes" type="checkbox" value="WG15HJ15_S8mAP" />WG15HJ15_S8mAP</td><td><input class="genotypes" type="checkbox" value="WG15HJ17_S9mAP" />WG15HJ17_S9mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15GG23_S4" />WG15GG23_S4</td><td><input class="genotypes" type="checkbox" value="WG15GG39_S5" />WG15GG39_S5</td><td><input class="genotypes" type="checkbox" value="WG15GG42_S6" />WG15GG42_S6</td><td><input class="genotypes" type="checkbox" value="WG15HJ11_S7" />WG15HJ11_S7</td><td><input class="genotypes" type="checkbox" value="WG15HJ15_S8" />WG15HJ15_S8</td><td><input class="genotypes" type="checkbox" value="WG15HJ17_S9" />WG15HJ17_S9</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15HJ23_S10mAP" />WG15HJ23_S10mAP</td><td><input class="genotypes" type="checkbox" value="WG15HJ24_S11mAP" />WG15HJ24_S11mAP</td><td><input class="genotypes" type="checkbox" value="WG15HJ33_S12mAP" />WG15HJ33_S12mAP</td><td><input class="genotypes" type="checkbox" value="WG15HS21_S26mAP" />WG15HS21_S26mAP</td><td><input class="genotypes" type="checkbox" value="WG15HS32_S13mAP" />WG15HS32_S13mAP</td><td><input class="genotypes" type="checkbox" value="WG15LO06_S15mAP" />WG15LO06_S15mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15HJ23_S10" />WG15HJ23_S10</td><td><input class="genotypes" type="checkbox" value="WG15HJ24_S11" />WG15HJ24_S11</td><td><input class="genotypes" type="checkbox" value="WG15HJ33_S12" />WG15HJ33_S12</td><td><input class="genotypes" type="checkbox" value="WG15HS21_S26" />WG15HS21_S26</td><td><input class="genotypes" type="checkbox" value="WG15HS32_S13" />WG15HS32_S13</td><td><input class="genotypes" type="checkbox" value="WG15LO06_S15" />WG15LO06_S15</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PA02_S16mAP" />WG15PA02_S16mAP</td><td><input class="genotypes" type="checkbox" value="WG15PA17_S17mAP" />WG15PA17_S17mAP</td><td><input class="genotypes" type="checkbox" value="WG15PA21_S55mAP" />WG15PA21_S55mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV109_S18mAP" />WG15PV109_S18mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV132_S19mAP" />WG15PV132_S19mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV59_S20mAP" />WG15PV59_S20mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15PA02_S16" />WG15PA02_S16</td><td><input class="genotypes" type="checkbox" value="WG15PA17_S17" />WG15PA17_S17</td><td><input class="genotypes" type="checkbox" value="WG15PA21_S55" />WG15PA21_S55</td><td><input class="genotypes" type="checkbox" value="WG15PV109_S18" />WG15PV109_S18</td><td><input class="genotypes" type="checkbox" value="WG15PV132_S19" />WG15PV132_S19</td><td><input class="genotypes" type="checkbox" value="WG15PV59_S20" />WG15PV59_S20</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PV63_S21mAP" />WG15PV63_S21mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV65_S54mAP" />WG15PV65_S54mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV66_S53mAP" />WG15PV66_S53mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV72_S22mAP" />WG15PV72_S22mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV73_S23mAP" />WG15PV73_S23mAP</td><td><input class="genotypes" type="checkbox" value="WG15PV75_S24mAP" />WG15PV75_S24mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15PV63_S21" />WG15PV63_S21</td><td><input class="genotypes" type="checkbox" value="WG15PV65_S54" />WG15PV65_S54</td><td><input class="genotypes" type="checkbox" value="WG15PV66_S53" />WG15PV66_S53</td><td><input class="genotypes" type="checkbox" value="WG15PV72_S22" />WG15PV72_S22</td><td><input class="genotypes" type="checkbox" value="WG15PV73_S23" />WG15PV73_S23</td><td><input class="genotypes" type="checkbox" value="WG15PV75_S24" />WG15PV75_S24</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PV82_S25mAP" />WG15PV82_S25mAP</td><td><input class="genotypes" type="checkbox" value="WG15SS01_S52mAP" />WG15SS01_S52mAP</td><td><input class="genotypes" type="checkbox" value="f688mAP" />f688mAP</td><td><input class="genotypes" type="checkbox" value="fra132mAP" />fra132mAP</td><td><input class="genotypes" type="checkbox" value="fra161mAP" />fra161mAP</td><td><input class="genotypes" type="checkbox" value="fra181mAP" />fra181mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="WG15PV82_S25" />WG15PV82_S25</td><td><input class="genotypes" type="checkbox" value="WG15SS01_S52" />WG15SS01_S52</td><td><input class="genotypes" type="checkbox" value="f688" />f688</td><td><input class="genotypes" type="checkbox" value="fra132" />fra132</td><td><input class="genotypes" type="checkbox" value="fra161" />fra161</td><td><input class="genotypes" type="checkbox" value="fra181" />fra181</td>
                                         </tr>
                                         <tr>
-                                            <td><input class="genotypes" type="checkbox" value="fra201mAP" />fra201mAP</td><td><input class="genotypes" type="checkbox" value="fra267mAP" />fra267mAP</td><td><input class="genotypes" type="checkbox" value="fra336mAP" />fra336mAP</td>
+                                            <td><input class="genotypes" type="checkbox" value="fra201" />fra201</td><td><input class="genotypes" type="checkbox" value="fra267" />fra267</td><td><input class="genotypes" type="checkbox" value="fra336" />fra336</td>
                                         </tr>
                                     </table>
 
@@ -479,6 +560,99 @@
                                 </div>
                             </div>
     </div>
+
+    <div class="vert2024_container" style="display: none;" >
+    <br>
+    <b><font color="green" style="font-size: 10pt;">Select the acccessions from the following projects:</font></b>
+
+    <br><br>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0,'.genotypesVERT')">Unselect all</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.05,'.genotypesVERT')">Select Random 5%</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.10,'.genotypesVERT')">Select Random 10%</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.25,'.genotypesVERT')">Select Random 25%</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.5,'.genotypesVERT')">Select Random 50%</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.75,'.genotypesVERT')">Select Random 75%</button>
+    <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(1.0,'.genotypesVERT')">Select All</button>
+    <br><br>
+
+            <div class="border1">
+                <button type="button" class="accordion"><b>F. verticillioides, 112 strains - Location: Various</b></button>
+                <div class="panel">
+                    USDA-ARS: 112 total strains
+
+                <table>
+                    <tr>
+                        <td colspan="5">
+                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypesVERT')">Unselect all</button>
+                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypesVERT')">Select Random 25%</button>
+                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypesVERT')">Select Random 50%</button>
+                            <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypesVERT')">Select All</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="13575" />13575</td><td><input class="genotypesVERT" type="checkbox" value="13576" />13576</td><td><input class="genotypesVERT" type="checkbox" value="13577" />13577</td><td><input class="genotypesVERT" type="checkbox" value="13581" />13581</td><td><input class="genotypesVERT" type="checkbox" value="13582" />13582</td><td><input class="genotypesVERT" type="checkbox" value="13993" />13993</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="20TJ" />20TJ</td><td><input class="genotypesVERT" type="checkbox" value="25457" />25457</td><td><input class="genotypesVERT" type="checkbox" value="291-6" />291-6</td><td><input class="genotypesVERT" type="checkbox" value="2TJ" />2TJ</td><td><input class="genotypesVERT" type="checkbox" value="34718" />34718</td><td><input class="genotypesVERT" type="checkbox" value="34732" />34732</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="34744" />34744</td><td><input class="genotypesVERT" type="checkbox" value="34758" />34758</td><td><input class="genotypesVERT" type="checkbox" value="34769" />34769</td><td><input class="genotypesVERT" type="checkbox" value="34776" />34776</td><td><input class="genotypesVERT" type="checkbox" value="34784" />34784</td><td><input class="genotypesVERT" type="checkbox" value="34807" />34807</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="41109" />41109</td><td><input class="genotypesVERT" type="checkbox" value="5500" />5500</td><td><input class="genotypesVERT" type="checkbox" value="566692" />566692</td><td><input class="genotypesVERT" type="checkbox" value="60513" />60513</td><td><input class="genotypesVERT" type="checkbox" value="66466" />66466</td><td><input class="genotypesVERT" type="checkbox" value="66843" />66843</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="66849" />66849</td><td><input class="genotypesVERT" type="checkbox" value="75-12-Fv" />75-12-Fv</td><td><input class="genotypesVERT" type="checkbox" value="7603" />7603</td><td><input class="genotypesVERT" type="checkbox" value="8083A" />8083A</td><td><input class="genotypesVERT" type="checkbox" value="DA42" />DA42</td><td><input class="genotypesVERT" type="checkbox" value="DAMOC-Fv-216412" />DAMOC-Fv-216412</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="DAMOC-Fv-216417" />DAMOC-Fv-216417</td><td><input class="genotypesVERT" type="checkbox" value="DAOMC-212261-Fv" />DAOMC-212261-Fv</td><td><input class="genotypesVERT" type="checkbox" value="DAOMC-216420-Fv" />DAOMC-216420-Fv</td><td><input class="genotypesVERT" type="checkbox" value="DAOMC-225736-Fv" />DAOMC-225736-Fv</td><td><input class="genotypesVERT" type="checkbox" value="DB-FV-3125" />DB-FV-3125</td><td><input class="genotypesVERT" type="checkbox" value="ET11" />ET11</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="F31" />F31</td><td><input class="genotypesVERT" type="checkbox" value="F3T" />F3T</td><td><input class="genotypesVERT" type="checkbox" value="F9R" />F9R</td><td><input class="genotypesVERT" type="checkbox" value="FV152" />FV152</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET1" />Fvert-ET1</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET19" />Fvert-ET19</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="Fvert-ET21" />Fvert-ET21</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET5" />Fvert-ET5</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET60a" />Fvert-ET60a</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET69" />Fvert-ET69</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET70" />Fvert-ET70</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET88" />Fvert-ET88</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="Fvert-ET89" />Fvert-ET89</td><td><input class="genotypesVERT" type="checkbox" value="Fvert-ET9" />Fvert-ET9</td><td><input class="genotypesVERT" type="checkbox" value="GGM56-Fv" />GGM56-Fv</td><td><input class="genotypesVERT" type="checkbox" value="GGM62-Fv" />GGM62-Fv</td><td><input class="genotypesVERT" type="checkbox" value="GSM9" />GSM9</td><td><input class="genotypesVERT" type="checkbox" value="HKM45-Fv" />HKM45-Fv</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="ISU180" />ISU180</td><td><input class="genotypesVERT" type="checkbox" value="ISU186" />ISU186</td><td><input class="genotypesVERT" type="checkbox" value="ISU80" />ISU80</td><td><input class="genotypesVERT" type="checkbox" value="ITEM-16403" />ITEM-16403</td><td><input class="genotypesVERT" type="checkbox" value="ITEM15703" />ITEM15703</td><td><input class="genotypesVERT" type="checkbox" value="JO-205-9" />JO-205-9</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="JO-226-4" />JO-226-4</td><td><input class="genotypesVERT" type="checkbox" value="JO-341-6" />JO-341-6</td><td><input class="genotypesVERT" type="checkbox" value="JO-381-2" />JO-381-2</td><td><input class="genotypesVERT" type="checkbox" value="JO177-4" />JO177-4</td><td><input class="genotypesVERT" type="checkbox" value="JO178-3" />JO178-3</td><td><input class="genotypesVERT" type="checkbox" value="JO185-6" />JO185-6</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="JO35-8" />JO35-8</td><td><input class="genotypesVERT" type="checkbox" value="JO47-4" />JO47-4</td><td><input class="genotypesVERT" type="checkbox" value="M3120" />M3120</td><td><input class="genotypesVERT" type="checkbox" value="M5538" />M5538</td><td><input class="genotypesVERT" type="checkbox" value="MRC-E" />MRC-E</td><td><input class="genotypesVERT" type="checkbox" value="MY3" />MY3</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="MY5" />MY5</td><td><input class="genotypesVERT" type="checkbox" value="Nep10-Fv" />Nep10-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Nep833" />Nep833</td><td><input class="genotypesVERT" type="checkbox" value="Nep837-Fv" />Nep837-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Nep877" />Nep877</td><td><input class="genotypesVERT" type="checkbox" value="PO3" />PO3</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="Proctor-355-4-Fv" />Proctor-355-4-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Proctor-392-4-Fv" />Proctor-392-4-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Proctor-BLG1-Fv" />Proctor-BLG1-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Proctor-Fv-391-1" />Proctor-Fv-391-1</td><td><input class="genotypesVERT" type="checkbox" value="Proctor-GOE5-Fv" />Proctor-GOE5-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Proctor-GOE6-Fv" />Proctor-GOE6-Fv</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="Proctor-ILIO-1-Fv" />Proctor-ILIO-1-Fv</td><td><input class="genotypesVERT" type="checkbox" value="Protctor-GOE1-Fv" />Protctor-GOE1-Fv</td><td><input class="genotypesVERT" type="checkbox" value="RCJ-22" />RCJ-22</td><td><input class="genotypesVERT" type="checkbox" value="RCJ-657" />RCJ-657</td><td><input class="genotypesVERT" type="checkbox" value="RCML-396" />RCML-396</td><td><input class="genotypesVERT" type="checkbox" value="RCSM10-18" />RCSM10-18</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="RCSM11-2" />RCSM11-2</td><td><input class="genotypesVERT" type="checkbox" value="SRRC0248-Fv" />SRRC0248-Fv</td><td><input class="genotypesVERT" type="checkbox" value="SRRC0249-Fv" />SRRC0249-Fv</td><td><input class="genotypesVERT" type="checkbox" value="SRRC1083" />SRRC1083</td><td><input class="genotypesVERT" type="checkbox" value="TRJ" />TRJ</td><td><input class="genotypesVERT" type="checkbox" value="TX1" />TX1</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="TX10" />TX10</td><td><input class="genotypesVERT" type="checkbox" value="TX13" />TX13</td><td><input class="genotypesVERT" type="checkbox" value="TX18" />TX18</td><td><input class="genotypesVERT" type="checkbox" value="TX22" />TX22</td><td><input class="genotypesVERT" type="checkbox" value="TX30" />TX30</td><td><input class="genotypesVERT" type="checkbox" value="TX34" />TX34</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="TX38" />TX38</td><td><input class="genotypesVERT" type="checkbox" value="TX40" />TX40</td><td><input class="genotypesVERT" type="checkbox" value="TX42" />TX42</td><td><input class="genotypesVERT" type="checkbox" value="TX45" />TX45</td><td><input class="genotypesVERT" type="checkbox" value="TX47" />TX47</td><td><input class="genotypesVERT" type="checkbox" value="TX5" />TX5</td>
+                    </tr>
+                    <tr>
+                        <td><input class="genotypesVERT" type="checkbox" value="TX51" />TX51</td><td><input class="genotypesVERT" type="checkbox" value="TXB4-1" />TXB4-1</td><td><input class="genotypesVERT" type="checkbox" value="TXC1-1" />TXC1-1</td><td><input class="genotypesVERT" type="checkbox" value="amrF12" />amrF12</td><td><input class="genotypesVERT" type="checkbox" value="amrF7" />amrF7</td>
+                    </tr>
+
+                </table>
+
+                <br>
+            </div>
+        </div>
+</div>
     <br><br>
     <input id="thevcfbuttons" type="submit" style="font-face: 'Comic Sans MS'; font-size: larger; color: black border: 3pt ridge lightgrey" value=" Create and view the VCF file! " name = "gene" >
     </input>
@@ -984,7 +1158,7 @@
                     <br><br>
 
                         <b>Select which accessions to include:</b><br>
-                        This section allows the user to select a subset of the Fusarium graminearum strains to view. The two main options are to upload a file with the strain IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the <i>Fusarium</i> strains.  A list of all <i>F. graminearum</i> strains can be found in <a href="fg_accessions.xlsx" download="fg_accessions.xlsx">XLSX</a>.
+                        This section allows the user to select a subset of the Fusarium graminearum strains to view. The two main options are to upload a file with the strain IDs, use the buttons to randomly subsample the datasets, or use the checkboxes to manually select the <i>Fusarium</i> strains.  A list of all <i>F. graminearum</i> strains can be found in <a href="fusarium_accessions.xlsx" download="fusarium_accessions.xlsx">XLSX</a>.
 
                     </div>
 
@@ -1061,6 +1235,24 @@
                                 <td style="padding: 10px;">The linkage disequilibrium measured by the maximum R2 for a given loci.</td>
                                 <td style="padding: 10px;">0.64</td>
                             </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">DNA variant score</td>
+                                <td style="padding: 10px;">DNA_SCORE</td>
+                                <td style="padding: 10px;">DNA Score is a zero-shot mutation effect score based on the DNABERT DNA language model, calculated as the log-likelihood difference between the reference and alternate alleles, where more negative values indicate higher conservation and potential deleterious impact.</td>
+                                <td style="padding: 10px;">-7.5</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;">Amino acid variant score</td>
+                                <td style="padding: 10px;">AA_SCORE</td>
+                                <td style="padding: 10px;">AA SCORE is a variant effect score derived from the ESM1b protein language model, representing the log-likelihood ratio difference between a missense variant and the reference amino acid sequence, where lower scores suggest a higher likelihood of functional impact.</td>
+                                <td style="padding: 10px;">-10.2</td>
+                            </tr>
+                            <tr style="background-color: #F9FBE7;">
+                                <td style="padding: 10px;">Minor allele frequency</td>
+                                <td style="padding: 10px;">MAF</td>
+                                <td style="padding: 10px;">Minor Allele Frequency (MAF) is the proportion of the less common allele at a genetic locus within a given population.</td>
+                                <td style="padding: 10px;">0.23</td>
+                            </tr>
                         </table>
 
                         <br>
@@ -1090,6 +1282,12 @@
                                 Missing or unknown genotypes
                             </li>
                         </ul>
+
+                        <h3>Zero-shot score to estimate mutation effect</h3>
+                        We used DNABERT-2 (<a target="_blank" href="https://github.com/MAGICS-LAB/DNABERT_2">zhihan1996/DNABERT-2-117M</a>), a 117 M-parameter transformer-based DNA language model built on the original BERT framework, to score mutation effects in our VCF datasets via a zero-shot protocol. In brief, we compute the log-likelihood difference (ΔLL) between reference and alternative k-mer contexts—more negative ΔLL values indicate likely deleterious changes, capturing sequence conservation learned during unsupervised pre-training on genomes from 135 diverse species. This zero-shot approach lets us flag potentially harmful SNPs across our cohorts without any further fine-tuning. <b>Scores are available for SNPs only (INDELs excluded).</b>
+
+                        <h3>Zero-shot score to estimate missense mutation effect</h3>
+                        We used <a target="_blank" href="https://github.com/ntranoslab/esm-variantsesm-variants">esm-variants</a>, a tool based on the ESM1b protein language model, to estimate variant effect scores for all missense variants in our VCF files. The tool calculates a log-likelihood ratio difference between each variant and its reference amino acid sequence, highlighting potential functional consequences. Variants with scores above -7 are generally considered benign, while those below -7 may suggest functional effects. <b>The scores are available for missense variants only</b>.
 
                     </div>
 
@@ -1237,6 +1435,9 @@
 ##INFO=&lt;ID=GENEMODEL,Number=.,Type=String,Description="The name of the gene model affected by the variant."&gt;
 ##INFO=&lt;ID=SUB,Number=.,Type=String,Description="The amino acid substitution for missense and non-synonymous variants."&gt;
 ##INFO=&lt;ID=MAXR2,Number=1,Type=Float,Description="The maximum R2 for a given loci."&gt;
+##INFO=&ltID=DNA_SCORE,Number=1,Type=Float,Description="DNA Score is a zero-shot mutation effect score based on the DNABERT-2 DNA language model, calculated as the log-likelihood difference between the reference and alternate alleles, where more negative values indicate higher conservation and potential deleterious impact."&gt;
+##INFO=&ltID=AA_SCORE,Number=1,Type=Float,Description="AA Score is a variant effect score derived from the ESM1b protein language model, representing the log-likelihood ratio difference between a missense variant and the reference amino acid sequence, where lower scores suggest a higher likelihood of functional impact."&gt;
+##INFO=&ltID=MAF,Number=1,Type=Float,Description="Minor Allele Frequency (MAF) is the proportion of the less common allele at a genetic locus within a given population."&gt;
 ##FORMAT=<&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;
 #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	45596mAP	45668mAP	45702mAP	46290mAP	46370mAP	46566mAP	46960mAP	ETH-001-barcode9mAP	F100mAP	F272mAP	F325mAP	F328mAP	FHK15mAP	FHK28mAP	FHK45mAP	FHK50mAP	FHK69mAP	MTD69mAP	SAMN16774488mAP	SAMN16774508mAP	SAMN16774523mAP	SAMN16774539mAP	SAMN16774540mAP	SAMN16774547mAP	WG15Evill16_S33mAP	WG15GG39_S5mAP
 chr4	555005	.	C	T	3609.51	.	MQ=60;CVC=512;CVP=99.81;TYPE=synonymous_variant,downstream_gene_variant;EFFECT=LOW,MODIFIER;GENEMODEL=FGSG_06605,FGSG_12945;SUB=L886L,.;MAXR2=1.0	GT	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
