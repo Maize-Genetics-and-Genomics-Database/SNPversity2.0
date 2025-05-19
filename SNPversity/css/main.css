@@ -1310,3 +1310,13 @@ pre {
         .dataset-table tr.selected {
             background-color: #d1e7dd; /* Choose your desired fixed color */
         }
+
+        /* Add this CSS to your stylesheet or within a <style> tag in the <head> section */
+        .disabled-row {
+            color: grey; /* Grey out the text */
+            background-color: #f0f0f0; /* Light grey background for contrast */
+        }
+
+        .disabled-row input[type="radio"] {
+            cursor: not-allowed; /* Change cursor to indicate non-interactive */
+        }
