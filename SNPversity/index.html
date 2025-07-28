@@ -8,16 +8,22 @@
     <script src="./js/VCF2PopTree.js"></script>
     <script src="./js/google_analytics.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@5.6.1/dist/css/tabulator.min.css">
+    <script src="https://unpkg.com/tabulator-tables@5.6.1/dist/js/tabulator.min.js"></script>
+    <script src="strains.js"></script>
+
     <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/selector.css">
     <title>SNPVersity 2.0</title>
 </head>
 
 <body>
     <div class="body-container">
+    <div class="page-wrap">
        <div class="header">
            Fusarium SNPVersity: a web-based tool for visualizing <i>Fusarium</i> diversity
        </div>
-
+       <br>
        <div class="tabs">
            <div>
                <button class="tab" id="Soptions" onclick="showContent('input');highlightTab('Soptions')">Select options</button>
@@ -32,15 +38,11 @@
        <div id="mainContainer">
            <div id="pageContentsXX">
                <div id="contentContainer" class="content">
-                    <h2><font color="green">Fusarium VCF builder and viewer</font></h2>
+                    <br><h2><font>Fusarium VCF builder and viewer</font></h2>
                     <p>Create a VCF file based on a given region of the <i>Fusarium</i> genome and a subset of the diverse strains.</p>
 
                     <form action="#" method="post">
-
-                    <div id="subheaderContainer">
-                        <p><h3><font color="white">Choose a dataset</font></h3></p>
-                    </div>
-                    <br>
+                        <p><span class="section-title"><font color="white">Choose a dataset</font></h3></p>
 
                     Use the "Select" column to choose a dataset. Once you've made your selection, a list of available accessions will appear in the "Select the accessions to include" section.
 
@@ -68,7 +70,7 @@
                                 <td class="radio-cell" >
                                     <input type="radio" name="ds" id='dataset' value="mgdb2024_hq" onchange='updateChromosomes(this)' checked>
                                 </td>
-                                <td><i>F. graminearum</i> 2024 (High Quality)</td>
+                                <td width="150px"><i>F. graminearum</i> <br>(High Quality - 2025)</td>
                                 <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
                                 <td>513</td>
                                 <td>3.1 million</td>
@@ -87,7 +89,7 @@
                                 <td class="radio-cell">
                                     <input type="radio" name="ds" id='dataset' value="mgdb2024_hc" onchange='updateChromosomes(this)'>
                                 </td>
-                                <td><i>F. graminearum</i> 2024 (High Coverage)</td>
+                                <td><i>F. graminearum</i> <br>(High Coverage - 2025)</td>
                                 <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
                                 <td>513</td>
                                 <td>3.5 million</td>
@@ -106,7 +108,7 @@
                                 <td class="radio-cell">
                                     <input type="radio" name="ds" id='dataset' value="vert2024_hc" onchange='updateChromosomes(this)'>
                                 </td>
-                                <td><i>F. verticillioides</i> 2024 (High Quality)</td>
+                                <td><i>F. verticillioides MRC</i> <br>(High Quality - 2025)</td>
                                 <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
                                 <td>113</td>
                                 <td>1.1 million</td>
@@ -125,7 +127,7 @@
                                 <td class="radio-cell">
                                     <input type="radio" name="ds" id='dataset' value="vert2024_hc" onchange='updateChromosomes(this)'>
                                 </td>
-                                <td><i>F. verticillioides</i> 2024 (High Coverage)</td>
+                                <td><i>F. verticillioides MRC</i> <br>(High Coverage - 2025)</td>
                                 <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
                                 <td>113</td>
                                 <td>1.4 million</td>
@@ -144,7 +146,7 @@
                                 <td class="radio-cell">
                                     <input type="radio" name="ds" id='dataset' value="vertV2024_hc" onchange='updateChromosomes(this)'>
                                 </td>
-                                <td><i>F. verticillioides</i> 2024 (High Quality)</td>
+                                <td><i>F. verticillioides 7600</i> <br>(High Quality - 2025)</td>
                                 <td><i>Fusarium verticillioides</i> 7600</td>
                                 <td>113</td>
                                 <td>1.0 million</td>
@@ -163,7 +165,7 @@
                                 <td class="radio-cell">
                                     <input type="radio" name="ds" id='dataset' value="vertV2024_hq" onchange='updateChromosomes(this)'>
                                 </td>
-                                <td><i>F. verticillioides</i> 2024 (High Coverage)</td>
+                                <td><i>F. verticillioides 7600</i> <br>(High Coverage - 2025)</td>
                                 <td><i>Fusarium verticillioides</i> 7600</td>
                                 <td>113</td>
                                 <td>1.3 million</td>
@@ -180,9 +182,7 @@
                         </tbody>
                     </table>
 
-                    <div id="subheaderContainer">
-                        <p><h3><font color="white">Select genomic interval</font></h3></p>
-                    </div>
+                    <p><span class="section-title"><font color="white">Select genomic interval</font></h3></p>
 
                     <p>To retrieve the SNPs and INDELS within a genomic interval, select a chromosome, then enter the genome start and stop positions of your interval.</p>
 
@@ -231,7 +231,7 @@
                         <br>
                         Optional: Enter a gene model and press the "Load coordinates" button and the gene model coordinates will be auto-populated above.<br><br>
 
-                        <table width="1500px" class="input_table">
+                        <table class="input_table">
                             <tr>
                                 <td style="vertical-align: top; padding-top: 5px" width="20%"><b><font color="green">Gene Model ID:</font></b><br></td>
                                 <td width="55%"> <input type="text" name="geneModelId" id="geneModelId"> (+/- bp) <input type="number"  style="width: 100px;" min="0" name="start" id="flankInput" value="0"/>
@@ -244,11 +244,7 @@
                         </table>
                         <br>
 
-
-                        <br>
-                        <div id="subheaderContainer">
-                            <p><h3><font color="white">Select the accessions to include</font></h3></p>
-                        </div>
+                        <p><span class="section-title"><font color="white">Select the accessions to include</font></h3></p>
 
                         <p class="upload-instructions">
                           Upload a file of <i>Fusarium</i> species:
@@ -270,295 +266,42 @@
 
                         <div class="maize2024_container" style="display: block;" >
                         <br>
-                        <b><font color="green" style="font-size: 10pt;">Select the acccessions from the following projects:</font></b>
 
-                        <br><br>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0,'.genotypes')">Unselect all</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.05,'.genotypes')">Select Random 5%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.10,'.genotypes')">Select Random 10%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.25,'.genotypes')">Select Random 25%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.5,'.genotypes')">Select Random 50%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(0.75,'.genotypes')">Select Random 75%</button>
-                        <button type="button" id="selectRandom" onclick="toggleCheckboxesAll(1.0,'.genotypes')">Select All</button>
-                        <br><br>
+                        <h2>Strain Selector: Fusarium graminearum </h2>
 
-                                <div class="border1">
-                                    <button type="button" class="accordion"><b>F. graminearum, 513 strains - Location: Various</b></button>
-                                    <div class="panel">
-                                        USDA-ARS: 513 total strains
+                        <div id="layout">
+                          <div id="facets">
+                            <h2 style="margin:0 0 6px;font-size:16px;">Filters</h2>
+                            <button id="clearAllFacets" style="margin-bottom:8px;">Reset All Filters</button>
+                            <div id="facet-population"></div>
+                            <div id="facet-country"></div>
+                            <div id="facet-host"></div>
+                            <div id="facet-chemotype"></div>
+                          </div>
 
-                                    <table>
-                                        <tr>
-                                            <td colspan="5">
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0,'.genotypes')">Unselect all</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.25,'.genotypes')">Select Random 25%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 0.5,'.genotypes')">Select Random 50%</button>
-                                                <button type="button" id="selectRandom" onclick="toggleCheckboxes(this, 1.0,'.genotypes')">Select All</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="06163" />06163</td><td><input class="genotypes" type="checkbox" value="31619" />31619</td><td><input class="genotypes" type="checkbox" value="31620" />31620</td><td><input class="genotypes" type="checkbox" value="34302" />34302</td><td><input class="genotypes" type="checkbox" value="34494" />34494</td><td><input class="genotypes" type="checkbox" value="34540" />34540</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="34583" />34583</td><td><input class="genotypes" type="checkbox" value="34584" />34584</td><td><input class="genotypes" type="checkbox" value="34585" />34585</td><td><input class="genotypes" type="checkbox" value="34586" />34586</td><td><input class="genotypes" type="checkbox" value="36905" />36905</td><td><input class="genotypes" type="checkbox" value="36970" />36970</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="37401" />37401</td><td><input class="genotypes" type="checkbox" value="37408" />37408</td><td><input class="genotypes" type="checkbox" value="37425" />37425</td><td><input class="genotypes" type="checkbox" value="37450" />37450</td><td><input class="genotypes" type="checkbox" value="37509" />37509</td><td><input class="genotypes" type="checkbox" value="37525" />37525</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="38165" />38165</td><td><input class="genotypes" type="checkbox" value="38369" />38369</td><td><input class="genotypes" type="checkbox" value="38380" />38380</td><td><input class="genotypes" type="checkbox" value="38381" />38381</td><td><input class="genotypes" type="checkbox" value="38383" />38383</td><td><input class="genotypes" type="checkbox" value="38393" />38393</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="38395" />38395</td><td><input class="genotypes" type="checkbox" value="38405" />38405</td><td><input class="genotypes" type="checkbox" value="39238" />39238</td><td><input class="genotypes" type="checkbox" value="39247" />39247</td><td><input class="genotypes" type="checkbox" value="39263" />39263</td><td><input class="genotypes" type="checkbox" value="39270" />39270</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="39274" />39274</td><td><input class="genotypes" type="checkbox" value="39278" />39278</td><td><input class="genotypes" type="checkbox" value="39290" />39290</td><td><input class="genotypes" type="checkbox" value="39297" />39297</td><td><input class="genotypes" type="checkbox" value="39300" />39300</td><td><input class="genotypes" type="checkbox" value="39310" />39310</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="39339" />39339</td><td><input class="genotypes" type="checkbox" value="39340" />39340</td><td><input class="genotypes" type="checkbox" value="39341" />39341</td><td><input class="genotypes" type="checkbox" value="39343" />39343</td><td><input class="genotypes" type="checkbox" value="43161" />43161</td><td><input class="genotypes" type="checkbox" value="43884" />43884</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="44070" />44070</td><td><input class="genotypes" type="checkbox" value="44078" />44078</td><td><input class="genotypes" type="checkbox" value="44211" />44211</td><td><input class="genotypes" type="checkbox" value="45156" />45156</td><td><input class="genotypes" type="checkbox" value="45373" />45373</td><td><input class="genotypes" type="checkbox" value="45596" />45596</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45606" />45606</td><td><input class="genotypes" type="checkbox" value="45607" />45607</td><td><input class="genotypes" type="checkbox" value="45611" />45611</td><td><input class="genotypes" type="checkbox" value="45612" />45612</td><td><input class="genotypes" type="checkbox" value="45620" />45620</td><td><input class="genotypes" type="checkbox" value="45626" />45626</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45628" />45628</td><td><input class="genotypes" type="checkbox" value="45632" />45632</td><td><input class="genotypes" type="checkbox" value="45633" />45633</td><td><input class="genotypes" type="checkbox" value="45634" />45634</td><td><input class="genotypes" type="checkbox" value="45635" />45635</td><td><input class="genotypes" type="checkbox" value="45636" />45636</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45637" />45637</td><td><input class="genotypes" type="checkbox" value="45647" />45647</td><td><input class="genotypes" type="checkbox" value="45649" />45649</td><td><input class="genotypes" type="checkbox" value="45654" />45654</td><td><input class="genotypes" type="checkbox" value="45655" />45655</td><td><input class="genotypes" type="checkbox" value="45656" />45656</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45657" />45657</td><td><input class="genotypes" type="checkbox" value="45658" />45658</td><td><input class="genotypes" type="checkbox" value="45664" />45664</td><td><input class="genotypes" type="checkbox" value="45666" />45666</td><td><input class="genotypes" type="checkbox" value="45668" />45668</td><td><input class="genotypes" type="checkbox" value="45669" />45669</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45670" />45670</td><td><input class="genotypes" type="checkbox" value="45675" />45675</td><td><input class="genotypes" type="checkbox" value="45677" />45677</td><td><input class="genotypes" type="checkbox" value="45689" />45689</td><td><input class="genotypes" type="checkbox" value="45701" />45701</td><td><input class="genotypes" type="checkbox" value="45702" />45702</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45703" />45703</td><td><input class="genotypes" type="checkbox" value="45705" />45705</td><td><input class="genotypes" type="checkbox" value="45708" />45708</td><td><input class="genotypes" type="checkbox" value="45712" />45712</td><td><input class="genotypes" type="checkbox" value="45716" />45716</td><td><input class="genotypes" type="checkbox" value="45735" />45735</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45737" />45737</td><td><input class="genotypes" type="checkbox" value="45740" />45740</td><td><input class="genotypes" type="checkbox" value="45741" />45741</td><td><input class="genotypes" type="checkbox" value="45744" />45744</td><td><input class="genotypes" type="checkbox" value="45745" />45745</td><td><input class="genotypes" type="checkbox" value="45746" />45746</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45747" />45747</td><td><input class="genotypes" type="checkbox" value="45780" />45780</td><td><input class="genotypes" type="checkbox" value="45787" />45787</td><td><input class="genotypes" type="checkbox" value="45815" />45815</td><td><input class="genotypes" type="checkbox" value="45827" />45827</td><td><input class="genotypes" type="checkbox" value="45834" />45834</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="45835" />45835</td><td><input class="genotypes" type="checkbox" value="45836" />45836</td><td><input class="genotypes" type="checkbox" value="45838" />45838</td><td><input class="genotypes" type="checkbox" value="45839" />45839</td><td><input class="genotypes" type="checkbox" value="46240" />46240</td><td><input class="genotypes" type="checkbox" value="46250" />46250</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46259" />46259</td><td><input class="genotypes" type="checkbox" value="46267" />46267</td><td><input class="genotypes" type="checkbox" value="46273" />46273</td><td><input class="genotypes" type="checkbox" value="46275" />46275</td><td><input class="genotypes" type="checkbox" value="46284" />46284</td><td><input class="genotypes" type="checkbox" value="46287" />46287</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46289" />46289</td><td><input class="genotypes" type="checkbox" value="46290" />46290</td><td><input class="genotypes" type="checkbox" value="46294" />46294</td><td><input class="genotypes" type="checkbox" value="46297" />46297</td><td><input class="genotypes" type="checkbox" value="46305" />46305</td><td><input class="genotypes" type="checkbox" value="46317" />46317</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46329" />46329</td><td><input class="genotypes" type="checkbox" value="46336" />46336</td><td><input class="genotypes" type="checkbox" value="46354" />46354</td><td><input class="genotypes" type="checkbox" value="46363" />46363</td><td><input class="genotypes" type="checkbox" value="46370" />46370</td><td><input class="genotypes" type="checkbox" value="46371" />46371</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46380" />46380</td><td><input class="genotypes" type="checkbox" value="46386" />46386</td><td><input class="genotypes" type="checkbox" value="46422" />46422</td><td><input class="genotypes" type="checkbox" value="46434" />46434</td><td><input class="genotypes" type="checkbox" value="46522" />46522</td><td><input class="genotypes" type="checkbox" value="46525" />46525</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46532" />46532</td><td><input class="genotypes" type="checkbox" value="46533" />46533</td><td><input class="genotypes" type="checkbox" value="46539" />46539</td><td><input class="genotypes" type="checkbox" value="46544" />46544</td><td><input class="genotypes" type="checkbox" value="46547" />46547</td><td><input class="genotypes" type="checkbox" value="46548" />46548</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46549" />46549</td><td><input class="genotypes" type="checkbox" value="46558" />46558</td><td><input class="genotypes" type="checkbox" value="46559" />46559</td><td><input class="genotypes" type="checkbox" value="46560" />46560</td><td><input class="genotypes" type="checkbox" value="46564" />46564</td><td><input class="genotypes" type="checkbox" value="46566" />46566</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46874" />46874</td><td><input class="genotypes" type="checkbox" value="46875" />46875</td><td><input class="genotypes" type="checkbox" value="46898" />46898</td><td><input class="genotypes" type="checkbox" value="46899" />46899</td><td><input class="genotypes" type="checkbox" value="46914" />46914</td><td><input class="genotypes" type="checkbox" value="46915" />46915</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="46934" />46934</td><td><input class="genotypes" type="checkbox" value="46935" />46935</td><td><input class="genotypes" type="checkbox" value="46959" />46959</td><td><input class="genotypes" type="checkbox" value="46960" />46960</td><td><input class="genotypes" type="checkbox" value="46986" />46986</td><td><input class="genotypes" type="checkbox" value="46987" />46987</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="47526" />47526</td><td><input class="genotypes" type="checkbox" value="47527" />47527</td><td><input class="genotypes" type="checkbox" value="47554" />47554</td><td><input class="genotypes" type="checkbox" value="47555" />47555</td><td><input class="genotypes" type="checkbox" value="47556" />47556</td><td><input class="genotypes" type="checkbox" value="47571" />47571</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="47588" />47588</td><td><input class="genotypes" type="checkbox" value="47605" />47605</td><td><input class="genotypes" type="checkbox" value="47659" />47659</td><td><input class="genotypes" type="checkbox" value="52005" />52005</td><td><input class="genotypes" type="checkbox" value="52008" />52008</td><td><input class="genotypes" type="checkbox" value="52129" />52129</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="52195" />52195</td><td><input class="genotypes" type="checkbox" value="52429" />52429</td><td><input class="genotypes" type="checkbox" value="52512" />52512</td><td><input class="genotypes" type="checkbox" value="52840" />52840</td><td><input class="genotypes" type="checkbox" value="52847" />52847</td><td><input class="genotypes" type="checkbox" value="52850" />52850</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="52955" />52955</td><td><input class="genotypes" type="checkbox" value="53046" />53046</td><td><input class="genotypes" type="checkbox" value="53173" />53173</td><td><input class="genotypes" type="checkbox" value="53184" />53184</td><td><input class="genotypes" type="checkbox" value="54196" />54196</td><td><input class="genotypes" type="checkbox" value="54197" />54197</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="62913" />62913</td><td><input class="genotypes" type="checkbox" value="62929" />62929</td><td><input class="genotypes" type="checkbox" value="66030" />66030</td><td><input class="genotypes" type="checkbox" value="66031" />66031</td><td><input class="genotypes" type="checkbox" value="66037" />66037</td><td><input class="genotypes" type="checkbox" value="66039" />66039</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="66040" />66040</td><td><input class="genotypes" type="checkbox" value="66041" />66041</td><td><input class="genotypes" type="checkbox" value="66042" />66042</td><td><input class="genotypes" type="checkbox" value="66043" />66043</td><td><input class="genotypes" type="checkbox" value="66045" />66045</td><td><input class="genotypes" type="checkbox" value="66047" />66047</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="66049" />66049</td><td><input class="genotypes" type="checkbox" value="ET-2022-15-1" />ET-2022-15-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-49-1" />ET-2022-49-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-52-1" />ET-2022-52-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-3-1" />ET-2022-3-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-17-1" />ET-2022-17-1</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="ET-2022-21-1" />ET-2022-21-1</td><td><input class="genotypes" type="checkbox" value="F100" />F100</td><td><input class="genotypes" type="checkbox" value="F10" />F10</td><td><input class="genotypes" type="checkbox" value="F116" />F116</td><td><input class="genotypes" type="checkbox" value="F124" />F124</td><td><input class="genotypes" type="checkbox" value="F130" />F130</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F131" />F131</td><td><input class="genotypes" type="checkbox" value="F132" />F132</td><td><input class="genotypes" type="checkbox" value="F13" />F13</td><td><input class="genotypes" type="checkbox" value="F16" />F16</td><td><input class="genotypes" type="checkbox" value="F272" />F272</td><td><input class="genotypes" type="checkbox" value="F27" />F27</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F322" />F322</td><td><input class="genotypes" type="checkbox" value="F325" />F325</td><td><input class="genotypes" type="checkbox" value="F326" />F326</td><td><input class="genotypes" type="checkbox" value="F327" />F327</td><td><input class="genotypes" type="checkbox" value="F328" />F328</td><td><input class="genotypes" type="checkbox" value="F329" />F329</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F330" />F330</td><td><input class="genotypes" type="checkbox" value="F331" />F331</td><td><input class="genotypes" type="checkbox" value="F332" />F332</td><td><input class="genotypes" type="checkbox" value="F333" />F333</td><td><input class="genotypes" type="checkbox" value="F334" />F334</td><td><input class="genotypes" type="checkbox" value="F335" />F335</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F336" />F336</td><td><input class="genotypes" type="checkbox" value="F337" />F337</td><td><input class="genotypes" type="checkbox" value="F338" />F338</td><td><input class="genotypes" type="checkbox" value="F339" />F339</td><td><input class="genotypes" type="checkbox" value="F340" />F340</td><td><input class="genotypes" type="checkbox" value="F341" />F341</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F342" />F342</td><td><input class="genotypes" type="checkbox" value="F343" />F343</td><td><input class="genotypes" type="checkbox" value="F344" />F344</td><td><input class="genotypes" type="checkbox" value="F347" />F347</td><td><input class="genotypes" type="checkbox" value="F348" />F348</td><td><input class="genotypes" type="checkbox" value="F351" />F351</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F353" />F353</td><td><input class="genotypes" type="checkbox" value="F354" />F354</td><td><input class="genotypes" type="checkbox" value="F356" />F356</td><td><input class="genotypes" type="checkbox" value="F366" />F366</td><td><input class="genotypes" type="checkbox" value="F367" />F367</td><td><input class="genotypes" type="checkbox" value="F368" />F368</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F387" />F387</td><td><input class="genotypes" type="checkbox" value="F398" />F398</td><td><input class="genotypes" type="checkbox" value="F399" />F399</td><td><input class="genotypes" type="checkbox" value="F501" />F501</td><td><input class="genotypes" type="checkbox" value="F522" />F522</td><td><input class="genotypes" type="checkbox" value="F535" />F535</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F537" />F537</td><td><input class="genotypes" type="checkbox" value="F55" />F55</td><td><input class="genotypes" type="checkbox" value="F562" />F562</td><td><input class="genotypes" type="checkbox" value="F60" />F60</td><td><input class="genotypes" type="checkbox" value="F68" />F68</td><td><input class="genotypes" type="checkbox" value="F6" />F6</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="F96" />F96</td><td><input class="genotypes" type="checkbox" value="FHK91" />FHK91</td><td><input class="genotypes" type="checkbox" value="FHK10" />FHK10</td><td><input class="genotypes" type="checkbox" value="FHK11" />FHK11</td><td><input class="genotypes" type="checkbox" value="FHK12" />FHK12</td><td><input class="genotypes" type="checkbox" value="FHK13" />FHK13</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK14" />FHK14</td><td><input class="genotypes" type="checkbox" value="FHK15" />FHK15</td><td><input class="genotypes" type="checkbox" value="FHK16" />FHK16</td><td><input class="genotypes" type="checkbox" value="FHK17" />FHK17</td><td><input class="genotypes" type="checkbox" value="FHK18" />FHK18</td><td><input class="genotypes" type="checkbox" value="FHK19" />FHK19</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK1" />FHK1</td><td><input class="genotypes" type="checkbox" value="FHK20" />FHK20</td><td><input class="genotypes" type="checkbox" value="FHK21" />FHK21</td><td><input class="genotypes" type="checkbox" value="FHK22" />FHK22</td><td><input class="genotypes" type="checkbox" value="FHK23" />FHK23</td><td><input class="genotypes" type="checkbox" value="FHK24" />FHK24</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK25" />FHK25</td><td><input class="genotypes" type="checkbox" value="FHK26" />FHK26</td><td><input class="genotypes" type="checkbox" value="FHK27" />FHK27</td><td><input class="genotypes" type="checkbox" value="FHK28" />FHK28</td><td><input class="genotypes" type="checkbox" value="FHK29" />FHK29</td><td><input class="genotypes" type="checkbox" value="FHK2" />FHK2</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK30" />FHK30</td><td><input class="genotypes" type="checkbox" value="FHK31" />FHK31</td><td><input class="genotypes" type="checkbox" value="FHK32" />FHK32</td><td><input class="genotypes" type="checkbox" value="FHK33" />FHK33</td><td><input class="genotypes" type="checkbox" value="FHK34" />FHK34</td><td><input class="genotypes" type="checkbox" value="FHK35" />FHK35</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK36" />FHK36</td><td><input class="genotypes" type="checkbox" value="FHK37" />FHK37</td><td><input class="genotypes" type="checkbox" value="FHK38" />FHK38</td><td><input class="genotypes" type="checkbox" value="FHK39" />FHK39</td><td><input class="genotypes" type="checkbox" value="FHK3" />FHK3</td><td><input class="genotypes" type="checkbox" value="FHK40" />FHK40</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK41" />FHK41</td><td><input class="genotypes" type="checkbox" value="FHK42" />FHK42</td><td><input class="genotypes" type="checkbox" value="FHK43" />FHK43</td><td><input class="genotypes" type="checkbox" value="FHK44" />FHK44</td><td><input class="genotypes" type="checkbox" value="FHK45" />FHK45</td><td><input class="genotypes" type="checkbox" value="FHK46" />FHK46</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK47" />FHK47</td><td><input class="genotypes" type="checkbox" value="FHK48" />FHK48</td><td><input class="genotypes" type="checkbox" value="FHK49" />FHK49</td><td><input class="genotypes" type="checkbox" value="FHK4" />FHK4</td><td><input class="genotypes" type="checkbox" value="FHK50" />FHK50</td><td><input class="genotypes" type="checkbox" value="FHK51" />FHK51</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK52" />FHK52</td><td><input class="genotypes" type="checkbox" value="FHK53" />FHK53</td><td><input class="genotypes" type="checkbox" value="FHK54" />FHK54</td><td><input class="genotypes" type="checkbox" value="FHK55" />FHK55</td><td><input class="genotypes" type="checkbox" value="FHK56" />FHK56</td><td><input class="genotypes" type="checkbox" value="FHK57" />FHK57</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK58" />FHK58</td><td><input class="genotypes" type="checkbox" value="FHK59" />FHK59</td><td><input class="genotypes" type="checkbox" value="FHK5" />FHK5</td><td><input class="genotypes" type="checkbox" value="FHK60" />FHK60</td><td><input class="genotypes" type="checkbox" value="FHK61" />FHK61</td><td><input class="genotypes" type="checkbox" value="FHK62" />FHK62</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK63" />FHK63</td><td><input class="genotypes" type="checkbox" value="FHK64" />FHK64</td><td><input class="genotypes" type="checkbox" value="FHK65" />FHK65</td><td><input class="genotypes" type="checkbox" value="FHK66" />FHK66</td><td><input class="genotypes" type="checkbox" value="FHK67" />FHK67</td><td><input class="genotypes" type="checkbox" value="FHK68" />FHK68</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK69" />FHK69</td><td><input class="genotypes" type="checkbox" value="FHK6" />FHK6</td><td><input class="genotypes" type="checkbox" value="FHK70" />FHK70</td><td><input class="genotypes" type="checkbox" value="FHK71" />FHK71</td><td><input class="genotypes" type="checkbox" value="FHK72" />FHK72</td><td><input class="genotypes" type="checkbox" value="FHK73" />FHK73</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK74" />FHK74</td><td><input class="genotypes" type="checkbox" value="FHK75" />FHK75</td><td><input class="genotypes" type="checkbox" value="FHK76" />FHK76</td><td><input class="genotypes" type="checkbox" value="FHK77" />FHK77</td><td><input class="genotypes" type="checkbox" value="FHK78" />FHK78</td><td><input class="genotypes" type="checkbox" value="FHK79" />FHK79</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK7" />FHK7</td><td><input class="genotypes" type="checkbox" value="FHK80" />FHK80</td><td><input class="genotypes" type="checkbox" value="FHK81" />FHK81</td><td><input class="genotypes" type="checkbox" value="FHK82" />FHK82</td><td><input class="genotypes" type="checkbox" value="FHK83" />FHK83</td><td><input class="genotypes" type="checkbox" value="FHK84" />FHK84</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK85" />FHK85</td><td><input class="genotypes" type="checkbox" value="FHK86" />FHK86</td><td><input class="genotypes" type="checkbox" value="FHK87" />FHK87</td><td><input class="genotypes" type="checkbox" value="FHK89" />FHK89</td><td><input class="genotypes" type="checkbox" value="FHK8" />FHK8</td><td><input class="genotypes" type="checkbox" value="FHK90" />FHK90</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK92" />FHK92</td><td><input class="genotypes" type="checkbox" value="FHK93" />FHK93</td><td><input class="genotypes" type="checkbox" value="FHK94" />FHK94</td><td><input class="genotypes" type="checkbox" value="FHK95" />FHK95</td><td><input class="genotypes" type="checkbox" value="FHK96" />FHK96</td><td><input class="genotypes" type="checkbox" value="FHK97" />FHK97</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FHK9" />FHK9</td><td><input class="genotypes" type="checkbox" value="FRA12" />FRA12</td><td><input class="genotypes" type="checkbox" value="FRA180" />FRA180</td><td><input class="genotypes" type="checkbox" value="FRA200" />FRA200</td><td><input class="genotypes" type="checkbox" value="FRA21" />FRA21</td><td><input class="genotypes" type="checkbox" value="FRA305" />FRA305</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="FRA31" />FRA31</td><td><input class="genotypes" type="checkbox" value="FRA65" />FRA65</td><td><input class="genotypes" type="checkbox" value="FHK88" />FHK88</td><td><input class="genotypes" type="checkbox" value="ET-2022-41" />ET-2022-41</td><td><input class="genotypes" type="checkbox" value="ET-2022-30-1" />ET-2022-30-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-33-1" />ET-2022-33-1</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="ET-2022-34-1" />ET-2022-34-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-35-1" />ET-2022-35-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-49-1" />ET-2022-49-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-52-1" />ET-2022-52-1</td><td><input class="genotypes" type="checkbox" value="ET-2022-53-1" />ET-2022-53-1</td><td><input class="genotypes" type="checkbox" value="PH-1ERR11748137" />PH-1ERR11748137</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN02585717" />SAMN02585717</td><td><input class="genotypes" type="checkbox" value="SAMN02981337" />SAMN02981337</td><td><input class="genotypes" type="checkbox" value="SAMN14604992" />SAMN14604992</td><td><input class="genotypes" type="checkbox" value="SAMN16774461" />SAMN16774461</td><td><input class="genotypes" type="checkbox" value="SAMN16774462" />SAMN16774462</td><td><input class="genotypes" type="checkbox" value="SAMN16774464" />SAMN16774464</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774466" />SAMN16774466</td><td><input class="genotypes" type="checkbox" value="SAMN16774467" />SAMN16774467</td><td><input class="genotypes" type="checkbox" value="SAMN16774468" />SAMN16774468</td><td><input class="genotypes" type="checkbox" value="SAMN16774469" />SAMN16774469</td><td><input class="genotypes" type="checkbox" value="SAMN16774470" />SAMN16774470</td><td><input class="genotypes" type="checkbox" value="SAMN16774471" />SAMN16774471</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774472" />SAMN16774472</td><td><input class="genotypes" type="checkbox" value="SAMN16774473" />SAMN16774473</td><td><input class="genotypes" type="checkbox" value="SAMN16774474" />SAMN16774474</td><td><input class="genotypes" type="checkbox" value="SAMN16774475" />SAMN16774475</td><td><input class="genotypes" type="checkbox" value="SAMN16774476" />SAMN16774476</td><td><input class="genotypes" type="checkbox" value="SAMN16774477" />SAMN16774477</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774478" />SAMN16774478</td><td><input class="genotypes" type="checkbox" value="SAMN16774479" />SAMN16774479</td><td><input class="genotypes" type="checkbox" value="SAMN16774480" />SAMN16774480</td><td><input class="genotypes" type="checkbox" value="SAMN16774481" />SAMN16774481</td><td><input class="genotypes" type="checkbox" value="SAMN16774482" />SAMN16774482</td><td><input class="genotypes" type="checkbox" value="SAMN16774483" />SAMN16774483</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774484" />SAMN16774484</td><td><input class="genotypes" type="checkbox" value="SAMN16774485" />SAMN16774485</td><td><input class="genotypes" type="checkbox" value="SAMN16774486" />SAMN16774486</td><td><input class="genotypes" type="checkbox" value="SAMN16774487" />SAMN16774487</td><td><input class="genotypes" type="checkbox" value="SAMN16774488" />SAMN16774488</td><td><input class="genotypes" type="checkbox" value="SAMN16774489" />SAMN16774489</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774490" />SAMN16774490</td><td><input class="genotypes" type="checkbox" value="SAMN16774491" />SAMN16774491</td><td><input class="genotypes" type="checkbox" value="SAMN16774492" />SAMN16774492</td><td><input class="genotypes" type="checkbox" value="SAMN16774493" />SAMN16774493</td><td><input class="genotypes" type="checkbox" value="SAMN16774494" />SAMN16774494</td><td><input class="genotypes" type="checkbox" value="SAMN16774495" />SAMN16774495</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774496" />SAMN16774496</td><td><input class="genotypes" type="checkbox" value="SAMN16774497" />SAMN16774497</td><td><input class="genotypes" type="checkbox" value="SAMN16774498" />SAMN16774498</td><td><input class="genotypes" type="checkbox" value="SAMN16774499" />SAMN16774499</td><td><input class="genotypes" type="checkbox" value="SAMN16774500" />SAMN16774500</td><td><input class="genotypes" type="checkbox" value="SAMN16774501" />SAMN16774501</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774502" />SAMN16774502</td><td><input class="genotypes" type="checkbox" value="SAMN16774503" />SAMN16774503</td><td><input class="genotypes" type="checkbox" value="SAMN16774504" />SAMN16774504</td><td><input class="genotypes" type="checkbox" value="SAMN16774505" />SAMN16774505</td><td><input class="genotypes" type="checkbox" value="SAMN16774506" />SAMN16774506</td><td><input class="genotypes" type="checkbox" value="SAMN16774507" />SAMN16774507</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774508" />SAMN16774508</td><td><input class="genotypes" type="checkbox" value="SAMN16774509" />SAMN16774509</td><td><input class="genotypes" type="checkbox" value="SAMN16774510" />SAMN16774510</td><td><input class="genotypes" type="checkbox" value="SAMN16774511" />SAMN16774511</td><td><input class="genotypes" type="checkbox" value="SAMN16774512" />SAMN16774512</td><td><input class="genotypes" type="checkbox" value="SAMN16774513" />SAMN16774513</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774514" />SAMN16774514</td><td><input class="genotypes" type="checkbox" value="SAMN16774515" />SAMN16774515</td><td><input class="genotypes" type="checkbox" value="SAMN16774516" />SAMN16774516</td><td><input class="genotypes" type="checkbox" value="SAMN16774517" />SAMN16774517</td><td><input class="genotypes" type="checkbox" value="SAMN16774518" />SAMN16774518</td><td><input class="genotypes" type="checkbox" value="SAMN16774519" />SAMN16774519</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774520" />SAMN16774520</td><td><input class="genotypes" type="checkbox" value="SAMN16774521" />SAMN16774521</td><td><input class="genotypes" type="checkbox" value="SAMN16774523" />SAMN16774523</td><td><input class="genotypes" type="checkbox" value="SAMN16774524" />SAMN16774524</td><td><input class="genotypes" type="checkbox" value="SAMN16774525" />SAMN16774525</td><td><input class="genotypes" type="checkbox" value="SAMN16774526" />SAMN16774526</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774527" />SAMN16774527</td><td><input class="genotypes" type="checkbox" value="SAMN16774528" />SAMN16774528</td><td><input class="genotypes" type="checkbox" value="SAMN16774529" />SAMN16774529</td><td><input class="genotypes" type="checkbox" value="SAMN16774530" />SAMN16774530</td><td><input class="genotypes" type="checkbox" value="SAMN16774531" />SAMN16774531</td><td><input class="genotypes" type="checkbox" value="SAMN16774532" />SAMN16774532</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774533" />SAMN16774533</td><td><input class="genotypes" type="checkbox" value="SAMN16774534" />SAMN16774534</td><td><input class="genotypes" type="checkbox" value="SAMN16774535" />SAMN16774535</td><td><input class="genotypes" type="checkbox" value="SAMN16774536" />SAMN16774536</td><td><input class="genotypes" type="checkbox" value="SAMN16774537" />SAMN16774537</td><td><input class="genotypes" type="checkbox" value="SAMN16774538" />SAMN16774538</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774539" />SAMN16774539</td><td><input class="genotypes" type="checkbox" value="SAMN16774540" />SAMN16774540</td><td><input class="genotypes" type="checkbox" value="SAMN16774541" />SAMN16774541</td><td><input class="genotypes" type="checkbox" value="SAMN16774542" />SAMN16774542</td><td><input class="genotypes" type="checkbox" value="SAMN16774543" />SAMN16774543</td><td><input class="genotypes" type="checkbox" value="SAMN16774544" />SAMN16774544</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774545" />SAMN16774545</td><td><input class="genotypes" type="checkbox" value="SAMN16774546" />SAMN16774546</td><td><input class="genotypes" type="checkbox" value="SAMN16774547" />SAMN16774547</td><td><input class="genotypes" type="checkbox" value="SAMN16774548" />SAMN16774548</td><td><input class="genotypes" type="checkbox" value="SAMN16774549" />SAMN16774549</td><td><input class="genotypes" type="checkbox" value="SAMN16774550" />SAMN16774550</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="SAMN16774551" />SAMN16774551</td><td><input class="genotypes" type="checkbox" value="SAMN16774553" />SAMN16774553</td><td><input class="genotypes" type="checkbox" value="SAMN16774554" />SAMN16774554</td><td><input class="genotypes" type="checkbox" value="WG15AG37_S51" />WG15AG37_S51</td><td><input class="genotypes" type="checkbox" value="WG15BrC10_S49" />WG15BrC10_S49</td><td><input class="genotypes" type="checkbox" value="WG15BrK07_S48" />WG15BrK07_S48</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15BrK10_S47" />WG15BrK10_S47</td><td><input class="genotypes" type="checkbox" value="WG15CC02_S46" />WG15CC02_S46</td><td><input class="genotypes" type="checkbox" value="WG15EC187_S45" />WG15EC187_S45</td><td><input class="genotypes" type="checkbox" value="WG15EC232_S44" />WG15EC232_S44</td><td><input class="genotypes" type="checkbox" value="WG15EC233_S43" />WG15EC233_S43</td><td><input class="genotypes" type="checkbox" value="WG15EC234_S42" />WG15EC234_S42</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15EC236_S41" />WG15EC236_S41</td><td><input class="genotypes" type="checkbox" value="WG15EC239_S40" />WG15EC239_S40</td><td><input class="genotypes" type="checkbox" value="WG15EC256_S39" />WG15EC256_S39</td><td><input class="genotypes" type="checkbox" value="WG15EV127_S38" />WG15EV127_S38</td><td><input class="genotypes" type="checkbox" value="WG15EV156_S37" />WG15EV156_S37</td><td><input class="genotypes" type="checkbox" value="WG15EV202_S36" />WG15EV202_S36</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15EV224_S35" />WG15EV224_S35</td><td><input class="genotypes" type="checkbox" value="WG15EV246_S1" />WG15EV246_S1</td><td><input class="genotypes" type="checkbox" value="WG15EV247_S34" />WG15EV247_S34</td><td><input class="genotypes" type="checkbox" value="WG15Evill16_S33" />WG15Evill16_S33</td><td><input class="genotypes" type="checkbox" value="WG15Evill18_S32" />WG15Evill18_S32</td><td><input class="genotypes" type="checkbox" value="WG15Evill25_S31" />WG15Evill25_S31</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15Evill29_S30" />WG15Evill29_S30</td><td><input class="genotypes" type="checkbox" value="WG15Evill34_S29" />WG15Evill34_S29</td><td><input class="genotypes" type="checkbox" value="WG15Evill44_S28" />WG15Evill44_S28</td><td><input class="genotypes" type="checkbox" value="WG15GG06_S27" />WG15GG06_S27</td><td><input class="genotypes" type="checkbox" value="WG15GG11_S2" />WG15GG11_S2</td><td><input class="genotypes" type="checkbox" value="WG15GG17_S3" />WG15GG17_S3</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15GG23_S4" />WG15GG23_S4</td><td><input class="genotypes" type="checkbox" value="WG15GG39_S5" />WG15GG39_S5</td><td><input class="genotypes" type="checkbox" value="WG15GG42_S6" />WG15GG42_S6</td><td><input class="genotypes" type="checkbox" value="WG15HJ11_S7" />WG15HJ11_S7</td><td><input class="genotypes" type="checkbox" value="WG15HJ15_S8" />WG15HJ15_S8</td><td><input class="genotypes" type="checkbox" value="WG15HJ17_S9" />WG15HJ17_S9</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15HJ23_S10" />WG15HJ23_S10</td><td><input class="genotypes" type="checkbox" value="WG15HJ24_S11" />WG15HJ24_S11</td><td><input class="genotypes" type="checkbox" value="WG15HJ33_S12" />WG15HJ33_S12</td><td><input class="genotypes" type="checkbox" value="WG15HS21_S26" />WG15HS21_S26</td><td><input class="genotypes" type="checkbox" value="WG15HS32_S13" />WG15HS32_S13</td><td><input class="genotypes" type="checkbox" value="WG15LO06_S15" />WG15LO06_S15</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PA02_S16" />WG15PA02_S16</td><td><input class="genotypes" type="checkbox" value="WG15PA17_S17" />WG15PA17_S17</td><td><input class="genotypes" type="checkbox" value="WG15PA21_S55" />WG15PA21_S55</td><td><input class="genotypes" type="checkbox" value="WG15PV109_S18" />WG15PV109_S18</td><td><input class="genotypes" type="checkbox" value="WG15PV132_S19" />WG15PV132_S19</td><td><input class="genotypes" type="checkbox" value="WG15PV59_S20" />WG15PV59_S20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PV63_S21" />WG15PV63_S21</td><td><input class="genotypes" type="checkbox" value="WG15PV65_S54" />WG15PV65_S54</td><td><input class="genotypes" type="checkbox" value="WG15PV66_S53" />WG15PV66_S53</td><td><input class="genotypes" type="checkbox" value="WG15PV72_S22" />WG15PV72_S22</td><td><input class="genotypes" type="checkbox" value="WG15PV73_S23" />WG15PV73_S23</td><td><input class="genotypes" type="checkbox" value="WG15PV75_S24" />WG15PV75_S24</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="WG15PV82_S25" />WG15PV82_S25</td><td><input class="genotypes" type="checkbox" value="WG15SS01_S52" />WG15SS01_S52</td><td><input class="genotypes" type="checkbox" value="f688" />f688</td><td><input class="genotypes" type="checkbox" value="fra132" />fra132</td><td><input class="genotypes" type="checkbox" value="fra161" />fra161</td><td><input class="genotypes" type="checkbox" value="fra181" />fra181</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input class="genotypes" type="checkbox" value="fra201" />fra201</td><td><input class="genotypes" type="checkbox" value="fra267" />fra267</td><td><input class="genotypes" type="checkbox" value="fra336" />fra336</td>
-                                        </tr>
-                                    </table>
+                          <div id="main">
+                            <div id="toolbar1">
+                              <input id="globalSearch" type="search" placeholder="Global search (ID, species, host, country, chemotype)">
+                              <input id="thevcfbuttons" type="submit" value="Create and view the VCF file!" name="gene" />
+                          </div>
+                          <div id="toolbar">
+                                  <button type="button" id="btnSelectAllVis">Select All Visible</button>
+                                  <button type="button" class="btnRand" data-frac="0.05">Select 5%</button>
+                                  <button type="button" class="btnRand" data-frac="0.10">Select 10%</button>
+                                  <button type="button" class="btnRand" data-frac="0.25">Select 25%</button>
+                                  <button type="button" class="btnRand" data-frac="0.50">Select 50%</button>
 
-                                    <br>
-                                </div>
+                                  <button type="button" id="btnClearSel">Clear Selection</button>
+                                  <button type="button" id="btnExportJSON">Export JSON</button>
+                                  <button type="button" id="btnExportCSV">Export CSV</button>
+
                             </div>
+                            <div id="selectedInputs"></div>
+                            <div id="strainGrid"></div>
+                            <div id="statusBar"></div>
+                          </div>
+                        </div>
+
     </div>
 
     <div class="vert2024_container" style="display: none;" >
@@ -653,15 +396,11 @@
             </div>
         </div>
 </div>
-    <br><br>
-    <input id="thevcfbuttons" type="submit" style="font-face: 'Comic Sans MS'; font-size: larger; color: black border: 3pt ridge lightgrey" value=" Create and view the VCF file! " name = "gene" >
-    </input>
+
 </div>
 </div>
 </div>
 </form>
-
-
 
             <div id="loadingContainer" class="load_content" style="display: none">
             </div>
@@ -790,217 +529,116 @@
                     <li><b>Verify Data Integrity</b>: After download, use checksums (provided in the tables below) to verify the integrity of the downloaded files.</li>
                 </ul>
 
-                <h2>F. graminearum 2024 High Coverage Datasets (VCFs)</h2>
-
                 <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time (@100Mbps / @10MBps)</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr1_high_coverage.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr2_high_coverage.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr3_high_coverage.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr4_high_coverage.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Link</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Reference Genome</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Variant Sites</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Heterozygous Sites</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">INDELS</th>
+                            <th align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Imputation</th>
+                        </tr>
+                    </thead>
 
+                    <h2>Download table</h2>
+                    <tbody>
+                        <!-- Dataset 1 -->
+                        <tr style="background-color: #F9FBE7;">
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td width="150px"><i>F. graminearum</i> <br>(High Quality - 2025)</td>
+                            <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
+                            <td>513</td>
+                            <td>3.1 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+
+                        </tr>
+
+                        <!-- Dataset 2 -->
+                        <tr>
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td><i>F. graminearum</i> <br>(High Coverage - 2025)</td>
+                            <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
+                            <td>513</td>
+                            <td>3.5 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+
+                        </tr>
+
+                        <!-- Dataset 3 -->
+                        <tr style="background-color: #F9FBE7;">
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td><i>F. verticillioides MRC</i> <br>(High Quality - 2025)</td>
+                            <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
+                            <td>113</td>
+                            <td>1.1 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+
+                        </tr>
+
+                        <!-- Dataset 4 -->
+                        <tr>
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td><i>F. verticillioides MRC</i> <br>(High Coverage - 2025)</td>
+                            <td><i>Fusarium verticillioides</i> MRC 826; NRRL 20960; NRRL A-26168</td>
+                            <td>113</td>
+                            <td>1.4 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                        </tr>
+
+                        <!-- Dataset 5 -->
+                        <tr style="background-color: #F9FBE7;">
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td><i>F. verticillioides 7600</i> <br>(High Quality - 2025)</td>
+                            <td><i>Fusarium verticillioides</i> 7600</td>
+                            <td>113</td>
+                            <td>1.0 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+
+                        </tr>
+
+                        <!-- Dataset 6 -->
+                        <tr>
+                            <td>
+                                <a target="_blank" href="#">Download</a>
+                            </td>
+                            <td><i>F. verticillioides 7600</i> <br>(High Coverage - 2025)</td>
+                            <td><i>Fusarium verticillioides</i> 7600</td>
+                            <td>113</td>
+                            <td>1.3 million</td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                            <td><span class="checkmark">&#10004;</span></td>
+                            <td><span class="crossmark">&#10008;</span></td>
+                        </tr>
+
+                    </tbody>
                 </table>
-                *Download times are estimated and may vary.
-
-                <h2>F. graminearum 2024 High Coverage Datasets (H5)</h2>
-
-                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time (@100Mbps / @10MBps)</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr1_HC.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr2_HC.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr3_HC.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr4_HC.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Coverage variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-
-                </table>
-                *Download times are estimated and may vary.
-
-                <h2>F. graminearum 2024 High Quality Datasets (VCFs)</h2>
-
-                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time (@100Mbps / @10MBps)</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr1_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr2_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr3_high_quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">chr4_high_Quality.vcf.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                </table>
-                *Download times are estimated and may vary.
-
-                <h2>F. graminearum 2024 High Quality Datasets (H5)</h2>
-
-                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time (@100Mbps / @10MBps)</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr1_HQ.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 1.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr2_HQ.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 2.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr3_HQ.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 3.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;"><a target="_blank" href="#">fusarium2024_chr4_HQ.h5.gz</a> </td>
-                        <td style="padding: 10px;">High Quality variants and metadata identified in Chromsome 4.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-
-                </table>
-                *Download times are estimated and may vary.
-
-                <h2>F. graminearum 2024 Raw Unfiltered Datasets (VCFs)</h2>
-
-                <table width="80%" style="border-collapse: collapse; font-family: Arial, sans-serif; width: 90%">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Dataset Name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Description</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Size</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">*Download time (@100Mbps / @10MBps)</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">MD5 Checksum</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;">fusarium2024_chr1.vcf.gz</td>
-                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 1.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;">fusarium2024_chr2.vcf.gz</td>
-                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 2.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;">fusarium2024_chr3.vcf.gz</td>
-                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 3.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-                    <tr >
-                        <td style="padding: 10px;">fusarium2024_chr4.vcf.gz</td>
-                        <td style="padding: 10px;">Full unfiltered variants and read data in Chromsome 4.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD</td>
-                    </tr>
-
-                </table>
-                *Download times are estimated and may vary.
-
+                <br>
                 <h2>Need Help?</h2>
                 If you encounter any issues during the download or have any questions, please contact <a href=mailto:john.portwood@usda.gov>John Portwood</a>.
+                <br><br>
 
                 <h2>Disclaimer</h2>
                 <ul>
@@ -1033,32 +671,48 @@
                     <h2>Code</h2>
                     For information about the code used in SNPVersity 2.0 please refer to the GitHub page. This page provides detailed information about web compatibility, the directory structure, system requirements, and a comprehensive description of the code. It also offers guidance on how to use the websites, information about the pipelines used, and instructions on preparing data for PanEffect.
                     <br><br>For more details, please visit our GitHub page: <a target="_blank" href="https://github.com/Maize-Genetics-and-Genomics-Database/SNPversity2.0">GitHub - SNPVersity 2.0</a>.
-
+                    <br><br>
                     <h2><i>F. graminearum</i> 2024 Dataset</h2>
 
-                    TBD
-                    <br><br>
+                    <table width="500px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
+                        <tr>
+                            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Strain Count</td>
+                            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Population</td>
+                            <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
+                        </tr>
 
-                <table width="500px" style="border-collapse: collapse; font-family: Arial, sans-serif;">
-                    <tr>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">PubMed ID</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">DOI</td>
-                        <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
-                    </tr>
-                    <tr style="background-color: #F9FBE7;">
-                        <td style="padding: 10px;">513 </td>
-                        <td style="padding: 10px;">TBD </td>
-                        <td style="padding: 10px;"><i>F. graminearum</i> description.</td>
-                        <td style="padding: 10px;">TBD</td>
-                        <td style="padding: 10px;">TBD </td>
-                        <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #9A5446;"></div></td>
-                    </tr>
+                        <tr style="background-color: #F9FBE7;">
+                            <td style="padding: 10px;">147</td>
+                            <td style="padding: 10px;">North American 1 (NA1)</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #56B4E9;"></div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">187</td>
+                            <td style="padding: 10px;">North American 2 (NA2)</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #F0E442;"></div></td>
+                        </tr>
+                        <tr style="background-color: #F9FBE7;">
+                            <td style="padding: 10px;">25</td>
+                            <td style="padding: 10px;">North American 3 (NA3)</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #009E73;"></div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">29</td>
+                            <td style="padding: 10px;">Admixture</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #E69F00;"></div></td>
+                        </tr>
+                        <tr style="background-color: #F9FBE7;">
+                            <td style="padding: 10px;">24</td>
+                            <td style="padding: 10px;">Outgroups</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #CC79A7;"></div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">100</td>
+                            <td style="padding: 10px;">Unknown</td>
+                            <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #999999;"></div></td>
+                        </tr>
 
-                    </table>
-
+                        </table>
 
                 <br>
                 The table shows the composition of public resequencing data used to build the dataset.  The table lists the number of accessions from each NCBI bioproject. The last column shows the color code used in the table headers in the table view.<br><br>
@@ -1146,13 +800,13 @@
                         This section allows the user to select the genomic interval of interest.  The two main options are entering the genomic coordinates or entering a gene model identifier.
 
                         <ul>
-                            <li><b>Genome Version</b>:  Select the reference genome version.  The only option currently available is B73 version 5. </li>
+                            <li><b>Genome Version</b>:  Select the reference genome version. </li>
                             <li><b>Dataset</b>: Select the variation dataset to query.  The '<i>F. graminearum 2024</i> High Quality' dataset was built on 513 different strains of <i>Fusarium graminearum</i> and was filtered on mapping quality (>= 40), genotypic completeness (>= 50%), and linkage disequilibrium with max R2 > 0.5.  There were approximately 3.1 million annotated loci in this dataset.  The '<i>F. graminearum 2024</i> 2024 High Coverage' dataset was built on 513 different strains of <i>Fusarium graminearum</i> and was filtered only on mapping quality (>= 40) and genotypic completeness (>= 50%).  There are approximately 3.5 million annotated loci in this dataset. </li>
                             <li><b>Chromosome</b>: Select the chromosome.  </li>
                             <li><b>Genome Start Position (bp)</b>: Select the start position on the chromosome.</li>
                             <li><b>Genome End Position (bp)</b>: Select the end position on the chromosome.</li>
                             <li><b>Loci per page</b>:  Select the number of loci to view per page in the HTML table view.  This number corresponds to the number of rows in the table. </li>
-                            <li><b>Gene Model ID</b>: Optionally, select the gene model identifier and the number of base pairs to add as padding to the start and end of the gene model coordinates.  Pressing the 'Load coordinates' button will load the chromosome, start, and end positions if the gene model is found. This option currently only accepts B73 RefGen_v5 gene models. </li>
+                            <li><b>Gene Model ID</b>: Optionally, select the gene model identifier and the number of base pairs to add as padding to the start and end of the gene model coordinates.  Pressing the 'Load coordinates' button will load the chromosome, start, and end positions if the gene model is found. </li>
                             </ul>
                     (<b>NOTE: Genomic regions larger than 1 MB will only be avaialble as VCF downloads.  The table and tree views will not be available.</b>)
                     <br><br>
@@ -1190,7 +844,7 @@
                             <tr style="background-color: #F9FBE7;">
                                 <td style="padding: 10px;">Reference allele</td>
                                 <td style="padding: 10px;">REF</td>
-                                <td style="padding: 10px;">The allele value for the locus in the reference genome B73.</td>
+                                <td style="padding: 10px;">The allele value for the locus in the reference genome.</td>
                                 <td style="padding: 10px;">A</td>
                             </tr>
                             <tr>
@@ -1202,8 +856,8 @@
                             <tr style="background-color: #F9FBE7;">
                                 <td style="padding: 10px;">Gene models</td>
                                 <td style="padding: 10px;">Gene model(s)</td>
-                                <td style="padding: 10px;">The name of the B73 RefGen_v5 gene model affected by the variant. Displays the closest gene models when the variant is intergenic.</td>
-                                <td style="padding: 10px;">Zm00001eb404830</td>
+                                <td style="padding: 10px;">The name of the gene model affected by the variant. Displays the closest gene models when the variant is intergenic.</td>
+                                <td style="padding: 10px;">FGSG_00777</td>
                             </tr>
                             <tr>
                                 <td style="padding: 10px;">Effect type</td>
@@ -1474,16 +1128,40 @@ chr4	555089	.	G	A	10879.3	.	MQ=60;CVC=512;CVP=99.81;TYPE=synonymous_variant,down
             <div id="tableToPopupM" style="display:none;">
             <table width="800px" style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 12px;">
                 <tr>
-                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Accessions</td>
-                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project</td>
-                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Project name</td>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Strain Count</td>
+                    <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Population</td>
                     <td align="center" style="border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;">Color Key</td>
                 </tr>
+
                 <tr>
-                    <td style="padding: 10px;">513</td>
-                    <td style="padding: 10px;"><a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/???">???</a> </td>
-                    <td style="padding: 10px;">F. graminearum description.</td>
-                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #9A5446;"></div></td>
+                    <td style="padding: 10px;">147</td>
+                    <td style="padding: 10px;">North American 1 (NA1)</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #56B4E9;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">187</td>
+                    <td style="padding: 10px;">North American 2 (NA2)</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #F0E442;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">25</td>
+                    <td style="padding: 10px;">North American 3 (NA3)</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #009E73;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">29</td>
+                    <td style="padding: 10px;">Admixture</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #E69F00;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">24</td>
+                    <td style="padding: 10px;">Outgroups</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #CC79A7;"></div></td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px;">100</td>
+                    <td style="padding: 10px;">Unknown</td>
+                    <td style="padding: 10px;"><div style="width: 20px; height: 20px; background-color: #999999;"></div></td>
                 </tr>
 
                 </table>
@@ -1641,9 +1319,241 @@ chr4	555089	.	G	A	10879.3	.	MQ=60;CVC=512;CVP=99.81;TYPE=synonymous_variant,down
 To see a full list of the variant effect types click <a target="_blank" href="https://pcingola.github.io/SnpEff/snpeff/inputoutput/">here</a>.
 
     </div>
-
+    <div class="page-wrap">
         <div class="footer">
-            Site designed and hosted by <a target="_blank" href="https://www.maizegdb.org/">MaizeGDB</a> with support from the USDA<br>
+            <center>Site designed and hosted by <a target="_blank" href="https://www.maizegdb.org/">MaizeGDB</a> with support from the USDA-ARS.<br></center>
         </div>
+    </div>
+
+</div>
+
     </body>
+
+    <script>
+
+    /* -------------------------------------------------- */
+    /* 1 ▸ Colour map for a tiny square in the header     */
+    const popColors = {
+      NA1:"#56B4E9",
+      NA2:"#F0E442",
+      NA3:"#009E73",
+      Admixture:"#E69F00",
+      Outgroups:"#CC79A7",
+      Unknown:"#999999"
+    };
+
+    /* ----- pretty names and facet state ----- */
+    const popNames={NA1:"North American 1 (NA1)",NA2:"North American 2 (NA2)",NA3:"North American 3 (NA3)",Admixture:"Admixture",Outgroups:"Outgroups",Unknown:"Unknown"};
+    const facetState={population:new Set(),country:new Set(),host:new Set(),chemotype:new Set()};
+
+    /* ----- count helper ----- */
+    const countsOf=rows=>{
+      const z={population:{},country:{},host:{},chemotype:{}};
+      rows.forEach(r=>{["population","country","host","chemotype"].forEach(k=>z[k][r[k]]=(z[k][r[k]]||0)+1);});
+      return z;
+    };
+
+    /* ----- master filter ----- */
+    let q="";
+    function masterFilter(r){
+      if(facetState.population.size&&!facetState.population.has(r.population))return false;
+      if(facetState.country.size&&!facetState.country.has(r.country))return false;
+      if(facetState.host.size&&!facetState.host.has(r.host))return false;
+      if(facetState.chemotype.size&&!facetState.chemotype.has(r.chemotype))return false;
+      if(q&&!`${r.id} ${r.species} ${r.host} ${r.country} ${r.chemotype} ${r.population}`.toLowerCase().includes(q))return false;
+      updateStatus();
+      return true;
+    }
+
+    /* ----- table ----- */
+    const table=new Tabulator("#strainGrid",{
+      data,
+      initialFilter: [
+        {field:"population", type:"in",   value: Array.from(facetState.population)},
+        {field:"country",    type:"in",   value: Array.from(facetState.country)},
+        // … any others you want up front …
+      ],
+      height:"75vh",
+      layout:"fitDataStretch",
+      selectableRows:true,         /* NEW name */
+      groupBy:"population",
+      groupStartOpen: false,
+      groupHeader:(value,count)=>{
+        const swatch = `<span style="
+            display:inline-block;
+            width:12px;height:12px;margin-right:6px;
+            border-radius:2px;
+            background:${popColors[value]||"#ccc"};
+          "></span>`;
+        const label  = `<b>${popNames[value]||value}</b>`;
+        const meta   = `<span style="color:#555;font-weight:normal;">— ${count} strain${count!==1?"s":""}</span>`;
+        return swatch + label + "&nbsp;" + meta;
+      },
+      columns:[
+        {formatter:"rowSelection",title:"",width:28,hozAlign:"center",headerSort:false,
+          cellClick:(e,cell)=>cell.getRow().toggleSelect()},
+        {title:"ID",field:"id",sorter:"number",width:90,headerFilter:"input"},
+        {title:"Population",field:"population",width:110},
+        {title:"Species",field:"species",width:190,headerFilter:"input"},
+        {title:"Host",field:"host",width:150,headerFilter:"input"},
+        {title:"Chemotype",field:"chemotype",width:110,headerFilter:"input"},
+        {title:"Country",field:"country",width:140,headerFilter:"input"}
+      ],
+      rowSelectionChanged:updateStatus,
+      dataFiltered:()=>{colourGroups();rebuildFacets();updateStatus();}
+    });
+
+    /* KICK OFF THE FIRST UPDATE +++ */
+    table.on("tableBuilt", () => {
+      applyFilters();
+      rebuildFacets();
+      colourGroups();
+      updateStatus();          // first paint
+    });
+
+    table.on("rowSelectionChanged", () => {
+      updateStatus();          // first paint
+    });
+
+    table.on("renderComplete", () => {
+      updateStatus();          // first paint
+    });
+
+    table.on("dataFiltered", () => {
+      updateStatus();          // first paint
+    });
+
+    // sync selected rows into hidden checkboxes
+table.on("rowSelectionChanged", function(selectedData) {
+  // 1) define your “natural” population order:
+ const POP_ORDER = ["NA1","NA2","NA3","Admixture","Outgroups","Unknown"];
+
+ // 2) make a sorted copy of selectedData:
+ const sortedByPop = [...selectedData].sort((a, b) => {
+   const ia = POP_ORDER.indexOf(a.population);
+   const ib = POP_ORDER.indexOf(b.population);
+   // put unknowns (not found) at the end:
+   const pa = ia === -1 ? POP_ORDER.length : ia;
+   const pb = ib === -1 ? POP_ORDER.length : ib;
+   if (pa !== pb) return pa - pb;
+   // tie‑breaker: numeric sort on id
+   //return parseInt(a.id, 10) - parseInt(b.id, 10);
+   return a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' });
+ });
+
+ // 3) build your hidden inputs in that order:
+ const container = document.getElementById("selectedInputs");
+ container.innerHTML = "";  // clear out old ones
+ sortedByPop.forEach(row => {
+   const chk = document.createElement("input");
+   chk.type         = "checkbox";
+   chk.name         = "genotypes";
+   chk.className    = "genotypes";
+   chk.value        = row.id;
+   chk.checked      = true;
+   chk.style.display= "none";
+   container.appendChild(chk);
+ });
+});
+
+    /* ----- colour group bars ----- */
+    function colourGroups(){
+      document.querySelectorAll(".tabulator-group.tabulator-group-level-0").forEach(g=>{
+        g.classList.add(`pop-${g.dataset.group}`);
+      });
+    }
+
+    /* ----- facet builder ----- */
+    ["population","country","host","chemotype"].forEach(k=>{
+      document.getElementById(`facet-${k}`).innerHTML=`<h3>${k[0].toUpperCase()+k.slice(1)}</h3><div id="facet-${k}-list"></div>`;
+    });
+    function facetBlock(key,obj,label=x=>x){
+      const div=document.getElementById(`facet-${key}-list`);
+      const sel=facetState[key];
+      div.innerHTML=Object.entries(obj).sort().map(([v,n])=>`
+        <label><input type="checkbox" data-facet="${key}" value="${encodeURIComponent(v)}" ${sel.has(v)?"checked":""}>
+          <span>${label(v)}</span><span class="count">${n}</span></label>`).join("")||"<em style='color:#777'>None</em>";
+    }
+    function rebuildFacets(){
+      const C=countsOf(table.getData("active"));
+      facetBlock("population",C.population,v=>popNames[v]||v);
+      facetBlock("country",C.country);
+      facetBlock("host",C.host);
+      facetBlock("chemotype",C.chemotype);
+    }
+
+    /* ----- reapply filters ----- */
+    function applyFilters(){table.clearFilter(true);table.setFilter(masterFilter);}
+
+    /* ----- UI events ----- */
+    document.getElementById("facets").addEventListener("change",e=>{
+      if(e.target.matches("input[data-facet]")){
+        const k=e.target.dataset.facet,v=decodeURIComponent(e.target.value);
+        e.target.checked?facetState[k].add(v):facetState[k].delete(v);applyFilters();
+      }
+    });
+    //document.getElementById("clearAllFacets").onclick=()=>{Object.values(facetState).forEach(s=>s.clear());applyFilters();};
+
+    document.getElementById("clearAllFacets").onclick = () => {
+      // 1) Clear all of our saved facet selections
+      Object.values(facetState).forEach(s => s.clear());
+
+      //rebuildFacets();
+      // 3) Reapply your table filter so the table and status line update
+      applyFilters();
+      // 2) Re-render the facet checkboxes (all will now be unchecked)
+      rebuildFacets();
+    };
+
+    document.getElementById("globalSearch").oninput=e=>{q=e.target.value.trim().toLowerCase();applyFilters();};
+    document.getElementById("btnSelectAllVis").onclick=()=>table.selectRow(table.getRows("active"));
+    document.getElementById("btnClearSel").onclick=()=>table.deselectRow();
+
+    /* export helpers */
+    const esc=v=>v==null?"":/["\n,]/.test(v=String(v))?`"${v.replace(/"/g,'""')}"`:v;
+    const dl=(txt,name,type)=>{const b=new Blob([txt],{type});const a=document.createElement("a");
+    a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)};
+    document.getElementById("btnExportCSV").onclick=()=>{
+      const sel=table.getSelectedData();if(!sel.length)return alert("No rows selected");
+      const hdr=["id","population","species","host","chemotype","country"];
+      dl([hdr.join(",")].concat(sel.map(r=>hdr.map(h=>esc(r[h])).join(","))).join("\n"),
+         "selected_strains.csv","text/csv");
+    };
+    document.getElementById("btnExportJSON").onclick=()=>{
+      const sel=table.getSelectedData();if(!sel.length)return alert("No rows selected");
+      dl(JSON.stringify(sel,null,2),"selected_strains.json","application/json");
+    };
+
+    /* --- reliable status update --- */
+    function updateStatus(){
+      const vis = table.getRows("active").length;   // rows currently on screen
+      const tot = table.getData().length;           // entire dataset
+      const sel = table.getSelectedData().length;   // ticked rows
+      document.getElementById("statusBar").textContent =
+          `Visible: ${vis} / ${tot} | Selected: ${sel}`;
+    }
+
+
+    /* ---------- “select random X %” buttons ---------- */
+    document.getElementById("toolbar").addEventListener("click", e=>{
+      if (!e.target.classList.contains("btnRand")) return;
+
+      const frac = parseFloat(e.target.dataset.frac);   // 0.05, 0.10, …
+      const visibleRows = table.getRows("active");
+      const nPick = Math.max(1, Math.round(visibleRows.length * frac));
+
+      table.deselectRow();                              // clear previous
+      /* shuffle & pick first n rows */
+      visibleRows
+        .sort(()=>Math.random()-0.5)
+        .slice(0, nPick)
+        .forEach(r => r.select());
+
+      updateStatus();                                   // refresh counts
+    });
+
+    /* ----- first run AFTER table is ready ----- */
+    table.on("tableBuilt",()=>{applyFilters();rebuildFacets();colourGroups();updateStatus();});
+    </script>
+
     </html>
