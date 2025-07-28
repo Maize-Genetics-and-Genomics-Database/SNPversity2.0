@@ -235,20 +235,25 @@
         document.getElementById(divcontainer).value = newValue;
     }
 
-    //Code to turn on and off tabs
     function highlightTab(id) {
-        // Loop through all elements with class "tab" and remove the 'active' class
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
+        // remove the activeT class from all
+        document.querySelectorAll('.tab').forEach(tab => {
             tab.classList.remove('activeT');
         });
 
-        // Add the 'active' class to the element with the given id
+        // add it to the clicked one
         const activeTab = document.getElementById(id);
         if (activeTab) {
             activeTab.classList.add('activeT');
         }
     }
+
+    // wire up each .tab to call highlightTab when clicked
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            highlightTab(tab.id);
+        });
+    });
 
     document.addEventListener('DOMContentLoaded', function() {
         var acc = document.getElementsByClassName("accordion");
@@ -523,7 +528,7 @@ function getGradientColor(score) {
 function openPopupM() {
            var myWindow = window.open("", "MsgWindow", "width=820,height=500");
            myWindow.document.open();
-           myWindow.document.write('<html><head><title>F. graminearum 2024 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
+           myWindow.document.write('<html><head><title>Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
            myWindow.document.write(document.getElementById("tableToPopupM").innerHTML);
            myWindow.document.write('</body></html>');
            myWindow.document.close();
@@ -591,10 +596,10 @@ function parseVCF(outFile, curChr) {
                 $('#outHeader').html(`
                     <div>
                         <button class="popup-button" onclick="downloadFile('${outFile}')">Download the VCF file</button>
-                        <button class="popup-button" onclick="openPopupM()">F. graminearum 2024 accession key</button>
+                        <button class="popup-button" onclick="openPopupM()">Accession key</button>
                         <button class="popup-button" onclick="allelePopup()">Allele key</button>
                         <button class="popup-button" onclick="varPopup()">Common variant effect types</button>
-                    </div><br><br>
+                    </div>
                 `);
 
                 const lines = content.split('\n');
@@ -903,13 +908,13 @@ function parseVCF(outFile, curChr) {
 
                     //header = header.replace(/@/g, '_');
 
-                    if(header_array[header])
-                    {
-                        th.className = 'th0_' + header_array[header];
+                    const cleanKey = header.replace(/^0+/, "");
+                    if (header_array[cleanKey]) {
+                      th.className = `th0_${header_array[cleanKey]}`;
                     } else {
-                        //th.innerHTML = '<span class="vertical-text"> ' + header_print + '</span>';
-                        th.className = 'th0';
+                      th.className = "th0";
                     }
+                    th.setAttribute('data-tooltip', popNames[ header_array[header] ] || header_array[header]);
                     headerRow.appendChild(th);
               }
 
@@ -1084,7 +1089,7 @@ function parseVCF(outFile, curChr) {
 
                     if(dataset == "maizegdb")
                     {
-                        "https://www.maizegdb.org/effect/fusarium/index.php?id=" + gmValue;
+                        link = "https://www.maizegdb.org/effect/fusarium/index.php?id=" + gmValue;
 
                         // Append the link HTML to the htmlResult string
                         if(first_hit)

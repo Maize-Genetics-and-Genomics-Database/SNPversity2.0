@@ -330,53 +330,28 @@ $(document).ready(function(){
 
 });
 
-
 function nodeColor(header) {
 
         let cell_mod = "#999999";
 
         switch (header_array[header]) {
-          case 'PRJNA783885':
-            cell_mod = '#87CEEB'
+          case 'NA1':
+            cell_mod = '#56B4E9'
             break;
-          case 'PRJCA009749':
-            cell_mod = '#FF7F50';
+          case 'NA2':
+            cell_mod = '#F0E442';
             break;
-          case 'PRJEB56265':
-            cell_mod = '#3CB371';
+          case 'NA3':
+            cell_mod = '#009E73';
             break;
-          case 'PRJEB56320':
-            cell_mod = '#708090';
+          case 'Admixture':
+            cell_mod = '#E69F00';
             break;
-          case 'PRJEB14212':
-            cell_mod = '#DAA520';
+          case 'Outgroups':
+            cell_mod = '#CC79A7';
             break;
-          case 'PRJNA609577':
-            cell_mod = '#FF6347';
-            break;
-          case 'PRJNA260788':
-            cell_mod = '#6495ED';
-            break;
-          case 'PRJNA389800':
-            cell_mod = '#BDB76B';
-            break;
-          case 'PRJNA399729':
-            cell_mod = '#5F9EA0';
-            break;
-          case 'PRJNA531553':
-            cell_mod = '#F08080';
-            break;
-          case 'PRJNA641489':
-            cell_mod = '#483D8B';
-            break;
-          case 'PRJNA479960':
-            cell_mod = '#228B22';
-            break;
-          case 'PRJNA661271':
-            cell_mod = '#2F4F4F';
-            break;
-          case 'PRJNA300309':
-            cell_mod = '#8B0000';
+          case 'Unknown':
+            cell_mod = '#999999';
             break;
           default:
             cell_mod = "#999999";
