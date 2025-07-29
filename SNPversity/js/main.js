@@ -165,6 +165,7 @@
             $('#mainContainer').css('display', 'inline');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
 
@@ -173,6 +174,7 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'block');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
 
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
@@ -182,14 +184,25 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'block');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
-        } else if(id == "download")
+        } else if(id == "outputPair")
         {
             $('#loadingContainer').css('display', 'none');
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'block');
+            $('#downloadContainer').css('display', 'none');
+            $('#helpContainer').css('display', 'none');
+        }else if(id == "download")
+        {
+            $('#loadingContainer').css('display', 'none');
+            $('#mainContainer').css('display', 'none');
+            $('#outputContainer').css('display', 'none');
+            $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'block');
             $('#helpContainer').css('display', 'none');
         } else if(id == "help")
@@ -198,6 +211,7 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'block');
         }
