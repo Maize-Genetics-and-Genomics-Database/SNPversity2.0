@@ -1,0 +1,514 @@
+index	Fgra_Original_VCF_ID	Final_SNPversity ID	SNPversity_Population Strcture_SplitsTree	SNPversity_Species	Host Crop;Variety	Chemotype	Country
+1	06163mAP	6163	NA3	Fusarium graminearum	Triticum aestivum	3	USA
+2	31619mAP	31619	NA2	Fusarium graminearum	Triticum aestivum	15	South Africa
+3	31620mAP	31620	NA2	Fusarium graminearum	Triticum aestivum	15	South Africa
+4	34302mAP	34302	NA1	Fusarium graminearum	Zea mays	15	South Africa
+5	34494mAP	34494	NA2	Fusarium graminearum	Triticum aestivum	15	South Africa
+6	34540mAP	34540	NA1	Fusarium graminearum	unknown	15	South Africa
+7	34583mAP	34583	NA2	Fusarium graminearum	unknown	15	South Africa
+8	34584mAP	34584	NA2	Fusarium graminearum	unknown	15	South Africa
+9	34585mAP	34585	Unknown	Fusarium graminearum	unknown	3	South Africa
+10	34586mAP	34586	Unknown	Fusarium graminearum	unknown	15	South Africa
+11	36905mAP	36905	Outgroups	Fusarium gerlachii	Triticum aestivum	NIV	USA
+12	36970trimmAP	36970	Unknown	Fusarium graminearum	Triticum aestivum	15	Uruguay
+13	37401mAP	37401	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+14	37408mAP	37408	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+15	37425mAP	37425	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+16	37450mAP	37450	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+17	37509mAP	37509	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+18	37525mAP	37525	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+19	38165mAP	38165	NA2	Fusarium graminearum	Zea mays	15	South Africa
+20	38369mAP	38369	Unknown	Fusarium graminearum	Triticum aestivum	3	USA
+21	38380mAP	38380	Outgroups	Fusarium gerlachii	Arundo donax	NIV	USA
+22	38381mAP	38381	Unknown	Fusarium graminearum	Triticum aestivum	3	USA
+23	38383mAP	38383	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+24	38393mAP	38393	Unknown	Fusarium graminearum	Triticum aestivum	15	USA
+25	38395mAP	38395	Unknown	Fusarium graminearum	Triticum aestivum	3	USA
+26	38405mAP	38405	Outgroups	Fusarium gerlachii	Triticum aestivum	NIV	USA
+27	39238mAP	39238	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+28	39247mAP	39247	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+29	39263mAP	39263	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+30	39270mAP	39270	Unknown	Fusarium graminearum	Triticum aestivum	3	USA
+31	39274mAP	39274	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+32	39278mAP	39278	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+33	39290mAP	39290	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+34	39297mAP	39297	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+35	39300mAP	39300	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+36	39310mAP	39310	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+37	39339mAP	39339	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+38	39340mAP	39340	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+39	39341mAP	39341	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+40	39343mAP	39343	Unknown	Fusarium graminearum	Triticum aestivum	NIV	USA
+41	43161mAP	43161	NA3	Fusarium graminearum	Avena sativa	NX2	Canada
+42	43884mAP	43884	NA3	Fusarium graminearum	Triticum aestivum	NX2	Canada
+43	44070mAP	44070	Outgroups	Fusarium graminearum	Triticum aestivum	NX2	Canada
+44	44078mAP	44078	Outgroups	Fusarium graminearum	Triticum aestivum	NX2	Canada
+45	44211mAP	44211	NA3	Fusarium graminearum	Triticum aestivum	NX2	Canada
+46	45156mAP	45156	Admixture	Fusarium graminearum	Triticum aestivum	NX2	Canada
+47	45373mAP	45373	Admixture	Fusarium graminearum	Zea mays	NX2	USA
+48	45596mAP	45596	Admixture	Fusarium graminearum	Triticum aestivum	15	Russia
+49	45606mAP	45606	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+50	45607mAP	45607	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+51	45611mAP	45611	Unknown	Fusarium graminearum	Triticum aestivum	3	Russia
+52	45612mAP	45612	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+53	45620mAP	45620	Admixture	Fusarium graminearum	Hordeum vulgare	15	Russia
+54	45626mAP	45626	Admixture	Fusarium graminearum	Triticum aestivum	15	Russia
+55	45628mAP	45628	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+56	45632mAP	45632	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+57	45633mAP	45633	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+58	45634mAP	45634	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+59	45635mAP	45635	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+60	45636mAP	45636	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+61	45637mAP	45637	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+62	45647mAP	45647	Unknown	Fusarium graminearum	Hordeum vulgare	15	Russia
+63	45649mAP	45649	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+64	45654mAP	45654	Unknown	Fusarium graminearum	Triticum aestivum	3	Russia
+65	45655mAP	45655	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+66	45656mAP	45656	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+67	45657mAP	45657	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+68	45658mAP	45658	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+69	45664mAP	45664	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+70	45666mAP	45666	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+71	45668mAP	45668	Admixture	Fusarium graminearum	Avena sativa	15	Russia
+72	45669mAP	45669	Unknown	Fusarium graminearum	Avena sativa	15	Russia
+73	45670mAP	45670	Unknown	Fusarium graminearum	Avena sativa	3	Russia
+74	45675mAP	45675	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+75	45677mAP	45677	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+76	45689mAP	45689	NA2	Fusarium graminearum	Hordeum vulgare	3	Russia
+77	45701mAP	45701	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+78	45702mAP	45702	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+79	45703mAP	45703	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+80	45705mAP	45705	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+81	45708mAP	45708	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+82	45712mAP	45712	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+83	45716mAP	45716	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+84	45735mAP	45735	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+85	45737mAP	45737	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+86	45740mAP	45740	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+87	45741mAP	45741	NA1	Fusarium graminearum	Triticum aestivum	15	Russia
+88	45744mAP	45744	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+89	45745mAP	45745	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+90	45746mAP	45746	Unknown	Fusarium graminearum	Hordeum vulgare	3	Russia
+91	45747mAP	45747	Unknown	Fusarium graminearum	Triticum aestivum	3	Russia
+92	45780mAP	45780	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+93	45787mAP	45787	NA2	Fusarium graminearum	Hordeum vulgare	15	Russia
+94	45815mAP	45815	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+95	45827mAP	45827	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+96	45834mAP	45834	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+97	45835mAP	45835	NA2	Fusarium graminearum	Triticum aestivum	3	Russia
+98	45836mAP	45836	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+99	45838mAP	45838	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+100	45839mAP	45839	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+101	46240mAP	46240	Unknown	Fusarium graminearum	Hordeum vulgare	15	Australia
+102	46250mAP	46250	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+103	46259mAP	46259	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+104	46267mAP	46267	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+105	46273mAP	46273	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+106	46275mAP	46275	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+107	46284mAP	46284	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+108	46287mAP	46287	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+109	46289mAP	46289	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+110	46290mAP	46290	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+111	46294mAP	46294	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+112	46297mAP	46297	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+113	46305mAP	46305	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+114	46317mAP	46317	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+115	46329mAP	46329	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+116	46336mAP	46336	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+117	46354mAP	46354	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+118	46363mAP	46363	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+119	46370mAP	46370	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+120	46371mAP	46371	Unknown	Fusarium graminearum	Triticum aestivum	15	Australia
+121	46380mAP	46380	NA2	Fusarium graminearum	Triticum aestivum	3	Italy
+122	46386mAP	46386	NA2	Fusarium graminearum	Mespilus germanica	15	Italy
+123	46422mAP	46422	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+124	46434mAP	46434	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+125	46522mAP	46522	Unknown	Fusarium graminearum	Triticum aestivum	3	Japan
+126	46525mAP	46525	Unknown	Fusarium graminearum	Triticum aestivum	3	Japan
+127	46532mAP	46532	NA2	Fusarium graminearum	Hordeum vulgare	3	Japan
+128	46533mAP	46533	Unknown	Fusarium graminearum	Triticum aestivum	3	Japan
+129	46539mAP	46539	Unknown	Fusarium graminearum	Triticum aestivum	15	Japan
+130	46544mAP	46544	NA2	Fusarium graminearum	Triticum aestivum	3	Japan
+131	46547mAP	46547	NA2	Fusarium graminearum	Triticum aestivum	15	Japan
+132	46548mAP	46548	NA2	Fusarium graminearum	Triticum aestivum	3	Japan
+133	46549mAP	46549	Unknown	Fusarium graminearum	Triticum aestivum	15	Japan
+134	46558mAP	46558	NA2	Fusarium graminearum	Triticum aestivum	15	Japan
+135	46559mAP	46559	Unknown	Fusarium graminearum	Triticum aestivum	3	Japan
+136	46560mAP	46560	NA2	Fusarium graminearum	Triticum aestivum	3	Japan
+137	46564mAP	46564	NA2	Fusarium graminearum	Triticum aestivum	15	Japan
+138	46566mAP	46566	Admixture	Fusarium graminearum	Triticum aestivum	15	Japan
+139	46874mAP	46874	NA1	Fusarium graminearum	Zea mays	15	China
+140	46875mAP	46875	NA1	Fusarium graminearum	Zea mays	15	China
+141	46898mAP	46898	NA1	Fusarium graminearum	Zea mays	15	China
+142	46899mAP	46899	NA1	Fusarium graminearum	Zea mays	15	China
+143	46914mAP	46914	NA1	Fusarium graminearum	Zea mays	15	China
+144	46915mAP	46915	NA1	Fusarium graminearum	Zea mays	15	China
+145	46934mAP	46934	NA1	Fusarium graminearum	Zea mays	15	China
+146	46935mAP	46935	NA1	Fusarium graminearum	Zea mays	15	China
+147	46959mAP	46959	NA1	Fusarium graminearum	Zea mays	15	China
+148	46960mAP	46960	Admixture	Fusarium graminearum	Zea mays	15	China
+149	46986mAP	46986	NA1	Fusarium graminearum	Zea mays	15	China
+150	46987mAP	46987	NA1	Fusarium graminearum	Zea mays	15	China
+151	47526mAP	47526	NA2	Fusarium graminearum	Triticum aestivum	15	Argentina
+152	47527mAP	47527	NA2	Fusarium graminearum	Triticum aestivum	15	Argentina
+153	47554mAP	47554	NA2	Fusarium graminearum	Triticum aestivum	15	Argentina
+154	47555mAP	47555	NA2	Fusarium graminearum	Triticum aestivum	15	Argentina
+155	47556mAP	47556	NA2	Fusarium graminearum	Triticum aestivum	15	Argentina
+156	47571mAP	47571	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+157	47588mAP	47588	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+158	47605mAP	47605	Admixture	Fusarium graminearum	Triticum aestivum	NX2	Canada
+159	47659mAP	47659	NA3	Fusarium graminearum	Triticum aestivum	NX2	Canada
+160	52005mAP	52005	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+161	52008mAP	52008	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+162	52129mAP	52129	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+163	52195mAP	52195	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+164	52429mAP	52429	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+165	52512mAP	52512	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+166	52840mAP	52840	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+167	52847mAP	52847	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+168	52850mAP	52850	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+169	52955mAP	52955	NA1	Fusarium graminearum	Triticum aestivum	15	Canada
+170	53046mAP	53046	NA2	Fusarium graminearum	Triticum aestivum	3	Canada
+171	53173mAP	53173	Admixture	Fusarium graminearum	Triticum aestivum	NX2	Canada
+172	53184mAP	53184	Unknown	Fusarium graminearum	Triticum aestivum	3	Canada
+173	54196mAP	54196	Outgroups	Fusarium louisianense	Triticum aestivum	NIV	USA
+174	54197mAP	54197	Outgroups	Fusarium louisianense	Triticum aestivum	NIV	USA
+175	62913mAP	62913	NA2	Fusarium graminearum	Hordeum vulgare	15	France
+176	62929mAP	62929	NA1	Fusarium graminearum	Zea mays	NIV	France
+177	66030mAP	66030	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+178	66031mAP	66031	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+179	66037mAP	66037	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+180	66039mAP	66039	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+181	66040mAP	66040	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+182	66041mAP	66041	Admixture	Fusarium graminearum	Triticum aestivum	NX2	USA
+183	66042mAP	66042	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+184	66043mAP	66043	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+185	66045mAP	66045	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+186	66047mAP	66047	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+187	66049mAP	66049	Admixture	Fusarium graminearum	Triticum aestivum	NX2	USA
+188	ETH-001-barcode10mAP	ET-2022-15-1 	Outgroups	Fusarium  boothii			Ethiopia
+189	ETH-001-barcode11mAP	ET-2022-49-1 	Outgroups	Fusarium  aethiopicum			Ethiopia
+190	ETH-001-barcode12mAP	ET-2022-52-1 	Outgroups	Fusarium graminearum			Ethiopia
+191	ETH-001-barcode7mAP	ET-2022-3-1 	NA2	Fusarium graminearum			Ethiopia
+192	ETH-001-barcode8mAP	ET-2022-17-1 	NA2	Fusarium graminearum			Ethiopia
+193	ETH-001-barcode9mAP	ET-2022-21-1 	NA2	Fusarium graminearum			Ethiopia
+194	F100mAP	F100	NA2	Fusarium graminearum	Hordeum vulgare	3	Norway
+195	F10mAP	F10	Unknown	Fusarium graminearum	Triticum aestivum	3	Norway
+196	F116mAP	F116	NA2	Fusarium graminearum	Avena sativa	3	Norway
+197	F124mAP	F124	NA2	Fusarium graminearum	Avena sativa	3	Norway
+198	F130mAP	F130	Unknown	Fusarium graminearum	Triticum aestivum	3	Norway
+199	F131mAP	F131	Unknown	Fusarium graminearum	Avena sativa	3	Norway
+200	F132mAP	F132	Unknown	Fusarium graminearum	Avena sativa	3	Norway
+201	F13mAP	F13	Unknown	Fusarium graminearum	Triticum aestivum	3	Norway
+202	F16mAP	F16	Unknown	Fusarium graminearum	Triticum aestivum	3	Norway
+203	F272mAP	F272	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+204	F27mAP	F27	Unknown	Fusarium graminearum	Avena sativa	3	Norway
+205	F322mAP	F322	NA3	Fusarium graminearum	Triticum aestivum	NX2	USA
+206	F325mAP	F325	NA1	Fusarium graminearum	unknown	15	USA
+207	F326mAP	F326	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+208	F327mAP	F327	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+209	F328mAP	F328	NA3	Fusarium graminearum	Triticum aestivum	3	USA
+210	F329mAP	F329	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+211	F330mAP	F330	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+212	F331mAP	F331	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+213	F332mAP	F332	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+214	F333mAP	F333	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+215	F334mAP	F334	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+216	F335mAP	F335	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+217	F336mAP	F336	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+218	F337mAP	F337	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+219	F338mAP	F338	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+220	F339mAP	F339	NA2	Fusarium graminearum	Triticum aestivum	15	USA
+221	F340mAP	F340	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+222	F341mAP	F341	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+223	F342mAP	F342	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+224	F343mAP	F343	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+225	F344mAP	F344	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+226	F347mAP	F347	NA2	Fusarium graminearum	Hordeum vulgare	15	South Korea
+227	F348mAP	F348	Admixture	Fusarium graminearum	Hordeum vulgare	15	South Korea
+228	F351mAP	F351	NA2	Fusarium graminearum	Hordeum vulgare	3	South Korea
+229	F353mAP	F353	Admixture	Fusarium graminearum	Hordeum vulgare	15	South Korea
+230	F354mAP	F354	NA2	Fusarium graminearum	Hordeum vulgare	3	South Korea
+231	F356mAP	F356	NA2	Fusarium graminearum	Hordeum vulgare	3	South Korea
+232	F366mAP	F366	NA1	Fusarium graminearum	Triticum aestivum	15	South Korea
+233	F367mAP	F367	NA2	Fusarium graminearum	Triticum aestivum	15	South Korea
+234	F368mAP	F368	NA2	Fusarium graminearum	Triticum aestivum	15	South Korea
+235	F387mAP	F387	NA2	Fusarium graminearum	Hordeum vulgare	15	South Korea
+236	F398mAP	F398	NA2	Fusarium graminearum	Triticum aestivum	15	South Korea
+237	F399mAP	F399	Unknown	Fusarium graminearum	Triticum aestivum	3	South Korea
+238	F501mAP	F501	Outgroups	Fusarium  boothii	Triticum aestivum	15	Mexico
+239	F522mAP	F522	Outgroups	Fusarium  boothii	Triticum aestivum	15	Mexico
+240	F535mAP	F535	Outgroups	Fusarium  boothii	Triticum aestivum	15	Mexico
+241	F537mAP	F537	Outgroups	Fusarium  boothii	Triticum aestivum	15	Mexico
+242	F55mAP	F55	Unknown	Fusarium graminearum	Triticum aestivum	3	Norway
+243	F562mAP	F562	Outgroups	Fusarium  boothii	Triticum aestivum	15	Mexico
+244	F60mAP	F60	Unknown	Fusarium graminearum	Avena sativa	3	Norway
+245	F68mAP	F68	NA2	Fusarium graminearum	Hordeum vulgare	15	Germany
+246	F6mAP	F6	Unknown	Fusarium graminearum	Avena sativa	3	Norway
+247	F96mAP	F96	NA2	Fusarium graminearum	Avena sativa	3	Norway
+248	FG4mAP	FHK91	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+249	FHK10mAP	FHK10	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+250	FHK11mAP	FHK11	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+251	FHK12mAP	FHK12	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+252	FHK13mAP	FHK13	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+253	FHK14mAP	FHK14	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+254	FHK15mAP	FHK15	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+255	FHK16mAP	FHK16	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+256	FHK17mAP	FHK17	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+257	FHK18mAP	FHK18	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+258	FHK19mAP	FHK19	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+259	FHK1mAP	FHK1	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+260	FHK20mAP	FHK20	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+261	FHK21mAP	FHK21	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+262	FHK22mAP	FHK22	NA2	Fusarium graminearum	Triticum aestivum	15	USA
+263	FHK23mAP	FHK23	NA2	Fusarium graminearum	Triticum aestivum	15	USA
+264	FHK24mAP	FHK24	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+265	FHK25mAP	FHK25	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+266	FHK26mAP	FHK26	NA2	Fusarium graminearum	Triticum aestivum	15	USA
+267	FHK27mAP	FHK27	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+268	FHK28mAP	FHK28	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+269	FHK29mAP	FHK29	NA2	Fusarium graminearum	Triticum aestivum	3	USA
+270	FHK2mAP	FHK2	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+271	FHK30mAP	FHK30	NA1	Fusarium graminearum	Barley	15	USA
+272	FHK31mAP	FHK31	Admixture	Fusarium graminearum		15	USA
+273	FHK32mAP	FHK32	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+274	FHK33mAP	FHK33	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+275	FHK34mAP	FHK34	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+276	FHK35mAP	FHK35	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+277	FHK36mAP	FHK36	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+278	FHK37mAP	FHK37	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+279	FHK38mAP	FHK38	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+280	FHK39mAP	FHK39	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+281	FHK3mAP	FHK3	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+282	FHK40mAP	FHK40	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+283	FHK41mAP	FHK41	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+284	FHK42mAP	FHK42	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+285	FHK43mAP	FHK43	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+286	FHK44mAP	FHK44	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+287	FHK45mAP	FHK45	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+288	FHK46mAP	FHK46	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+289	FHK47mAP	FHK47	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+290	FHK48mAP	FHK48	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+291	FHK49mAP	FHK49	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+292	FHK4mAP	FHK4	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+293	FHK50mAP	FHK50	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+294	FHK51mAP	FHK51	NA2	Fusarium graminearum		15	USA
+295	FHK52mAP	FHK52	NA1	Fusarium graminearum		15	USA
+296	FHK53mAP	FHK53	NA2	Fusarium graminearum		15	USA
+297	FHK54mAP	FHK54	NA2	Fusarium graminearum		15	USA
+298	FHK55mAP	FHK55	NA2	Fusarium graminearum		15	USA
+299	FHK56mAP	FHK56	NA2	Fusarium graminearum		15	USA
+300	FHK57mAP	FHK57	NA2	Fusarium graminearum		3	USA
+301	FHK58mAP	FHK58	NA2	Fusarium graminearum		3	USA
+302	FHK59mAP	FHK59	NA2	Fusarium graminearum		3	USA
+303	FHK5mAP	FHK5	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+304	FHK60mAP	FHK60	NA2	Fusarium graminearum		3	USA
+305	FHK61mAP	FHK61	NA1	Fusarium graminearum		15	USA
+306	FHK62mAP	FHK62	NA1	Fusarium graminearum		15	USA
+307	FHK63mAP	FHK63	NA1	Fusarium graminearum		15	USA
+308	FHK64mAP	FHK64	NA1	Fusarium graminearum		15	USA
+309	FHK65mAP	FHK65	NA1	Fusarium graminearum		15	USA
+310	FHK66mAP	FHK66	NA1	Fusarium graminearum		15	USA
+311	FHK67mAP	FHK67	Admixture	Fusarium graminearum		15	USA
+312	FHK68mAP	FHK68	NA1	Fusarium graminearum		15	USA
+313	FHK69mAP	FHK69	NA2	Fusarium graminearum		15	USA
+314	FHK6mAP	FHK6	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+315	FHK70mAP	FHK70	NA2	Fusarium graminearum		3	USA
+316	FHK71mAP	FHK71	NA2	Fusarium graminearum		3	USA
+317	FHK72mAP	FHK72	NA2	Fusarium graminearum		3	USA
+318	FHK73mAP	FHK73	NA2	Fusarium graminearum		3	USA
+319	FHK74mAP	FHK74	NA2	Fusarium graminearum		15	USA
+320	FHK75mAP	FHK75	NA2	Fusarium graminearum		3	USA
+321	FHK76mAP	FHK76	NA2	Fusarium graminearum		15	USA
+322	FHK77mAP	FHK77	NA2	Fusarium graminearum		3	USA
+323	FHK78mAP	FHK78	NA1	Fusarium graminearum		15	USA
+324	FHK79mAP	FHK79	NA1	Fusarium graminearum		15	USA
+325	FHK7mAP	FHK7	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+326	FHK80mAP	FHK80	NA2	Fusarium graminearum		3	USA
+327	FHK81mAP	FHK81	NA1	Fusarium graminearum		15	USA
+328	FHK82mAP	FHK82	NA1	Fusarium graminearum		15	USA
+329	FHK83mAP	FHK83	NA1	Fusarium graminearum		15	USA
+330	FHK84mAP	FHK84	NA1	Fusarium graminearum		15	USA
+331	FHK85mAP	FHK85	NA1	Fusarium graminearum		15	USA
+332	FHK86mAP	FHK86	NA1	Fusarium graminearum		15	USA
+333	FHK87mAP	FHK87	NA1	Fusarium graminearum		15	USA
+334	FHK89mAP	FHK89	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+335	FHK8mAP	FHK8	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+336	FHK90mAP	FHK90	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+337	FHK92mAP	FHK92	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+338	FHK93mAP	FHK93	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+339	FHK94mAP	FHK94	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+340	FHK95mAP	FHK95	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+341	FHK96mAP	FHK96	Admixture	Fusarium graminearum	Triticum aestivum	15	USA
+342	FHK97mAP	FHK97	NA2	Fusarium graminearum	Triticum aestivum	15	USA
+343	FHK9mAP	FHK9	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+344	FRA12mAP	FRA12	NA2	Fusarium graminearum	Triticum aestivum	15	France
+345	FRA180mAP	FRA180	NA1	Fusarium graminearum	Zea mays	15	France
+346	FRA200mAP	FRA200	NA1	Fusarium graminearum	Zea mays	15	France
+347	FRA21mAP	FRA21	NA2	Fusarium graminearum	Triticum aestivum	15	France
+348	FRA305mAP	FRA305	NA2	Fusarium graminearum	Zea mays	15	France
+349	FRA31mAP	FRA31	NA2	Fusarium graminearum	Triticum aestivum	NIV	France
+350	FRA65mAP	FRA65	NA2	Fusarium graminearum	Hordeum vulgare	15	France
+351	Fg1mAP	FHK88 	NA1	Fusarium graminearum	Triticum aestivum	15	USA
+352	MTD41mAP	ET-2022-41	Outgroups	Fusarium  boothii	Triticum durum Desf;Utuba		Ethiopia
+353	MTD66mAP	ET-2022-30-1	Outgroups	Fusarium  boothii	Triticum durum Desf;Utuba		Ethiopia
+354	MTD69mAP	ET-2022-33-1	NA2	Fusarium graminearum	Triticum durum Desf;Utuba		Ethiopia
+355	MTD71mAP	ET-2022-34-1	Outgroups	Fusarium  boothii 	Triticum aestivum L.;Kekeba 		Ethiopia
+356	MTD72mAP	ET-2022-35-1	Outgroups	Fusarium  boothii 	Triticum durum Desf;Malefia		Ethiopia
+357	MTD80mAP	ET-2022-49-1	Outgroups	Fusarium  aethiopicum	Triticum aestivum L.;Biftu		Ethiopia
+358	MTD83mAP	ET-2022-52-1	Outgroups	Fusarium  kistleri	Triticum aestivum L.;Kekeba 		Ethiopia
+359	MTD84mAP	ET-2022-53-1	Outgroups	Fusarium  aethiopicum	Triticum aestivum L.;Wane		Ethiopia
+360	PH-1ERR11748137mAP	PH-1ERR11748137	NA1	Fusarium graminearum	Zea mays	15	USA
+361	SAMN02585717mAP	SAMN02585717	Unknown	Fusarium graminearum	Triticum aestivum		"	Australia"
+362	SAMN02981337mAP	SAMN02981337	Removed from SplitsTree	Fusarium  pseudograminearum
+363	SAMN14604992mAP	SAMN14604992	Admixture	Fusarium graminearum	Malus domestica 	15	Serbia
+364	SAMN16774461mAP	SAMN16774461	Unknown	Fusarium graminearum		3	USA
+365	SAMN16774462mAP	SAMN16774462	NA1	Fusarium graminearum	Miscanthus giganteus	15	USA
+366	SAMN16774464mAP	SAMN16774464	NA2	Fusarium graminearum	Hordeum vulgare	15	Argentina
+367	SAMN16774466mAP	SAMN16774466	NA2	Fusarium graminearum	Hordeum vulgare	15	Argentina
+368	SAMN16774467mAP	SAMN16774467	Outgroups	Fusarium graminearum	Hordeum vulgare	15	Argentina
+369	SAMN16774468mAP	SAMN16774468	NA2	Fusarium graminearum	Triticum aestivum	15	France
+370	SAMN16774469mAP	SAMN16774469	NA2	Fusarium graminearum	Triticum aestivum	15	France
+371	SAMN16774470mAP	SAMN16774470	NA2	Fusarium graminearum	Triticum aestivum	15	France
+372	SAMN16774471mAP	SAMN16774471	NA2	Fusarium graminearum	Triticum aestivum	15	France
+373	SAMN16774472mAP	SAMN16774472	NA2	Fusarium graminearum	Triticum aestivum	15	France
+374	SAMN16774473mAP	SAMN16774473	NA2	Fusarium graminearum	Triticum aestivum	15	France
+375	SAMN16774474mAP	SAMN16774474	NA2	Fusarium graminearum	Triticum aestivum	15	France
+376	SAMN16774475mAP	SAMN16774475	NA2	Fusarium graminearum	Triticum aestivum	15	France
+377	SAMN16774476mAP	SAMN16774476	NA2	Fusarium graminearum	Triticum aestivum	15	Belgium
+378	SAMN16774477mAP	SAMN16774477	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+379	SAMN16774478mAP	SAMN16774478	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+380	SAMN16774479mAP	SAMN16774479	Unknown	Fusarium graminearum	Triticum aestivum	3	Netherlands
+381	SAMN16774480mAP	SAMN16774480	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+382	SAMN16774481mAP	SAMN16774481	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+383	SAMN16774482mAP	SAMN16774482	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+384	SAMN16774483mAP	SAMN16774483	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+385	SAMN16774484mAP	SAMN16774484	NA2	Fusarium graminearum	Triticum aestivum	15	Netherlands
+386	SAMN16774485mAP	SAMN16774485	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+387	SAMN16774486mAP	SAMN16774486	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+388	SAMN16774487mAP	SAMN16774487	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+389	SAMN16774488mAP	SAMN16774488	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+390	SAMN16774489mAP	SAMN16774489	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+391	SAMN16774490mAP	SAMN16774490	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+392	SAMN16774491mAP	SAMN16774491	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+393	SAMN16774492mAP	SAMN16774492	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+394	SAMN16774493mAP	SAMN16774493	NA2	Fusarium graminearum	Triticum aestivum	15	Luxembourg
+395	SAMN16774494mAP	SAMN16774494	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+396	SAMN16774495mAP	SAMN16774495	Unknown	Fusarium graminearum	Secale cereale	15	Germany
+397	SAMN16774496mAP	SAMN16774496	NA1	Fusarium graminearum	Triticum aestivum	15	Germany
+398	SAMN16774497mAP	SAMN16774497	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+399	SAMN16774498mAP	SAMN16774498	Unknown	Fusarium graminearum	unknown	3	Germany
+400	SAMN16774499mAP	SAMN16774499	NA2	Fusarium graminearum	unknown	15	Germany
+401	SAMN16774500mAP	SAMN16774500	NA2	Fusarium graminearum	unknown	15	Germany
+402	SAMN16774501mAP	SAMN16774501	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+403	SAMN16774502mAP	SAMN16774502	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+404	SAMN16774503mAP	SAMN16774503	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+405	SAMN16774504mAP	SAMN16774504	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+406	SAMN16774505mAP	SAMN16774505	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+407	SAMN16774506mAP	SAMN16774506	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+408	SAMN16774507mAP	SAMN16774507	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+409	SAMN16774508mAP	SAMN16774508	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+410	SAMN16774509mAP	SAMN16774509	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+411	SAMN16774510mAP	SAMN16774510	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+412	SAMN16774511mAP	SAMN16774511	NA2	Fusarium graminearum	Triticum aestivum	15	Germany
+413	SAMN16774512mAP	SAMN16774512	NA2	Fusarium graminearum	Triticum aestivum	15	Poland
+414	SAMN16774513mAP	SAMN16774513	Unknown	Fusarium graminearum	Triticum aestivum	NIV	Poland
+415	SAMN16774514mAP	SAMN16774514	Unknown	Fusarium graminearum	Triticum aestivum	15	Poland
+416	SAMN16774515mAP	SAMN16774515	NA2	Fusarium graminearum	Triticum aestivum	15	Poland
+417	SAMN16774516mAP	SAMN16774516	Unknown	Fusarium graminearum	Triticum aestivum	3	Poland
+418	SAMN16774517mAP	SAMN16774517	NA2	Fusarium graminearum	Triticum aestivum	15	Poland
+419	SAMN16774518mAP	SAMN16774518	NA2	Fusarium graminearum	Triticum aestivum	15	Poland
+420	SAMN16774519mAP	SAMN16774519	Outgroups	Fusarium graminearum	Triticum aestivum	15	Poland
+421	SAMN16774520mAP	SAMN16774520	Unknown	Fusarium graminearum	Triticum aestivum	15	Poland
+422	SAMN16774521mAP	SAMN16774521	NA2	Fusarium graminearum	Triticum aestivum	3	Poland
+423	SAMN16774523mAP	SAMN16774523	Unknown	Fusarium graminearum	Triticum aestivum	3	Poland
+424	SAMN16774524mAP	SAMN16774524	Unknown	Fusarium graminearum	Triticum aestivum	NIV	Poland
+425	SAMN16774525mAP	SAMN16774525	Unknown	Fusarium graminearum	Vicia sativa	3	Poland
+426	SAMN16774526mAP	SAMN16774526	Unknown	Fusarium graminearum	Triticum aestivum	3	Poland
+427	SAMN16774527mAP	SAMN16774527	NA2	Fusarium graminearum	Triticum aestivum	15	Poland
+428	SAMN16774528mAP	SAMN16774528	Unknown	Fusarium graminearum	Glycine max	3	Poland
+429	SAMN16774529mAP	SAMN16774529	Unknown	Fusarium graminearum	Glycine max	3	Poland
+430	SAMN16774530mAP	SAMN16774530	NA2	Fusarium graminearum	Glycine max	15	Poland
+431	SAMN16774531mAP	SAMN16774531	NA2	Fusarium graminearum	Glycine max	15	Poland
+432	SAMN16774532mAP	SAMN16774532	NA2	Fusarium graminearum	Glycine max	15	Poland
+433	SAMN16774533mAP	SAMN16774533	NA2	Fusarium graminearum	unknown	NIV	Italy
+434	SAMN16774534mAP	SAMN16774534	NA2	Fusarium graminearum	unknown	NIV	Italy
+435	SAMN16774535mAP	SAMN16774535	NA2	Fusarium graminearum	unknown	3	Italy
+436	SAMN16774536mAP	SAMN16774536	NA2	Fusarium graminearum	unknown	3	Italy
+437	SAMN16774537mAP	SAMN16774537	NA2	Fusarium graminearum	unknown	3	Italy
+438	SAMN16774538mAP	SAMN16774538	NA2	Fusarium graminearum	unknown	3	Italy
+439	SAMN16774539mAP	SAMN16774539	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+440	SAMN16774540mAP	SAMN16774540	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+441	SAMN16774541mAP	SAMN16774541	NA2	Fusarium graminearum	Triticum aestivum	15	Russia
+442	SAMN16774542mAP	SAMN16774542	Admixture	Fusarium graminearum	Triticum aestivum	15	Russia
+443	SAMN16774543mAP	SAMN16774543	Admixture	Fusarium graminearum	Triticum aestivum	15	Russia
+444	SAMN16774544mAP	SAMN16774544	NA2	Fusarium graminearum	unknown	3	Russia
+445	SAMN16774545mAP	SAMN16774545	Unknown	Fusarium graminearum	unknown	15	Russia
+446	SAMN16774546mAP	SAMN16774546	NA2	Fusarium graminearum	unknown	15	Russia
+447	SAMN16774547mAP	SAMN16774547	Unknown	Fusarium graminearum	Triticum aestivum	15	Russia
+448	SAMN16774548mAP	SAMN16774548	Admixture	Fusarium graminearum	Triticum aestivum	15	Russia
+449	SAMN16774549mAP	SAMN16774549	NA1	Fusarium graminearum	Triticum aestivum	15	Russia
+450	SAMN16774550mAP	SAMN16774550	Unknown	Fusarium graminearum	Zea mays	NIV	Iran
+451	SAMN16774551mAP	SAMN16774551	NA2	Fusarium graminearum	Triticum aestivum	15	South Africa
+452	SAMN16774553mAP	SAMN16774553	NA1	Fusarium graminearum	Zea mays	15	unknown
+453	SAMN16774554mAP	SAMN16774554	NA1	Fusarium graminearum	unknown	15	unknown
+454	WG15AG37_S51mAP	WG15AG37_S51	NA1	Fusarium graminearum	Glyceria_grandis		USA
+455	WG15BrC10_S49mAP	WG15BrC10_S49	NA1	Fusarium graminearum	Bromus_ciliatus_var._ciliatus_L.		USA
+456	WG15BrK07_S48mAP	WG15BrK07_S48	NA1	Fusarium graminearum	Bromus_kalmii		USA
+457	WG15BrK10_S47mAP	WG15BrK10_S47	NA1	Fusarium graminearum	Bromus_kalmii		USA
+458	WG15CC02_S46mAP	WG15CC02_S46	NA1	Fusarium graminearum	Calamagrostis_canadensis		USA
+459	WG15EC187_S45mAP	WG15EC187_S45	NA1	Fusarium graminearum	Elymus_canadensis		USA
+460	WG15EC232_S44mAP	WG15EC232_S44	NA1	Fusarium graminearum	Elymus_canadensis		USA
+461	WG15EC233_S43mAP	WG15EC233_S43	NA1	Fusarium graminearum	Elymus_canadensis		USA
+462	WG15EC234_S42mAP	WG15EC234_S42	NA1	Fusarium graminearum	Elymus_canadensis		USA
+463	WG15EC236_S41mAP	WG15EC236_S41	NA1	Fusarium graminearum	Elymus_canadensis		USA
+464	WG15EC239_S40mAP	WG15EC239_S40	NA1	Fusarium graminearum	Elymus_canadensis		USA
+465	WG15EC256_S39mAP	WG15EC256_S39	NA1	Fusarium graminearum	Elymus_canadensis		USA
+466	WG15EV127_S38mAP	WG15EV127_S38	NA1	Fusarium graminearum	Elymus_virginicus		USA
+467	WG15EV156_S37mAP	WG15EV156_S37	NA1	Fusarium graminearum	Elymus_virginicus		USA
+468	WG15EV202_S36mAP	WG15EV202_S36	NA1	Fusarium graminearum	Elymus_virginicus		USA
+469	WG15EV224_S35mAP	WG15EV224_S35	NA1	Fusarium graminearum	Elymus_virginicus		USA
+470	WG15EV246_S1mAP	WG15EV246_S1	NA1	Fusarium graminearum	Elymus_virginicus		USA
+471	WG15EV247_S34mAP	WG15EV247_S34	NA1	Fusarium graminearum	Elymus_virginicus		USA
+472	WG15Evill16_S33mAP	WG15Evill16_S33	NA1	Fusarium graminearum	Elymus_villosus		USA
+473	WG15Evill18_S32mAP	WG15Evill18_S32	NA1	Fusarium graminearum	Elymus_villosus		USA
+474	WG15Evill25_S31mAP	WG15Evill25_S31	NA1	Fusarium graminearum	Elymus_villosus		USA
+475	WG15Evill29_S30mAP	WG15Evill29_S30	NA1	Fusarium graminearum	Elymus_villosus		USA
+476	WG15Evill34_S29mAP	WG15Evill34_S29	NA1	Fusarium graminearum	Elymus_villosus		USA
+477	WG15Evill44_S28mAP	WG15Evill44_S28	NA1	Fusarium graminearum	Elymus_villosus		USA
+478	WG15GG06_S27mAP	WG15GG06_S27	NA3	Fusarium graminearum	Glyceria_grandis		USA
+479	WG15GG11_S2mAP	WG15GG11_S2	NA3	Fusarium graminearum	Glyceria_grandis		USA
+480	WG15GG17_S3mAP	WG15GG17_S3	NA3	Fusarium graminearum	Glyceria_grandis		USA
+481	WG15GG23_S4mAP	WG15GG23_S4	NA3	Fusarium graminearum	Glyceria_grandis		USA
+482	WG15GG39_S5mAP	WG15GG39_S5	NA1	Fusarium graminearum	Glyceria_grandis		USA
+483	WG15GG42_S6mAP	WG15GG42_S6	NA3	Fusarium graminearum	Glyceria_grandis		USA
+484	WG15HJ11_S7mAP	WG15HJ11_S7	NA1	Fusarium graminearum	Hordeum_jubatum		USA
+485	WG15HJ15_S8mAP	WG15HJ15_S8	NA1	Fusarium graminearum	Hordeum_jubatum		USA
+486	WG15HJ17_S9mAP	WG15HJ17_S9	NA3	Fusarium graminearum	Hordeum_jubatum		USA
+487	WG15HJ23_S10mAP	WG15HJ23_S10	NA1	Fusarium graminearum	Hordeum_jubatum		USA
+488	WG15HJ24_S11mAP	WG15HJ24_S11	NA3	Fusarium graminearum	Hordeum_jubatum		USA
+489	WG15HJ33_S12mAP	WG15HJ33_S12	NA1	Fusarium graminearum	Hordeum_jubatum		USA
+490	WG15HS21_S26mAP	WG15HS21_S26	NA1	Fusarium graminearum	Hesperostipa_spartea		USA
+491	WG15HS32_S13mAP	WG15HS32_S13	NA1	Fusarium graminearum	Hesperostipa_spartea		USA
+492	WG15LO06_S15mAP	WG15LO06_S15	NA1	Fusarium graminearum	Leersia_oryzoides		USA
+493	WG15PA02_S16mAP	WG15PA02_S16	NA3	Fusarium graminearum	Phalaris_arundinacea		USA
+494	WG15PA17_S17mAP	WG15PA17_S17	Unknown	Fusarium graminearum	Phalaris_arundinacea		USA
+495	WG15PA21_S55mAP	WG15PA21_S55	NA1	Fusarium graminearum	Glyceria_grandis		USA
+496	WG15PV109_S18mAP	WG15PV109_S18	NA1	Fusarium graminearum	Panicum_virgatum		USA
+497	WG15PV132_S19mAP	WG15PV132_S19	NA1	Fusarium graminearum	Panicum_virgatum		USA
+498	WG15PV59_S20mAP	WG15PV59_S20	NA1	Fusarium graminearum	Panicum_virgatum		USA
+499	WG15PV63_S21mAP	WG15PV63_S21	NA1	Fusarium graminearum	Panicum_virgatum		USA
+500	WG15PV65_S54mAP	WG15PV65_S54	NA1	Fusarium graminearum	Glyceria_grandis		USA
+501	WG15PV66_S53mAP	WG15PV66_S53	NA2	Fusarium graminearum	Glyceria_grandis		USA
+502	WG15PV72_S22mAP	WG15PV72_S22	Unknown	Fusarium graminearum	Panicum_virgatum		USA
+503	WG15PV73_S23mAP	WG15PV73_S23	Unknown	Fusarium graminearum	Panicum_virgatum		USA
+504	WG15PV75_S24mAP	WG15PV75_S24	NA2	Fusarium graminearum	Panicum_virgatum		USA
+505	WG15PV82_S25mAP	WG15PV82_S25	NA1	Fusarium graminearum	Panicum_virgatum		USA
+506	WG15SS01_S52mAP	WG15SS01_S52	NA1	Fusarium graminearum	Glyceria_grandis		USA
+507	f688mAP	f688	NA2	Fusarium graminearum	Hordeum vulgare	NIV	Uruguay
+508	fra132mAP	fra132	NA1	Fusarium graminearum	Triticum aestivum	15	France
+509	fra161mAP	fra161	Admixture	Fusarium graminearum	Zea mays	15	France
+510	fra181mAP	fra181	NA1	Fusarium graminearum			USA
+511	fra201mAP	fra201	NA2	Fusarium graminearum
+512	fra267mAP	fra267	NA2	Fusarium graminearum	Zea mays	15	France
+513	fra336mAP	fra336	NA1	Fusarium graminearum	Zea mays	15	France

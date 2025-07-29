@@ -29,6 +29,7 @@
                <button class="tab" id="Soptions" onclick="showContent('input');highlightTab('Soptions')">Select options</button>
                <button class="tab" id="Voutput" onclick="showContent('output');highlightTab('Voutput')">Table view</button>
                <button class="tab" id="Toutput" onclick="showContent('outputTree');highlightTab('Toutput')">Tree view</button>
+               <button class="tab" id="Poutput" onclick="showContent('outputPair');highlightTab('Poutput')">Pairwise view</button>
            </div>
 
            <button class="tab" id="download" onclick="showContent('download');highlightTab('download')">Downloads</button> <!-- Help tab on far right -->
@@ -72,7 +73,7 @@
                                 </td>
                                 <td width="150px"><i>F. graminearum</i> <br>(High Quality - 2025)</td>
                                 <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                                <td>513</td>
+                                <td>512</td>
                                 <td>3.1 million</td>
                                 <td>Mapping quality (≥40), Genotypic coverage (≥ 50%), LD (max R² > 0.5)</td>
                                 <td><span class="crossmark">&#10008;</span></td>
@@ -91,7 +92,7 @@
                                 </td>
                                 <td><i>F. graminearum</i> <br>(High Coverage - 2025)</td>
                                 <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                                <td>513</td>
+                                <td>512</td>
                                 <td>3.5 million</td>
                                 <td>Mapping quality (≥ 40), Genotypic coverage (≥ 50%)</td>
                                 <td><span class="crossmark">&#10008;</span></td>
@@ -283,6 +284,7 @@
                             <div id="toolbar1">
                               <input id="globalSearch" type="search" placeholder="Global search (ID, species, host, country, chemotype)">
                               <input id="thevcfbuttons" type="submit" value="Create and view the VCF file!" name="gene" />
+
                           </div>
                           <div id="toolbar">
                                   <button type="button" id="btnSelectAllVis">Select All Visible</button>
@@ -408,8 +410,6 @@
                 Use the 'Select options' tab to query the WGS database.
             </div>
 
-
-
             <div id="treeContainer" class="content" style="display: none">
 
                 <h2>Phylogenetic tree view powered by <a target="_blank" href="https://github.com/sansubs/vcf2pop">VCF2PopTree</a></h2>
@@ -508,6 +508,44 @@
 
             </div>
 
+            <div id="pairContainer" class="content" style="display: none">
+
+                <!-- ==== Pairwise Similarity Explorer (namespaced) ==== -->
+                <div id="pse-root">
+                  <h2 id="pse-title">Pairwise Similarity Explorer</h2>
+
+                  <div id="pse-controls">
+                    <label for="pse-isolateSelect" class="pse-label">Isolate:</label>
+                    <select id="pse-isolateSelect" class="pse-input"></select>
+                    <span class="pse-or">or</span>
+                    <input type="text" id="pse-isolateInput" class="pse-input" placeholder="Type Final_SNPversity ID..." />
+                    <button id="pse-goBtn" class="pse-btn">Show Similarities</button>
+                  </div>
+
+                  <div id="pse-status"></div>
+
+                  <div id="pse-tableWrap">
+                    <table id="pse-resultTable" class="pse-table">
+                      <thead>
+                        <tr>
+                          <th class="pse-sortable" data-key="rank">#</th>
+                          <th class="pse-sortable" data-key="id">Final_ID</th>
+                          <th class="pse-sortable" data-key="similarity">Similarity</th>
+                          <th class="pse-sortable" data-key="missingness">Missing%</th>
+                          <th class="pse-sortable" data-key="population">Population</th>
+                          <th class="pse-sortable" data-key="species">Species</th>
+                          <th class="pse-sortable" data-key="host">Host</th>
+                          <th class="pse-sortable" data-key="chemotype">Chemotype</th>
+                          <th class="pse-sortable" data-key="country">Country</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+
+            </div>
+
             <div id="downloadContainer" class="content" style="display: none">
                 <h1>Fusarium SNPversity Data Downloads</h1>
                 Release 1.0.01 (28 November 2024)
@@ -552,7 +590,7 @@
                             </td>
                             <td width="150px"><i>F. graminearum</i> <br>(High Quality - 2025)</td>
                             <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                            <td>513</td>
+                            <td>512</td>
                             <td>3.1 million</td>
                             <td><span class="crossmark">&#10008;</span></td>
                             <td><span class="checkmark">&#10004;</span></td>
@@ -567,7 +605,7 @@
                             </td>
                             <td><i>F. graminearum</i> <br>(High Coverage - 2025)</td>
                             <td><i>Fusarium graminearum</i> PH-1 (NRRL 31084)</td>
-                            <td>513</td>
+                            <td>512</td>
                             <td>3.5 million</td>
                             <td><span class="crossmark">&#10008;</span></td>
                             <td><span class="checkmark">&#10004;</span></td>
@@ -665,7 +703,7 @@
                     <li><b>Technical Architecture</b>: At its core, SNPversity 2.0 is powered by a robust HDF5 database back-end that manages variant annotations efficiently. A data exchange layer, developed in Python, facilitates seamless data handling, while a JavaScript-based interface layer presents Single Nucleotide Polymorphisms (SNPs) and Insertions/Deletions (INDELs) in an interactive format.</li>
                     <li><b>Real-Time Visualization</b>: SNPversity 2.0 elevates data presentation by displaying information in real-time directly in your web browser. Tables are intuitively color-coded, reflecting each SNP's allelic status and mutational state for straightforward interpretation.</li>
                     <li><b>Enhanced Data Insights</b>: Beyond basic variant data, SNPversity 2.0 enriches your research with valuable metadata. This includes variant effect annotations, mapping quality scores, genotypic coverage, and maximum R2 scores to indicate linkage disequilibrium, offering a comprehensive view of genetic variations.</li>
-                    <li><b>Genomic Dataset</b>: This version leverages a variant dataset encompassing 513 strains of <i>Fusarium graminearum</i>. These accessions are aligned to the <i>Fusarium graminearum</i> PH-1 (NRRL 31084), ensuring a broad and relevant genetic foundation for analysis.</li>
+                    <li><b>Genomic Dataset</b>: This version leverages a variant dataset encompassing 512 strains of <i>Fusarium graminearum</i>. These accessions are aligned to the <i>Fusarium graminearum</i> PH-1 (NRRL 31084), ensuring a broad and relevant genetic foundation for analysis.</li>
                     </ul>
 
                     <h2>Code</h2>
@@ -801,7 +839,7 @@
 
                         <ul>
                             <li><b>Genome Version</b>:  Select the reference genome version. </li>
-                            <li><b>Dataset</b>: Select the variation dataset to query.  The '<i>F. graminearum 2024</i> High Quality' dataset was built on 513 different strains of <i>Fusarium graminearum</i> and was filtered on mapping quality (>= 40), genotypic completeness (>= 50%), and linkage disequilibrium with max R2 > 0.5.  There were approximately 3.1 million annotated loci in this dataset.  The '<i>F. graminearum 2024</i> 2024 High Coverage' dataset was built on 513 different strains of <i>Fusarium graminearum</i> and was filtered only on mapping quality (>= 40) and genotypic completeness (>= 50%).  There are approximately 3.5 million annotated loci in this dataset. </li>
+                            <li><b>Dataset</b>: Select the variation dataset to query.  The '<i>F. graminearum 2024</i> High Quality' dataset was built on 512 different strains of <i>Fusarium graminearum</i> and was filtered on mapping quality (>= 40), genotypic completeness (>= 50%), and linkage disequilibrium with max R2 > 0.5.  There were approximately 3.1 million annotated loci in this dataset.  The '<i>F. graminearum 2024</i> 2024 High Coverage' dataset was built on 512 different strains of <i>Fusarium graminearum</i> and was filtered only on mapping quality (>= 40) and genotypic completeness (>= 50%).  There are approximately 3.5 million annotated loci in this dataset. </li>
                             <li><b>Chromosome</b>: Select the chromosome.  </li>
                             <li><b>Genome Start Position (bp)</b>: Select the start position on the chromosome.</li>
                             <li><b>Genome End Position (bp)</b>: Select the end position on the chromosome.</li>
@@ -1555,5 +1593,215 @@ table.on("rowSelectionChanged", function(selectedData) {
     /* ----- first run AFTER table is ready ----- */
     table.on("tableBuilt",()=>{applyFilters();rebuildFacets();colourGroups();updateStatus();});
     </script>
+
+    <script>
+(function(){
+  /* ---------------- CONFIG ---------------- */
+  const FILES = {
+    similarity: './distance/fusarium_allchr_similarity.csv',
+    missing:    './distance/fusarium_allchr_missing_pct.csv',
+    samples:    './distance/fusarium_allchr_samples.txt',
+    metadata:   './distance/metadata.tsv'
+  };
+  const HIDE_IDS = new Set(['SAMN02981337']);
+
+  /* --------------- State --------------- */
+  let similarityMat = null;
+  let missingMat    = null;
+  let samples       = [];
+  let metaByID      = new Map();
+
+  /* --------------- Helpers --------------- */
+  async function fetchText(path){
+    const res = await fetch(path);
+    if(!res.ok) throw new Error(`Failed to fetch ${path}: ${res.status}`);
+    return res.text();
+  }
+  function parseDelimited(text, delim=','){
+    const lines = text.trim().split(/\r?\n/);
+    return lines.map(l => l.split(delim));
+  }
+  const parseCSV = t => parseDelimited(t, ',');
+  const parseTSV = t => parseDelimited(t, '\t');
+
+  function normalizeHeaderCell(h){
+    return h
+      .replace(/\uFEFF/g, '')   // BOM
+      .replace(/\u00A0/g, ' ')  // NBSP
+      .trim();
+  }
+
+  const FINAL_ID_PATTERNS = [
+    /^final[_\s-]*snpversity[_\s-]*id$/i
+  ];
+
+  function findColIdx(cols, pats){
+    for (let i = 0; i < cols.length; i++){
+      for (const re of pats){
+        if (re.test(cols[i])) return i;
+      }
+    }
+    return -1;
+  }
+
+  async function loadAll(){
+    const statusEl = document.getElementById('pse-status');
+    statusEl.textContent = 'Loading files…';
+    try {
+      const [simTxt, missTxt, sampTxt, metaTxt] = await Promise.all([
+        fetchText(FILES.similarity),
+        fetchText(FILES.missing),
+        fetchText(FILES.samples),
+        fetchText(FILES.metadata)
+      ]);
+
+      // samples
+      samples = sampTxt.trim().split(/\r?\n/);
+
+      // matrices
+      similarityMat = parseCSV(simTxt).map(row => row.map(Number));
+      missingMat    = parseCSV(missTxt).map(row => row.map(Number));
+
+      // metadata (robust)
+      const metaRowsRaw = parseTSV(metaTxt);
+      const rawHeader   = metaRowsRaw.shift() || [];
+      const header = rawHeader.map(normalizeHeaderCell);
+
+      const idxFinalID = findColIdx(header, FINAL_ID_PATTERNS);
+      if (idxFinalID === -1) {
+        console.error('Header cols:', header.map((h,i)=>`[${i}] ${JSON.stringify(h)}`));
+        throw new Error('Column "Final_SNPversity ID" not found after normalization.');
+      }
+
+      metaRowsRaw.forEach(r => {
+        const obj = {};
+        header.forEach((h,i)=>{ obj[h] = (r[i] ?? '').trim(); });
+        const key = obj[header[idxFinalID]];
+        if (key) metaByID.set(key, obj);
+      });
+
+      // Dropdown
+      const sel = document.getElementById('pse-isolateSelect');
+      samples.forEach(id => {
+        if (HIDE_IDS.has(id)) return;
+        const opt = document.createElement('option');
+        opt.value = id;
+        opt.textContent = id;
+        sel.appendChild(opt);
+      });
+
+      statusEl.textContent = `Loaded ${samples.length} isolates.`;
+    } catch (err){
+      statusEl.textContent = 'Error: ' + err.message;
+      console.error(err);
+    }
+  }
+
+  function showForID(targetID){
+    const statusEl = document.getElementById('pse-status');
+    const idx = samples.indexOf(targetID);
+    if(idx === -1){
+      statusEl.textContent = `ID "${targetID}" not found.`;
+      return;
+    }
+    const simRow = similarityMat[idx];
+    const missRow = missingMat[idx];
+
+    let rows = samples.map((id,j)=>({
+      id,
+      similarity: simRow[j],
+      missingness: missRow[j],
+      self: j === idx,
+      ...(metaByID.get(id) || {})
+    })).filter(r => !HIDE_IDS.has(r.id) || r.self);
+
+    rows.sort((a,b)=> b.similarity - a.similarity);
+    renderTable(rows);
+    statusEl.textContent = `Showing ${rows.length} isolates for "${targetID}".`;
+  }
+
+  function renderTable(rows){
+    const tbody = document.querySelector('#pse-resultTable tbody');
+    tbody.innerHTML = '';
+    rows.forEach((r,i)=>{
+      const tr = document.createElement('tr');
+      if(r.self) tr.classList.add('pse-self-row');
+      tr.innerHTML = `
+        <td>${i+1}</td>
+        <td>${r.id}</td>
+        <td>${r.similarity.toFixed(4)}</td>
+        <td>${(r.missingness*100).toFixed(2)}</td>
+        <td>${r['SNPversity_Population Strcture_SplitsTree']||''}</td>
+        <td>${r['SNPversity_Species']||''}</td>
+        <td>${r['Host Crop;Variety']||''}</td>
+        <td>${r['Chemotype']||''}</td>
+        <td>${r['Country']||''}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function enableHeaderSort(){
+    const thead = document.querySelector('#pse-resultTable thead');
+    let sortState = { key: null, dir: 1 };
+    thead.addEventListener('click', e=>{
+      const th = e.target.closest('th.pse-sortable');
+      if(!th) return;
+      const key = th.dataset.key;
+      const tbody = document.querySelector('#pse-resultTable tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const cols = ['rank','id','similarity','missingness','population','species','host','chemotype','country'];
+      const idxMap = Object.fromEntries(cols.map((k,i)=>[k,i]));
+
+      const data = rows.map(tr=>{
+        const cells = tr.children;
+        return {
+          tr,
+          rank: parseInt(cells[idxMap.rank].textContent,10),
+          id: cells[idxMap.id].textContent,
+          similarity: parseFloat(cells[idxMap.similarity].textContent),
+          missingness: parseFloat(cells[idxMap.missingness].textContent),
+          population: cells[idxMap.population].textContent,
+          species: cells[idxMap.species].textContent,
+          host: cells[idxMap.host].textContent,
+          chemotype: cells[idxMap.chemotype].textContent,
+          country: cells[idxMap.country].textContent
+        };
+      });
+
+      if(sortState.key === key) sortState.dir *= -1;
+      else { sortState.key = key; sortState.dir = 1; }
+
+      data.sort((a,b)=>{
+        const av = a[key], bv = b[key];
+        if(typeof av === 'number' && typeof bv === 'number'){
+          return (av - bv) * sortState.dir;
+        }
+        return av.localeCompare(bv) * sortState.dir;
+      });
+
+      tbody.innerHTML = '';
+      data.forEach(d=> tbody.appendChild(d.tr));
+    });
+  }
+
+  /* --------------- Init --------------- */
+  document.addEventListener('DOMContentLoaded', async ()=>{
+    await loadAll();
+    enableHeaderSort();
+    document.getElementById('pse-goBtn').addEventListener('click', ()=>{
+      const selVal = document.getElementById('pse-isolateSelect').value.trim();
+      const inVal  = document.getElementById('pse-isolateInput').value.trim();
+      const target = inVal || selVal;
+      if(!target){
+        document.getElementById('pse-status').textContent = 'Please select or type an isolate ID.';
+        return;
+      }
+      showForID(target);
+    });
+  });
+})();
+</script>
+
 
     </html>
