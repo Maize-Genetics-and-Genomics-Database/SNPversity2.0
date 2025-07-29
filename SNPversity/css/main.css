@@ -819,7 +819,19 @@
             background: #FFFFFF;
     }
 
-    #treeContainer {
+    #ontainer {
+            width: auto; /* or max-width: 100%; */
+            padding-left:1%;
+            padding-right:1%;
+            padding-top: 0.2%;
+            padding-bottom: 2%;
+            margin-top: 10px;
+            margin-left: 0px;
+            margin-right: 10px;
+            background: #FFFFFF;
+    }
+
+    #pairContainer {
             width: auto; /* or max-width: 100%; */
             padding-left:1%;
             padding-right:1%;
@@ -1320,6 +1332,34 @@
   box-shadow: 0 1px #666; /* Less shadow */
   transform: translateY(2px); /* Pushes the button down */
 }
+#thepairbuttons {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-weight: bold;
+  width: 250px;
+  height: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px #999;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#thepairbuttons:hover {
+  background-color: #45a049; /* Darker green */
+  box-shadow: 0 4px #666; /* Shadow effect */
+}
+
+#thepairbuttons:active {
+  background-color: #3e8e41; /* Even darker green */
+  box-shadow: 0 1px #666; /* Less shadow */
+  transform: translateY(2px); /* Pushes the button down */
+}
+
+
 
 #thevcfbuttonsD {
   background-color: #4CAF50; /* Light Green */
@@ -1556,4 +1596,109 @@ pre {
 
         .disabled-row input[type="radio"] {
             cursor: not-allowed; /* Change cursor to indicate non-interactive */
+        }
+
+        /* Scope everything under #pse-root to avoid conflicts */
+        #pse-root {
+          --pse-accent-save: #2b6cb0;
+          --pse-accent: #226634;
+          --pse-accent-dark: #1C5A2F;
+          --pse-accent-dark-save: #2c5282;
+          --pse-bg: #f7fafc;
+          --pse-text: #1a202c;
+          --pse-self-row: #fff3b0;
+          --pse-stripe: #f1f5f9;
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+          color: var(--pse-text);
+          margin: 16px 0;
+        }
+
+        #pse-title {
+          margin: 0 0 12px;
+          font-size: 1.4rem;
+        }
+
+        #pse-controls {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 16px;
+          align-items: center;
+        }
+        #pse-controls .pse-label { font-weight: 600; }
+        #pse-controls .pse-input {
+          padding: 6px 8px;
+          border: 1px solid #cbd5e0;
+          border-radius: 4px;
+          min-width: 200px;
+        }
+        #pse-controls .pse-btn {
+          padding: 7px 14px;
+          border: none;
+          border-radius: 4px;
+          background: var(--pse-accent);
+          color: #fff;
+          cursor: pointer;
+          font-weight: 600;
+        }
+        #pse-controls .pse-btn:hover { background: var(--pse-accent-dark); }
+
+        #pse-status {
+          margin: 8px 0 16px;
+          font-size: 0.85rem;
+          color: #4a5568;
+        }
+
+        #pse-tableWrap {
+          max-height: 75vh;
+          overflow: auto;
+          border-radius: 6px;
+        }
+
+        #pse-resultTable {
+          border-collapse: collapse;
+          width: 100%;
+          background: #fff;
+          box-shadow: 0 2px 6px rgba(0,0,0,.06);
+          border-radius: 6px;
+          overflow: hidden;
+        }
+
+        #pse-resultTable thead {
+          position: sticky;
+          top: 0;
+          background: var(--pse-accent-dark);
+          color: #fff;
+          z-index: 2;
+        }
+
+        #pse-resultTable th,
+        #pse-resultTable td {
+          padding: 6px 8px;
+          text-align: left;
+          font-size: 0.85rem;
+          border-bottom: 1px solid #e2e8f0;
+          white-space: nowrap;
+        }
+
+        #pse-resultTable tbody tr:nth-child(even) { background: var(--pse-stripe); }
+        #pse-resultTable tbody tr.pse-self-row { background: var(--pse-self-row); font-weight: 600; }
+
+        /* Better contrast for header */
+        #pse-resultTable thead {
+          background: #e2e8f0;        /* light gray background */
+          color: #1a202c;             /* dark text */
+        }
+
+        #pse-resultTable thead th {
+          background: inherit;        /* ensure th uses thead bg */
+          color: inherit;
+        }
+
+        /* Sort arrows */
+        #pse-resultTable th.pse-sortable::after {
+          content: ' \25B4\25BE';
+          font-size: 0.7rem;
+          opacity: 0.6;
+          color: #1a202c;             /* make arrows visible */
         }
