@@ -14,7 +14,7 @@
                 var selectedValue = this.value;
 
                 // Log the selected dataset
-                console.log("Selected dataset:", selectedValue);
+                //console.log("Selected dataset:", selectedValue);
 
                 // Remove 'selected' class from all rows
                 document.querySelectorAll('.dataset-table tr').forEach(row => {
@@ -42,7 +42,7 @@
         //toggleCheckboxesAll(0,'.genotypes_S');
         //toggleCheckboxesAll(0,'.genotypes_NAM');
 
-        console.log("Dataset before:", dataset);
+        //console.log("Dataset before:", dataset);
 
         var divM26 = document.querySelector('.maize2026_container');
         var divM = document.querySelector('.maize2024_container');
@@ -108,7 +108,7 @@
             // Add your logic here
         }
 
-        console.log("Dataset after:", dataset);
+        //console.log("Dataset after:", dataset);
         // Add more logic as needed
     }
 
@@ -122,6 +122,7 @@
             $('#mainContainer').css('display', 'inline');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
 
@@ -130,7 +131,7 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'block');
             $('#treeContainer').css('display', 'none');
-
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
         } else if(id == "outputTree")
@@ -139,6 +140,16 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'block');
+            $('#pairContainer').css('display', 'none');
+            $('#downloadContainer').css('display', 'none');
+            $('#helpContainer').css('display', 'none');
+        }  else if(id == "outputPair")
+        {
+            $('#loadingContainer').css('display', 'none');
+            $('#mainContainer').css('display', 'none');
+            $('#outputContainer').css('display', 'none');
+            $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'block');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'none');
         } else if(id == "download")
@@ -147,6 +158,7 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'block');
             $('#helpContainer').css('display', 'none');
         } else if(id == "help")
@@ -155,6 +167,7 @@
             $('#mainContainer').css('display', 'none');
             $('#outputContainer').css('display', 'none');
             $('#treeContainer').css('display', 'none');
+            $('#pairContainer').css('display', 'none');
             $('#downloadContainer').css('display', 'none');
             $('#helpContainer').css('display', 'block');
         }
@@ -415,7 +428,7 @@ $(document).ready(function() {
                 dataType: 'json', // Expecting JSON response
                 success: function(response) {
                     // 'response' is already a JavaScript object
-                    console.log(response.message);
+                    //console.log(response.message);
 
                     if (response.status === "success") {
                         console.log("VCF created - Success");
@@ -720,7 +733,7 @@ function parseVCF(outFile, curChr) {
           headers.forEach((header, headerIndex) => {
               if(headerIndex == 1 && dataset == "maizegdb2026")
               {
-                  console.log("Dataset:", dataset);
+                  //console.log("Dataset:", dataset);
 
                   const th01 = document.createElement('th');
                   th01.innerHTML = "CHR";
@@ -804,7 +817,7 @@ function parseVCF(outFile, curChr) {
 
               } else if(headerIndex == 1 && dataset != "maizegdb2026")
               {
-                  console.log("Dataset headerIndex1:", dataset);
+                  //console.log("Dataset headerIndex1:", dataset);
 
                   const th01 = document.createElement('th');
                   th01.innerHTML = "CHR";
@@ -1017,7 +1030,8 @@ function parseVCF(outFile, curChr) {
 
                     th.classList.add("th0");  // base class for ALL header cells
 
-                    const cleanKey = header.replace(/^0+/, "");
+                    //const cleanKey = header.replace(/^0+/, "");
+                    const cleanKey = header;
                     let proj = "";
 
                     if (dataset === "maizegdb2026")
@@ -1032,6 +1046,7 @@ function parseVCF(outFile, curChr) {
                     }
 
                     th.setAttribute('data-tooltip', popNames[proj] || proj || "");
+
                     //th.setAttribute('data-tooltip', proj || "");
                     headerRow.appendChild(th);
 
@@ -1102,7 +1117,6 @@ function parseVCF(outFile, curChr) {
 
             if(cellIndex == 7 && dataset == "maizegdb2026")
             {
-                console.log("Dataset cell7:", dataset);
                 // Extracting the gene model names (GM)
                 let geneModelMatch = cell.match(/GENEMODEL=([^\t]*?)(?:SUB=|\t|$)/);
                 let GM = '';
@@ -1778,7 +1792,7 @@ function toggleCheckboxesAll(perc, genotype_val) {
 
   var selectedValue = document.querySelector('input[name="ds"]:checked').value;
 
-  console.log("Selected dataset hit:", selectedValue);
+  //console.log("Selected dataset hit:", selectedValue);
 
   if (selectedValue === 'nam2021_hq' || selectedValue === 'nam2021_hc') {
 
