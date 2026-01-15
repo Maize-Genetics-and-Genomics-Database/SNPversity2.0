@@ -1442,3 +1442,7 @@ pre {
           opacity: 0.6;
           color: #1a202c;             /* make arrows visible */
         }
+
+        .pse-filters { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+        .pse-num { width: 7.5em; }
+        .pse-btn-secondary { opacity: 0.9; }
