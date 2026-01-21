@@ -36,6 +36,44 @@
         }
     };
 
+    function selectOnePerFounder(sourceBtn, checkboxSelector, opts = {}) {
+  const table = sourceBtn.closest('table');
+  if (!table) return;
+
+  const preferRep1 = !!opts.preferRep1;
+
+  // Only consider enabled checkboxes in THIS table
+  const all = Array.from(table.querySelectorAll(checkboxSelector))
+    .filter(cb => !cb.disabled);
+
+  // Uncheck everything first
+  all.forEach(cb => cb.checked = false);
+
+  // Group by founder
+  const groups = new Map();
+  for (const cb of all) {
+    const founder = cb.dataset.founder || "";
+    if (!founder) continue;
+    if (!groups.has(founder)) groups.set(founder, []);
+    groups.get(founder).push(cb);
+  }
+
+  // For each founder, pick one checkbox:
+  // - if preferRep1: choose rep1 if available (value contains "rep1_")
+  // - else: choose the first in DOM order
+  for (const [founder, cbs] of groups.entries()) {
+    let chosen = null;
+
+    if (preferRep1) {
+      chosen = cbs.find(cb => (cb.value || "").includes("rep1_")) || null;
+    }
+
+    if (!chosen) chosen = cbs[0] || null;
+    if (chosen) chosen.checked = true;
+  }
+}
+
+
     function handleDatasetChange(value) {
 
         //toggleCheckboxesAll(0,'.genotypes');
@@ -385,9 +423,34 @@
 $(document).ready(function() {
     $('form').on('submit', function(e) {
         e.preventDefault();
+
+        //$('#loadingContainer').html('<br><br><center><img width="100px" src="./gif/loading.gif" alt="Loading..."><br>Loading table from VCF file</center>');
+    //    $('#outputContainer').html("<div id='outHeader' class='pages'></div><div id='nonPage'><span id='pageData'></span><br><div id='pagination' class='pages'></div><table id='vcfTable'></table> <br><span id='pageDataB'></span><br><div id='paginationBottom' class='pagesB'></div></div>");
+        $('#outputContainer').html(`
+          <div id="loadingContainer" style="display:none;"></div>
+          <div id='outHeader' class='pages'></div>
+          <div id='nonPage'>
+            <span id='pageData'></span><br>
+            <div id='pagination' class='pages'></div>
+            <table id='vcfTable'></table><br>
+            <span id='pageDataB'></span><br>
+            <div id='paginationBottom' class='pagesB'></div>
+          </div>
+        `);
         $('#loadingContainer').css('display', 'block');
-        $('#loadingContainer').html('<br><br><center><img width="100px" src="./gif/loading.gif" alt="Loading..."><br>Loading table from VCF file</center>');
-        $('#outputContainer').html("<div id='outHeader' class='pages'></div><div id='nonPage'><span id='pageData'></span><br><div id='pagination' class='pages'></div><table id='vcfTable'></table> <br><span id='pageDataB'></span><br><div id='paginationBottom' class='pagesB'></div></div>");
+        $('#outputContainer').css({
+          minHeight: '60vh'   // or 70vh / 80vh
+        });
+
+        $('#loadingContainer')
+          .css('display', 'flex')
+          .html(`
+            <div class="loadingBox">
+              <img width="100" src="./gif/loading.gif" alt="Loading...">
+              <div style="margin-top:10px;">Loading table from VCF file</div>
+            </div>
+          `);
+
         $('#outputContainer').css('width', 'auto');
         $('#mainContainer').css('display', 'none');
         $('#outputContainer').css('display', 'block')
@@ -519,7 +582,7 @@ function downloadFile(outFile) {
     document.body.removeChild(downloadLink);
 }
 
-function getGradientColor(score) {
+function getGradientColor_old(score) {
     // Map score from -15 (red) to 10 (green)
     const min = -15;
     const max = 10;
@@ -532,11 +595,110 @@ function getGradientColor(score) {
     const green = Math.round(255 * ratio);
     if (score <= 1 && score >= -1)
     {
-        return `rgb(211, 211, 211)`;
+        return `rgb(195, 205, 215)`;
     } else {
         return `rgb(${red}, ${green}, 0)`;
     }
 
+}
+
+function getGradientColor(score) {
+  // score can be number or null
+  if (score === null || score === undefined) return "rgb(220, 226, 232)"; // gray for N/A
+
+
+  const min = -15;
+  const max = 10;
+
+  const clamped = Math.min(Math.max(score, min), max);
+
+  if (clamped <= 1 && clamped >= -1) return "rgb(170, 180, 190)";
+
+  const ratio = (clamped - min) / (max - min);
+  const red = Math.round(255 * (1 - ratio));
+  const green = Math.round(255 * ratio);
+  return `rgb(${red}, ${green}, 0)`;
+}
+
+
+
+//Helper function to handle ESM and PlantCAD scores
+function parseInfoField(cell, key) {
+  const m = cell.match(new RegExp(`${key}=([^;]+)`));
+  return m ? m[1] : ".";
+}
+
+function splitScores(raw) {
+  // raw like "-3.9,." or "." or "-1.2"
+  if (!raw || raw === ".") return ["."];
+  return raw.split(",").map(s => s.trim());
+}
+
+function toDisplay(s) {
+  return (s === "." || s === "" || s.toUpperCase?.() === "NA") ? "N/A" : s;
+}
+
+function toNumberOrNull(s) {
+  if (s === "." || s === "" || (s.toUpperCase && s.toUpperCase() === "NA")) return null;
+  const n = Number(s);
+  return Number.isFinite(n) ? n : null;
+}
+
+function makeScoreCell(rawScores, className = "td3") {
+  const scores = splitScores(rawScores); // e.g. ["-3.9"] or ["-3.9", "."] etc.
+  const td = document.createElement("td");
+  td.className = className;
+
+  // Remove default padding so the fill consumes the full cell
+  td.style.padding = "0";
+
+  // ---- SINGLE SCORE: make the TD itself the full fill (no split container) ----
+  if (scores.length === 1) {
+    const s = scores[0];
+    const n = toNumberOrNull(s);
+
+    td.textContent = toDisplay(s);
+    td.style.backgroundColor = getGradientColor(n);
+    td.style.color = "white";
+    td.style.textAlign = "center";
+    td.style.verticalAlign = "middle";
+
+    // Make sure it visually fills the row height
+    td.style.lineHeight = "1.1";
+    td.style.fontSize = "0.7em";
+
+    return td;
+  }
+
+  // ---- MULTI SCORE: stacked split bands ----
+  const wrap = document.createElement("div");
+  wrap.style.display = "flex";
+  wrap.style.flexDirection = "column"; // top/bottom split
+  wrap.style.height = "100%";
+  wrap.style.width = "100%";
+
+  scores.forEach((s, i) => {
+    const band = document.createElement("div");
+    const n = toNumberOrNull(s);
+
+    band.textContent = toDisplay(s);
+    band.style.flex = "1 1 0";
+    band.style.display = "flex";
+    band.style.alignItems = "center";
+    band.style.justifyContent = "center";
+    band.style.backgroundColor = getGradientColor(n);
+    band.style.color = "white";
+    band.style.fontSize = "0.9em";
+    band.style.lineHeight = "1.2";
+
+    // divider line between bands
+    if (i > 0) band.style.borderTop = "1px solid rgba(255,255,255,0.25)";
+
+    wrap.appendChild(band);
+  });
+
+  td.appendChild(wrap);
+  return td;
 }
 
 function openPopupM() {
@@ -620,12 +782,13 @@ function parseVCF(outFile, curChr) {
                 $('#outHeader').html(`
                     <div>
                         <button class="popup-button" onclick="downloadFile('${outFile}')">Download the VCF file</button>
+                        <button class="popup-button" onclick="allelePopup()">Allele key</button>
+                        <button class="popup-button" onclick="varPopup()">Common variant effect types</button>
+                        <span class="wrapBreak"></span>
                         <button class="popup-button" onclick="openPopupM26()">MaizeGDB2026 accession key</button>
                         <button class="popup-button" onclick="openPopupM()">MaizeGDB2024 accession key</button>
                         <button class="popup-button" onclick="openPopupS()">Schnable2023 accession key</button>
-                        <button class="popup-button" onclick="allelePopup()">Allele key</button>
-                        <button class="popup-button" onclick="varPopup()">Common variant effect types</button>
-                    </div><br><br>
+                    </div>
                 `);
 
                 const lines = content.split('\n');
@@ -1182,6 +1345,9 @@ function parseVCF(outFile, curChr) {
                     DNA2 = "N/A"
                 }
 
+                // IMPORTANT: preserve the original INFO string before 'cell' gets overwritten
+                const infoStr = cell;
+
                 let AASCORE1 = cell.match(/ESM1_score=([^;]+)/)[1];
                 if (AASCORE1 == ".") {
                     AASCORE1 = "N/A"
@@ -1330,42 +1496,33 @@ function parseVCF(outFile, curChr) {
                 //const mafValue = parseFloat(DNA1);
 
                 // Set background color using the gradient function
-                td9a.style.backgroundColor = getGradientColor(DNA1);
+                td9a.style.backgroundColor = getGradientColor(toNumberOrNull(DNA1));
+
                 td9a.style.color = 'white';  // Adjust text color for readability
+                td9a.style.fontSize = "0.7em";
 
                 row.appendChild(td9a);
 
                 const td9b = document.createElement('td');
                 td9b.innerHTML = DNA2;
                 td9b.className = 'td3'; // Assign the class
+                td9b.style.fontSize = "0.7em";
                 //const mafValue = parseFloat(DNA2);
 
                 // Set background color using the gradient function
-                td9b.style.backgroundColor = getGradientColor(DNA2);
+                td9b.style.backgroundColor = getGradientColor(toNumberOrNull(DNA2));
                 td9b.style.color = 'white';  // Adjust text color for readability
 
                 row.appendChild(td9b);
 
-                const td10a = document.createElement('td');
-                td10a.innerHTML = AASCORE1;
-                td10a.className = 'td3'; // Assign the class
-                td10a.style.backgroundColor = getGradientColor(AASCORE1);
-                td10a.style.color = 'white';  // Adjust text color for readability
-                row.appendChild(td10a);
+                const raw1 = parseInfoField(infoStr, "ESM1_score");
+                const raw2 = parseInfoField(infoStr, "ESM2_score");
+                const raw3 = parseInfoField(infoStr, "ESM3_score");
 
-                const td10b = document.createElement('td');
-                td10b.innerHTML = AASCORE2;
-                td10b.className = 'td3'; // Assign the class
-                td10b.style.backgroundColor = getGradientColor(AASCORE2);
-                td10b.style.color = 'white';  // Adjust text color for readability
-                row.appendChild(td10b);
+                row.appendChild(makeScoreCell(raw1));
+                row.appendChild(makeScoreCell(raw2));
+                row.appendChild(makeScoreCell(raw3));
 
-                const td10c = document.createElement('td');
-                td10c.innerHTML = AASCORE3;
-                td10c.className = 'td3'; // Assign the class
-                td10c.style.backgroundColor = getGradientColor(AASCORE3);
-                td10c.style.color = 'white';  // Adjust text color for readability
-                row.appendChild(td10c);
 }
 
             if(cellIndex == 7 && dataset != "maizegdb2026")
@@ -1446,6 +1603,7 @@ function parseVCF(outFile, curChr) {
                 SUB = SUB.replace(/_/g, ' ');
                 SUB2 = SUB2.replace(/_/g, ' ');
 
+                const infoStr = cell;
                 cell = "Genotype (GT)"
 
                 let upper = parseInt(pos_val) + 10000;
