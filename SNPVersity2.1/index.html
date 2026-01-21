@@ -23,7 +23,7 @@
                <button class="tab" id="Soptions" onclick="showContent('input');highlightTab('Soptions')">Select options</button>
                <button class="tab" id="Voutput" onclick="showContent('output');highlightTab('Voutput')">Table view</button>
                <button class="tab" id="Toutput" onclick="showContent('outputTree');highlightTab('Toutput')">Tree view</button>
-               <button class="tab" id="Poutput" onclick="showContent('outputPair');highlightTab('Poutput')">Pairwise view</button>
+               <button class="tab" id="Poutput" onclick="showContent('outputPair');highlightTab('Poutput')">Identity by state view</button>
            </div>
 
            <button class="tab" id="download" onclick="showContent('download');highlightTab('download')">Downloads</button> <!-- Help tab on far right -->
@@ -318,11 +318,11 @@
                         </table>
                         <br></div></div>
 
-                        <!-- PRJEB31061 NAM -->
+                        <!-- PRJEB31061 -->
                         <div class="border1">
                         <button type="button" class="accordion"><b>Maize Nested Association Mapping (NAM) <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB31061">(PRJEB31061)</a> - Location: USA</b></button>
                         <div class="panel">
-                         NAM genome sequencing and assembly project (<a target="_blank" href="https://doi.org/10.1126/science.abg5289">Reference</a>): 23 accessions
+                         NAM genome sequencing and assembly project (<a target="_blank" href="https://doi.org/10.1126/science.abg5289">Reference</a>): 77 accessions
                         <table id="bioproject_PRJEB31061">
                           <tr>
                             <td colspan="5">
@@ -330,157 +330,216 @@
                               <button type="button" id="bioproject_PRJEB31061_25" onclick="toggleCheckboxes(this, 0.25,'.genotypes26')">Select Random 25%</button>
                               <button type="button" id="bioproject_PRJEB31061_50" onclick="toggleCheckboxes(this, 0.5,'.genotypes26')">Select Random 50%</button>
                               <button type="button" id="bioproject_PRJEB31061_all" onclick="toggleCheckboxes(this, 1.0,'.genotypes26')">Select All</button>
+
+                              <!-- NEW: one per founder line (prefer founder/rep1) -->
+                              <button type="button" onclick="selectOnePerFounder(this, '.genotypes26', { preferRep1: true })">
+                                Select 1 per NAM founder accession
+                              </button>
+
                             </td>
                           </tr>
                           <tr>
-                            <td colspan="5"><strong>Replicate 1</strong></td>
+                            <td colspan="5"><strong>B97</strong></td>
                           </tr>
                           <tr>
-                            <td><input class="genotypes26" type="checkbox" value="B97rep1_ERR3307809" />ERR3307809 (B97)</td>
-                            <td class="disabled-cell"><input class="genotypesXX" type="checkbox" value="CML52_ERS3120543" disabled />ERS3120543 (CML52) - Unavailable</td>
-                            <td><input class="genotypes26" type="checkbox" value="CML69_ERR3307829" />ERR3307829 (CML69)</td>
-                            <td><input class="genotypes26" type="checkbox" value="CML103_ERR3307833" />ERR3307833 (CML103)</td>
-                            <td><input class="genotypes26" type="checkbox" value="CML228_ERR3307837" />ERR3307837 (CML228)</td>
+                            <td><input class="genotypes26" data-founder="B97" type="checkbox" value="B97rep1_ERR3307809" />ERR3307809 (B97)</td>
+                            <td><input class="genotypes26" data-founder="B97" type="checkbox" value="B97rep2_ERR3307810" />ERR3307810 (B97)</td>
+                            <td><input class="genotypes26" data-founder="B97" type="checkbox" value="B97rep3_ERR3307811" />ERR3307811 (B97)</td>
+                            <td><input class="genotypes26" data-founder="B97" type="checkbox" value="B97rep4_ERR3307812" />ERR3307812 (B97)</td>
                           </tr>
                           <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML247_ERR3307841" />ERR3307841 (CML247)</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML277_ERR3307845" />ERR3307845 (CML277)</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML322_ERR3307849" />ERR3307849 (CML322)</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML333_ERR3307853" />ERR3307853 (CML333)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Hp301_ERR3307857" />ERR3307857 (Hp301)</td>
+                            <td colspan="5"><strong>CML69</strong></td>
                           </tr>
                           <tr>
-                              <td><input class="genotypes26" type="checkbox" value="Il14H_ERR3307866" />ERR3307866 (Il14H)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ki3_ERR3307874" />ERR3307874 (Ki3)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ki11_ERR3307878" />ERR3307878 (Ki11)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ky21_ERR3307879" />ERR3307879 (Ky21)</td>
-                              <td><input class="genotypes26" type="checkbox" value="M162W_ERR3307883" />ERR3307883 (M162W)</td>
+                            <td><input class="genotypes26" data-founder="CML69" type="checkbox" value="CML69_ERR3307829" />ERR3307829 (CML69)</td>
+                            <td><input class="genotypes26" data-founder="CML69" type="checkbox" value="CML69_ERR3307830" />ERR3307830 (CML69)</td>
+                            <td><input class="genotypes26" data-founder="CML69" type="checkbox" value="CML69_ERR3307831" />ERR3307831 (CML69)</td>
+                            <td><input class="genotypes26" data-founder="CML69" type="checkbox" value="CML69_ERR3307832" />ERR3307832 (CML69)</td>
                           </tr>
                           <tr>
-                              <td><input class="genotypes26" type="checkbox" value="M37W_ERR3307884" />ERR3307884 (M37W)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Mo18W_ERR3307885" />ERR3307885 (Mo18W)</td>
-                              <td><input class="genotypes26" type="checkbox" value="MS71_ERR3307886" />ERR3307886 (MS71)</td>
-                              <td><input class="genotypes26" type="checkbox" value="NC350_ERR3307890" />ERR3307890 (NC350)</td>
-                              <td class="disabled-cell"><input class="genotypesXX" type="checkbox" value="NC358_ERS3120561" disabled />ERS3120561 (NC358) - Unavailable</td>
+                            <td colspan="5"><strong>CML103</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="CML103" type="checkbox" value="CML103_ERR3307833" />ERR3307833 (CML103)</td>
+                            <td><input class="genotypes26" data-founder="CML103" type="checkbox" value="CML103_ERR3307834" />ERR3307834 (CML103)</td>
+                            <td><input class="genotypes26" data-founder="CML103" type="checkbox" value="CML103_ERR3307835" />ERR3307835 (CML103)</td>
+                            <td><input class="genotypes26" data-founder="CML103" type="checkbox" value="CML103_ERR3307836" />ERR3307836 (CML103)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>CML228</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="CML228" type="checkbox" value="CML228_ERR3307837" />ERR3307837 (CML228)</td>
+                            <td><input class="genotypes26" data-founder="CML228" type="checkbox" value="CML228_ERR3307838" />ERR3307838 (CML228)</td>
+                            <td><input class="genotypes26" data-founder="CML228" type="checkbox" value="CML228_ERR3307839" />ERR3307839 (CML228)</td>
+                            <td><input class="genotypes26" data-founder="CML228" type="checkbox" value="CML228_ERR3307840" />ERR3307840 (CML228)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>CML247</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="CML247" type="checkbox" value="CML247_ERR3307841" />ERR3307841 (CML247)</td>
+                            <td><input class="genotypes26" data-founder="CML247" type="checkbox" value="CML247_ERR3307842" />ERR3307842 (CML247)</td>
+                            <td><input class="genotypes26" data-founder="CML247" type="checkbox" value="CML247_ERR3307843" />ERR3307843 (CML247)</td>
+                            <td><input class="genotypes26" data-founder="CML247" type="checkbox" value="CML247_ERR3307844" />ERR3307844 (CML247)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>CML277</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="CML277" type="checkbox" value="CML277_ERR3307845" />ERR3307845 (CML277)</td>
+                            <td><input class="genotypes26" data-founder="CML277" type="checkbox" value="CML277_ERR3307846" />ERR3307846 (CML277)</td>
+                            <td><input class="genotypes26" data-founder="CML277" type="checkbox" value="CML277_ERR3307847" />ERR3307847 (CML277)</td>
+                            <td><input class="genotypes26" data-founder="CML277" type="checkbox" value="CML277_ERR3307848" />ERR3307848 (CML277)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>CML322</strong></td>
+                          </tr>
+                          <tr>
+                          <td><input class="genotypes26" data-founder="CML322" type="checkbox" value="CML322_ERR3307849" />ERR3307849 (CML322)</td>
+                          <td><input class="genotypes26" data-founder="CML322" type="checkbox" value="CML322_ERR3307850" />ERR3307850 (CML322)</td>
+                            <td><input class="genotypes26" data-founder="CML322" type="checkbox" value="CML322_ERR3307851" />ERR3307851 (CML322)</td>
+                            <td><input class="genotypes26" data-founder="CML322" type="checkbox" value="CML322_ERR3307852" />ERR3307852 (CML322)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>CML333</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="CML333" type="checkbox" value="CML333_ERR3307853" />ERR3307853 (CML333)</td>
+                            <td><input class="genotypes26" data-founder="CML333" type="checkbox" value="CML333_ERR3307854" />ERR3307854 (CML333)</td>
+                            <td><input class="genotypes26" data-founder="CML333" type="checkbox" value="CML333_ERR3307855" />ERR3307855 (CML333)</td>
+                              <td><input class="genotypes26" data-founder="CML333" type="checkbox" value="CML333_ERR3307856" />ERR3307856 (CML333)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>CML52 - Not included in this dataset; listed for completeness.</strong></td>
+                          </tr>
 
+                        <tr>
+                          <td colspan="5"><strong>Hp301</strong></td>
+                        </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="Hp301" type="checkbox" value="Hp301_ERR3307857" />ERR3307857 (Hp301)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Il14H</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Il14H" type="checkbox" value="Il14H_ERR3307866" />ERR3307866 (Il14H)</td>
+                            <td><input class="genotypes26" data-founder="Il14H" type="checkbox" value="Il14H_ERR3307867" />ERR3307867 (Il14H)</td>
+                            <td><input class="genotypes26" data-founder="Il14H" type="checkbox" value="Il14H_ERR3307868" />ERR3307868 (Il14H)</td>
+                            <td><input class="genotypes26" data-founder="Il14H" type="checkbox" value="Il14H_ERR3307869" />ERR3307869 (Il14H)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Ki3</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Ki3" type="checkbox" value="Ki3_ERR3307874" />ERR3307874 (Ki3)</td>
+                            <td><input class="genotypes26" data-founder="Ki3" type="checkbox" value="Ki3_ERR3307875" />ERR3307875 (Ki3)</td>
+                            <td><input class="genotypes26" data-founder="Ki3" type="checkbox" value="Ki3_ERR3307876" />ERR3307876 (Ki3)</td>
+                            <td><input class="genotypes26" data-founder="Ki3" type="checkbox" value="Ki3_ERR3307877" />ERR3307877 (Ki3)</td>
                           </tr>
                           <tr>
-                              <td><input class="genotypes26" type="checkbox" value="Oh43_ERR3307894" />ERR3307894 (Oh43)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Oh7B_ERR3307898" />ERR3307898 (Oh7B)</td>
-                              <td><input class="genotypes26" type="checkbox" value="P39_ERR3307902" />ERR3307902 (P39)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Tx303_ERR3307906" />ERR3307906 (Tx303)</td>
-                              <td><input class="genotypes26" type="checkbox" value="Tzi8_ERR3155224" />ERR3155224 (Tzi8)</td>
+                            <td colspan="5"><strong>Ki11</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="Ki11" type="checkbox" value="Ki11_ERR3307878" />ERR3307878 (Ki11)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Ky21</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Ky21" type="checkbox" value="Ky21_ERR3307879" />ERR3307879 (Ky21)</td>
+                            <td><input class="genotypes26" data-founder="Ky21" type="checkbox" value="Ky21_ERR3307880" />ERR3307880 (Ky21)</td>
+                            <td><input class="genotypes26" data-founder="Ky21" type="checkbox" value="Ky21_ERR3307881" />ERR3307881 (Ky21)</td>
+                            <td><input class="genotypes26" data-founder="Ky21" type="checkbox" value="Ky21_ERR3307882" />ERR3307882 (Ky21)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>M162W</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="M162W" type="checkbox" value="M162W_ERR3307883" />ERR3307883 (M162W)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>M37W</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="M37W" type="checkbox" value="M37W_ERR3307884" />ERR3307884 (M37W)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Mo18W</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Mo18W" type="checkbox" value="Mo18W_ERR3307885" />ERR3307885 (Mo18W)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>MS71</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="MS71" type="checkbox" value="MS71_ERR3307886" />ERR3307886 (MS71)</td>
+                            <td><input class="genotypes26" data-founder="MS71" type="checkbox" value="MS71_ERR3307887" />ERR3307887 (MS71)</td>
+                            <td><input class="genotypes26" data-founder="MS71" type="checkbox" value="MS71_ERR3307888" />ERR3307888 (MS71)</td>
+                            <td><input class="genotypes26" data-founder="MS71" type="checkbox" value="MS71_ERR3307889" />ERR3307889 (MS71)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>NC350</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="NC350" type="checkbox" value="NC350_ERR3307890" />ERR3307890 (NC350)</td>
+                            <td><input class="genotypes26" data-founder="NC350" type="checkbox" value="NC350_ERR3307891" />ERR3307891 (NC350)</td>
+                            <td><input class="genotypes26" data-founder="NC350" type="checkbox" value="NC350_ERR3307892" />ERR3307892 (NC350)</td>
+                            <td><input class="genotypes26" data-founder="NC350" type="checkbox" value="NC350_ERR3307893" />ERR3307893 (NC350)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>NC358 - Not included in this dataset; listed for completeness.</strong></td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="5"><strong>Oh43</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Oh43" type="checkbox" value="Oh43_ERR3307894" />ERR3307894 (Oh43)</td>
+                            <td><input class="genotypes26" data-founder="Oh43" type="checkbox" value="Oh43_ERR3307895" />ERR3307895 (Oh43)</td>
+                            <td><input class="genotypes26" data-founder="Oh43" type="checkbox" value="Oh43_ERR3307896" />ERR3307896 (Oh43)</td>
+                            <td><input class="genotypes26" data-founder="Oh43" type="checkbox" value="Oh43_ERR3307897" />ERR3307897 (Oh43)</td>
+                          </tr>
+                          <tr>
+                            <td colspan="5"><strong>Oh7B</strong></td>
+                          </tr>
+                          <tr>
+                            <td><input class="genotypes26" data-founder="Oh7B" type="checkbox" value="Oh7B_ERR3307898" />ERR3307898 (Oh7B)</td>
+                            <td><input class="genotypes26" data-founder="Oh7B" type="checkbox" value="Oh7B_ERR3307899" />ERR3307899 (Oh7B)</td>
+                            <td><input class="genotypes26" data-founder="Oh7B" type="checkbox" value="Oh7B_ERR3307900" />ERR3307900 (Oh7B)</td>
+                            <td><input class="genotypes26" data-founder="Oh7B" type="checkbox" value="Oh7B_ERR3307901" />ERR3307901 (Oh7B)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>P39</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="P39" type="checkbox" value="P39_ERR3307902" />ERR3307902 (P39)</td>
+                            <td><input class="genotypes26" data-founder="P39" type="checkbox" value="P39_ERR3307903" />ERR3307903 (P39)</td>
+                            <td><input class="genotypes26" data-founder="P39" type="checkbox" value="P39_ERR3307904" />ERR3307904 (P39)</td>
+                            <td><input class="genotypes26" data-founder="P39" type="checkbox" value="P39_ERR3307905" />ERR3307905 (P39)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Tx303</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Tx303" type="checkbox" value="Tx303_ERR3307906" />ERR3307906 (Tx303)</td>
+                            <td><input class="genotypes26" data-founder="Tx303" type="checkbox" value="Tx303_ERR3307907" />ERR3307907 (Tx303)</td>
+                            <td><input class="genotypes26" data-founder="Tx303" type="checkbox" value="Tx303_ERR3307908" />ERR3307908 (Tx303)</td>
+                            <td><input class="genotypes26" data-founder="Tx303" type="checkbox" value="Tx303_ERR3307909" />ERR3307909 (Tx303)</td>
+                        </tr>
+                        <tr>
+                          <td colspan="5"><strong>Tzi8</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input class="genotypes26" data-founder="Tzi8" type="checkbox" value="Tzi8_ERR3155224" />ERR3155224 (Tzi8)</td>
+                            <td><input class="genotypes26" data-founder="Tzi8" type="checkbox" value="Tzi8_ERR3155516" />ERR3155516 (Tzi8)</td>
+                            <td><input class="genotypes26" data-founder="Tzi8" type="checkbox" value="Tzi8_ERR3155517" />ERR3155517 (Tzi8)</td>
+                            <td><input class="genotypes26" data-founder="Tzi8" type="checkbox" value="Tzi8_ERR3155518" />ERR3155518 (Tzi8)</td>
                           </tr>
                         </table>
                         <br></div></div>
-
-
-                        <div class="border1">
-                        <button type="button" class="accordion"><b>Maize Nested Association Mapping (NAM) Replicants <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB31061">(PRJEB31061)</a> - Location: USA</b></button>
-                        <div class="panel">
-                         NAM genome sequencing and assembly project (<a target="_blank" href="https://doi.org/10.1126/science.abg5289">Reference</a>): 54 accessions
-                        <table id="bioproject_PRJEB31061">
-                            <tr>
-                              <td colspan="5">
-                                <button type="button" id="bioproject_PRJEB32225_none" onclick="toggleCheckboxes(this, 0,'.genotypes26')">Unselect all</button>
-                                <button type="button" id="bioproject_PRJEB32225_25" onclick="toggleCheckboxes(this, 0.25,'.genotypes26')">Select Random 25%</button>
-                                <button type="button" id="bioproject_PRJEB32225_50" onclick="toggleCheckboxes(this, 0.5,'.genotypes26')">Select Random 50%</button>
-                                <button type="button" id="bioproject_PRJEB32225_all" onclick="toggleCheckboxes(this, 1.0,'.genotypes26')">Select All</button>
-                              </td>
-                            </tr>
-
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="B97rep2_ERR3307810" />ERR3307810 (B97) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="B97rep3_ERR3307811" />ERR3307811 (B97) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="B97rep4_ERR3307812" />ERR3307812 (B97) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML69_ERR3307830" />ERR3307830 (CML69) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML69_ERR3307831" />ERR3307831 (CML69) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML69_ERR3307832" />ERR3307832 (CML69) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML103_ERR3307834" />ERR3307834 (CML103) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML103_ERR3307835" />ERR3307835 (CML103) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML103_ERR3307836" />ERR3307836 (CML103) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML228_ERR3307838" />ERR3307838 (CML228) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML228_ERR3307839" />ERR3307839 (CML228) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML228_ERR3307840" />ERR3307840 (CML228) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML247_ERR3307842" />ERR3307842 (CML247) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML247_ERR3307843" />ERR3307843 (CML247) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML247_ERR3307844" />ERR3307844 (CML247) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML277_ERR3307846" />ERR3307846 (CML277) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML277_ERR3307847" />ERR3307847 (CML277) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML277_ERR3307848" />ERR3307848 (CML277) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML322_ERR3307850" />ERR3307850 (CML322) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML322_ERR3307851" />ERR3307851 (CML322) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML322_ERR3307852" />ERR3307852 (CML322) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="CML333_ERR3307854" />ERR3307854 (CML333) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML333_ERR3307855" />ERR3307855 (CML333) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="CML333_ERR3307856" />ERR3307856 (CML333) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="Il14H_ERR3307867" />ERR3307867 (Il14H) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="Il14H_ERR3307868" />ERR3307868 (Il14H) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="Il14H_ERR3307869" />ERR3307869 (Il14H) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="Ki3_ERR3307875" />ERR3307875 (Ki3) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ki3_ERR3307876" />ERR3307876 (Ki3) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ki3_ERR3307877" />ERR3307877 (Ki3) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="Ky21_ERR3307880" />ERR3307880 (Ky21) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ky21_ERR3307881" />ERR3307881 (Ky21) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="Ky21_ERR3307882" />ERR3307882 (Ky21) - rep4</td>
-                          </tr>
-                          <tr>
-                              <td><input class="genotypes26" type="checkbox" value="MS71_ERR3307887" />ERR3307887 (MS71) - rep2</td>
-                              <td><input class="genotypes26" type="checkbox" value="MS71_ERR3307888" />ERR3307888 (MS71) - rep3</td>
-                              <td><input class="genotypes26" type="checkbox" value="MS71_ERR3307889" />ERR3307889 (MS71) - rep4</td>
-                          </tr>
-                          <td><input class="genotypes26" type="checkbox" value="NC350_ERR3307891" />ERR3307891 (NC350) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="NC350_ERR3307892" />ERR3307892 (NC350) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="NC350_ERR3307893" />ERR3307893 (NC350) - rep4</td>
-                        </tr>
-                        <tr>
-                          <td><input class="genotypes26" type="checkbox" value="Oh43_ERR3307895" />ERR3307895 (Oh43) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="Oh43_ERR3307896" />ERR3307896 (Oh43) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="Oh43_ERR3307897" />ERR3307897 (Oh43) - rep4</td>
-                        </tr>
-                        <tr>
-                          <td><input class="genotypes26" type="checkbox" value="Oh7B_ERR3307899" />ERR3307899 (Oh7B) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="Oh7B_ERR3307900" />ERR3307900 (Oh7B) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="Oh7B_ERR3307901" />ERR3307901 (Oh7B) - rep4</td>
-                        </tr>
-                        <tr>
-                          <td><input class="genotypes26" type="checkbox" value="P39_ERR3307903" />ERR3307903 (P39) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="P39_ERR3307904" />ERR3307904 (P39) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="P39_ERR3307905" />ERR3307905 (P39) - rep4</td>
-                        </tr>
-                        <tr>
-                          <td><input class="genotypes26" type="checkbox" value="Tx303_ERR3307907" />ERR3307907 (Tx303) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="Tx303_ERR3307908" />ERR3307908 (Tx303) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="Tx303_ERR3307909" />ERR3307909 (Tx303) - rep4</td>
-                        </tr>
-                        <tr>
-                          <td><input class="genotypes26" type="checkbox" value="Tzi8_ERR3155516" />ERR3155516 (Tzi8) - rep2</td>
-                          <td><input class="genotypes26" type="checkbox" value="Tzi8_ERR3155517" />ERR3155517 (Tzi8) - rep3</td>
-                          <td><input class="genotypes26" type="checkbox" value="Tzi8_ERR3155518" />ERR3155518 (Tzi8) - rep4</td>
-                          </tr>
-                        </table>
-                        <br></div></div>
-
 
                         <div class="border1">
                             <button type="button" class="accordion"><b>European maize diversity <a target="_blank" href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB14212">(PRJEB14212)</a> - Location: France</b></button>
@@ -9301,15 +9360,11 @@
 </div>
 </div>
 </form>
-
-
-            <div id="loadingContainer" class="load_content" style="display: none">
-            </div>
             <div id="outputContainer" class="content" style="display: none">
-                Use the 'Select options' tab to query the WGS database.
+                The output will be displayed in this tab. Use the 'Select options' tab to query the WGS database.
+                <div id="loadingContainer" class="load_content" style="display: none">
+                </div>
             </div>
-
-
 
             <div id="treeContainer" class="content" style="display: none">
 
@@ -9377,6 +9432,7 @@
                     </tr>
                 </table>
 
+
                 <div style="display: none">
             	<p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font color="Green"><b>Select genomes</b></font>
 
@@ -9399,7 +9455,7 @@
                      Draw tree
                     </button>
                 </div>
-                <br><br>
+                
                 <div id="tree_block" style="display: none">
 
                 </div>
@@ -9410,10 +9466,9 @@
             </div>
 
             <div id="pairContainer" class="content" style="display: none">
-
                 <!-- ==== Pairwise Similarity Explorer (namespaced) ==== -->
                 <div id="pse-root">
-                  <h2 id="pse-title">Pairwise Similarity Explorer</h2>
+                  <h2 id="pse-title">Identity by state viewer</h2>
                   This widget lets you pick (or type) any SNPVersity ID from the MaizeGDB 2026 dataset and instantly ranks all 2,710 maize accessions by genetic similarity to the selected choice. It highlights the focal accession, shows the similarity score (the fraction of SNP sites where both accessions have non-missing genotypes and match), reports pairwise missingness (the percentage of SNP sites where at least one of the two accessions is missing a genotype), and metadata. Click any column header to re‑sort the table; use the search box / drop‑down to switch accession. <br><br>
 
                   <div id="pse-controls">
@@ -14403,7 +14458,7 @@ chr10	218502	.	C	CTCTGTCTG	1676.75	.	MQ=47.9;CVC=1444;CVP=96.40;TYPE=3_prime_UTR
 To see a full list of the variant effect types click <a target="_blank" href="https://pcingola.github.io/SnpEff/snpeff/inputoutput/">here</a>.
 
     </div>
-
+            <br><br>
         <div class="footer">
             <center>Site designed and hosted by <a target="_blank" href="https://www.maizegdb.org/">MaizeGDB</a> with support from the USDA<br><center>
         </div>
