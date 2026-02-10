@@ -306,6 +306,13 @@ thead th.th0.th0_PRJEB61159  { background-color: #00BFFF; } /* deep sky cyan (br
 thead th.th0.th0_PRJNA352392 { background-color: #FF00A8; } /* hot magenta */
 thead th.th0.th0_PRJNA783885 { background-color: #FF8C00; } /* dark orange (more saturated than goldenrod/coral) */
 
+thead th.th0.th0_282  { background-color: #9B59B6; } /* vivid purple */
+thead th.th0.th0_CAU  { background-color: #00BFFF; } /* deep sky cyan (brighter than your blues) */
+thead th.th0.th0_CIMMYT { background-color: #FF00A8; } /* hot magenta */
+thead th.th0.th0_German { background-color: #FF8C00; } /* dark orange (more saturated than goldenrod/coral) */
+thead th.th0.th0_HapMap2 { background-color: #2F4F4F; } /* dark orange (more saturated than goldenrod/coral) */
+thead th.th0.th0_HMextra { background-color: #8B0000; } /* dark orange (more saturated than goldenrod/coral) */
+
   .th1 {
       width: 60px;
       max-width: 60px; /* Ensures the width doesn't exceed this value */
