@@ -46,6 +46,15 @@ if ($dataset == "mgdb2026_hq") {
 } else if ($dataset == "nam2021_hc") {
     $ds_part0 = "nam2021";
     $ds_part2 = "HC";
+} else if ($dataset == "panzeaRaw") {
+    $ds_part0 = "panzea_hapmap";
+    $ds_part2 = "raw";
+} else if ($dataset == "panzeaImpute") {
+    $ds_part0 = "panzea_hapmap";
+    $ds_part2 = "impute";
+} else if ($dataset == "panzea282") {
+    $ds_part0 = "panzea_hapmap";
+    $ds_part2 = "282";
 }
 
 //$db_filename = "./hdf5/maizegdb2024_" . $ds_part1 . "_" . $ds_part2 . ".h5";
