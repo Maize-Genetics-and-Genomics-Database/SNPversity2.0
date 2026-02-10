@@ -85,6 +85,8 @@
         var divM26 = document.querySelector('.maize2026_container');
         var divM = document.querySelector('.maize2024_container');
         var divS = document.querySelector('.schnable2023_container');
+        var divH = document.querySelector('.hapmap_container');
+        var div282 = document.querySelector('.hapmap282_container');
         var divN = document.querySelector('div[name="NAM_container"]');
 
         // Example function to handle the change
@@ -93,6 +95,8 @@
             divM.style.display = "none";
             divS.style.display = "none";
             divN.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb2026"
             console.log("MaizeGDB 2024 High Quality selected.");
             // Add your logic here
@@ -101,6 +105,8 @@
             divM.style.display = "none";
             divN.style.display = "none";
             divS.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb2026"
             console.log("MaizeGDB 2024 High Coverage selected.");
             // Add your logic here
@@ -109,6 +115,8 @@
             divM.style.display = "block";
             divS.style.display = "none";
             divN.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Quality selected.");
             // Add your logic here
@@ -117,6 +125,8 @@
             divM.style.display = "block";
             divN.style.display = "none";
             divS.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Coverage selected.");
             // Add your logic here
@@ -125,6 +135,8 @@
             divM.style.display = "block";
             divN.style.display = "block";
             divS.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Quality selected.");
             // Add your logic here
@@ -133,6 +145,8 @@
             divM.style.display = "block";
             divN.style.display = "block";
             divS.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "maizegdb"
             console.log("MaizeGDB 2024 High Coverage selected.");
             // Add your logic here
@@ -141,8 +155,40 @@
             divM.style.display = "none";
             divN.style.display = "none";
             divS.style.display = "block";
+            divH.style.display = "none";
+            div282.style.display = "none";
             dataset = "schnable"
             console.log("Schnable 2023 Imputation selected.");
+            // Add your logic here
+        } else if (value === 'panzeaRaw') {
+            divM26.style.display = "none";
+            divM.style.display = "none";
+            divN.style.display = "none";
+            divS.style.display = "none";
+            divH.style.display = "block";
+            div282.style.display = "none";
+            dataset = "panzea"
+            console.log("Panzea HapMap Raw.");
+            // Add your logic here
+        } else if (value === 'panzeaImpute') {
+            divM26.style.display = "none";
+            divM.style.display = "none";
+            divN.style.display = "none";
+            divS.style.display = "none";
+            divH.style.display = "block";
+            div282.style.display = "none";
+            dataset = "panzea"
+            console.log("Panzea HapMap Imputed.");
+            // Add your logic here
+        } else if (value === 'panzea282') {
+            divM26.style.display = "none";
+            divM.style.display = "none";
+            divN.style.display = "none";
+            divS.style.display = "none";
+            divH.style.display = "none";
+            div282.style.display = "block";
+            dataset = "panzea"
+            console.log("Panzea HapMap 282.");
             // Add your logic here
         }
 
@@ -352,6 +398,32 @@
                 //      accessionValues.push(afterLastUnderscore);
                 //    }
                 //  });
+            } else if (selectedValue === 'panzeaRaw' || selectedValue === 'panzeaImpute') {
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypesHM');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
+            } else if (selectedValue === 'panzea282') {
+
+                // Handle the case where no file is uploaded
+                var checkboxes = document.querySelectorAll('.genotypes282');
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        if(checkbox.value != "skip") {
+                            accessionValues.push(checkbox.value);
+                            //accessionValues.push(checkbox.value.replace(/@/g, '_'));
+                        }
+                   }
+                });
+
             } else if (selectedValue === 'mgdb2024_hq' || selectedValue === 'mgdb2024_hc') {
 
                 // Handle the case where no file is uploaded
@@ -491,7 +563,7 @@ $(document).ready(function() {
                 dataType: 'json', // Expecting JSON response
                 success: function(response) {
                     // 'response' is already a JavaScript object
-                    //console.log(response.message);
+                    console.log(response.message);
 
                     if (response.status === "success") {
                         console.log("VCF created - Success");
@@ -729,6 +801,15 @@ function openPopupS() {
           myWindow.document.close();
       }
 
+  function openPopupHM() {
+            var myWindow = window.open("", "MsgWindow", "width=820,height=500");
+            myWindow.document.open();
+            myWindow.document.write('<html><head><title>Panzea HapmapV3.2.1 Accessions Table</title><style>table {width: 800px; border-collapse: collapse; font-family: Arial, sans-serif;} td, th {border-bottom: 3px solid #4CAF50; padding: 10px; background-color: #E8F5E9; font-weight: bold;} tr:nth-child(even) {background-color: #F9FBE7;} div {width: 20px; height: 30px;}</style></head><body>');
+            myWindow.document.write(document.getElementById("tableToPopupHM").innerHTML);
+            myWindow.document.write('</body></html>');
+            myWindow.document.close();
+        }
+
 function allelePopup() {
           var myWindow = window.open("", "MsgWindow", "width=650,height=250");
           myWindow.document.open();
@@ -788,6 +869,7 @@ function parseVCF(outFile, curChr) {
                         <button class="popup-button" onclick="openPopupM26()">MaizeGDB2026 accession key</button>
                         <button class="popup-button" onclick="openPopupM()">MaizeGDB2024 accession key</button>
                         <button class="popup-button" onclick="openPopupS()">Schnable2023 accession key</button>
+                        <button class="popup-button" onclick="openPopupHM()">Panzea HapMapV3.2.1 accession key</button>
                     </div>
                 `);
 
@@ -894,7 +976,7 @@ function parseVCF(outFile, curChr) {
         {
           headers = line.split('\t');
           headers.forEach((header, headerIndex) => {
-              if(headerIndex == 1 && dataset == "maizegdb2026")
+              if(headerIndex == 1 && (dataset == "maizegdb2026" || dataset == "panzea"))
               {
                   //console.log("Dataset:", dataset);
 
@@ -978,7 +1060,7 @@ function parseVCF(outFile, curChr) {
                   th10c.className = 'th3'; // Assign the class
                   headerRow.appendChild(th10c);
 
-              } else if(headerIndex == 1 && dataset != "maizegdb2026")
+              } else if(headerIndex == 1 && dataset != "maizegdb2026" && dataset != "panzea")
               {
                   //console.log("Dataset headerIndex1:", dataset);
 
@@ -1197,12 +1279,17 @@ function parseVCF(outFile, curChr) {
                     const cleanKey = header;
                     let proj = "";
 
-                    if (dataset === "maizegdb2026")
+                    if (dataset == "maizegdb2026")
                     {
                         proj = header_array2026[cleanKey];
+                    } else if (dataset == "panzea")
+                    {
+                        proj = header_arrayHapMap[cleanKey];
                     } else {
                         proj = header_array[cleanKey];
                     }
+
+                    header_arrayHapMap
 
                     if (proj) {
                       th.classList.add(`th0_${proj}`); // only for per-project differences (like color)
@@ -1278,7 +1365,7 @@ function parseVCF(outFile, curChr) {
                   td.className = 'td_allele';
             }
 
-            if(cellIndex == 7 && dataset == "maizegdb2026")
+            if(cellIndex == 7 && (dataset == "maizegdb2026" || dataset == "panzea"))
             {
                 // Extracting the gene model names (GM)
                 let geneModelMatch = cell.match(/GENEMODEL=([^\t]*?)(?:SUB=|\t|$)/);
@@ -1404,7 +1491,7 @@ function parseVCF(outFile, curChr) {
                     // When "missense" is found, use the corresponding GM value to create a link
                     var gmValue = GMArray[index];
                     var subValue = SUBArray[index];
-                    var link = "http://www.maizegdb.org/effect/maize/index.html?id=" + gmValue;
+                    var link = "http://www.maizegdb.org/effect/maize_v2/index.html?id=" + gmValue;
                     // Append the link HTML to the htmlResult string
                     if(first_hit)
                     {
@@ -1525,7 +1612,7 @@ function parseVCF(outFile, curChr) {
 
 }
 
-            if(cellIndex == 7 && dataset != "maizegdb2026")
+            if(cellIndex == 7 && dataset != "maizegdb2026" && dataset != "panzea")
             {
                 // Extracting the gene model names (GM)
                 let geneModelMatch = cell.match(/GENEMODEL=([^\t]*?)(?:SUB=|\t|$)/);
@@ -1633,7 +1720,7 @@ function parseVCF(outFile, curChr) {
                     // When "missense" is found, use the corresponding GM value to create a link
                     var gmValue = GMArray[index];
                     var subValue = SUBArray[index];
-                    var link = "http://www.maizegdb.org/effect/maize/index.html?id=" + gmValue;
+                    var link = "http://www.maizegdb.org/effect/maize_v2/index.html?id=" + gmValue;
                     // Append the link HTML to the htmlResult string
                     if(first_hit)
                     {
