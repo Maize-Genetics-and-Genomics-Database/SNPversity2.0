@@ -248,8 +248,8 @@
       padding-left: 1px;
       vertical-align: bottom;
       text-align: center;
-      background-color: #56B4E9;
-      color: white;
+      background-color: #F0E442;
+      color: #777777;
       position: sticky;
       top: 0;
   }
@@ -303,8 +303,8 @@
       padding-left: 1px;
       vertical-align: bottom;
       text-align: center;
-      background-color: #F0E442;
-      color: #777777;
+      background-color: #56B4E9;
+      color: white;
       position: sticky;
       top: 0;
       cursor: help;
