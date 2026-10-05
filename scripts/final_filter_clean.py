@@ -85,9 +85,11 @@ with open(plink_file, 'r') as file:
             ccount += 1
             bp_a = int(parts[1])  # Assuming 'BP_A' is the second column
             bp_b = int(parts[4])  # Assuming 'BP_B' is the fifth column
-            r2 = float(parts[6])  # Assuming 'BP_B' is the fifth column
-            bp_values[bp_a] = r2
-            bp_values[bp_b] = r2
+            r2 = float(parts[6])  # Assuming 'R2' is the seventh column
+            # A SNP can be in several pairs, as BP_A or BP_B; keep its highest R2
+            for bp in (bp_a, bp_b):
+                if r2 > bp_values.get(bp, -1):
+                    bp_values[bp] = r2
             if ccount == 100000:
                 print(bp_a, flush=True)
                 ccount = 0
