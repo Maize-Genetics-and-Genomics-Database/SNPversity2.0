@@ -217,7 +217,7 @@ The table shows how to use this script.
 
 ## Step 3: Filter on Linkage Disequilibrium
 
-The third step requires the installation of PLINK (https://www.cog-genomics.org/plink/).  PLINK is used to identify linkage disequilbrium between the variant loci.
+The third step requires the installation of PLINK (https://www.cog-genomics.org/plink/).  PLINK is used to identify linkage disequilbrium between the variant loci.  Run PLINK and filter_LD.py on one chromosome at a time.
 
 Filter criteria
 
@@ -227,7 +227,7 @@ Filter criteria
 |Terms | Abbreviation | Definition | 
 |---------------|--------------|--------------|
 |Squared correlation | R2 | The square of the correlation coefficient between pairs of loci on a chromosome. It is a measure of the degree of association or linkage disequilibrium between the alleles at the two loci. |
-|Maximum squared correlation | MAXR2 | The maximum R2 for a given loci. | 
+|Maximum squared correlation | MAXR2 | The maximum R2 for a given locus, over all loci 400bp to 5000bp away. | 
 
 The table shows the metadata saved for each vairant locus.
 
@@ -244,8 +244,8 @@ The table shows how to use the plink script.
 |---------------|--------------|
 |script | filter_LD.py  |
 |input | A PLINK formatted dataset with the LD information  (ld file). | 
-|output: | A filtered PLINK formatted dataset based on linkage distance and max R2 score. | 
-|sample usage | python filter_LD_fast.py chr1_snpeff_plink.txt.ld chr1_snpeff_plink_filter.txt.ld |
+|output: | A filtered PLINK formatted dataset. For each locus with at least one pair that meets the filter criteria, it keeps the pair with the locus's highest R2. | 
+|sample usage | python filter_LD.py chr1_snpeff_plink.txt.ld chr1_snpeff_plink_filter.txt.ld |
 
 The table shows how to use the python script to filter the plink data.
 
@@ -283,19 +283,19 @@ There are also columns (named based on the accession name, an undercore, and the
 
 |Usage | Description | 
 |---------------|--------------|
-|script | final_filter_clean_LD.py  |
+|script | final_filter_clean.py  |
 |input | The annotated VCF file from step 2 and the filtered PLINK formatted dataset from step 3.   | 
 |output: | The final annotated VCF file with LD information. | 
-|sample usage | python final_filter_clean_plink.py chr1_snpeff_plink_filter.txt.ld chr1_snpeff.vcf chr1_LD_final.vcf  |
+|sample usage | python final_filter_clean.py chr1_snpeff_plink_filter.txt.ld chr1_snpeff.vcf chr1_LD_final.vcf  |
 
 The table shows how to use the script to filter the high-quality dataset (includes output from PLINK).
 
 |Usage | Description | 
 |---------------|--------------|
-|script | final_filter_clean.py  |
+|script | final_filter_clean_LD.py  |
 |input | The annotated VCF file from step 2. | 
 |output: | The final annotated VCF file without LD information.  | 
-|sample usage | python final_filter_clean.py chr1_snpeff.vcf chr1_final.vcf |
+|sample usage | python final_filter_clean_LD.py chr1_snpeff.vcf chr1_final.vcf |
 
 The table shows how to use the script to filter the high-coverage dataset (no LD information).
 
